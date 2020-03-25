@@ -1,5 +1,6 @@
 const path = require('path');
 const exec = require('child_process').exec;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const ENV = getEnvironment();
 
@@ -56,7 +57,13 @@ module.exports = [
                     ]
                 }
             ]
-        }
+        },
+        plugins: [
+            new CopyWebpackPlugin([
+                { from: 'src/client/**/*.css', to: 'style.css' },
+                { from: 'src/client/assets' }
+            ])
+        ]
     },
     {
         name: 'server',
