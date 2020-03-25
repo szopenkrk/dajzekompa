@@ -8,7 +8,7 @@
         "build:client": "webpack --config-name client",
         "build:server": "webpack --config-name server",
         "clean": "rm -rf build/",
-        "dev": "nodemon -e ts,json --exec \"npm run start\"",
+        "dev": "nodemon -e ts,tsx,html,css --exec \"npm run start\"",
         "package": "cd build && tar -zcf ../artifact.tar.gz . && cd ..",
         "start": "npm run build && node -r dotenv/config build/app.js dotenv_config_path=env-local.env",
         "test": "echo \"Error: no test specified\" && exit 1"

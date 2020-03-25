@@ -1,8 +1,8 @@
 import { AnyObject } from '../model/Common';
 
 export default class Config {
-    public static APP_NAME: string;
     public static NODE_ENV: string;
+    public static MAINTENANCE_MODE: boolean;
 }
 
 export function loadConfigFromObject (object: AnyObject): void {
