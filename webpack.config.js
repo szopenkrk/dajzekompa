@@ -35,7 +35,7 @@ printEnvironment(ENV, true);
 cleanWorkspace();
 
 module.exports = [
-    
+
     {
         name: 'client',
         entry: path.resolve(__dirname, 'src/client/index.tsx'),
