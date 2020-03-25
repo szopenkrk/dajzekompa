@@ -4,11 +4,13 @@
     "description": "Projekt Miasto",
     "main": "index.js",
     "scripts": {
-        "build": "npm run clean && tsc -p .",
+        "build": "webpack",
+        "build:client": "webpack --config-name client",
+        "build:server": "webpack --config-name server",
         "clean": "rm -rf build/",
         "dev": "nodemon -e ts,json --exec \"npm run start\"",
         "package": "cd build && tar -zcf ../artifact.tar.gz . && cd ..",
-        "start": "npm run build && node -r dotenv/config build/server/index.js dotenv_config_path=env-local.env",
+        "start": "npm run build && node -r dotenv/config build/app.js dotenv_config_path=env-local.env",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -31,7 +33,9 @@
         "@types/express": "^4.17.3",
         "@types/http-status-codes": "^1.2.0",
         "dotenv": "^8.2.0",
+        "html-loader": "^1.0.0",
         "nodemon": "^2.0.2",
+        "ts-loader": "^6.2.2",
         "typescript": "^3.8.3",
         "webpack": "^4.42.1",
         "webpack-cli": "^3.3.11"

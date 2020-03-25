@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "rootDir": "src",
+        "rootDir": ".",
         "baseUrl": ".",
         "outDir": "build",
         "module": "commonjs",
@@ -12,7 +12,7 @@
             "esnext",
             "dom"
         ],
-        "allowJs": true,
+        "allowJs": false,
         "strict": true,
         "strictNullChecks": false,
         "forceConsistentCasingInFileNames": true,
