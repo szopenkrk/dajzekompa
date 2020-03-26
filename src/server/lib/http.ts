@@ -1,6 +1,6 @@
 
 /* Libraries */
-import joi, { SchemaLike } from '@hapi/joi';
+import { AnySchema } from '@hapi/joi';
 
 /* Models */
 import { HTTPCode } from '../model/HTTP';
@@ -34,25 +34,25 @@ export function getRequestOriginIP (req): string {
     return req.connection.remoteAddress || req.socket.remoteAddress || null;
 }
 
-export function validateRequestPayload (body: any, schema: SchemaLike): Promise<any> {
-    const buildPath = (path: string[]) => {
-        return path.reduce((p, n) => {
+export function validateRequestPayload (body: any, schema: AnySchema): Promise<any> {
+    const buildPath = (path: (string | number)[]) => {
+        return (path.reduce((p, n) => {
             return typeof n === 'string' ? p += `.${n}` : p += `[${n}]`;
-        }, '').slice(1);
+        }, '') as string).slice(1);
     };
 
     return new Promise((resolve, reject) => {
-        joi.validate(body, schema, {
-            convert: true,
+        const { error, value } = schema.validate(body, {
+            convert: false,
             stripUnknown: true
-        }, (error, data) => {
-            if (error) {
-                const msg = `Request validation failed: ${error.details[0].message} (${buildPath(error.details[0].path)})`;
-
-                return reject(new APIError(msg, HTTPCode.BAD_REQUEST));
-            }
-
-            return resolve(data);
         });
+
+        if (error) {
+            const msg = `Request validation failed: ${error.details[0].message} (${buildPath(error.details[0].path)})`;
+
+            return reject(new APIError(msg, HTTPCode.BAD_REQUEST));
+        }
+
+        return resolve(value);
     });
 }

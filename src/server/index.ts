@@ -11,7 +11,7 @@ import Log, { JSErrors } from './controller/Log';
 import APIError from './controller/APIError';
 import Config from './lib/config';
 import Process from './lib/process';
-import { closeWithError } from './lib/http';
+import { closeWithError, validateRequestPayload } from './lib/http';
 
 import middlewares from './middleware';
 import routes from './route';
@@ -39,6 +39,14 @@ for (let middleware of middlewares) {
 for (let route of routes) {
     server[route.method.toLowerCase()](route.url, async (req: Request, res: Response, next: NextFunction) => {
         Log.info(`${route.method} ${route.url}`);
+
+        if (route.schema) {
+            try {
+                req.body = await validateRequestPayload(req.body, route.schema);
+            } catch (error) {
+                return closeWithError(res, error);
+            }
+        }
 
         try {
             await route.controller(req, res, next);

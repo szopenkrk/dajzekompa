@@ -5,6 +5,9 @@ export function sendForm (form) {
         form = { ...form };
         form.personType = form.personType.toUpperCase();
         form.deviceType = form.deviceType.toUpperCase();
+        form.ram = parseFloat(form.ram.replace(/,/g, '.'));
+        form.hdd = parseFloat(form.hdd.replace(/,/g, '.'));
+        form.screenSize = parseFloat(form.screenSize.replace(/,/g, '.'));
 
         form = Object.keys(form).reduce((all, current) => {
             if (form[current]) all[current] = form[current];
