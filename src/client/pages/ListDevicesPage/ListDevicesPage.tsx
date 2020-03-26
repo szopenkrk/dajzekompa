@@ -135,6 +135,9 @@ export function ListDevicesPage () {
             <Paper variant="outlined" className={classes.container}>
                 {loading && (<LoadingOverlay />)}
                 {error && (<ErrorBox>{error}</ErrorBox>)}
+                {devices && devices.length === 0 && (
+                    <Typography variant="subtitle1">Brak urządzeń na liście.</Typography>
+                )}
                 {devices && devices.map((device, index) => (
                     <ExpansionPanel key={index} className={classes.panel} square expanded={expanded === index} onChange={expand(index)}>
                         <ExpansionPanelCustomSummary aria-controls={`panel${index}-content`} id={`panel${index}-header`}>
@@ -207,7 +210,14 @@ export function ListDevicesPage () {
                             </Table>
                             <div style={{ width: '100%' }}>
                                 <Typography variant="subtitle1">Komentarze:</Typography>
-                                <Typography variant="body2" className={classes.comments}>{device.comments}</Typography>
+                                <Typography variant="body2" className={classes.comments}>
+                                    {device.comments.split('\n').map((item, index) => (
+                                        <span key={index}>
+                                            {item}
+                                            <br />
+                                        </span>
+                                    ))}
+                                </Typography>
                             </div>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>

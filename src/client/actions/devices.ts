@@ -12,6 +12,9 @@ export function addDevice (form) {
         form.personType = form.personType.toUpperCase();
         form.deviceType = form.deviceType.toUpperCase();
         form.nip = form.nip.replace(/\D+/g, '');
+        if (form.ram) form.ram = parseFloat(form.ram);
+        if (form.hdd) form.hdd = parseFloat(form.hdd);
+        if (form.screenSize) form.screenSize = parseFloat(form.screenSize);
 
         form = Object.keys(form).reduce((all, current) => {
             if (typeof form[current] === 'undefined' || form[current] === '') return all;
