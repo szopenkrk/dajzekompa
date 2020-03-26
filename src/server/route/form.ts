@@ -46,7 +46,7 @@ export default {
                 microphone: req.body.deviceType === 'NOTEBOOK' ? true : req.body.microphone,
                 speakers: req.body.deviceType === 'NOTEBOOK' ? true : req.body.speakers,
                 comments: req.body.comments,
-                ...(req.body.personType === 'person' ? {
+                ...(req.body.personType === 'PERSON' ? {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName
                 } : {
