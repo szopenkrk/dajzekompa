@@ -1,5 +1,8 @@
+import { Device } from './Device';
+
 export enum ReduxActionType {
-    UI_SET_LOADING = 'UI_SET_LOADING'
+    UI_SET_LOADING = 'UI_SET_LOADING',
+    DEVICES_LOAD = 'DEVICES_LOAD'
 }
 
 export type ReduxState = {
@@ -9,3 +12,5 @@ export type ReduxState = {
 export type StateUI = {
     loading: boolean;
 };
+
+export type StateDevices = Device[];

@@ -57,12 +57,12 @@ export default {
                     notebookName: req.body.notebookName
                 } : {})
             });
-
-            return respondSuccess(res, { message: 'Wniosek został przyjęty.' });
         } catch (error) {
             Log.error(error);
 
             return closeWithError(res, { error }, HTTPCode.INTERNAL_SERVER_ERROR);
         }
+
+        return respondSuccess(res, { message: 'Wniosek został przyjęty.' });
     }
 } as APIRoute;

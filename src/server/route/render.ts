@@ -26,7 +26,7 @@ export function renderPartial (element: string, place: DocumentPlace, tpl: strin
 
 export default {
     method: HTTPMethod.GET,
-    url: '/*',
+    url: '/',
     controller: async (req: Request, res: Response) => {
         const config = Config.__CLIENT_ENABLED__.reduce((cfg, name) => {
             cfg[name] = Config[name];
