@@ -79,7 +79,8 @@ module.exports = [
             extensions: [ '.js', '.ts', '.html' ]
         },
         externals: switchEnvs({
-            express: 'commonjs express'
+            express: 'commonjs express',
+            knex: 'commonjs knex'
         }),
         module: {
             rules: [

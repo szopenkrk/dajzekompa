@@ -43,7 +43,7 @@ function getConfig (prop: string, type: string): any {
 }
 
 export default class Config {
-    public static __CLIENT_ENABLED__: string[] = [ 'NODE_ENV', 'MAINTENANCE_MODE' ];
+    public static __CLIENT_ENABLED__: string[] = [ 'NODE_ENV', 'MAINTENANCE_MODE', 'API_URL' ];
 
     /* System level */
     public static APP_NAME: string = getConfig('APP_NAME', 'string');
@@ -54,4 +54,6 @@ export default class Config {
 
     /* Custom */
     public static MAINTENANCE_MODE: boolean = getConfig('MAINTENANCE_MODE', 'boolean');
+    public static DB_URL: string = getConfig('DB_URL', 'string');
+    public static API_URL: string = getConfig('API_URL', 'string');
 }

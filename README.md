@@ -4,6 +4,9 @@
 In order to run the project locally, you need to install node dependencies first:
 > npm install
 
+Then, database migrations have to be ran once (to setup the database structure):
+> npm run db:migrate
+
 After that, if you want to just start the project, run:
 > npm start
 
