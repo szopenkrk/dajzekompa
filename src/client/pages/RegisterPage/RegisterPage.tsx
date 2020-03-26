@@ -12,6 +12,7 @@ import { ReduxState } from '../../model/Redux';
 import { sendForm } from '../../actions/form';
 import LoadingOverlay from '../../components/LoadingOverlay';
 import ErrorBox from '../../components/ErrorBox';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
@@ -65,6 +66,9 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'flex-end',
         paddingTop: '30px'
+    },
+    message: {
+        textAlign: 'center'
     }
 });
 
@@ -98,13 +102,14 @@ export function RegisterPage () {
     async function onSubmit (e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
+        setError('');
         setLoading(true);
 
         try {
             await dispatch(sendForm(form));
             setComplete(true);
         } catch (error) {
-            setError('Ups, coś poszło nie tak.');
+            setError(error.message);
         }
 
         setLoading(false);
@@ -112,9 +117,15 @@ export function RegisterPage () {
 
     function updateField (name: string) {
         return (e: ChangeEvent<HTMLInputElement>) => {
+            let value: any = e.target.value;
+
+            if (e.target.getAttribute('type') === 'checkbox') {
+                value = e.target.checked;
+            }
+
             setForm({
                 ...form,
-                [name]: e.target.value
+                [name]: value
             });
         };
     }
@@ -124,10 +135,15 @@ export function RegisterPage () {
             <Paper variant="outlined" className={classes.container}>
                 {loading && (<LoadingOverlay />)}
                 {error && (<ErrorBox>{error}</ErrorBox>)}
-                {complete && (
+                {complete && !error && (
                     <>
                         <Icon className={classes.icon}>check_circle</Icon>
-                        <Typography variant="h4">Formularz został wysłany</Typography>
+                        <Typography variant="h4" className={classes.message}>Formularz został wysłany</Typography>
+                        <section className={classes.actions}>
+                            <Link to="/">
+                                <Button variant="contained" color="primary">Powrót</Button>
+                            </Link>
+                        </section>
                     </>
                 )}
                 {!complete && (
