@@ -4,7 +4,7 @@ const { knexSnakeCaseMappers } = require('objection');
 module.exports = {
     local: {
         client: 'pg',
-        connection: 'postgres://postgres:projektmiasto-db@127.0.0.1:5432/projektmiasto',
+        connection: 'postgres://postgres:postgres@127.0.0.1:5432/projektmiasto',
         migrations: {
             directory: path.resolve(__dirname, 'src/server/database/migrations')
         },

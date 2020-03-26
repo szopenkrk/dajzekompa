@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+    app:
+        image: eu.gcr.io/judas-web/projektmiasto
+        build: .
+        env_file:
+            - env-local.env
+        environment:
+            DB_URL: postgres://postgres:postgres@db:5432/projektmiasto
+        ports:
+            - "8080:80"
+        networks:
+            - projektmiasto
+        depends_on:
+            - db
+    db:
+        image: postgres:12-alpine
+        environment:
+            POSTGRES_DB: projektmiasto
+            POSTGRES_PASSWORD: postgres
+        ports:
+            - "5432:5432"
+        networks:
+            - projektmiasto
+networks:
+    projektmiasto:
