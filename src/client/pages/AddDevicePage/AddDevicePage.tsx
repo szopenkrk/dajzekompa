@@ -12,6 +12,7 @@ import { ReduxState } from '../../model/Redux';
 import { addDevice } from '../../actions/devices';
 import LoadingOverlay from '../../components/LoadingOverlay';
 import ErrorBox from '../../components/ErrorBox';
+import PhotoUploader from '../../components/PhotoUploader';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -96,6 +97,7 @@ export function AddDevicePage () {
         camera: false,
         microphone: false,
         speakers: false,
+        photos: [],
         comments: ''
     });
 
@@ -185,6 +187,10 @@ export function AddDevicePage () {
                                     </FormGroup>
                                 </FormControl>
                             )}
+                        </section>
+                        <Typography variant="h5" className={classes.title}>Zdjęcia</Typography>
+                        <section className={classes.formSection}>
+                            <PhotoUploader onChange={updateField('photos')} />
                         </section>
                         <Typography variant="h5" className={classes.title}>Dodatkowe informacje</Typography>
                         <section className={classes.formSection}>

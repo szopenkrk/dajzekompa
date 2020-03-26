@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { makeStyles, Paper, ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, withStyles, Chip, PropTypes, Icon, Table, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { makeStyles, Paper, ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, withStyles, Chip, PropTypes, Icon } from '@material-ui/core';
 
 /* Models */
 import { Action } from 'redux';
@@ -12,6 +12,7 @@ import { ReduxState } from '../../model/Redux';
 import { Device, DeviceType, PersonType } from '../../model/Device';
 import { loadDevices } from '../../actions/devices';
 import LoadingOverlay from '../../components/LoadingOverlay';
+import DetailsList from '../../components/DetailsList';
 import ErrorBox from '../../components/ErrorBox';
 
 const useStyles = makeStyles({
@@ -25,7 +26,6 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
-        // width: '44rem',
         width: '100%',
         '@media (min-width: 800px)': {
             padding: '24px'
@@ -56,14 +56,6 @@ const useStyles = makeStyles({
     icon: {
         fontSize: '18px',
         marginRight: '3px'
-    },
-    detailsTable: {
-        maxWidth: '400px',
-        marginRight: '40px',
-        marginBottom: '40px'
-    },
-    detailsTableLabel: {
-        backgroundColor: 'rgba(0, 0, 0, .03)'
     },
     comments: {
         backgroundColor: 'rgba(0, 0, 0, .03)',
@@ -160,54 +152,18 @@ export function ListDevicesPage () {
                             </div>
                         </ExpansionPanelCustomSummary>
                         <ExpansionPanelDetails className={classes.content}>
-                            <Table className={classes.detailsTable} aria-label="Specyfikacja sprzętu">
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell className={classes.detailsTableLabel}>Rozmiar ekranu</TableCell>
-                                        <TableCell>{device.screenSize}"</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell className={classes.detailsTableLabel}>RAM</TableCell>
-                                        <TableCell>{device.ram}GB</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell className={classes.detailsTableLabel}>HDD</TableCell>
-                                        <TableCell>{device.hdd}GB</TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                            <Table className={classes.detailsTable} aria-label="Dane kontaktowe">
-                                <TableBody>
-                                    {device.personType === PersonType.COMPANY && (
-                                        <TableRow>
-                                            <TableCell className={classes.detailsTableLabel}>Nazwa firmy</TableCell>
-                                            <TableCell>{device.companyName}</TableCell>
-                                        </TableRow>
-                                    )}
-                                    {device.personType === PersonType.COMPANY && (
-                                        <TableRow>
-                                            <TableCell className={classes.detailsTableLabel}>NIP</TableCell>
-                                            <TableCell>{device.nip}</TableCell>
-                                        </TableRow>
-                                    )}
-                                    {device.personType === PersonType.PERSON && (
-                                        <TableRow>
-                                            <TableCell className={classes.detailsTableLabel}>Imię</TableCell>
-                                            <TableCell>{device.firstName}</TableCell>
-                                        </TableRow>
-                                    )}
-                                    {device.personType === PersonType.PERSON && (
-                                        <TableRow>
-                                            <TableCell className={classes.detailsTableLabel}>Nazwisko</TableCell>
-                                            <TableCell>{device.lastName}</TableCell>
-                                        </TableRow>
-                                    )}
-                                    <TableRow>
-                                        <TableCell className={classes.detailsTableLabel}>E-mail</TableCell>
-                                        <TableCell>{device.email}</TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
+                            <DetailsList label="Specyfikacja sprzętu" data={[
+                                { label: 'Rozmiar ekranu', value: `${device.screenSize}"` },
+                                { label: 'RAM', value: `${device.ram}GB` },
+                                { label: 'HDD', value: `${device.hdd}GB` }
+                            ]} />
+                            <DetailsList label="Dane kontaktowe" data={[
+                                { label: 'Nazwa firmy', value: device.companyName, show: device.personType === PersonType.COMPANY },
+                                { label: 'NIP', value: device.nip, show: device.personType === PersonType.COMPANY },
+                                { label: 'Imię', value: device.firstName, show: device.personType === PersonType.PERSON },
+                                { label: 'Nazwisko', value: device.lastName, show: device.personType === PersonType.PERSON },
+                                { label: 'E-mail', value: device.email }
+                            ]} />
                             <div style={{ width: '100%' }}>
                                 <Typography variant="subtitle1">Komentarze:</Typography>
                                 <Typography variant="body2" className={classes.comments}>
