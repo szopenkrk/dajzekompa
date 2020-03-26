@@ -1,6 +1,7 @@
 const path = require('path');
 const exec = require('child_process').exec;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const IgnorePlugin = require('webpack').IgnorePlugin;
 
 const ENV = getEnvironment();
 
@@ -78,10 +79,12 @@ module.exports = [
         resolve: {
             extensions: [ '.js', '.ts', '.html' ]
         },
-        externals: switchEnvs({
-            express: 'commonjs express',
-            knex: 'commonjs knex'
-        }),
+        externals: {
+            ...switchEnvs({
+                express: 'commonjs express',
+                knex: 'commonjs knex'
+            })
+        },
         module: {
             rules: [
                 {
@@ -98,6 +101,18 @@ module.exports = [
                     ]
                 }
             ]
-        }
+        },
+        plugins: [
+            new IgnorePlugin(/mariasql/, /\/knex\//),
+            new IgnorePlugin(/mssql/, /\/knex\//),
+            new IgnorePlugin(/mysql/, /\/knex\//),
+            new IgnorePlugin(/mysql2/, /\/knex\//),
+            new IgnorePlugin(/oracle/, /\/knex\//),
+            new IgnorePlugin(/oracledb/, /\/knex\//),
+            new IgnorePlugin(/pg-query-stream/, /\/knex\//),
+            new IgnorePlugin(/sqlite3/, /\/knex\//),
+            new IgnorePlugin(/strong-oracle/, /\/knex\//),
+            new IgnorePlugin(/pg-native/, /\/pg\//),
+        ]
     }
 ];

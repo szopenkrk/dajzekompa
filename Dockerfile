@@ -2,9 +2,7 @@
 FROM node:12-alpine
 
 WORKDIR /application
-ENV NODE_ENV=production
-ENV PORT=80
 EXPOSE 80
 
-ADD build/artifact.tar.gz .
-CMD node server.js
+ADD artifact.tar.gz .
+CMD node app.js
