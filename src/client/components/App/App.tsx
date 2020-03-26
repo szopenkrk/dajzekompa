@@ -12,8 +12,8 @@ import { ReduxState } from '../../model/Redux';
 import Config from '../../lib/config';
 import LandingPage from '../../pages/LandingPage';
 import MaintenancePage from '../../pages/MaintenancePage';
-import RegisterPage from '../../pages/RegisterPage';
-import ListPage from '../../pages/ListPage';
+import AddDevicePage from '../../pages/AddDevicePage';
+import ListDevicesPage from '../../pages/ListDevicesPage';
 
 type Props = {
     store: Store<ReduxState>;
@@ -28,8 +28,8 @@ export function App (props: Props) {
                     <Switch>
                         {!Config.MAINTENANCE_MODE && (<Route path="/" component={LandingPage} exact={true} />)}
                         {Config.MAINTENANCE_MODE && (<Route path="/" component={MaintenancePage} exact={true} />)}
-                        <Route path="/register" component={RegisterPage} exact={true} />
-                        <Route path="/list" component={ListPage} exact={true} />
+                        <Route path="/register" component={AddDevicePage} exact={true} />
+                        <Route path="/list" component={ListDevicesPage} exact={true} />
                         <Route render={() => <Redirect to="/" />} />
                     </Switch>
                 </BrowserRouter>

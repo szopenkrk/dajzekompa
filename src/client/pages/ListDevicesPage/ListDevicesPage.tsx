@@ -10,7 +10,7 @@ import { ReduxState } from '../../model/Redux';
 
 /* Application files */
 import { Device, DeviceType, PersonType } from '../../model/Device';
-import { loadDevices } from '../../actions/form';
+import { loadDevices } from '../../actions/devices';
 import LoadingOverlay from '../../components/LoadingOverlay';
 import ErrorBox from '../../components/ErrorBox';
 
@@ -97,7 +97,7 @@ function getDeviceColor (type: DeviceType): PropTypes.Color {
     }
 }
 
-export function ListPage () {
+export function ListDevicesPage () {
     const dispatch = useDispatch();
     const [ expanded, setExpanded ] = useState(-1);
     const [ loading, setLoading ] = useState(true);
@@ -217,4 +217,4 @@ export function ListPage () {
     );
 }
 
-export default ListPage;
+export default ListDevicesPage;

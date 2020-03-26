@@ -9,7 +9,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { ReduxState } from '../../model/Redux';
 
 /* Application files */
-import { sendForm } from '../../actions/form';
+import { addDevice } from '../../actions/devices';
 import LoadingOverlay from '../../components/LoadingOverlay';
 import ErrorBox from '../../components/ErrorBox';
 import { Link } from 'react-router-dom';
@@ -74,7 +74,7 @@ const useStyles = makeStyles({
 
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
-export function RegisterPage () {
+export function AddDevicePage () {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [ loading, setLoading ] = useState(false);
@@ -106,7 +106,7 @@ export function RegisterPage () {
         setLoading(true);
 
         try {
-            await dispatch(sendForm(form));
+            await dispatch(addDevice(form));
             setComplete(true);
         } catch (error) {
             setError(error.message);
@@ -200,4 +200,4 @@ export function RegisterPage () {
     );
 }
 
-export default RegisterPage;
+export default AddDevicePage;
