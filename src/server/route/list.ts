@@ -8,6 +8,28 @@ import knex from '../database/knex';
 import Log from '../controller/Log';
 import { respondSuccess, closeWithError } from '../lib/http';
 
+function buildNestedObjectFromQuery (items: any[]) {
+    return items.map((item) => {
+        item.id = item.applicationId;
+        delete item.applicationId;
+
+        return item;
+    }).reduce((all, current) => {
+        const found = all.find((i) => i.id === current.id);
+
+        if (!found) {
+            current.photos = [ current.url ];
+            delete current.url;
+
+            all.push(current);
+        } else {
+            found.photos.push(current.url)
+        }
+
+        return all;
+    }, []);
+}
+
 export default {
     method: HTTPMethod.GET,
     url: '/api/list',
@@ -15,14 +37,14 @@ export default {
         let items: any[];
 
         try {
-            items = await knex('applications').select();
+            items = await knex('applications').select().leftJoin('photos', 'applications.id', 'photos.application_id');
         } catch (error) {
             Log.error(error);
 
             return closeWithError(res, { error }, HTTPCode.INTERNAL_SERVER_ERROR);
         }
 
-        items = items.map((item) => {
+        items = buildNestedObjectFromQuery(items).map((item) => {
             if (item.personType === 'PERSON') {
                 delete item.companyName;
                 delete item.nip;
@@ -43,6 +65,7 @@ export default {
 
             return item;
         });
+        console.log(items);
 
         return respondSuccess(res, items);
     }

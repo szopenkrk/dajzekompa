@@ -29,7 +29,7 @@ const schema = joi.object({
     camera: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
     microphone: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
     speakers: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
-    notebookName: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.string().required() }),
+    notebookName: joi.when('deviceType', { is: DeviceType.NOTEBOOK, then: joi.string().required() }),
     comments: joi.string(),
     firstName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),
     lastName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),

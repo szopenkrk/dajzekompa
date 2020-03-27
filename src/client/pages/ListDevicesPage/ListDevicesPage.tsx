@@ -60,6 +60,21 @@ const useStyles = makeStyles({
     comments: {
         backgroundColor: 'rgba(0, 0, 0, .03)',
         padding: '10px'
+    },
+    gallery: {
+        width: '100%',
+        display: 'flex'
+    },
+    thumbnail: {
+        width: '300px',
+        height: '300px',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundOrigin: 'content-box',
+        padding: '10px',
+        border: '1px solid rgba(0, 0, 0, 0.23)',
+        margin: '10px 5px'
     }
 });
 
@@ -164,17 +179,24 @@ export function ListDevicesPage () {
                                 { label: 'Nazwisko', value: device.lastName, show: device.personType === PersonType.PERSON },
                                 { label: 'E-mail', value: device.email }
                             ]} />
-                            <div style={{ width: '100%' }}>
-                                <Typography variant="subtitle1">Komentarze:</Typography>
-                                <Typography variant="body2" className={classes.comments}>
-                                    {device.comments.split('\n').map((item, index) => (
-                                        <span key={index}>
-                                            {item}
-                                            <br />
-                                        </span>
-                                    ))}
-                                </Typography>
-                            </div>
+                            {device.comments && (
+                                <div style={{ width: '100%', marginBottom: '20px' }}>
+                                    <Typography variant="subtitle1">Komentarze:</Typography>
+                                    <Typography variant="body2" className={classes.comments}>
+                                        {device.comments.split('\n').map((item, index) => (
+                                            <span key={index}>
+                                                {item}
+                                                <br />
+                                            </span>
+                                        ))}
+                                    </Typography>
+                                </div>
+                            )}
+                            <Paper className={classes.gallery} elevation={0}>
+                                {device.photos.map((photo, index) => (
+                                    <article key={index} className={classes.thumbnail} style={{ backgroundImage: `url("${photo}")`}}></article>
+                                ))}
+                            </Paper>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
                 ))}

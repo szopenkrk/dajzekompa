@@ -24,5 +24,6 @@ export type Device = {
     camera?: boolean;
     microphone?: boolean;
     speakers?: boolean;
+    photos: string[];
     comments: string;
 };
