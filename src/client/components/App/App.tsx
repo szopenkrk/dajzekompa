@@ -13,7 +13,7 @@ import Config from '../../lib/config';
 import LandingPage from '../../pages/LandingPage';
 import MaintenancePage from '../../pages/MaintenancePage';
 import AddDevicePage from '../../pages/AddDevicePage';
-import ListDevicesPage from '../../pages/ListDevicesPage';
+import AdminPage from '../../pages/AdminPage';
 
 type Props = {
     store: Store<ReduxState>;
@@ -29,7 +29,7 @@ export function App (props: Props) {
                         {!Config.MAINTENANCE_MODE && (<Route path="/" component={LandingPage} exact={true} />)}
                         {Config.MAINTENANCE_MODE && (<Route path="/" component={MaintenancePage} exact={true} />)}
                         <Route path="/register" component={AddDevicePage} exact={true} />
-                        <Route path="/list" component={ListDevicesPage} exact={true} />
+                        <Route path="/admin" component={AdminPage} />
                         <Route render={() => <Redirect to="/" />} />
                     </Switch>
                 </BrowserRouter>
