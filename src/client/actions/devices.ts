@@ -5,10 +5,21 @@ import { ReduxActionType } from '../model/Redux';
 /* Application files */
 import { request } from '../lib/request';
 
+function base64toBlob (base64: string): Blob {
+    const type = base64.split(',')[0].split(':')[1].split(';')[0];
+    const bytes = atob(base64.split(',')[1]);
+    const binary = new Uint8Array(bytes.length);
+
+    for (let i = 0; i < bytes.length; ++i) {
+        binary[i] = bytes.charCodeAt(i);
+    }
+
+    return new Blob([binary], { type });
+}
+
 export function addDevice (form) {
     return (dispatch: any) => {
         form = { ...form };
-        console.log(form);
         form.personType = form.personType.toUpperCase();
         form.deviceType = form.deviceType.toUpperCase();
         form.nip = form.nip.replace(/\D+/g, '');
@@ -45,7 +56,13 @@ export function addDevice (form) {
         if (form.hdd === 0) delete form.hdd;
         if (form.screenSize === 0) delete form.screenSize;
 
-        return request('POST', '/devices', form);
+        const formData = new FormData();
+
+        form.photos.forEach((photo) => formData.append('photos', base64toBlob(photo)));
+        delete form.photos;
+        formData.append('application', JSON.stringify(form));
+
+        return request('POST', '/devices', formData);
     };
 }
 

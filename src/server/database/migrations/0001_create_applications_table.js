@@ -1,4 +1,3 @@
-
 exports.up = (knex) => {
     return knex.schema.createTable('applications', table => {
         table.bigIncrements('id');
@@ -18,6 +17,8 @@ exports.up = (knex) => {
         table.boolean('speakers').notNullable();
         table.boolean('monitor').notNullable();
         table.text('comments').defaultTo('');
+
+        table.index(['id']);
     });
 };
 

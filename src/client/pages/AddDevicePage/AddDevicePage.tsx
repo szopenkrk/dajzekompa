@@ -118,12 +118,8 @@ export function AddDevicePage () {
     }
 
     function updateField (name: string) {
-        return (e: ChangeEvent<HTMLInputElement>) => {
-            let value: any = e.target.value;
-
-            if (e.target.getAttribute('type') === 'checkbox') {
-                value = e.target.checked;
-            }
+        return (e: ChangeEvent<HTMLInputElement>, value?: any) => {
+            if (!value) value = e.target.value;
 
             setForm({
                 ...form,
@@ -190,7 +186,7 @@ export function AddDevicePage () {
                         </section>
                         <Typography variant="h5" className={classes.title}>Zdjęcia</Typography>
                         <section className={classes.formSection}>
-                            <PhotoUploader onChange={updateField('photos')} />
+                            <PhotoUploader onChange={updateField('photos')} mime={['image/jpeg', 'image/png', 'image/bmp']} maxSize={3145728} />
                         </section>
                         <Typography variant="h5" className={classes.title}>Dodatkowe informacje</Typography>
                         <section className={classes.formSection}>

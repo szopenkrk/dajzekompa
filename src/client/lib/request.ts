@@ -10,14 +10,18 @@ export function post<T> (path: string, body: any): Promise<T> {
 }
 
 export function request<T> (method: string, path: string, body?: any): Promise<T> {
+    const headers = new Headers();
+
     return new Promise<T>(async (resolve, reject) => {
+        if (body && !(body instanceof FormData)) {
+            headers.append('Content-Type', 'application/json');
+        }
+
         try {
             const response = await fetch(`${Config.API_URL}${path}`, {
                 method,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                ...(body ? { body: JSON.stringify(body) } : {})
+                headers,
+                body
             });
 
             let error = '';

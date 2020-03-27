@@ -56,4 +56,7 @@ export default class Config {
     public static MAINTENANCE_MODE: boolean = getConfig('MAINTENANCE_MODE', 'boolean');
     public static DB_URL: string = getConfig('DB_URL', 'string');
     public static API_URL: string = getConfig('API_URL', 'string');
+    public static AWS_ACCESS_KEY_ID: string = getConfig('AWS_ACCESS_KEY_ID', 'string');
+    public static AWS_SECRET_ACCESS_KEY: string = getConfig('AWS_SECRET_ACCESS_KEY', 'string');
+    public static AWS_S3_BUCKET_NAME: string = getConfig('AWS_S3_BUCKET_NAME', 'string');
 }

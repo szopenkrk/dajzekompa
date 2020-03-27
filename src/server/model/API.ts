@@ -7,5 +7,6 @@ export type APIRoute = {
     method: HTTPMethod;
     url: string;
     schema?: AnySchema;
+    middleware?: RequestHandler[];
     controller: RequestHandler;
 };

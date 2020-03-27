@@ -2,7 +2,9 @@ import React, { createRef, ChangeEvent, useState } from 'react';
 import { makeStyles, Icon } from '@material-ui/core';
 
 type Props = {
-    onChange: (e: any) => void;
+    onChange?: (e: ChangeEvent<HTMLInputElement>, files: string[]) => void;
+    mime?: string[];
+    maxSize?: number;
 };
 
 const useStyles = makeStyles({
@@ -50,6 +52,9 @@ export function PhotoUploader (props: Props) {
         const raw = e.target.files;
 
         Array.from(raw).forEach((file) => {
+            if (props.maxSize && file.size > props.maxSize) return;
+            if (props.mime && !props.mime.includes(file.type)) return;
+
             const reader = new FileReader();
 
             reader.onload = () => {
@@ -59,8 +64,9 @@ export function PhotoUploader (props: Props) {
                 parsed.push(base64);
 
                 if (parsed.length === raw.length) {
-                    setFiles([ ...files, ...parsed ]);
-                    console.log(parsed);
+                    const all = [ ...files, ...parsed ];
+                    setFiles(all);
+                    props.onChange && props.onChange(e, all);
                 }
             };
 

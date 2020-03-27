@@ -28,7 +28,7 @@ export function DetailsList (props: Props) {
     const classes = useStyles();
 
     return (
-        <Table className={classes.detailsTable} {...(props.label ? { ariaLabel: props.label } : {})}>
+        <Table className={classes.detailsTable} {...(props.label ? { 'aria-label': props.label } : {})}>
             {props.label && (
                 <TableHead>
                     <TableRow>

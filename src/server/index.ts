@@ -37,7 +37,7 @@ for (let middleware of middlewares) {
 }
 
 for (let route of routes) {
-    server[route.method.toLowerCase()](route.url, async (req: Request, res: Response, next: NextFunction) => {
+    server[route.method.toLowerCase()](route.url, ...(route.middleware || []), async (req: Request, res: Response, next: NextFunction) => {
         Log.info(`${route.method} ${route.url}`);
 
         if (route.schema) {
