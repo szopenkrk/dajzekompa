@@ -50,7 +50,6 @@ export default {
     ],
     controller: async (req: Request, res: Response) => {
         let application;
-        console.log(req.files);
 
         try {
             application = JSON.parse(req.body.application);
@@ -76,7 +75,6 @@ export default {
         });
 
         const uploaded = await Promise.all<S3.ManagedUpload.SendData>(uploads);
-        console.log(JSON.stringify(uploaded, null, 4));
 
         try {
             await knex.transaction(async (trx) => {

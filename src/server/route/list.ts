@@ -65,7 +65,6 @@ export default {
 
             return item;
         });
-        console.log(items);
 
         return respondSuccess(res, items);
     }
