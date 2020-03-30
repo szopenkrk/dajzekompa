@@ -13,6 +13,7 @@ import Footer from '../../components/Footer';
 import HomePage from '../HomePage';
 import AboutPage from '../AboutPage';
 import FaqPage from '../FaqPage';
+import SubmitNeedPage from '../SubmitNeedPage';
 import TermsPage from '../TermsPage';
 import SubmitCityPage from '../SubmitCityPage';
 import RodoPage from '../RodoPage';
@@ -58,6 +59,7 @@ export function LandingPage () {
                     <Route path="/" exact={true} component={HomePage} />
                     <Route path="/o-akcji" exact={true} component={AboutPage} />
                     <Route path="/faq" exact={true} component={FaqPage} />
+                    <Route path="/zglos-potrzebe" exact={true} component={SubmitNeedPage} />
                     <Route path="/regulamin" exact={true} component={TermsPage} />
                     <Route path="/zglos-miasto" exact={true} component={SubmitCityPage} />
                     <Route path="/rodo" exact={true} component={RodoPage} />
