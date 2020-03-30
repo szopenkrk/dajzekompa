@@ -1,16 +1,19 @@
+/* Libraries */
 import React from 'react';
 import clx from 'classnames';
 import { makeStyles } from '@material-ui/core';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 /* Application files */
-import logo from '../../assets/images/logo.svg';
-
+import MainMenu from '../../components/MainMenu';
 import HeroBanner from '../../components/HeroBanner';
-import Partners from '../../components/Partners';
 import Separator from '../../components/Separator';
 import Footer from '../../components/Footer/Footer';
 
-const useStyles = makeStyles((theme) => ({
+import HomePage from '../HomePage';
+import AboutPage from '../AboutPage';
+
+const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
@@ -25,25 +28,6 @@ const useStyles = makeStyles((theme) => ({
     container: {
         width: '940px'
     },
-    navigation: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '13px 0'
-    },
-    menu: {
-        display: 'flex',
-        listStyle: 'none',
-        margin: 0,
-        padding: 0
-    },
-    menuItem: {
-        textTransform: 'uppercase',
-        fontFamily: 'Roboto',
-        fontSize: '15px',
-        fontWeight: 500,
-        padding: '12px'
-    },
     main: {
         display: 'flex',
         flexDirection: 'column',
@@ -56,25 +40,20 @@ const useStyles = makeStyles((theme) => ({
 
 export function LandingPage () {
     const classes = useStyles();
+    const location = useLocation();
 
     return (
         <div className={classes.root}>
             <header className={classes.section}>
-                <nav className={clx(classes.container, classes.navigation)}>
-                    <img src={logo} />
-                    <ul className={classes.menu}>
-                        <li className={classes.menuItem}>O akcji</li>
-                        <li className={classes.menuItem}>FAQ</li>
-                        <li className={classes.menuItem}>Podaruj kompa</li>
-                        <li className={classes.menuItem}>Zgłoś potrzebę</li>
-                        <li className={classes.menuItem}>Regulamin</li>
-                        <li className={classes.menuItem}>Zgłoś miasto</li>
-                    </ul>
-                </nav>
-                <HeroBanner />
+                <MainMenu />
+                {location.pathname === '/' && <HeroBanner />}
             </header>
             <main className={clx(classes.container, classes.main)}>
-                <Partners />
+                <Separator />
+                <Switch>
+                    <Route path="/" exact={true} component={HomePage} />
+                    <Route path="/o-akcji" exact={true} component={AboutPage} />
+                </Switch>
                 <Separator className={classes.separator} />
             </main>
             <Footer className={classes.container} />

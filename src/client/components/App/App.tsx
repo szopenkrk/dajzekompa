@@ -12,7 +12,6 @@ import { ReduxState } from '../../model/Redux';
 import Config from '../../lib/config';
 import LandingPage from '../../pages/LandingPage';
 import MaintenancePage from '../../pages/MaintenancePage';
-import AddDevicePage from '../../pages/AddDevicePage';
 import AdminPage from '../../pages/AdminPage';
 
 type Props = {
@@ -26,10 +25,9 @@ export function App (props: Props) {
             <ThemeProvider theme={props.theme}>
                 <BrowserRouter basename="/#">
                     <Switch>
-                        {!Config.MAINTENANCE_MODE && (<Route path="/" component={LandingPage} exact={true} />)}
-                        {Config.MAINTENANCE_MODE && (<Route path="/" component={MaintenancePage} exact={true} />)}
-                        <Route path="/register" component={AddDevicePage} exact={true} />
                         <Route path="/admin" component={AdminPage} />
+                        {!Config.MAINTENANCE_MODE && (<Route path="/" component={LandingPage} />)}
+                        {Config.MAINTENANCE_MODE && (<Route path="/" component={MaintenancePage} />)}
                         <Route render={() => <Redirect to="/" />} />
                     </Switch>
                 </BrowserRouter>

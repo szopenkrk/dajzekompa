@@ -1,5 +1,6 @@
 /* Libraries */
 import React, { useState, useEffect } from 'react';
+import clx from 'classnames';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
 import { Typography, makeStyles } from '@material-ui/core';
 
@@ -12,6 +13,10 @@ import { ReduxState } from '../../model/Redux';
 import { loadProgramSummary } from '../../actions/program';
 import LoadingOverlay from '../LoadingOverlay';
 
+type Props = {
+    className?: string;
+};
+
 function getPluralDeviceForm (num: number) {
     const lastDigit = parseInt(`${num}`.split('').pop(), 10);
 
@@ -23,7 +28,7 @@ function getPluralDeviceForm (num: number) {
     return 'ów';
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     container: {
         width: '208px',
         height: '100%',
@@ -46,7 +51,7 @@ const useStyles = makeStyles({
         width: '44px',
         height: '44px',
         borderRadius: '25px',
-        border: '2px solid #e63742',
+        border: `2px solid ${theme.palette.primary.main}`,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -55,11 +60,11 @@ const useStyles = makeStyles({
         fontWeight: 900,
         margin: '0 2px'
     }
-});
+}));
 
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
-export function ProgramSummary () {
+export function ProgramSummary (props: Props) {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [ error, setError ] = useState('');
@@ -87,7 +92,7 @@ export function ProgramSummary () {
     if (error) return null;
 
     return (
-        <section className={classes.container}>
+        <section className={clx(classes.container, { [props.className]: !!props.className })}>
             {loading && <LoadingOverlay />}
             {!loading && (
                 <>
