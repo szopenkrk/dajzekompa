@@ -56,6 +56,12 @@ module.exports = [
                     use: [
                         { loader: 'ts-loader' }
                     ]
+                },
+                {
+                    test: /\.(svg|png)$/,
+                    use: [
+                        { loader: 'url-loader' }
+                    ]
                 }
             ]
         },
