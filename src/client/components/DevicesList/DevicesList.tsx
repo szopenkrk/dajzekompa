@@ -1,5 +1,6 @@
 /* Libraries */
 import React, { useState, useEffect } from 'react';
+import clx from 'classnames';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { makeStyles, Paper, ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, withStyles, Chip, PropTypes, Icon } from '@material-ui/core';
@@ -9,7 +10,7 @@ import { Action } from 'redux';
 import { ReduxState } from '../../model/Redux';
 
 /* Application files */
-import { Device, DeviceType, PersonType } from '../../model/Device';
+import { Device, DeviceType, PersonType, DeviceStatus } from '../../model/Device';
 import { loadDevices } from '../../actions/devices';
 import LoadingOverlay from '../LoadingOverlay';
 import DetailsList from '../DetailsList';
@@ -60,6 +61,15 @@ const useStyles = makeStyles({
         padding: '10px',
         border: '1px solid rgba(0, 0, 0, 0.23)',
         margin: '10px 5px'
+    },
+    statusWrapper: {
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '10px'
+    },
+    status: {
+        marginLeft: '5px'
     }
 });
 
@@ -86,6 +96,16 @@ function getDeviceColor (type: DeviceType): PropTypes.Color {
         case DeviceType.NOTEBOOK: return "primary";
         case DeviceType.DESKTOP: return "secondary";
         default: return "default";
+    }
+}
+
+function getDeviceStatusText (type: DeviceStatus): string {
+    switch (type) {
+        case DeviceStatus.RECEIVED: return 'Otrzymano wniosek';
+        case DeviceStatus.SENT_TO_SERVICE: return 'Wysłano do serwisu';
+        case DeviceStatus.IN_SERVICE: return 'W serwisie';
+        case DeviceStatus.SENT_TO_RECIPIENT: return 'Wysłano do odbiorcy';
+        case DeviceStatus.COMPLETE: return 'Dostarczono do potrzebującego';
     }
 }
 
@@ -151,6 +171,10 @@ export function DevicesList () {
                         </div>
                     </ExpansionPanelCustomSummary>
                     <ExpansionPanelDetails className={classes.content}>
+                        <div className={classes.statusWrapper}>
+                            <Typography variant="subtitle2">Status:</Typography>
+                            <Chip label={getDeviceStatusText(device.status)} className={clx(classes.tag, classes.status)} />
+                        </div>
                         <DetailsList label="Specyfikacja sprzętu" data={[
                             { label: 'Rozmiar ekranu', value: `${device.screenSize}"` },
                             { label: 'RAM', value: `${device.ram}GB` },

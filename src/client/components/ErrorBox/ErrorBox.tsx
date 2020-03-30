@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react';
-import classnames from 'classnames';
+import clx from 'classnames';
 import { SnackbarContent, Icon, makeStyles } from '@material-ui/core';
 
 type Props = {
@@ -28,7 +28,7 @@ export const ErrorBox = (props: Props) => {
             <span>{props.children}</span>
         </span>
     ) as ReactElement<any>;
-    const mergedClasses = classnames(classes.container, {
+    const mergedClasses = clx(classes.container, {
         [props.className || '']: props.className
     });
 

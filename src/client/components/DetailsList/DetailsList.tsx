@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     header: {
         backgroundColor: 'rgba(0, 0, 0, .03)'
     }
-})
+});
 
 export function DetailsList (props: Props) {
     const classes = useStyles();

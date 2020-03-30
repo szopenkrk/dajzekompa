@@ -8,6 +8,14 @@ export enum DeviceType {
     DESKTOP = 'DESKTOP'
 }
 
+export enum DeviceStatus {
+    RECEIVED = 'RECEIVED',
+    SENT_TO_SERVICE = 'SENT_TO_SERVICE',
+    IN_SERVICE = 'IN_SERVICE',
+    SENT_TO_RECIPIENT = 'SENT_TO_RECIPIENT',
+    COMPLETE = 'COMPLETE'
+}
+
 export type Device = {
     personType: PersonType;
     firstName?: string;
@@ -26,4 +34,5 @@ export type Device = {
     speakers?: boolean;
     photos: string[];
     comments: string;
+    status: DeviceStatus;
 };
