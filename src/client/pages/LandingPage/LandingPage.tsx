@@ -8,11 +8,14 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import MainMenu from '../../components/MainMenu';
 import HeroBanner from '../../components/HeroBanner';
 import Separator from '../../components/Separator';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/Footer';
 
 import HomePage from '../HomePage';
 import AboutPage from '../AboutPage';
 import FaqPage from '../FaqPage';
+import TermsPage from '../TermsPage';
+import SubmitCityPage from '../SubmitCityPage';
+import RodoPage from '../RodoPage';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -55,6 +58,9 @@ export function LandingPage () {
                     <Route path="/" exact={true} component={HomePage} />
                     <Route path="/o-akcji" exact={true} component={AboutPage} />
                     <Route path="/faq" exact={true} component={FaqPage} />
+                    <Route path="/regulamin" exact={true} component={TermsPage} />
+                    <Route path="/zglos-miasto" exact={true} component={SubmitCityPage} />
+                    <Route path="/rodo" exact={true} component={RodoPage} />
                 </Switch>
                 <Separator className={classes.separator} />
             </main>

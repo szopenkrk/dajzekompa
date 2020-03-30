@@ -11,7 +11,7 @@ export function loadProgramSummary () {
     return async (dispatch: any, getState) => {
         const cache = getState().program;
 
-        if (cache.length) return cache;
+        if (cache.totalDevices) return cache;
 
         const summary = await request<ProgramSummary>('GET', '/program');
 

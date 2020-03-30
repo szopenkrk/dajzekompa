@@ -1,6 +1,7 @@
 import React from 'react';
 import clx from 'classnames';
 import { makeStyles, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 type Props = {
     className?: string;
@@ -35,8 +36,8 @@ export function Footer (props: Props) {
             <Typography variant="caption">#dajzekompa 2020</Typography>
             <nav className={classes.menu}>
                 <ul className={classes.menu}>
-                    <li className={classes.menuItem}>RODO</li>
-                    <li className={classes.menuItem}>Regulamin</li>
+                    <li className={classes.menuItem}><Link to="/rodo">RODO</Link></li>
+                    <li className={classes.menuItem}><Link to="/regulamin">Regulamin</Link></li>
                 </ul>
             </nav>
         </footer>

@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         fontWeight: 900,
-        paddingBottom: '55px'
+        paddingBottom: '55px',
+        textTransform: 'uppercase'
     },
     description: {
         lineHeight: 1.33,
@@ -52,7 +53,7 @@ export function AboutPage () {
     return (
         <div className={classes.container}>
             <section className={classes.content}>
-                <Typography variant="h2" className={classes.title}>O AKCJI</Typography>
+                <Typography variant="h2" className={classes.title}>O akcji</Typography>
                 <Typography variant="subtitle1" className={classes.description}>
                     <b>Polskie szkoły stanęły przed nie lada wyzwaniem!</b> Nauczanie on-line spadło na nie jak grom z jasnego nieba.... W większości
                     z nich zaczęto już pracować zdalnie, ale to nie oznacza, że wszyscy mają dostęp do komputera, tableta czy Internetu. <b>Niestety,

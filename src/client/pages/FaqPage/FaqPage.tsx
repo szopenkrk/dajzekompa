@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         fontWeight: 900,
-        paddingBottom: '55px'
+        paddingBottom: '55px',
+        textTransform: 'uppercase'
     },
     actions: {
         display: 'flex',
@@ -77,7 +78,7 @@ export function FaqPage () {
     return (
         <div className={classes.container}>
             <section className={classes.content}>
-                <Typography variant="h2" className={classes.title}>FAQ</Typography>
+                <Typography variant="h2" className={classes.title}>Faq</Typography>
                 <Faq items={items} title="Weźże mi wytłumacz..." showToggleAll />
                 <div className={classes.actions}>
                     <Button variant="contained" color="primary">Podaruj kompa</Button>
