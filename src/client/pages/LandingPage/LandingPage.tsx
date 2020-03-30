@@ -12,6 +12,7 @@ import Footer from '../../components/Footer/Footer';
 
 import HomePage from '../HomePage';
 import AboutPage from '../AboutPage';
+import FaqPage from '../FaqPage';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -53,6 +54,7 @@ export function LandingPage () {
                 <Switch>
                     <Route path="/" exact={true} component={HomePage} />
                     <Route path="/o-akcji" exact={true} component={AboutPage} />
+                    <Route path="/faq" exact={true} component={FaqPage} />
                 </Switch>
                 <Separator className={classes.separator} />
             </main>

@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: '35px'
     },
     image: {
-        paddingBottom: '70px'
+        width: '100%',
+        paddingBottom: '40px'
     },
     actions: {
         display: 'flex',
@@ -60,7 +61,7 @@ export function AboutPage () {
                 <img src={flow} className={classes.image} />
                 <Typography variant="subtitle1" className={classes.description}>
                     Jaki mamy na to pomysł? Jeśli w Twoim domowym bądź firmowym magazynie - a ostatnio zapewne znalazłeś/aś czas na porządki :) - zalega
-                    <b>nieużywany sprzęt komputerowy, możesz przekazać go na potrzeby naszej akcji</b>. Procedura jest bardzo prosta: przede wszystkim
+                    <b> nieużywany sprzęt komputerowy, możesz przekazać go na potrzeby naszej akcji</b>. Procedura jest bardzo prosta: przede wszystkim
                     #zostańwdomu i zgłoś chęć udziału, zachowaj dla siebie prywatne pliki, a resztą zajmiemy się my. Zadbamy, aby sprzęt był zdezynfekowany,
                     poddany kwarantannie, przygotowany do potrzeb zadań on-line i oczywiście dostarczymy go do szkół, które potrzebują wsparcia.
                 </Typography>
