@@ -64,7 +64,7 @@ export function MainMenu () {
 
     return (
         <nav className={clx(classes.container, classes.navigation)}>
-            <img src={logo} />
+            <Link to="/"><img src={logo} /></Link>
             <ul className={classes.menu}>
                 {menu.map((item, index) => (
                     <li key={index} className={clx(classes.menuItem, { [classes.menuItemActive]: item.route === location.pathname})}>

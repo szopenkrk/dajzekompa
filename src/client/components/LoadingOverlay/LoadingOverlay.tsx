@@ -1,5 +1,10 @@
 import React from 'react';
+import clx from 'classnames';
 import { CircularProgress, makeStyles } from '@material-ui/core';
+
+type Props = {
+    className?: string;
+};
 
 const useStyles = makeStyles({
     container: {
@@ -10,15 +15,16 @@ const useStyles = makeStyles({
         left: 0,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        zIndex: 10
     }
 });
 
-export const LoadingOverlay = () => {
+export const LoadingOverlay = (props: Props) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.container}>
+        <div className={clx(classes.container, { [props.className]: !!props.className })}>
             <CircularProgress thickness={3} variant="indeterminate" />
         </div>
     );

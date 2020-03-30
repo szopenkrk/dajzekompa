@@ -1,7 +1,7 @@
 /* Libraries */
 import React, { ChangeEvent, useState, FormEvent } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
-import {makeStyles, Paper, TextField, FormControlLabel, Radio, FormControl, RadioGroup, Typography, FormGroup, Checkbox, FormLabel, Button, Icon } from '@material-ui/core';
+import {makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon } from '@material-ui/core';
 
 /* Models */
 import { Action } from 'redux';
@@ -11,25 +11,34 @@ import { ReduxState } from '../../model/Redux';
 /* Application files */
 import { addDevice } from '../../actions/devices';
 import LoadingOverlay from '../../components/LoadingOverlay';
-import ErrorBox from '../../components/ErrorBox';
 import PhotoUploader from '../../components/PhotoUploader';
-import { Link } from 'react-router-dom';
+import ProgramSummary from '../../components/ProgramSummary';
+import ErrorBox from '../../components/ErrorBox';
+import Partners from '../../components/Partners';
+
+/* Application files */
 
 const useStyles = makeStyles({
-    root: {
-        padding: '10px',
-        display: 'flex',
-        justifyContent: 'center'
-    },
     container: {
-        padding: '3vw',
+        width: '100%',
         display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        width: '44rem',
-        '@media (min-width: 800px)': {
-            padding: '24px'
-        }
+        justifyContent: 'space-between',
+        paddingTop: '60px'
+    },
+    content: {
+        width: '547px',
+        position: 'relative'
+    },
+    sidebar: {
+        width: '226px',
+        paddingTop: '10px',
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    title: {
+        fontWeight: 900,
+        paddingBottom: '55px',
+        textTransform: 'uppercase'
     },
     icon: {
         fontSize: '70px',
@@ -40,7 +49,7 @@ const useStyles = makeStyles({
         width: '100%',
         textAlign: 'center'
     },
-    title: {
+    subtitle: {
         padding: '20px 0'
     },
     formSection: {
@@ -66,40 +75,52 @@ const useStyles = makeStyles({
     actions: {
         display: 'flex',
         justifyContent: 'flex-end',
-        paddingTop: '30px'
+        paddingTop: '30px',
+        paddingBottom: '10px'
     },
     message: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    messageTitle: {
         textAlign: 'center'
+    },
+    loading: {
+        backgroundColor: 'rgba(255, 255, 255, 0.8)'
     }
 });
 
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
-export function AddDevicePage () {
+const formModel = {
+    personType: 'person',
+    companyName: '',
+    nip: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    deviceType: 'notebook',
+    notebookName: '',
+    ram: 0,
+    hdd: 0,
+    screenSize: 0,
+    monitor: false,
+    camera: false,
+    microphone: false,
+    speakers: false,
+    photos: [],
+    comments: ''
+};
+
+export function SubmitDevicePage () {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [ loading, setLoading ] = useState(false);
     const [ complete, setComplete ] = useState(false);
     const [ error, setError ] = useState('');
-    const [ form, setForm ] = useState({
-        personType: 'person',
-        companyName: '',
-        nip: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        deviceType: 'notebook',
-        notebookName: '',
-        ram: 0,
-        hdd: 0,
-        screenSize: 0,
-        monitor: false,
-        camera: false,
-        microphone: false,
-        speakers: false,
-        photos: [],
-        comments: ''
-    });
+    const [ form, setForm ] = useState({ ...formModel });
 
     async function onSubmit (e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -128,25 +149,31 @@ export function AddDevicePage () {
         };
     }
 
+    function resetForm () {
+        setLoading(false);
+        setComplete(false);
+        setError('');
+        setForm({ ...formModel });
+    }
+
     return (
-        <main className={classes.root}>
-            <Paper variant="outlined" className={classes.container}>
-                {loading && (<LoadingOverlay />)}
+        <div className={classes.container}>
+            <section className={classes.content}>
+                <Typography variant="h2" className={classes.title}>Podaruj kompa</Typography>
+                {loading && (<LoadingOverlay className={classes.loading} />)}
                 {error && (<ErrorBox>{error}</ErrorBox>)}
                 {complete && !error && (
-                    <>
+                    <div className={classes.message}>
                         <Icon className={classes.icon}>check_circle</Icon>
-                        <Typography variant="h4" className={classes.message}>Formularz został wysłany</Typography>
+                        <Typography variant="h5" className={classes.messageTitle}>Dziękujemy!</Typography>
+                        <Typography variant="body1" className={classes.messageTitle}>Informacje o twoim kompie zostały do nas wysłane. Poinformujemy Cię o dalszych krokach.</Typography>
                         <section className={classes.actions}>
-                            <Link to="/">
-                                <Button variant="contained" color="primary">Powrót</Button>
-                            </Link>
+                            <Button variant="contained" color="primary" onClick={resetForm}>Podaruj jeszcze jeden</Button>
                         </section>
-                    </>
+                    </div>
                 )}
                 {!complete && (
                     <form onSubmit={onSubmit} noValidate autoComplete="off" className={classes.form}>
-                        <Typography variant="h5" className={classes.title}>Dane kontaktowe</Typography>
                         <section className={classes.formSection}>
                             <FormControl component="fieldset" className={classes.input}>
                                 <RadioGroup name="personType" defaultValue="person" className={classes.radios} onChange={updateField('personType')}>
@@ -160,7 +187,7 @@ export function AddDevicePage () {
                             {form.personType === 'person' && <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} />}
                             <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} />
                         </section>
-                        <Typography variant="h5" className={classes.title}>Sprzęt</Typography>
+                        <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
                         <section className={classes.formSection}>
                             <FormControl component="fieldset" className={classes.input}>
                                 <RadioGroup name="deviceType" defaultValue="notebook" className={classes.radios} onChange={updateField('deviceType')}>
@@ -184,11 +211,11 @@ export function AddDevicePage () {
                                 </FormControl>
                             )}
                         </section>
-                        <Typography variant="h5" className={classes.title}>Zdjęcia</Typography>
+                        <Typography variant="h5" className={classes.subtitle}>Zdjęcia</Typography>
                         <section className={classes.formSection}>
                             <PhotoUploader onChange={updateField('photos')} mime={['image/jpeg', 'image/png', 'image/bmp']} maxSize={3145728} />
                         </section>
-                        <Typography variant="h5" className={classes.title}>Dodatkowe informacje</Typography>
+                        <Typography variant="h5" className={classes.subtitle}>Dodatkowe informacje</Typography>
                         <section className={classes.formSection}>
                             <TextField variant="outlined" label="Dodatkowe informacje i komentarze" className={classes.input} onChange={updateField('comments')} multiline rows={3} />
                         </section>
@@ -197,9 +224,13 @@ export function AddDevicePage () {
                         </section>
                     </form>
                 )}
-            </Paper>
-        </main>
+            </section>
+            <aside className={classes.sidebar}>
+                <ProgramSummary />
+                <Partners vertical />
+            </aside>
+        </div>
     );
 }
 
-export default AddDevicePage;
+export default SubmitDevicePage;
