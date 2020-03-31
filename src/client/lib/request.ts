@@ -1,13 +1,6 @@
-import Config from './config';
-import { RequestError } from './error';
-
-export function get<T> (path: string): Promise<T> {
-    return request('GET', path);
-}
-
-export function post<T> (path: string, body: any): Promise<T> {
-    return request('POST', path, body);
-}
+/* Application files */
+import Config from 'client/lib/config';
+import { RequestError } from 'client/lib/error';
 
 export function request<T> (method: string, path: string, body?: any): Promise<T> {
     const headers = new Headers();
@@ -47,4 +40,12 @@ export function request<T> (method: string, path: string, body?: any): Promise<T
             return reject(error);
         }
     });
+}
+
+export function get<T> (path: string): Promise<T> {
+    return request('GET', path);
+}
+
+export function post<T> (path: string, body: any): Promise<T> {
+    return request('POST', path, body);
 }

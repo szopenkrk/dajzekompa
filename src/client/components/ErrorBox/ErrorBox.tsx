@@ -1,3 +1,4 @@
+/* Libraries */
 import React, { ReactElement, ReactNode } from 'react';
 import clx from 'classnames';
 import { SnackbarContent, Icon, makeStyles } from '@material-ui/core';
@@ -7,7 +8,7 @@ type Props = {
     className?: string;
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     container: {
         backgroundColor: '#d32f2f'
     },
@@ -16,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     icon: {
-        marginRight: '10px'
+        marginRight: 10
     }
-}));
+});
 
 export const ErrorBox = (props: Props) => {
     const classes = useStyles();

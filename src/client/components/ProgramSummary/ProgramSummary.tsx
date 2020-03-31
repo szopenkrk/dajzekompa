@@ -7,11 +7,11 @@ import { Typography, makeStyles } from '@material-ui/core';
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { ReduxState } from '../../model/Redux';
+import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { loadProgramSummary } from '../../actions/program';
-import LoadingOverlay from '../LoadingOverlay';
+import { loadProgramSummary } from 'client/actions/program';
+import LoadingOverlay from 'client/components/LoadingOverlay';
 
 type Props = {
     className?: string;
@@ -30,15 +30,15 @@ function getPluralDeviceForm (num: number) {
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        width: '208px',
+        width: 208,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         position: 'relative',
-        marginTop: '30px'
+        marginTop: 30
     },
     map: {
-        height: '130px',
+        height: 130,
         padding: '20px 0'
     },
     counter: {
@@ -47,15 +47,15 @@ const useStyles = makeStyles((theme) => ({
         margin: '10px 0'
     },
     digit: {
-        width: '44px',
-        height: '44px',
-        borderRadius: '25px',
+        width: 44,
+        height: 44,
+        borderRadius: 25,
         border: `2px solid ${theme.palette.primary.main}`,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         fontFamily: 'Roboto',
-        fontSize: '30px',
+        fontSize: 30,
         fontWeight: 900,
         margin: '0 2px'
     }
@@ -70,10 +70,6 @@ export function ProgramSummary (props: Props) {
     const [ loading, setLoading ] = useState(true);
     const [ devices, setDevices ] = useState(0);
 
-    useEffect(() => {
-        requestProgramSummary();
-    }, []);
-
     async function requestProgramSummary () {
         setError('');
         setLoading(true);
@@ -87,6 +83,10 @@ export function ProgramSummary (props: Props) {
 
         setLoading(false);
     }
+
+    useEffect(() => {
+        requestProgramSummary();
+    }, []);
 
     if (error) return null;
 

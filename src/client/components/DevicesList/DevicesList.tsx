@@ -7,14 +7,14 @@ import { makeStyles, Paper, ExpansionPanel, ExpansionPanelSummary, Typography, E
 
 /* Models */
 import { Action } from 'redux';
-import { ReduxState } from '../../model/Redux';
+import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { Device, DeviceType, PersonType, DeviceStatus } from '../../model/Device';
-import { loadDevices } from '../../actions/devices';
-import LoadingOverlay from '../LoadingOverlay';
-import DetailsList from '../DetailsList';
-import ErrorBox from '../ErrorBox';
+import { Device, DeviceType, PersonType, DeviceStatus } from 'common/model/Device';
+import { loadDevices } from 'client/actions/devices';
+import LoadingOverlay from 'client/components/LoadingOverlay';
+import DetailsList from 'client/components/DetailsList';
+import ErrorBox from 'client/components/ErrorBox';
 
 const useStyles = makeStyles({
     panel: {
@@ -24,41 +24,41 @@ const useStyles = makeStyles({
         display: 'flex'
     },
     content: {
-        padding: '24px',
+        padding: 24,
         display: 'flex',
         flexWrap: 'wrap'
     },
     tag: {
-        marginRight: '10px',
-        borderRadius: '4px',
+        marginRight: 10,
+        borderRadius: 4,
         height: 'auto',
-        fontSize: '12px'
+        fontSize: 12
     },
     iconWrapper: {
         display: 'flex',
-        marginLeft: '5px',
+        marginLeft: 5,
         alignItems: 'center'
     },
     icon: {
-        fontSize: '18px',
-        marginRight: '3px'
+        fontSize: 18,
+        marginRight: 3
     },
     comments: {
         backgroundColor: 'rgba(0, 0, 0, .03)',
-        padding: '10px'
+        padding: 10
     },
     gallery: {
         width: '100%',
         display: 'flex'
     },
     thumbnail: {
-        width: '300px',
-        height: '300px',
+        width: 300,
+        height: 300,
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundOrigin: 'content-box',
-        padding: '10px',
+        padding: 10,
         border: '1px solid rgba(0, 0, 0, 0.23)',
         margin: '10px 5px'
     },
@@ -66,10 +66,10 @@ const useStyles = makeStyles({
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        marginBottom: '10px'
+        marginBottom: 10
     },
     status: {
-        marginLeft: '5px'
+        marginLeft: 5
     }
 });
 
@@ -117,10 +117,6 @@ export function DevicesList () {
     const [ devices, setDevices ] = useState(null as Device[]);
     const classes = useStyles();
 
-    useEffect(() => {
-        requestLoadDevices();
-    }, []);
-
     async function requestLoadDevices () {
         setError('');
         setLoading(true);
@@ -142,6 +138,10 @@ export function DevicesList () {
         };
     }
 
+    useEffect(() => {
+        requestLoadDevices();
+    }, []);
+
     return (
         <>
             {loading && (<LoadingOverlay />)}
@@ -155,7 +155,7 @@ export function DevicesList () {
                         <div className={classes.panelPart}>
                             <Chip color={getDeviceColor(device.deviceType)} label={device.deviceType} className={classes.tag} />
                             <Typography>
-                                {device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : ''} (4GB/500GB/17")
+                                {device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : ''} (4GB/500GB/17&quot;)
                             </Typography>
                             {device.deviceType === DeviceType.DESKTOP && (
                                 <div className={classes.iconWrapper}>

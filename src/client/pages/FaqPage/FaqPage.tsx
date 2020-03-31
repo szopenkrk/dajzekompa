@@ -3,10 +3,9 @@ import React from 'react';
 import { makeStyles, Typography, Button, useMediaQuery, useTheme } from '@material-ui/core';
 
 /* Application files */
-import Separator from '../../components/Separator';
-
-import Faq from '../../components/Faq';
-import SubPage from '../SubPage';
+import Separator from 'client/components/Separator';
+import Faq from 'client/components/Faq';
+import SubPage from 'client/pages/SubPage';
 
 const useStyles = makeStyles((theme) => ({
     actions: {

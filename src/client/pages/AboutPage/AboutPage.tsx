@@ -3,9 +3,9 @@ import React from 'react';
 import { makeStyles, Typography, Button, useMediaQuery, useTheme } from '@material-ui/core';
 
 /* Application files */
-import flowDesktop from '../../assets/images/parties-flow-desktop.png';
-import flowMobile from '../../assets/images/parties-flow-mobile.png';
-import SubPage from '../SubPage';
+import flowDesktop from 'client/assets/images/parties-flow-desktop.png';
+import flowMobile from 'client/assets/images/parties-flow-mobile.png';
+import SubPage from 'client/pages/SubPage';
 
 const useStyles = makeStyles((theme) => ({
     description: {

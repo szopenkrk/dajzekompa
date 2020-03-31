@@ -2,7 +2,7 @@
 import React from 'react';
 
 /* Application files */
-import SubPage from '../SubPage';
+import SubPage from 'client/pages/SubPage';
 
 export function SubmitCityPage () {
     return (

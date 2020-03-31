@@ -1,11 +1,9 @@
-/* Libraries */
-import { ReduxActionType } from '../model/Redux';
-
 /* Models */
-import { ProgramSummary } from '../model/Program';
+import { ProgramSummary } from 'common/model/Program';
+import { ReduxActionType } from 'client/model/Redux';
 
 /* Application files */
-import { request } from '../lib/request';
+import { request } from 'client/lib/request';
 
 export function loadProgramSummary () {
     return async (dispatch: any, getState) => {

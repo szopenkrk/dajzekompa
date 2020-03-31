@@ -1,3 +1,4 @@
+/* Libraries */
 import React, { createRef, ChangeEvent, useState } from 'react';
 import { makeStyles, Icon } from '@material-ui/core';
 
@@ -9,18 +10,18 @@ type Props = {
 
 const useStyles = makeStyles({
     container: {
-        borderRadius: '5px',
+        borderRadius: 5,
         border: '3px dashed rgba(0, 0, 0, 0.23)',
-        padding: '20px',
+        padding: 20,
         display: 'flex',
         flexWrap: 'wrap'
     },
     photo: {
         border: '1px solid rgba(0, 0, 0, 0.23)',
-        padding: '10px',
-        width: '100px',
-        height: '100px',
-        margin: '3px',
+        padding: 10,
+        width: 100,
+        height: 100,
+        margin: 3,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -34,7 +35,7 @@ const useStyles = makeStyles({
         backgroundPosition: 'center'
     },
     icon: {
-        fontSize: '50px',
+        fontSize: 50,
         color: 'rgba(0, 0, 0, 0.23)'
     },
     fileInput: {

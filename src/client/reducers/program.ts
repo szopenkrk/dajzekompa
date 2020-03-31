@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 
-import { ReduxActionType, StateProgram } from '../model/Redux';
+import { ReduxActionType, StateProgram } from 'client/model/Redux';
 
 function getInitialState (): StateProgram {
     return {

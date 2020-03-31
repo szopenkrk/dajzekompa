@@ -25,7 +25,8 @@
         "noUnusedLocals": true,
         "paths": {
             "server/*": [ "./src/server/*" ],
-            "client/*": [ "./src/client/*" ]
+            "client/*": [ "./src/client/*" ],
+            "common/*": [ "./src/common/*" ]
         }
     },
     "exclude": [

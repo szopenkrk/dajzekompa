@@ -1,14 +1,47 @@
 /* Models */
 import { Request, Response } from 'express';
-import { APIRoute } from '../model/API';
-import { HTTPMethod, HTTPCode } from '../model/HTTP';
+import { Device, PersonType, DeviceType } from 'common/model/Device';
+import { APIRoute } from 'server/model/API';
+import { HTTPMethod, HTTPCode } from 'server/model/HTTP';
+import { DBSchemaDevice, DBSchemaPhoto, DBTable } from 'server/model/DB';
 
 /* Application files */
-import knex from '../database/knex';
-import Log from '../controller/Log';
-import { respondSuccess, closeWithError } from '../lib/http';
+import knex from 'server/database/knex';
+import Log from 'server/controller/Log';
+import { respondSuccess, closeWithError } from 'server/lib/http';
 
-function buildNestedObjectFromQuery (items: any[]) {
+type DBSchemaDeviceWithPhoto = DBSchemaDevice & DBSchemaPhoto;
+
+function buildDeviceFromDbObject (db: DBSchemaDeviceWithPhoto): Device {
+    return {
+        ...db,
+        photos: [ db.url ]
+    };
+}
+
+function sanitizeDevice (device: Device): Device {
+    if (device.personType === PersonType.PERSON) {
+        delete device.companyName;
+        delete device.nip;
+    }
+    if (device.personType === PersonType.COMPANY) {
+        delete device.firstName;
+        delete device.lastName;
+    }
+    if (device.deviceType === DeviceType.DESKTOP) {
+        delete device.notebookName;
+    }
+    if (device.deviceType === DeviceType.NOTEBOOK) {
+        delete device.camera;
+        delete device.speakers;
+        delete device.monitor;
+        delete device.microphone;
+    }
+
+    return device;
+}
+
+function buildNestedObjectFromQuery (items: DBSchemaDeviceWithPhoto[]): Device[] {
     return items.map((item) => {
         item.id = item.applicationId;
         delete item.applicationId;
@@ -17,55 +50,29 @@ function buildNestedObjectFromQuery (items: any[]) {
     }).reduce((all, current) => {
         const found = all.find((i) => i.id === current.id);
 
-        if (!found) {
-            current.photos = [ current.url ];
-            delete current.url;
-
-            all.push(current);
-        } else {
-            found.photos.push(current.url)
-        }
+        if (!found) all.push(buildDeviceFromDbObject(current));
+        else found.photos.push(current.url)
 
         return all;
-    }, []);
+    }, [] as Device[]);
 }
 
 export default {
     method: HTTPMethod.GET,
     url: '/api/list',
     controller: async (req: Request, res: Response) => {
-        let items: any[];
+        let items: DBSchemaDeviceWithPhoto[];
 
         try {
-            items = await knex('applications').select().leftJoin('photos', 'applications.id', 'photos.application_id');
+            items = await knex(DBTable.DEVICES).select().leftJoin('photos', 'applications.id', 'photos.application_id');
         } catch (error) {
             Log.error(error);
 
             return closeWithError(res, { error }, HTTPCode.INTERNAL_SERVER_ERROR);
         }
 
-        items = buildNestedObjectFromQuery(items).map((item) => {
-            if (item.personType === 'PERSON') {
-                delete item.companyName;
-                delete item.nip;
-            }
-            if (item.personType === 'COMPANY') {
-                delete item.firstName;
-                delete item.lastName;
-            }
-            if (item.deviceType === 'DESKTOP') {
-                delete item.notebookName;
-            }
-            if (item.deviceType === 'NOTEBOOK') {
-                delete item.camera;
-                delete item.speakers;
-                delete item.monitor;
-                delete item.microphone;
-            }
+        const devices = buildNestedObjectFromQuery(items).map(sanitizeDevice);
 
-            return item;
-        });
-
-        return respondSuccess(res, items);
+        return respondSuccess(res, devices);
     }
 } as APIRoute;

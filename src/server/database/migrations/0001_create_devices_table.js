@@ -1,5 +1,7 @@
+const statuses = ['RECEIVED', 'SENT_TO_SERVICE', 'IN_SERVICE', 'SENT_TO_RECIPIENT', 'COMPLETE'];
+
 exports.up = (knex) => {
-    return knex.schema.createTable('applications', table => {
+    return knex.schema.createTable('devices', table => {
         table.bigIncrements('id');
         table.enum('person_type', ['PERSON', 'COMPANY']).notNullable();
         table.string('company_name').defaultTo('');
@@ -8,10 +10,11 @@ exports.up = (knex) => {
         table.string('last_name').defaultTo('');
         table.string('email').notNullable();
         table.enum('device_type', ['NOTEBOOK', 'DESKTOP']).notNullable();
+        table.enum('status', statuses).notNullable().defaultTo('RECEIVED');
         table.string('notebook_name').defaultTo('');
-        table.string('ram').notNullable();
-        table.string('hdd').notNullable();
-        table.string('screen_size').notNullable();
+        table.float('ram', 2).notNullable();
+        table.float('hdd', 2).notNullable();
+        table.float('screen_size', 2).notNullable();
         table.boolean('camera').notNullable();
         table.boolean('microphone').notNullable();
         table.boolean('speakers').notNullable();
@@ -23,5 +26,5 @@ exports.up = (knex) => {
 };
 
 exports.down = (knex) => {
-    return knex.schema.dropTable('applications');
+    return knex.schema.dropTable('devices');
 };

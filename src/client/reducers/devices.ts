@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 
-import { ReduxActionType, StateDevices } from '../model/Redux';
+import { ReduxActionType, StateDevices } from 'client/model/Redux';
 
 function getInitialState (): StateDevices {
     return [];

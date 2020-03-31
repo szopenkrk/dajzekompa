@@ -1,3 +1,4 @@
+/* Libraries */
 import React from 'react';
 import { Table, TableBody, TableRow, TableCell, makeStyles, TableHead } from '@material-ui/core';
 
@@ -12,9 +13,9 @@ type Props = {
 
 const useStyles = makeStyles({
     detailsTable: {
-        maxWidth: '400px',
-        marginRight: '40px',
-        marginBottom: '40px'
+        maxWidth: 400,
+        marginRight: 40,
+        marginBottom: 40
     },
     detailsTableLabel: {
         backgroundColor: 'rgba(0, 0, 0, .03)'

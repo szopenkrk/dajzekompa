@@ -3,8 +3,8 @@ import React from 'react';
 import { makeStyles, Typography, Button } from '@material-ui/core';
 
 /* Application files */
-import Separator from '../../components/Separator';
-import SubPage from '../SubPage';
+import Separator from 'client/components/Separator';
+import SubPage from 'client/pages/SubPage';
 
 const useStyles = makeStyles({
     panel: {

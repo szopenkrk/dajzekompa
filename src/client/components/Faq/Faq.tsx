@@ -1,9 +1,10 @@
+/* Libraries */
 import React, { useState } from 'react';
 import { makeStyles, Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, withStyles } from '@material-ui/core';
 
-
-import iconPlus from '../../assets/images/icon-plus.png';
-import iconMinus from '../../assets/images/icon-minus.png';
+/* Application files */
+import iconPlus from 'client/assets/images/icon-plus.png';
+import iconMinus from 'client/assets/images/icon-minus.png';
 
 type Props = {
     items: FaqItem[];
@@ -18,19 +19,19 @@ type FaqItem = {
 
 const useStyles = makeStyles({
     title: {
-        fontSize: '24px',
+        fontSize: 24,
         fontWeight: 700
     },
     navigation: {
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        marginBottom: '17px',
+        marginBottom: 17,
         justifyContent: 'space-between'
     },
     toggleLink: {
         color: '#6d7278',
-        fontSize: '12px',
+        fontSize: 12,
         cursor: 'pointer',
         '&::after': {
             content: '" / "'
@@ -43,7 +44,7 @@ const useStyles = makeStyles({
         width: '100%',
         backgroundColor: '#f8f8f8',
         boxShadow: 'none',
-        marginBottom: '12px',
+        marginBottom: 12,
         '&::before': {
             display: 'none'
         }
@@ -53,15 +54,15 @@ const useStyles = makeStyles({
         alignItems: 'center'
     },
     panelIcon: {
-        width: '27px',
-        height: '27px',
-        marginRight: '35px'
+        width: 27,
+        height: 27,
+        marginRight: 35
     },
     panelContent: {
-        paddingLeft: '62px'
+        paddingLeft: 62
     },
     question: {
-        fontSize: '16px'
+        fontSize: 16
     }
 });
 
@@ -69,9 +70,9 @@ const ExpansionPanelCustomSummary = withStyles({
     root: {
         display: 'flex',
         alignItems: 'center',
-        minHeight: '56px',
+        minHeight: 56,
         '&$expanded': {
-            minHeight: '56px',
+            minHeight: 56,
         }
     },
     content: {

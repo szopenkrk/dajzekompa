@@ -2,7 +2,7 @@
 import React from 'react';
 
 /* Application files */
-import DevicesList from '../../components/DevicesList';
+import DevicesList from 'client/components/DevicesList';
 
 export function ListDevicesPage () {
     return (

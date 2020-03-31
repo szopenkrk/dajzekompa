@@ -1,9 +1,9 @@
 /* Models */
-import { Device, PersonType, DeviceType } from '../model/Device';
-import { ReduxActionType } from '../model/Redux';
+import { Device, PersonType, DeviceType } from 'common/model/Device';
+import { ReduxActionType } from 'client/model/Redux';
 
 /* Application files */
-import { request } from '../lib/request';
+import { request } from 'client/lib/request';
 
 function base64toBlob (base64: string): Blob {
     const type = base64.split(',')[0].split(':')[1].split(';')[0];
@@ -18,7 +18,7 @@ function base64toBlob (base64: string): Blob {
 }
 
 export function addDevice (form) {
-    return (dispatch: any) => {
+    return () => {
         form = { ...form };
         form.personType = form.personType.toUpperCase();
         form.deviceType = form.deviceType.toUpperCase();

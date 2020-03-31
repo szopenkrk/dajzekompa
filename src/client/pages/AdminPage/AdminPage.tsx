@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core';
 
 /* Application files */
-import ListDevicesPage from '../ListDevicesPage';
+import ListDevicesPage from 'client/pages/ListDevicesPage';
 
 const drawerWidth = 240;
 
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         flexGrow: 1,
         padding: theme.spacing(3),
         position: 'relative',
-        // marginTop: '64px',
+        // marginTop: 64,
         transition: theme.transitions.create('left', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen

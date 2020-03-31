@@ -83,7 +83,12 @@ module.exports = [
             filename: 'app.js'
         },
         resolve: {
-            extensions: [ '.js', '.ts', '.html' ]
+            extensions: [ '.js', '.ts', '.html' ],
+            alias: {
+                'server': path.join(__dirname, './src/server'),
+                'client': path.join(__dirname, './src/client'),
+                'common': path.join(__dirname, './src/common')
+            }
         },
         externals: {
             ...switchEnvs({

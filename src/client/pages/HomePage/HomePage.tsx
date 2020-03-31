@@ -1,6 +1,8 @@
+/* Libraries */
 import React from 'react';
 
-import Partners from '../../components/Partners';
+/* Application files */
+import Partners from 'client/components/Partners';
 
 export function HomePage () {
     return <Partners />;

@@ -5,10 +5,10 @@ import { makeStyles, useMediaQuery, IconButton, useTheme } from '@material-ui/co
 import { Link, useLocation } from 'react-router-dom';
 
 /* Application files */
-import { useWindowSize } from '../../lib/hooks';
-import logo from '../../assets/images/logo.svg';
-import menuOpenButton from '../../assets/images/icon-openmenu.svg';
-import menuCloseButton from '../../assets/images/icon-closemenu.svg';
+import { useWindowSize } from 'client/lib/hooks';
+import logo from 'client/assets/images/logo.svg';
+import menuOpenButton from 'client/assets/images/icon-openmenu.svg';
+import menuCloseButton from 'client/assets/images/icon-closemenu.svg';
 
 function getMenuCircleOffset ({ width }: any) {
     return -(width - (width * Math.sqrt(3) / 2));
@@ -16,7 +16,7 @@ function getMenuCircleOffset ({ width }: any) {
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        width: '940px',
+        width: 940,
         maxWidth: 'calc(100% - 20px)'
     },
     navigation: {
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
             width: '100%',
             top: 0,
             left: 0,
-            paddingTop: '80px',
+            paddingTop: 80,
             '&::before': {
                 content: '""',
                 display: 'block',
@@ -69,9 +69,9 @@ const useStyles = makeStyles((theme) => ({
     menuItem: {
         textTransform: 'uppercase',
         fontFamily: 'Roboto',
-        fontSize: '15px',
+        fontSize: 15,
         fontWeight: 500,
-        padding: '12px',
+        padding: 12,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -82,12 +82,12 @@ const useStyles = makeStyles((theme) => ({
         '&::before': {
             display: 'block',
             content: '""',
-            width: '12px',
-            height: '12px',
-            borderRadius: '6px',
+            width: 12,
+            height: 12,
+            borderRadius: 6,
             backgroundColor: theme.palette.primary.main,
             position: 'absolute',
-            top: '-6px'
+            top: -6
         },
         [theme.breakpoints.down('sm')]: {
             color: 'inherit',

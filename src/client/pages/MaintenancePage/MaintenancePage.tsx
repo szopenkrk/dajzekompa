@@ -4,14 +4,14 @@ import { Paper, Typography, Icon, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
-        padding: '30px',
+        padding: 30,
         textAlign: 'center'
     },
     container: {
-        padding: '30px'
+        padding: 30
     },
     icon: {
-        fontSize: '70px',
+        fontSize: 70,
         color: '#f8bb06'
     }
 });

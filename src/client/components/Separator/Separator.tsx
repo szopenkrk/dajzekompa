@@ -1,3 +1,4 @@
+/* Libraries */
 import React from 'react';
 import clx from 'classnames';
 import { makeStyles } from '@material-ui/core';
@@ -9,7 +10,7 @@ type Props = {
 const useStyles = makeStyles({
     separator: {
         width: '100%',
-        height: '1px',
+        height: 1,
         backgroundColor: '#e8e8e8',
         border: 0
     }

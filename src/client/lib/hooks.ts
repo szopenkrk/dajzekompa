@@ -1,3 +1,4 @@
+/* Libraries */
 import { useState, useEffect } from 'react';
 
 function getWidth () {

@@ -6,14 +6,14 @@ import {makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl,
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { ReduxState } from '../../model/Redux';
+import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { addDevice } from '../../actions/devices';
-import LoadingOverlay from '../../components/LoadingOverlay';
-import PhotoUploader from '../../components/PhotoUploader';
-import ErrorBox from '../../components/ErrorBox';
-import SubPage from '../SubPage';
+import { addDevice } from 'client/actions/devices';
+import LoadingOverlay from 'client/components/LoadingOverlay';
+import PhotoUploader from 'client/components/PhotoUploader';
+import ErrorBox from 'client/components/ErrorBox';
+import SubPage from 'client/pages/SubPage';
 
 /* Application files */
 

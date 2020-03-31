@@ -1,4 +1,4 @@
-import { LogLevel } from '../model/Log';
+import { LogLevel } from 'server/model/Log';
 
 function getMostRelevantConfigProp (prop: string) {
     if (typeof process.env[prop] !== 'undefined') {

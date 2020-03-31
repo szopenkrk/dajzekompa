@@ -6,13 +6,13 @@ import { Store } from 'redux';
 import { ThemeProvider, Theme } from '@material-ui/core';
 
 /* Models */
-import { ReduxState } from '../../model/Redux';
+import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import Config from '../../lib/config';
-import LandingPage from '../../pages/LandingPage';
-import MaintenancePage from '../../pages/MaintenancePage';
-import AdminPage from '../../pages/AdminPage';
+import Config from 'client/lib/config';
+import LandingPage from 'client/pages/LandingPage';
+import MaintenancePage from 'client/pages/MaintenancePage';
+import AdminPage from 'client/pages/AdminPage';
 
 type Props = {
     store: Store<ReduxState>;

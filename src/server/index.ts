@@ -32,11 +32,11 @@ if (Config.STRICT_TLS === false) {
 
 const server = express();
 
-for (let middleware of middlewares) {
+for (const middleware of middlewares) {
     server.use(...middleware as any);
 }
 
-for (let route of routes) {
+for (const route of routes) {
     server[route.method.toLowerCase()](route.url, ...(route.middleware || []), async (req: Request, res: Response, next: NextFunction) => {
         Log.info(`${route.method} ${route.url}`);
 

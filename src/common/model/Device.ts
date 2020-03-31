@@ -1,22 +1,5 @@
-export enum PersonType {
-    PERSON = 'PERSON',
-    COMPANY = 'COMPANY'
-}
-
-export enum DeviceType {
-    NOTEBOOK = 'NOTEBOOK',
-    DESKTOP = 'DESKTOP'
-}
-
-export enum DeviceStatus {
-    RECEIVED = 'RECEIVED',
-    SENT_TO_SERVICE = 'SENT_TO_SERVICE',
-    IN_SERVICE = 'IN_SERVICE',
-    SENT_TO_RECIPIENT = 'SENT_TO_RECIPIENT',
-    COMPLETE = 'COMPLETE'
-}
-
 export type Device = {
+    id?: string;
     personType: PersonType;
     firstName?: string;
     lastName?: string;
@@ -36,3 +19,21 @@ export type Device = {
     comments: string;
     status: DeviceStatus;
 };
+
+export enum PersonType {
+    PERSON = 'PERSON',
+    COMPANY = 'COMPANY'
+}
+
+export enum DeviceType {
+    NOTEBOOK = 'NOTEBOOK',
+    DESKTOP = 'DESKTOP'
+}
+
+export enum DeviceStatus {
+    RECEIVED = 'RECEIVED',
+    SENT_TO_SERVICE = 'SENT_TO_SERVICE',
+    IN_SERVICE = 'IN_SERVICE',
+    SENT_TO_RECIPIENT = 'SENT_TO_RECIPIENT',
+    COMPLETE = 'COMPLETE'
+}

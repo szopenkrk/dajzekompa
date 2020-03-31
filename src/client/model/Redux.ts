@@ -1,5 +1,6 @@
-import { Device } from './Device';
-import { ProgramSummary } from './Program';
+/* Models */
+import { Device } from 'common/model/Device';
+import { ProgramSummary } from 'common/model/Program';
 
 export enum ReduxActionType {
     UI_SET_LOADING = 'UI_SET_LOADING',

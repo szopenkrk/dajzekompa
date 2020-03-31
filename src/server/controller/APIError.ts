@@ -1,6 +1,6 @@
 /* Models */
-import { HTTPCode } from '../model/HTTP';
 import { getStatusText } from 'http-status-codes';
+import { HTTPCode } from 'server/model/HTTP';
 
 export default class APIError {
     public message: string;

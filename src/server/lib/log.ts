@@ -2,10 +2,10 @@
 import os from 'os';
 
 /* Models */
-import { LogLevel, LogColor } from '../model/Log';
+import { LogLevel, LogColor } from 'server/model/Log';
 
 /* Application files */
-import Config from './config';
+import Config from 'server/lib/config';
 
 const order = [ LogLevel.DEBUG, LogLevel.INFO, LogLevel.WARNING, LogLevel.ERROR ];
 const defaultFields = {
@@ -15,7 +15,7 @@ const defaultFields = {
 };
 
 type LogParams = {
-    [k: string]: any
+    [k: string]: any;
 };
 
 type Logger = {
@@ -24,6 +24,16 @@ type Logger = {
     warn: (msg: string, params?: LogParams) => void;
     error: (msg: string, params?: LogParams) => void;
 };
+
+function mapLevelToColor (level: LogLevel): LogColor {
+    switch (level) {
+        case LogLevel.DEBUG: return LogColor.DEFAULT;
+        case LogLevel.INFO: return LogColor.BLUE;
+        case LogLevel.WARNING: return LogColor.YELLOW;
+        case LogLevel.ERROR: return LogColor.RED;
+        default: return LogColor.DEFAULT;
+    }
+}
 
 function colorize (level: LogLevel, func: Function) {
     return (msg: string) => {
@@ -38,16 +48,6 @@ function mapLevelToLogger (level: LogLevel): Function {
         case LogLevel.WARNING: return console.warn;
         case LogLevel.ERROR: return console.error;
         default: return console.log;
-    }
-}
-
-function mapLevelToColor (level: LogLevel): LogColor {
-    switch (level) {
-        case LogLevel.DEBUG: return LogColor.DEFAULT;
-        case LogLevel.INFO: return LogColor.BLUE;
-        case LogLevel.WARNING: return LogColor.YELLOW;
-        case LogLevel.ERROR: return LogColor.RED;
-        default: return LogColor.DEFAULT;
     }
 }
 

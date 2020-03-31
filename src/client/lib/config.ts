@@ -1,4 +1,4 @@
-import { AnyObject } from '../model/Common';
+import { AnyObject } from 'common/model/Object';
 
 export default class Config {
     public static NODE_ENV: string;

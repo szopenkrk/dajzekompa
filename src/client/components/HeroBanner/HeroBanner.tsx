@@ -1,12 +1,12 @@
-/* Library */
+/* Libraries */
 import React from 'react';
 import clx from 'classnames';
 import { makeStyles, Button, Typography } from '@material-ui/core';
 
 /* Application files */
-import arrowRight from '../../assets/images/icon-arrow-right.svg';
-import ProgramSummary from '../ProgramSummary';
-import Separator from '../Separator';
+import arrowRight from 'client/assets/images/icon-arrow-right.svg';
+import ProgramSummary from 'client/components/ProgramSummary';
+import Separator from 'client/components/Separator';
 
 const useStyles = makeStyles((theme) => ({
     section: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     container: {
-        width: '940px',
+        width: 940,
         maxWidth: 'calc(100% - 20px)'
     },
     hero: {
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
     description: {
         padding: '22px 0',
-        width: '538px',
+        width: 538,
         lineHeight: 1.33,
         maxWidth: '100%'
     },
@@ -48,12 +48,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'transparent'
     },
     separator: {
-        width: '538px',
+        width: 538,
         margin: '28px 0'
     },
     actions: {
         display: 'flex',
-        marginTop: '25px',
+        marginTop: 25,
         '& > *': {
             margin: theme.spacing(1),
         },

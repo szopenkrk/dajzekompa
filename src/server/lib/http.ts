@@ -3,11 +3,11 @@
 import { AnySchema } from '@hapi/joi';
 
 /* Models */
-import { HTTPCode } from '../model/HTTP';
-import { AnyObject } from '../model/Object';
+import { AnyObject } from 'common/model/Object';
+import { HTTPCode } from 'server/model/HTTP';
 
 /* Application files */
-import APIError from '../controller/APIError';
+import APIError from 'server/controller/APIError';
 
 export function respondSuccess (res, data: any = null, status: number = HTTPCode.OK) {
     res.set('Content-Type', 'application/json');

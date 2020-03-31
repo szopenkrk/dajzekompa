@@ -1,3 +1,4 @@
+/* Libraries */
 import React from 'react';
 import clx from 'classnames';
 import { makeStyles, Typography } from '@material-ui/core';
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
     menuItem: {
         textTransform: 'uppercase',
         fontFamily: 'Roboto',
-        fontSize: '11px',
+        fontSize: 11,
         padding: '0 12px'
     }
 });

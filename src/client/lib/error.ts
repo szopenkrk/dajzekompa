@@ -1,3 +1,4 @@
+/* Libraries */
 import { getStatusText } from 'http-status-codes';
 
 export class RequestError extends Error {

@@ -1,14 +1,14 @@
 /* Models */
 import { Request, Response } from 'express';
-import { APIRoute } from '../model/API';
-import { HTTPMethod } from '../model/HTTP';
-import { AnyObject } from '../model/Object';
-import { DocumentPlace } from '../model/Render';
+import { AnyObject } from 'common/model/Object';
+import { APIRoute } from 'server/model/API';
+import { HTTPMethod } from 'server/model/HTTP';
+import { DocumentPlace } from 'server/model/Render';
 
 /* Application files */
-import Config from '../lib/config';
+import Config from 'server/lib/config';
 
-import template from '../../client/index.html';
+import template from 'client/index.html';
 
 function createScriptTagWithData (data: AnyObject, name: string): string {
     return `
@@ -18,7 +18,7 @@ function createScriptTagWithData (data: AnyObject, name: string): string {
     `;
 }
 
-export function renderPartial (element: string, place: DocumentPlace, tpl: string) {
+export function renderPartial (element: string, place: DocumentPlace, tpl: string): string {
     const match = place.split('|').slice(0, 2);
 
     return tpl.replace(match.join(''), `${match[0]}${element}${match[1]}`);

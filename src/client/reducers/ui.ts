@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 
-import { ReduxActionType, StateUI } from '../model/Redux';
+import { ReduxActionType, StateUI } from 'client/model/Redux';
 
 function getInitialState (): StateUI {
     return {

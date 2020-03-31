@@ -1,13 +1,14 @@
+/* Libraries */
 import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 
 /* Application files */
-import logoKrakow from '../../assets/images/logo-partner-krakow.png';
-import logoTalentAlpha from '../../assets/images/logo-partner-talentalpha.png';
-import logoBusinessRun from '../../assets/images/logo-partner-businessrun.png';
-import logoPragmaticSolutions from '../../assets/images/logo-partner-sww.png';
-import logoInpost from '../../assets/images/logo-partner-inpost.png';
-import logoBkode from '../../assets/images/logo-partner-bkode.png';
+import logoKrakow from 'client/assets/images/logo-partner-krakow.png';
+import logoTalentAlpha from 'client/assets/images/logo-partner-talentalpha.png';
+import logoBusinessRun from 'client/assets/images/logo-partner-businessrun.png';
+import logoPragmaticSolutions from 'client/assets/images/logo-partner-sww.png';
+import logoInpost from 'client/assets/images/logo-partner-inpost.png';
+import logoBkode from 'client/assets/images/logo-partner-bkode.png';
 
 type Props = {
     vertical?: boolean;
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
         flexDirection: props => (props as any).vertical ? 'column' : 'row'
     },
     partner: {
-        maxHeight: '46px',
+        maxHeight: 46,
         padding: props => (props as any).vertical ? '20px 0' : '0 20px'
     }
 });

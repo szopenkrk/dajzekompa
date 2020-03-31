@@ -7,16 +7,39 @@ import { S3 } from 'aws-sdk';
 
 /* Models */
 import { Request, Response } from 'express';
-import { APIRoute } from '../model/API';
-import { PersonType, DeviceType } from '../model/Device';
-import { HTTPMethod, HTTPCode } from '../model/HTTP';
+import { PersonType, DeviceType, Device, DeviceStatus } from 'common/model/Device';
+import { APIRoute } from 'server/model/API';
+import { HTTPMethod, HTTPCode } from 'server/model/HTTP';
+import { DBTable, DBSchemaDevice } from 'server/model/DB';
 
 /* Application files */
-import knex from '../database/knex';
-import Log from '../controller/Log';
-import APIError from '../controller/APIError';
-import Config from '../lib/config';
-import { respondSuccess, closeWithError, validateRequestPayload } from '../lib/http';
+import knex from 'server/database/knex';
+import Log from 'server/controller/Log';
+import APIError from 'server/controller/APIError';
+import Config from 'server/lib/config';
+import { respondSuccess, closeWithError, validateRequestPayload } from 'server/lib/http';
+
+function buildQueryDeviceObject (device: Device): DBSchemaDevice {
+    return {
+        personType: device.personType,
+        email: device.email,
+        deviceType: device.deviceType,
+        ram: device.ram,
+        hdd: device.hdd,
+        screenSize: device.screenSize,
+        monitor: device.deviceType === DeviceType.NOTEBOOK ? true : device.monitor,
+        camera: device.deviceType === DeviceType.NOTEBOOK ? true : device.camera,
+        microphone: device.deviceType === DeviceType.NOTEBOOK ? true : device.microphone,
+        speakers: device.deviceType === DeviceType.NOTEBOOK ? true : device.speakers,
+        comments: device.comments,
+        firstName: device.personType === PersonType.PERSON ? device.firstName : '',
+        lastName: device.personType === PersonType.PERSON ? device.lastName : '',
+        companyName: device.personType === PersonType.COMPANY ? device.companyName : '',
+        nip: device.personType === PersonType.COMPANY ? device.nip : '',
+        notebookName: device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : '',
+        status: DeviceStatus.RECEIVED
+    };
+}
 
 const schema = joi.object({
     personType: joi.string().valid(...[PersonType.PERSON, PersonType.COMPANY]).required(),
@@ -49,15 +72,15 @@ export default {
         multer().array('photos')
     ],
     controller: async (req: Request, res: Response) => {
-        let application;
+        let device: Device;
 
         try {
-            application = JSON.parse(req.body.application);
+            device = JSON.parse(req.body.application);
         } catch (error) {
             throw new APIError('Could not parse request payload JSON.', HTTPCode.BAD_REQUEST);
         }
 
-        req.body = await validateRequestPayload(application, schema);
+        req.body = await validateRequestPayload(device, schema);
 
         const uploads = (req.files as Express.Multer.File[]).map((file) => {
             return new Promise<S3.ManagedUpload.SendData>((resolve, reject) => {
@@ -78,31 +101,9 @@ export default {
 
         try {
             await knex.transaction(async (trx) => {
-                const result = await trx('applications').insert({
-                    personType: application.personType,
-                    email: application.email,
-                    deviceType: application.deviceType,
-                    ram: `${application.ram}`,
-                    hdd: `${application.hdd}`,
-                    screenSize: `${application.screenSize}`,
-                    monitor: application.deviceType === DeviceType.NOTEBOOK ? true : application.monitor,
-                    camera: application.deviceType === DeviceType.NOTEBOOK ? true : application.camera,
-                    microphone: application.deviceType === DeviceType.NOTEBOOK ? true : application.microphone,
-                    speakers: application.deviceType === DeviceType.NOTEBOOK ? true : application.speakers,
-                    comments: application.comments,
-                    ...(application.personType === PersonType.PERSON ? {
-                        firstName: application.firstName,
-                        lastName: application.lastName
-                    } : {
-                        companyName: application.companyName,
-                        nip: application.nip
-                    }),
-                    ...(application.deviceType === DeviceType.NOTEBOOK ? {
-                        notebookName: application.notebookName
-                    } : {})
-                }).returning('id');
+                const result = await trx(DBTable.DEVICES).insert(buildQueryDeviceObject(device)).returning('id');
 
-                await trx('photos').insert(uploaded.map((u) => ({
+                await trx(DBTable.DEVICES).insert(uploaded.map((u) => ({
                     applicationId: result[0],
                     url: u.Location
                 })));

@@ -5,19 +5,19 @@ import { makeStyles } from '@material-ui/core';
 import { Switch, Route, useLocation } from 'react-router-dom';
 
 /* Application files */
-import MainMenu from '../../components/MainMenu';
-import HeroBanner from '../../components/HeroBanner';
-import Separator from '../../components/Separator';
-import Footer from '../../components/Footer';
+import MainMenu from 'client/components/MainMenu';
+import HeroBanner from 'client/components/HeroBanner';
+import Separator from 'client/components/Separator';
+import Footer from 'client/components/Footer';
 
-import HomePage from '../HomePage';
-import AboutPage from '../AboutPage';
-import FaqPage from '../FaqPage';
-import SubmitDevicePage from '../SubmitDevicePage';
-import SubmitNeedPage from '../SubmitNeedPage';
-import TermsPage from '../TermsPage';
-import SubmitCityPage from '../SubmitCityPage';
-import RodoPage from '../RodoPage';
+import HomePage from 'client/pages/HomePage';
+import AboutPage from 'client/pages/AboutPage';
+import FaqPage from 'client/pages/FaqPage';
+import SubmitDevicePage from 'client/pages/SubmitDevicePage';
+import SubmitNeedPage from 'client/pages/SubmitNeedPage';
+import TermsPage from 'client/pages/TermsPage';
+import SubmitCityPage from 'client/pages/SubmitCityPage';
+import RodoPage from 'client/pages/RodoPage';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
         alignItems: 'center'
     },
     container: {
-        width: '940px',
+        width: 940,
         maxWidth: 'calc(100% - 20px)'
     },
     main: {

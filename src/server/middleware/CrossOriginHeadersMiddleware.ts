@@ -1,3 +1,4 @@
+/* TODO: Use config to whitelist actual FQDNs for specific environment */
 export default function () {
     return [ (req, res, next) => {
         res.set('Access-Control-Allow-Origin', req.headers.origin || req.headers.host);

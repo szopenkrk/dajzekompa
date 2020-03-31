@@ -3,9 +3,9 @@ import React, { PropsWithChildren } from 'react';
 import { Typography, makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
 
 /* Application files */
-import Separator from '../../components/Separator';
-import ProgramSummary from '../../components/ProgramSummary';
-import Partners from '../../components/Partners';
+import Separator from 'client/components/Separator';
+import ProgramSummary from 'client/components/ProgramSummary';
+import Partners from 'client/components/Partners';
 
 type Props = PropsWithChildren<{
     title?: string;
