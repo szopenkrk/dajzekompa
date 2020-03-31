@@ -74,9 +74,9 @@ export function AboutPage () {
                     Cieszymy się, że powstaje wiele podobnych inicjatyw lokalnych, a także programy publiczne. Działamy we wspólnym celu, a potrzeby są ogromne. Tysiące dzieci jest wykluczonych cyfrowo. <b>Razem możemy naprawdę wiele!</b>
                 </Typography>
                 <Typography variant="subtitle1" className={classes.description}>
-                <Typography variant="subtitle1" className={classes.description}>
                     Podsumowując: <b>jesteś brakującym elementem naszej układanki</b>. Aby wszystko dobrze się ułożyło niewiele potrzeba – <b>po prostu #DajżeKompa</b>
                 </Typography>
+                <Typography variant="subtitle1" className={classes.description}>
                     PS.: Nie zapomnij podzielić się tą informacją w swoich social mediach! #DajżeKompa
                 </Typography>
                 <div className={classes.actions}>

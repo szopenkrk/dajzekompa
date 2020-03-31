@@ -32,7 +32,8 @@ const useStyles = makeStyles(() => ({
         alignItems: 'center'
     },
     container: {
-        width: '940px'
+        width: '940px',
+        maxWidth: 'calc(100% - 20px)'
     },
     main: {
         display: 'flex',
