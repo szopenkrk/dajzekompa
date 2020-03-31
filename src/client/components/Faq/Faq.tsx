@@ -40,6 +40,7 @@ const useStyles = makeStyles({
         }
     },
     panel: {
+        width: '100%',
         backgroundColor: '#f8f8f8',
         boxShadow: 'none',
         marginBottom: '12px',

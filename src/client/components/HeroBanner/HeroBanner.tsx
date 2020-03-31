@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     wrapper: {
         display: 'flex',
         justifyContent: 'space-between',
-        '@media (max-width: 850px)': {
+        [theme.breakpoints.down('sm')]: {
             flexDirection: 'column',
             alignItems: 'center'
         }
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
             margin: theme.spacing(1),
         },
-        '@media (max-width: 850px)': {
+        [theme.breakpoints.down('sm')]: {
             justifyContent: 'center'
         }
     }

@@ -1,7 +1,7 @@
 /* Libraries */
 import React, { useState } from 'react';
 import clx from 'classnames';
-import { makeStyles, useMediaQuery, IconButton } from '@material-ui/core';
+import { makeStyles, useMediaQuery, IconButton, useTheme } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
 
 /* Application files */
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '13px 0',
-        '@media (max-width: 850px)': {
+        [theme.breakpoints.down('sm')]: {
             alignItems: 'flex-start'
         }
     },
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         listStyle: 'none',
         margin: 0,
         padding: 0,
-        '@media (max-width: 850px)': {
+        [theme.breakpoints.down('sm')]: {
             display: 'none',
             flexDirection: 'column',
             position: 'fixed',
@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
             position: 'absolute',
             top: '-6px'
         },
-        '@media (max-width: 850px)': {
+        [theme.breakpoints.down('sm')]: {
             color: 'inherit',
             '&::before': {
                 display: 'none'
@@ -109,9 +109,10 @@ const menu = [
 
 export function MainMenu () {
     const { width, height } = useWindowSize();
+    const theme = useTheme();
     const classes = useStyles({ width, height });
     const location = useLocation();
-    const mobile = useMediaQuery('(max-width: 850px)');
+    const mobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [ open, setOpen ] = useState(false);
 
     function toggleMenu () {

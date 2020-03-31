@@ -1,49 +1,14 @@
 /* Libraries */
 import React from 'react';
-import { makeStyles, Typography, Button, useMediaQuery } from '@material-ui/core';
+import { makeStyles, Typography, Button, useMediaQuery, useTheme } from '@material-ui/core';
 
 /* Application files */
-import ProgramSummary from '../../components/ProgramSummary';
-import Partners from '../../components/Partners';
 import Separator from '../../components/Separator';
 
 import Faq from '../../components/Faq';
+import SubPage from '../SubPage';
 
 const useStyles = makeStyles((theme) => ({
-    container: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'space-between',
-        paddingTop: '60px',
-        '@media (max-width: 850px)': {
-            flexDirection: 'column',
-            alignItems: 'center'
-        }
-    },
-    content: {
-        width: '547px',
-        maxWidth: 'calc(100% - 20px)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-    },
-    sidebar: {
-        width: '226px',
-        paddingTop: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-        '@media (max-width: 850px)': {
-            width: 'auto',
-            alignItems: 'center',
-            marginTop: '20px'
-        }
-    },
-    title: {
-        fontWeight: 900,
-        paddingBottom: '55px',
-        textTransform: 'uppercase',
-        width: '100%'
-    },
     actions: {
         display: 'flex',
         justifyContent: 'center',
@@ -103,26 +68,19 @@ const items = [
 ];
 
 export function FaqPage () {
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('sm'));
     const classes = useStyles();
-    const mobile = useMediaQuery('(max-width: 850px)');
 
     return (
-        <div className={classes.container}>
-            <section className={classes.content}>
-                <Typography variant="h2" className={classes.title}>Faq</Typography>
-                <Faq items={items} title="Weźże mi wytłumacz..." showToggleAll />
-                <div className={classes.actions}>
-                    <Button variant="contained" color="primary">Podaruj kompa</Button>
-                </div>
-                <Separator className={classes.separator} />
-                <Typography variant="body2">* Proszę o nie wysyłanie dosłownie złomu. Potrzebny jest działający sprzęt. Więc jak dobrze wiesz, że twój Commodore w piwnicy odał swój ostatni oddech w latach 90-tych, prosze nie przekazywać złomu dalej.</Typography>
-            </section>
-            <aside className={classes.sidebar}>
-                {mobile && <Separator />}
-                <ProgramSummary />
-                <Partners {...(mobile ? {} : { vertical: true })} />
-            </aside>
-        </div>
+        <SubPage title="Faq">
+            <Faq items={items} title="Weźże mi wytłumacz..." showToggleAll={!mobile} />
+            <div className={classes.actions}>
+                <Button variant="contained" color="primary">Podaruj kompa</Button>
+            </div>
+            <Separator className={classes.separator} />
+            <Typography variant="body2">* Proszę o nie wysyłanie dosłownie złomu. Potrzebny jest działający sprzęt. Więc jak dobrze wiesz, że twój Commodore w piwnicy odał swój ostatni oddech w latach 90-tych, prosze nie przekazywać złomu dalej.</Typography>
+        </SubPage>
     );
 }
 
