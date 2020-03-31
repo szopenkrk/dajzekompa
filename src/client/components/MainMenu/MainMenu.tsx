@@ -1,5 +1,5 @@
 /* Libraries */
-import React, { useState } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import clx from 'classnames';
 import { makeStyles, useMediaQuery, IconButton, useTheme } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
@@ -113,14 +113,35 @@ export function MainMenu () {
     const classes = useStyles({ width, height });
     const location = useLocation();
     const mobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const navElement = useRef<HTMLElement>();
     const [ open, setOpen ] = useState(false);
+
+    useLayoutEffect(() => {
+        const listener = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+
+            if (navElement.current.contains(target)) return;
+
+            setOpen(false);
+        };
+
+        document.addEventListener('click', listener);
+
+        return () => {
+            document.removeEventListener('click', listener);
+        };
+    });
 
     function toggleMenu () {
         setOpen(!open);
     }
 
+    if (!mobile && open) {
+        setOpen(false);
+    }
+
     return (
-        <nav className={clx(classes.container, classes.navigation)}>
+        <nav className={clx(classes.container, classes.navigation)} ref={navElement}>
             <Link to="/"><img src={logo} /></Link>
             <ul className={clx(classes.menu, { [classes.menuOpen]: open })}>
                 {menu.map((item, index) => (

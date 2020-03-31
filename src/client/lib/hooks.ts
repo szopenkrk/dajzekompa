@@ -5,12 +5,12 @@ function getWidth () {
 }
 
 function getHeight () {
-    return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 }
 
 export function useWindowSize () {
     const [ width, setWidth ] = useState(getWidth());
-    const [ height, setHeight ] = useState(getWidth());
+    const [ height, setHeight ] = useState(getHeight());
 
     useEffect(() => {
         let tid = null;
