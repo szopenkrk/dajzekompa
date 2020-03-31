@@ -1,6 +1,6 @@
 /* Libraries */
 import React from 'react';
-import { makeStyles, Typography, Button } from '@material-ui/core';
+import { makeStyles, Typography, Button, useMediaQuery } from '@material-ui/core';
 
 /* Application files */
 import ProgramSummary from '../../components/ProgramSummary';
@@ -12,21 +12,35 @@ const useStyles = makeStyles({
         width: '100%',
         display: 'flex',
         justifyContent: 'space-between',
-        paddingTop: '60px'
+        paddingTop: '60px',
+        '@media (max-width: 850px)': {
+            flexDirection: 'column',
+            alignItems: 'center'
+        }
     },
     content: {
-        width: '547px'
+        width: '547px',
+        maxWidth: 'calc(100% - 20px)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
     },
     sidebar: {
         width: '226px',
         paddingTop: '10px',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        '@media (max-width: 850px)': {
+            width: 'auto',
+            alignItems: 'center',
+            marginTop: '20px'
+        }
     },
     title: {
         fontWeight: 900,
         paddingBottom: '55px',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        width: '100%'
     },
     panel: {
         margin: '20px 0'
@@ -46,6 +60,7 @@ const useStyles = makeStyles({
 
 export function SubmitNeedPage () {
     const classes = useStyles();
+    const mobile = useMediaQuery('(max-width: 850px)');
 
     return (
         <div className={classes.container}>
@@ -87,8 +102,9 @@ export function SubmitNeedPage () {
                 </article>
             </section>
             <aside className={classes.sidebar}>
+                {mobile && <Separator />}
                 <ProgramSummary />
-                <Partners vertical />
+                <Partners {...(mobile ? {} : { vertical: true })} />
             </aside>
         </div>
     );

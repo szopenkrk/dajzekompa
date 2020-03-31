@@ -1,7 +1,7 @@
 /* Libraries */
 import React, { ChangeEvent, useState, FormEvent } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
-import {makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon } from '@material-ui/core';
+import {makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useMediaQuery } from '@material-ui/core';
 
 /* Models */
 import { Action } from 'redux';
@@ -15,6 +15,7 @@ import PhotoUploader from '../../components/PhotoUploader';
 import ProgramSummary from '../../components/ProgramSummary';
 import ErrorBox from '../../components/ErrorBox';
 import Partners from '../../components/Partners';
+import Separator from '../../components/Separator';
 
 /* Application files */
 
@@ -23,22 +24,36 @@ const useStyles = makeStyles({
         width: '100%',
         display: 'flex',
         justifyContent: 'space-between',
-        paddingTop: '60px'
+        paddingTop: '60px',
+        '@media (max-width: 850px)': {
+            flexDirection: 'column',
+            alignItems: 'center'
+        }
     },
     content: {
         width: '547px',
-        position: 'relative'
+        position: 'relative',
+        maxWidth: 'calc(100% - 20px)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
     },
     sidebar: {
         width: '226px',
         paddingTop: '10px',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        '@media (max-width: 850px)': {
+            width: 'auto',
+            alignItems: 'center',
+            marginTop: '20px'
+        }
     },
     title: {
         fontWeight: 900,
         paddingBottom: '55px',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        width: '100%'
     },
     icon: {
         fontSize: '70px',
@@ -121,6 +136,7 @@ export function SubmitDevicePage () {
     const [ complete, setComplete ] = useState(false);
     const [ error, setError ] = useState('');
     const [ form, setForm ] = useState({ ...formModel });
+    const mobile = useMediaQuery('(max-width: 850px)');
 
     async function onSubmit (e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -226,8 +242,9 @@ export function SubmitDevicePage () {
                 )}
             </section>
             <aside className={classes.sidebar}>
+                {mobile && <Separator />}
                 <ProgramSummary />
-                <Partners vertical />
+                <Partners {...(mobile ? {} : { vertical: true })} />
             </aside>
         </div>
     );

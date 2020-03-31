@@ -16,15 +16,23 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     container: {
-        width: '940px'
+        width: '940px',
+        maxWidth: 'calc(100% - 20px)'
     },
     hero: {
         backgroundColor: '#f8f8f8',
         padding: '71px 0'
     },
-    half: {
+    wrapper: {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        '@media (max-width: 850px)': {
+            flexDirection: 'column',
+            alignItems: 'center'
+        }
+    },
+    half: {
+        maxWidth: '100%'
     },
     title: {
         fontWeight: 900,
@@ -33,7 +41,8 @@ const useStyles = makeStyles((theme) => ({
     description: {
         padding: '22px 0',
         width: '538px',
-        lineHeight: 1.33
+        lineHeight: 1.33,
+        maxWidth: '100%'
     },
     linkButton: {
         backgroundColor: 'transparent'
@@ -48,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
             margin: theme.spacing(1),
         },
+        '@media (max-width: 850px)': {
+            justifyContent: 'center'
+        }
     }
 }));
 
@@ -56,8 +68,8 @@ export function HeroBanner () {
 
     return (
         <section className={clx(classes.section, classes.hero)}>
-            <div className={clx(classes.container, classes.half)}>
-                <div>
+            <div className={clx(classes.container, classes.wrapper)}>
+                <div className={classes.half}>
                     <Typography variant="h2" className={classes.title}>DAJŻE KOMPA</Typography>
                     <Typography variant="subtitle1" className={classes.description}>
                         <b>Polskie szkoły stanęły przed nie lada wyzwaniem!</b> Nauczanie on-line spadło na nie jak grom z jasnego nieba.... W większości
@@ -71,7 +83,7 @@ export function HeroBanner () {
                         <Button variant="outlined" color="primary">Zgłoś potrzebę</Button>
                     </div>
                 </div>
-                <div>
+                <div className={classes.half}>
                     <ProgramSummary />
                 </div>
             </div>

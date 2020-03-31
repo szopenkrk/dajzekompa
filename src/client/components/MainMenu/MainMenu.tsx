@@ -2,12 +2,17 @@
 import React, { useState } from 'react';
 import clx from 'classnames';
 import { makeStyles, useMediaQuery, IconButton } from '@material-ui/core';
+import { Link, useLocation } from 'react-router-dom';
 
 /* Application files */
+import { useWindowSize } from '../../lib/hooks';
 import logo from '../../assets/images/logo.svg';
 import menuOpenButton from '../../assets/images/icon-openmenu.svg';
 import menuCloseButton from '../../assets/images/icon-closemenu.svg';
-import { Link, useLocation } from 'react-router-dom';
+
+function getMenuCircleOffset ({ width }: any) {
+    return -(width - (width * Math.sqrt(3) / 2));
+}
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -32,8 +37,9 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
             flexDirection: 'column',
             position: 'fixed',
-            zIndex: 1,
+            zIndex: 100,
             color: '#ffffff',
+            backgroundColor: theme.palette.primary.main,
             width: '100%',
             top: 0,
             left: 0,
@@ -48,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
                 zIndex: -1,
                 borderRadius: '50%',
                 left: '-50vw',
-                bottom: -(window.innerWidth - (window.innerWidth * Math.sqrt(3) / 2))
+                bottom: getMenuCircleOffset
             }
         }
     },
@@ -102,7 +108,8 @@ const menu = [
 ];
 
 export function MainMenu () {
-    const classes = useStyles();
+    const { width, height } = useWindowSize();
+    const classes = useStyles({ width, height });
     const location = useLocation();
     const mobile = useMediaQuery('(max-width: 850px)');
     const [ open, setOpen ] = useState(false);
@@ -117,7 +124,7 @@ export function MainMenu () {
             <ul className={clx(classes.menu, { [classes.menuOpen]: open })}>
                 {menu.map((item, index) => (
                     <li key={index} className={clx(classes.menuItem, { [classes.menuItemActive]: item.route === location.pathname})}>
-                        <Link to={item.route}>{item.label}</Link>
+                        <Link to={item.route} onClick={toggleMenu}>{item.label}</Link>
                     </li>
                 ))}
             </ul>

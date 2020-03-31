@@ -22,6 +22,7 @@ const useStyles = makeStyles({
         fontWeight: 700
     },
     navigation: {
+        width: '100%',
         display: 'flex',
         alignItems: 'center',
         marginBottom: '17px',

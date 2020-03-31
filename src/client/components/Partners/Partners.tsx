@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     wrapper: {
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center',
         flexWrap: 'wrap',
         flexDirection: props => (props as any).vertical ? 'column' : 'row'
     },
