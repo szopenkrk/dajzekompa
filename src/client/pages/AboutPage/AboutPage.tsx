@@ -55,32 +55,29 @@ export function AboutPage () {
             <section className={classes.content}>
                 <Typography variant="h2" className={classes.title}>O akcji</Typography>
                 <Typography variant="subtitle1" className={classes.description}>
-                    <b>Polskie szkoły stanęły przed nie lada wyzwaniem!</b> Nauczanie on-line spadło na nie jak grom z jasnego nieba.... W większości
-                    z nich zaczęto już pracować zdalnie, ale to nie oznacza, że wszyscy mają dostęp do komputera, tableta czy Internetu. <b>Niestety,
-                    wiele dzieci, a także nauczycieli, nie posiada w domu sprzętu</b>, który pozwoliłby na uczenie i odrabianie lekcji on-line.
+                    W związku z epidemią koronawirusa szkoły rozpoczęły pracę z uczniami on-line. Niestety, <b>nie wszystkie dzieci, a także nie wszyscy nauczyciele</b> mają dostęp do komputera, tableta czy Internetu.
+                </Typography>
+                <Typography variant="subtitle1" className={classes.description}>
+                    <b>#DajżeKompa</b> - jeśli posiadasz <b>nieużywany sprzęt komputerowy przekaż go</b> na potrzeby naszej akcji. Będziemy razem walczyć z wykluczeniem cyfrowym.
                 </Typography>
                 <img src={flow} className={classes.image} />
                 <Typography variant="subtitle1" className={classes.description}>
-                    Jaki mamy na to pomysł? Jeśli w Twoim domowym bądź firmowym magazynie - a ostatnio zapewne znalazłeś/aś czas na porządki :) - zalega
-                    <b> nieużywany sprzęt komputerowy, możesz przekazać go na potrzeby naszej akcji</b>. Procedura jest bardzo prosta: przede wszystkim
-                    #zostańwdomu i zgłoś chęć udziału, zachowaj dla siebie prywatne pliki, a resztą zajmiemy się my. Zadbamy, aby sprzęt był zdezynfekowany,
-                    poddany kwarantannie, przygotowany do potrzeb zadań on-line i oczywiście dostarczymy go do szkół, które potrzebują wsparcia.
+                    To bardzo proste: zgłoś chęć udziału przez naszą stronę internetową, wyczyść prywatne pliki, zapakuj sprzęt i nadaj paczkę przez paczkomat InPost. Resztą zajmiemy się my. Zadbamy, aby sprzęt był poddany kwarantannie, zdezynfekowany, przygotowany do potrzeb zadań on-line i oczywiście dostarczymy go do osób, które go potrzebują. Co ważne - zostanie on u nich na zawsze. Zajmiemy się też wszystkimi kwestiami prawnymi i podatkowymi.
                 </Typography>
                 <Typography variant="subtitle1" className={classes.description}>
-                    Inicjatorem akcji jest firma <b>Talent Alpha</b> wspólnie z <b>Urzędem Miasta Krakowa</b> i <b>Fundacją Poland Business Run</b> oraz
-                    lokalnymi firmami: Fixit, SSW Pragmatic Solutions, Sophilution. Zgłosiło się <b>mnóstwo osób</b>, dzięki którym pomysł wsparcia dzieciaków
-                    w kilka dni przerodził się w rzeczywistość: to prawnicy, informatycy, ludzie biznesu, dziennikarze, a przede wszystkim darczyńcy.
+                    Inicjatorem akcji są <b>krakowskie firmy</b> wspierane przez <b>Urząd Miasta Krakowa i Fundację Poland Business Run</b>. Do pomocy zgłosiło się <b>wiele osób chcących pomagać</b>, dzięki którym pomysł wsparcia dzieciaków w kilka dni przerodził się w rzeczywistość: to ludzie biznesu, informatycy, prawnicy, dziennikarze, a przede wszystkim darczyńcy.
                 </Typography>
                 <Typography variant="subtitle1" className={classes.description}>
-                    Wiemy, że powstaje wiele inicjatyw lokalnych, a także programów pomocy rządowej, bardzo cieszymy się, że działamy we wspólnym celu,
-                    bo potrzeby są ogromne. Tysiące dzieci jest wykluczonych cyfrowo. <b>Razem możemy naprawdę wiele!</b>
+                    <b>Zaczynamy od Krakowa, z myślą, że poszerzymy akcję na kolejne miasta</b>. W stolicy Małopolski chcemy dostarczyć dzieciom <b>1000 komputerów</b> z zapewnieniem dostępu do Internetu. Szukamy osób, które razem z nami zorganizują akcję w innych miastach.
                 </Typography>
                 <Typography variant="subtitle1" className={classes.description}>
-                    Podsumowując: <b>jesteś brakującym elementem naszej układanki</b>. Aby wszystko dobrze się ułożyło niewiele potrzeba –
-                    <b>po prostu #dajżekompa</b>.
+                    Cieszymy się, że powstaje wiele podobnych inicjatyw lokalnych, a także programy publiczne. Działamy we wspólnym celu, a potrzeby są ogromne. Tysiące dzieci jest wykluczonych cyfrowo. <b>Razem możemy naprawdę wiele!</b>
                 </Typography>
                 <Typography variant="subtitle1" className={classes.description}>
-                    PS.: Nie zapomnij podzielić się tą informacją w swoich social mediach! #dajżekompa
+                <Typography variant="subtitle1" className={classes.description}>
+                    Podsumowując: <b>jesteś brakującym elementem naszej układanki</b>. Aby wszystko dobrze się ułożyło niewiele potrzeba – <b>po prostu #DajżeKompa</b>
+                </Typography>
+                    PS.: Nie zapomnij podzielić się tą informacją w swoich social mediach! #DajżeKompa
                 </Typography>
                 <div className={classes.actions}>
                     <Button variant="contained" color="primary">Podaruj kompa</Button>
