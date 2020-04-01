@@ -28,6 +28,6 @@ export type DBSchemaDevice = {
 
 export type DBSchemaPhoto = {
     id: string;
-    applicationId: string;
+    deviceId: string;
     url: string;
 };

@@ -1,5 +1,6 @@
-export type Device = {
+export type RawDevice = {
     id?: string;
+    status?: DeviceStatus;
     personType: PersonType;
     firstName?: string;
     lastName?: string;
@@ -8,16 +9,18 @@ export type Device = {
     email: string;
     deviceType: DeviceType;
     notebookName?: string;
-    ram: number;
-    hdd: number;
-    screenSize: number;
     monitor?: boolean;
     camera?: boolean;
     microphone?: boolean;
     speakers?: boolean;
     photos: string[];
     comments: string;
-    status: DeviceStatus;
+};
+
+export type Device = RawDevice & {
+    ram: number;
+    hdd: number;
+    screenSize: number;
 };
 
 export enum PersonType {

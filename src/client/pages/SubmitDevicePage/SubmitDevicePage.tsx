@@ -6,6 +6,7 @@ import {makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl,
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { DeviceType, PersonType } from 'common/model/Device';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
@@ -73,17 +74,17 @@ const useStyles = makeStyles({
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
 const formModel = {
-    personType: 'person',
+    personType: PersonType.PERSON,
     companyName: '',
     nip: '',
     firstName: '',
     lastName: '',
     email: '',
-    deviceType: 'notebook',
+    deviceType: DeviceType.NOTEBOOK,
     notebookName: '',
-    ram: 0,
-    hdd: 0,
-    screenSize: 0,
+    ram: '0',
+    hdd: '0',
+    screenSize: '0',
     monitor: false,
     camera: false,
     microphone: false,
@@ -118,7 +119,7 @@ export function SubmitDevicePage () {
 
     function updateField (name: string) {
         return (e: ChangeEvent<HTMLInputElement>, value?: any) => {
-            if (!value) value = e.target.value;
+            if (typeof value === 'undefined') value = e.target.value;
 
             setForm({
                 ...form,
@@ -152,30 +153,30 @@ export function SubmitDevicePage () {
                 <form onSubmit={onSubmit} noValidate autoComplete="off" className={classes.form}>
                     <section className={classes.formSection}>
                         <FormControl component="fieldset" className={classes.input}>
-                            <RadioGroup name="personType" defaultValue="person" className={classes.radios} onChange={updateField('personType')}>
-                                <FormControlLabel control={<Radio />} label="Osoba prywatna" value="person" className={classes.radio} />
-                                <FormControlLabel control={<Radio />} label="Firma" value="company" className={classes.radio} />
+                            <RadioGroup name="personType" defaultValue={PersonType.PERSON} className={classes.radios} onChange={updateField('personType')}>
+                                <FormControlLabel control={<Radio />} label="Osoba prywatna" value={PersonType.PERSON} className={classes.radio} />
+                                <FormControlLabel control={<Radio />} label="Firma" value={PersonType.COMPANY} className={classes.radio} />
                             </RadioGroup>
                         </FormControl>
-                        {form.personType === 'company' && <TextField variant="outlined" label="Nazwa firmy" className={classes.input} onChange={updateField('companyName')} />}
-                        {form.personType === 'company' && <TextField variant="outlined" label="NIP" className={classes.input} onChange={updateField('nip')} />}
-                        {form.personType === 'person' && <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} />}
-                        {form.personType === 'person' && <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} />}
+                        {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="Nazwa firmy" className={classes.input} onChange={updateField('companyName')} />}
+                        {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="NIP" className={classes.input} onChange={updateField('nip')} />}
+                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} />}
+                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} />}
                         <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} />
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
                     <section className={classes.formSection}>
                         <FormControl component="fieldset" className={classes.input}>
-                            <RadioGroup name="deviceType" defaultValue="notebook" className={classes.radios} onChange={updateField('deviceType')}>
-                                <FormControlLabel control={<Radio />} label="Laptop" value="notebook" className={classes.radio} />
-                                <FormControlLabel control={<Radio />} label="Komputer stacjonarny" value="desktop" className={classes.radio} />
+                            <RadioGroup name="deviceType" defaultValue={DeviceType.NOTEBOOK} className={classes.radios} onChange={updateField('deviceType')}>
+                                <FormControlLabel control={<Radio />} label="Laptop" value={DeviceType.NOTEBOOK} className={classes.radio} />
+                                <FormControlLabel control={<Radio />} label="Komputer stacjonarny" value={DeviceType.DESKTOP} className={classes.radio} />
                             </RadioGroup>
                         </FormControl>
-                        {form.deviceType === 'notebook' && <TextField variant="outlined" label="Producent i model" className={classes.input} onChange={updateField('notebookName')} />}
+                        {form.deviceType === DeviceType.NOTEBOOK && <TextField variant="outlined" label="Producent i model" className={classes.input} onChange={updateField('notebookName')} />}
                         <TextField variant="outlined" label="Pamięć RAM (GB)" type="number" className={classes.input} onChange={updateField('ram')} />
                         <TextField variant="outlined" label="Pojemność dysku (GB)" type="number" className={classes.input} onChange={updateField('hdd')} />
                         <TextField variant="outlined" label="Rozmiar ekranu (cale)" type="number" className={classes.input} onChange={updateField('screenSize')} />
-                        {form.deviceType === 'desktop' && (
+                        {form.deviceType === DeviceType.DESKTOP && (
                             <FormControl component="fieldset" className={classes.input}>
                                 <FormLabel component="legend" className={classes.legend}>Elementy dołączone do zestawu:</FormLabel>
                                 <FormGroup>

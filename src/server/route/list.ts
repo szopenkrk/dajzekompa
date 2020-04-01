@@ -43,8 +43,8 @@ function sanitizeDevice (device: Device): Device {
 
 function buildNestedObjectFromQuery (items: DBSchemaDeviceWithPhoto[]): Device[] {
     return items.map((item) => {
-        item.id = item.applicationId;
-        delete item.applicationId;
+        item.id = item.deviceId;
+        delete item.deviceId;
 
         return item;
     }).reduce((all, current) => {
@@ -64,7 +64,7 @@ export default {
         let items: DBSchemaDeviceWithPhoto[];
 
         try {
-            items = await knex(DBTable.DEVICES).select().leftJoin('photos', 'applications.id', 'photos.application_id');
+            items = await knex(DBTable.DEVICES).select().leftJoin('photos', `${DBTable.DEVICES}.id`, `${DBTable.PHOTOS}.device_id`);
         } catch (error) {
             Log.error(error);
 

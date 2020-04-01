@@ -75,7 +75,7 @@ export default {
         let device: Device;
 
         try {
-            device = JSON.parse(req.body.application);
+            device = JSON.parse(req.body.device);
         } catch (error) {
             throw new APIError('Could not parse request payload JSON.', HTTPCode.BAD_REQUEST);
         }
@@ -103,8 +103,8 @@ export default {
             await knex.transaction(async (trx) => {
                 const result = await trx(DBTable.DEVICES).insert(buildQueryDeviceObject(device)).returning('id');
 
-                await trx(DBTable.DEVICES).insert(uploaded.map((u) => ({
-                    applicationId: result[0],
+                await trx(DBTable.PHOTOS).insert(uploaded.map((u) => ({
+                    deviceId: result[0],
                     url: u.Location
                 })));
             });

@@ -1,6 +1,7 @@
 /* Models */
 import { Device, PersonType, DeviceType } from 'common/model/Device';
 import { ReduxActionType } from 'client/model/Redux';
+import { DeviceForm } from 'client/model/Form';
 
 /* Application files */
 import { request } from 'client/lib/request';
@@ -17,50 +18,59 @@ function base64toBlob (base64: string): Blob {
     return new Blob([binary], { type });
 }
 
-export function addDevice (form) {
+function sanitizeDeviceObject (form: DeviceForm): Device {
+    let device: Device = {
+        ...form,
+        nip: form.nip.replace(/\D+/g, ''),
+        ram: parseFloat(form.ram),
+        hdd: parseFloat(form.hdd),
+        screenSize: parseFloat(form.screenSize)
+    };
+
+    device = Object.keys(device).reduce((all, current) => {
+        if (typeof device[current] === 'undefined' || device[current] === '') return all;
+
+        all[current] = device[current];
+
+        return all;
+    }, {} as Device);
+
+    if (device.personType === PersonType.PERSON) {
+        delete device.companyName;
+        delete device.nip;
+    }
+
+    if (device.personType === PersonType.COMPANY) {
+        delete device.firstName;
+        delete device.lastName;
+    }
+
+    if (device.deviceType === DeviceType.DESKTOP) {
+        delete device.notebookName
+    }
+
+    if (device.deviceType === DeviceType.NOTEBOOK) {
+        delete device.monitor;
+        delete device.camera;
+        delete device.microphone;
+        delete device.speakers;
+    }
+
+    if (device.ram === 0) delete form.ram;
+    if (device.hdd === 0) delete form.hdd;
+    if (device.screenSize === 0) delete form.screenSize;
+
+    return device;
+}
+
+export function addDevice (form: DeviceForm) {
     return () => {
-        form = { ...form };
-        form.personType = form.personType.toUpperCase();
-        form.deviceType = form.deviceType.toUpperCase();
-        form.nip = form.nip.replace(/\D+/g, '');
-        if (form.ram) form.ram = parseFloat(form.ram);
-        if (form.hdd) form.hdd = parseFloat(form.hdd);
-        if (form.screenSize) form.screenSize = parseFloat(form.screenSize);
-
-        form = Object.keys(form).reduce((all, current) => {
-            if (typeof form[current] === 'undefined' || form[current] === '') return all;
-
-            all[current] = form[current];
-
-            return all;
-        }, {});
-
-        if (form.personType === PersonType.PERSON) {
-            delete form.companyName;
-            delete form.nip;
-        }
-        if (form.personType === PersonType.COMPANY) {
-            delete form.firstName;
-            delete form.lastName;
-        }
-        if (form.deviceType === DeviceType.DESKTOP) {
-            delete form.notebookName
-        }
-        if (form.deviceType === DeviceType.NOTEBOOK) {
-            delete form.monitor;
-            delete form.camera;
-            delete form.microphone;
-            delete form.speakers;
-        }
-        if (form.ram === 0) delete form.ram;
-        if (form.hdd === 0) delete form.hdd;
-        if (form.screenSize === 0) delete form.screenSize;
-
+        const device = sanitizeDeviceObject(form);
         const formData = new FormData();
 
         form.photos.forEach((photo) => formData.append('photos', base64toBlob(photo)));
         delete form.photos;
-        formData.append('application', JSON.stringify(form));
+        formData.append('device', JSON.stringify(device));
 
         return request('POST', '/devices', formData);
     };
