@@ -46,7 +46,12 @@ module.exports = [
             filename: 'app.js'
         },
         resolve: {
-            extensions: [ '.js', '.ts', '.tsx' ]
+            extensions: [ '.js', '.ts', '.tsx' ],
+            alias: {
+                'server': path.join(__dirname, './src/server'),
+                'client': path.join(__dirname, './src/client'),
+                'common': path.join(__dirname, './src/common')
+            }
         },
         module: {
             rules: [

@@ -5,14 +5,14 @@ import { createStore, compose, applyMiddleware, Store } from 'redux';
 import thunk from 'redux-thunk';
 
 /* Models */
-import { ReduxState } from './model/Redux';
+import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import Config, { loadConfigFromObject } from './lib/config';
-import theme from './lib/theme';
-import reducers from './reducers'
+import Config, { loadConfigFromObject } from 'client/lib/config';
+import theme from 'client/lib/theme';
+import reducers from 'client/reducers'
 
-import App from './components/App';
+import App from 'client/components/App';
 
 loadConfigFromObject(window['__CONFIG__']);
 

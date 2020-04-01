@@ -4,17 +4,17 @@ import express from 'express';
 /* Models */
 import { Request, Response, NextFunction } from 'express';
 import { AddressInfo } from 'net';
-import { HTTPCode } from './model/HTTP';
+import { HTTPCode } from 'server/model/HTTP';
 
 /* Application files */
-import Log, { JSErrors } from './controller/Log';
-import APIError from './controller/APIError';
-import Config from './lib/config';
-import Process from './lib/process';
-import { closeWithError, validateRequestPayload } from './lib/http';
+import Log, { JSErrors } from 'server/controller/Log';
+import APIError from 'server/controller/APIError';
+import Config from 'server/lib/config';
+import Process from 'server/lib/process';
+import { closeWithError, validateRequestPayload } from 'server/lib/http';
 
-import middlewares from './middleware';
-import routes from './route';
+import middlewares from 'server/middleware';
+import routes from 'server/route';
 
 Process.onStop(async () => {
     Log.info('Stopping server');
