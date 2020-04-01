@@ -1,5 +1,5 @@
 /* Libraries */
-import React, { ChangeEvent, useState, FormEvent } from 'react';
+import React, { useState } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
 import {makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon } from '@material-ui/core';
 
@@ -101,7 +101,7 @@ export function SubmitDevicePage () {
     const [ error, setError ] = useState('');
     const [ form, setForm ] = useState({ ...formModel });
 
-    async function onSubmit (e: FormEvent<HTMLFormElement>) {
+    async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         setError('');
@@ -118,7 +118,7 @@ export function SubmitDevicePage () {
     }
 
     function updateField (name: string) {
-        return (e: ChangeEvent<HTMLInputElement>, value?: any) => {
+        return (e: React.ChangeEvent<HTMLInputElement>, value?: any) => {
             if (typeof value === 'undefined') value = e.target.value;
 
             setForm({

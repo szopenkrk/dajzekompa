@@ -1,20 +1,20 @@
 /* Libraries */
-import React, { useState, useEffect } from 'react';
-import clx from 'classnames';
+import React, { useState, useEffect } from 'react'
 import { useDispatch as reduxUseDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { makeStyles, Paper, ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, withStyles, Chip, PropTypes, Icon } from '@material-ui/core';
+import { makeStyles, Typography, Chip, TableContainer, Table, TableBody, TableRow, TableCell, TableHead, Dialog } from '@material-ui/core';
 
 /* Models */
 import { Action } from 'redux';
+import { Device, DeviceType } from 'common/model/Device';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { Device, DeviceType, PersonType, DeviceStatus } from 'common/model/Device';
+import { getDeviceStatusColor, getDeviceStatusText } from 'client/lib/device';
 import { loadDevices } from 'client/actions/devices';
-import LoadingOverlay from 'client/components/LoadingOverlay';
-import DetailsList from 'client/components/DetailsList';
 import ErrorBox from 'client/components/ErrorBox';
+import DeviceDetails from 'client/components/DeviceDetails';
+import LoadingOverlay from 'client/components/LoadingOverlay';
 
 const useStyles = makeStyles({
     panel: {
@@ -30,9 +30,12 @@ const useStyles = makeStyles({
     },
     tag: {
         marginRight: 10,
+        marginTop: -2,
         borderRadius: 4,
         height: 'auto',
-        fontSize: 12
+        fontSize: 12,
+        fontWeight: 700,
+        color: '#ffffff'
     },
     iconWrapper: {
         display: 'flex',
@@ -43,78 +46,36 @@ const useStyles = makeStyles({
         fontSize: 18,
         marginRight: 3
     },
-    comments: {
-        backgroundColor: 'rgba(0, 0, 0, .03)',
-        padding: 10
+    loading: {
+        backgroundColor: 'rgba(255, 255, 255, 0.8)'
     },
-    gallery: {
-        width: '100%',
-        display: 'flex'
+    row: {
+        cursor: 'pointer'
     },
-    thumbnail: {
-        width: 300,
-        height: 300,
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundOrigin: 'content-box',
-        padding: 10,
-        border: '1px solid rgba(0, 0, 0, 0.23)',
-        margin: '10px 5px'
-    },
-    statusWrapper: {
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        marginBottom: 10
-    },
-    status: {
-        marginLeft: 5
+    dialog: {
+        padding: 40,
+        width: 1200,
+        maxWidth: '100%'
     }
 });
 
-const ExpansionPanelCustomSummary = withStyles({
-    root: {
-        backgroundColor: 'rgba(0, 0, 0, .03)',
-        marginBottom: -1,
-        minHeight: 56,
-        alignItems: 'center',
-        '&$expanded': {
-            minHeight: 56,
-        },
-    },
-    content: {
-        justifyContent: 'space-between',
-    },
-    expanded: {}
-})(ExpansionPanelSummary);
-
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
-function getDeviceColor (type: DeviceType): PropTypes.Color {
+function getDeviceTypeText (type: DeviceType): string {
     switch (type) {
-        case DeviceType.NOTEBOOK: return "primary";
-        case DeviceType.DESKTOP: return "secondary";
-        default: return "default";
-    }
-}
-
-function getDeviceStatusText (type: DeviceStatus): string {
-    switch (type) {
-        case DeviceStatus.RECEIVED: return 'Otrzymano wniosek';
-        case DeviceStatus.SENT_TO_SERVICE: return 'Wysłano do serwisu';
-        case DeviceStatus.IN_SERVICE: return 'W serwisie';
-        case DeviceStatus.SENT_TO_RECIPIENT: return 'Wysłano do odbiorcy';
-        case DeviceStatus.COMPLETE: return 'Dostarczono do potrzebującego';
+        case DeviceType.NOTEBOOK: return 'Laptop';
+        case DeviceType.DESKTOP: return 'Desktop';
+        default: return `${type}`;
     }
 }
 
 export function DevicesList () {
     const dispatch = useDispatch();
-    const [ expanded, setExpanded ] = useState(-1);
     const [ loading, setLoading ] = useState(true);
     const [ error, setError ] = useState('');
     const [ devices, setDevices ] = useState(null as Device[]);
+    const [ dialogOpen, setDialogOpen ] = useState(false);
+    const [ selectedDevice, setSelectedDevice ] = useState(null);
     const classes = useStyles();
 
     async function requestLoadDevices () {
@@ -131,11 +92,17 @@ export function DevicesList () {
         setLoading(false);
     }
 
-    function expand (index) {
+    function openDialog (device: Device) {
         return () => {
-            if (expanded === index) setExpanded(-1);
-            else setExpanded(index);
-        };
+            console.log(device);
+            setSelectedDevice(device);
+            setDialogOpen(true);
+        }
+    }
+
+    function closeDialog () {
+        setDialogOpen(false);
+        setSelectedDevice(null);
     }
 
     useEffect(() => {
@@ -144,70 +111,46 @@ export function DevicesList () {
 
     return (
         <>
-            {loading && (<LoadingOverlay />)}
+            {loading && (<LoadingOverlay className={classes.loading} />)}
             {error && (<ErrorBox>{error}</ErrorBox>)}
             {devices && devices.length === 0 && (
                 <Typography variant="subtitle1">Brak urządzeń na liście.</Typography>
             )}
-            {devices && devices.map((device, index) => (
-                <ExpansionPanel key={index} className={classes.panel} square expanded={expanded === index} onChange={expand(index)}>
-                    <ExpansionPanelCustomSummary aria-controls={`panel${index}-content`} id={`panel${index}-header`}>
-                        <div className={classes.panelPart}>
-                            <Chip color={getDeviceColor(device.deviceType)} label={device.deviceType} className={classes.tag} />
-                            <Typography>
-                                {device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : ''} (4GB/500GB/17&quot;)
-                            </Typography>
-                            {device.deviceType === DeviceType.DESKTOP && (
-                                <div className={classes.iconWrapper}>
-                                    {!device.microphone && <Icon className={classes.icon}>mic_off</Icon>}
-                                    {!device.camera && <Icon className={classes.icon}>videocam_off</Icon>}
-                                    {!device.speakers && <Icon className={classes.icon}>volume_off</Icon>}
-                                    {!device.monitor && <Icon className={classes.icon}>desktop_access_disabled</Icon>}
-                                </div>
-                            )}
-                        </div>
-                        <div>
-                            {device.personType === PersonType.COMPANY && (<Chip color="default" label="Firma" className={classes.tag}></Chip>)}
-                        </div>
-                    </ExpansionPanelCustomSummary>
-                    <ExpansionPanelDetails className={classes.content}>
-                        <div className={classes.statusWrapper}>
-                            <Typography variant="subtitle2">Status:</Typography>
-                            <Chip label={getDeviceStatusText(device.status)} className={clx(classes.tag, classes.status)} />
-                        </div>
-                        <DetailsList label="Specyfikacja sprzętu" data={[
-                            { label: 'Rozmiar ekranu', value: `${device.screenSize}"` },
-                            { label: 'RAM', value: `${device.ram}GB` },
-                            { label: 'HDD', value: `${device.hdd}GB` }
-                        ]} />
-                        <DetailsList label="Dane kontaktowe" data={[
-                            { label: 'Nazwa firmy', value: device.companyName, show: device.personType === PersonType.COMPANY },
-                            { label: 'NIP', value: device.nip, show: device.personType === PersonType.COMPANY },
-                            { label: 'Imię', value: device.firstName, show: device.personType === PersonType.PERSON },
-                            { label: 'Nazwisko', value: device.lastName, show: device.personType === PersonType.PERSON },
-                            { label: 'E-mail', value: device.email }
-                        ]} />
-                        {device.comments && (
-                            <div style={{ width: '100%', marginBottom: '20px' }}>
-                                <Typography variant="subtitle1">Komentarze:</Typography>
-                                <Typography variant="body2" className={classes.comments}>
-                                    {device.comments.split('\n').map((item, index) => (
-                                        <span key={index}>
-                                            {item}
-                                            <br />
-                                        </span>
-                                    ))}
-                                </Typography>
-                            </div>
-                        )}
-                        <Paper className={classes.gallery} elevation={0}>
-                            {device.photos.map((photo, index) => (
-                                <article key={index} className={classes.thumbnail} style={{ backgroundImage: `url("${photo}")`}}></article>
-                            ))}
-                        </Paper>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-            ))}
+            <TableContainer>
+                <Table aria-label="Lista urządzeń" size="small">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Typ</TableCell>
+                            <TableCell>Status</TableCell>
+                            <TableCell>Nazwa</TableCell>
+                            <TableCell>Pamięć</TableCell>
+                            <TableCell>Dysk twardy</TableCell>
+                            <TableCell>Ekran</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {devices && devices.map((device, index) => (
+                            <TableRow key={index} className={classes.row} onClick={openDialog(device)} hover>
+                                <TableCell>{getDeviceTypeText(device.deviceType)}</TableCell>
+                                <TableCell>
+                                    <Chip style={{ backgroundColor: getDeviceStatusColor(device.status) }} label={getDeviceStatusText(device.status)} className={classes.tag} />
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : ''}
+                                </TableCell>
+                                <TableCell>{device.ram} GB</TableCell>
+                                <TableCell>{device.hdd} GB</TableCell>
+                                <TableCell>{device.screenSize}&quot;</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            {selectedDevice && (
+                <Dialog onClose={closeDialog} open={dialogOpen} classes={{ paper: classes.dialog }}>
+                    <DeviceDetails device={selectedDevice} />
+                </Dialog>
+            )}
         </>
     );
 }

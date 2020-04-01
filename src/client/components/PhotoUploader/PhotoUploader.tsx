@@ -1,9 +1,9 @@
 /* Libraries */
-import React, { createRef, ChangeEvent, useState } from 'react';
+import React, { createRef, useState } from 'react';
 import { makeStyles, Icon } from '@material-ui/core';
 
 type Props = {
-    onChange?: (e: ChangeEvent<HTMLInputElement>, files: string[]) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>, files: string[]) => void;
     mime?: string[];
     maxSize?: number;
 };
@@ -48,7 +48,7 @@ export function PhotoUploader (props: Props) {
     const [ files, setFiles ] = useState([]);
     const fileInput = createRef<HTMLInputElement>();
 
-    function parseFiles (e: ChangeEvent<HTMLInputElement>) {
+    function parseFiles (e: React.ChangeEvent<HTMLInputElement>) {
         const parsed = [];
         const raw = e.target.files;
 

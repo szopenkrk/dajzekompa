@@ -13,10 +13,15 @@ import { respondSuccess, closeWithError } from 'server/lib/http';
 type DBSchemaDeviceWithPhoto = DBSchemaDevice & DBSchemaPhoto;
 
 function buildDeviceFromDbObject (db: DBSchemaDeviceWithPhoto): Device {
-    return {
+    const device = {
         ...db,
-        photos: [ db.url ]
+        photos: db.url ? [ db.url ] : []
     };
+
+    delete device.deviceId;
+    delete device.url;
+
+    return device;
 }
 
 function sanitizeDevice (device: Device): Device {
@@ -42,16 +47,13 @@ function sanitizeDevice (device: Device): Device {
 }
 
 function buildNestedObjectFromQuery (items: DBSchemaDeviceWithPhoto[]): Device[] {
-    return items.map((item) => {
-        item.id = item.deviceId;
-        delete item.deviceId;
-
-        return item;
-    }).reduce((all, current) => {
+    return items.reduce((all, current) => {
         const found = all.find((i) => i.id === current.id);
 
         if (!found) all.push(buildDeviceFromDbObject(current));
-        else found.photos.push(current.url)
+        else {
+            if (current.url) found.photos.push(current.url);
+        }
 
         return all;
     }, [] as Device[]);
@@ -64,7 +66,7 @@ export default {
         let items: DBSchemaDeviceWithPhoto[];
 
         try {
-            items = await knex(DBTable.DEVICES).select().leftJoin('photos', `${DBTable.DEVICES}.id`, `${DBTable.PHOTOS}.device_id`);
+            items = await knex(DBTable.DEVICES).select('*', `${DBTable.DEVICES}.id as id`).leftJoin('photos', `${DBTable.DEVICES}.id`, `${DBTable.PHOTOS}.device_id`);
         } catch (error) {
             Log.error(error);
 
