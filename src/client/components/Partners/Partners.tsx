@@ -8,6 +8,7 @@ import logoTalentAlpha from 'client/assets/images/logo-partner-talentalpha.png';
 import logoBusinessRun from 'client/assets/images/logo-partner-businessrun.png';
 import logoPragmaticSolutions from 'client/assets/images/logo-partner-sww.png';
 import logoInpost from 'client/assets/images/logo-partner-inpost.png';
+import logoFixit from 'client/assets/images/logo-partner-fixit.png';
 import logoBkode from 'client/assets/images/logo-partner-bkode.png';
 
 type Props = {
@@ -44,6 +45,7 @@ export function Partners (props: Props) {
                 <img src={logoBkode} className={classes.partner}  />
                 <img src={logoBusinessRun} className={classes.partner}  />
                 <img src={logoPragmaticSolutions} className={classes.partner}  />
+                <img src={logoFixit} className={classes.partner}  />
                 <img src={logoInpost} className={classes.partner}  />
             </section>
         </>
