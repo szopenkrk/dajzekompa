@@ -1,23 +1,24 @@
 /* Libraries */
 import joi from '@hapi/joi';
 import multer from 'multer';
-import { v4 as uuid } from 'uuid';
+import {v4 as uuid} from 'uuid';
 import mime from 'mime-types';
-import { S3 } from 'aws-sdk';
-
+import {S3} from 'aws-sdk';
 /* Models */
-import { Request, Response } from 'express';
-import { PersonType, DeviceType, Device, DeviceStatus } from 'common/model/Device';
-import { APIRoute } from 'server/model/API';
-import { HTTPMethod, HTTPCode } from 'server/model/HTTP';
-import { DBTable, DBSchemaDevice } from 'server/model/DB';
-
+import {Request, Response} from 'express';
+import {Device, DeviceStatus, DeviceType, PersonType} from 'common/model/Device';
+import {APIRoute} from 'server/model/API';
+import {HTTPCode, HTTPMethod} from 'server/model/HTTP';
+import {DBSchemaDevice, DBTable} from 'server/model/DB';
 /* Application files */
 import knex from 'server/database/knex';
 import Log from 'server/controller/Log';
 import APIError from 'server/controller/APIError';
 import Config from 'server/lib/config';
-import { respondSuccess, closeWithError, validateRequestPayload } from 'server/lib/http';
+import {closeWithError, respondSuccess, validateRequestPayload} from 'server/lib/http';
+
+//     companyAddress: '',
+//     email: '',
 
 function buildQueryDeviceObject (device: Device): DBSchemaDevice {
     return {
@@ -31,12 +32,17 @@ function buildQueryDeviceObject (device: Device): DBSchemaDevice {
         camera: device.deviceType === DeviceType.NOTEBOOK ? true : device.camera,
         microphone: device.deviceType === DeviceType.NOTEBOOK ? true : device.microphone,
         speakers: device.deviceType === DeviceType.NOTEBOOK ? true : device.speakers,
+        notebookName: device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : '',
         comments: device.comments,
         firstName: device.personType === PersonType.PERSON ? device.firstName : '',
         lastName: device.personType === PersonType.PERSON ? device.lastName : '',
+        address: device.personType === PersonType.PERSON ? device.address : '',
+        name: device.personType === PersonType.COMPANY ? device.name : '',
+        surname: device.surname === PersonType.COMPANY ? device.surname : '',
         companyName: device.personType === PersonType.COMPANY ? device.companyName : '',
+        companyEmail: device.personType === PersonType.COMPANY ? device.companyEmail : '',
+        companyAddress: device.personType == PersonType.COMPANY ? device.companyAddress : '',
         nip: device.personType === PersonType.COMPANY ? device.nip : '',
-        notebookName: device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : '',
         status: DeviceStatus.RECEIVED
     };
 }

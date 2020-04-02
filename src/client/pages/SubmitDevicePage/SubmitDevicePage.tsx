@@ -76,9 +76,14 @@ const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action
 const formModel = {
     personType: PersonType.PERSON,
     companyName: '',
+    name: '',
+    surname: '',
     nip: '',
+    companyAddress: '',
+    companyEmail: '',
     firstName: '',
     lastName: '',
+    address: '',
     email: '',
     deviceType: DeviceType.NOTEBOOK,
     notebookName: '',
@@ -159,9 +164,13 @@ export function SubmitDevicePage () {
                             </RadioGroup>
                         </FormControl>
                         {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="Nazwa firmy" className={classes.input} onChange={updateField('companyName')} />}
+                        {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('name')} />}
+                        {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('surname')} />}
                         {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="NIP" className={classes.input} onChange={updateField('nip')} />}
+                        {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="Adres" className={classes.input} onChange={updateField('companyAddress')} />}
                         {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} />}
                         {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} />}
+                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Adres" className={classes.input} onChange={updateField('address')} />}
                         <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} />
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>

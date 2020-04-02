@@ -4,8 +4,13 @@ export type RawDevice = {
     personType: PersonType;
     firstName?: string;
     lastName?: string;
+    address?: string;
     companyName?: string;
+    name?: string;
+    surname?: string;
     nip?: string;
+    companyAddress?: string;
+    companyEmail?: string;
     email: string;
     deviceType: DeviceType;
     notebookName?: string;
