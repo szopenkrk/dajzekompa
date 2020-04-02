@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
-import ui from 'client/reducers/ui';
 import devices from 'client/reducers/devices';
 import program from 'client/reducers/program';
+import ui from 'client/reducers/ui';
+import user from 'client/reducers/user';
 
 export default combineReducers({
-    ui,
     devices,
-    program
+    program,
+    ui,
+    user
 });

@@ -3,18 +3,29 @@ import { Device } from 'common/model/Device';
 import { ProgramSummary } from 'common/model/Program';
 
 export enum ReduxActionType {
-    UI_SET_LOADING = 'UI_SET_LOADING',
     DEVICES_LOAD = 'DEVICES_LOAD',
-    PROGRAM_SUMMARY_LOAD = 'PROGRAM_SUMMARY_LOAD'
+    PROGRAM_SUMMARY_LOAD = 'PROGRAM_SUMMARY_LOAD',
+    UI_SET_LOADING = 'UI_SET_LOADING',
+    USER_SIGNIN = 'USER_SIGNIN',
+    USER_SIGNOUT = 'USER_SIGNOUT'
 }
 
 export type ReduxState = {
-    ui: StateUI;
+    devices: StateDevices;
     program: StateProgram;
+    ui: StateUI;
+    user: StateUser;
 };
 
 export type StateUI = {
     loading: boolean;
+};
+
+export type StateUser = {
+    token?: string;
+    email: string;
+    firstName: string;
+    lastName: string;
 };
 
 export type StateDevices = Device[];

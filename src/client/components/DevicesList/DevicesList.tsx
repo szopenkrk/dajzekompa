@@ -116,36 +116,38 @@ export function DevicesList () {
             {devices && devices.length === 0 && (
                 <Typography variant="subtitle1">Brak urządzeń na liście.</Typography>
             )}
-            <TableContainer>
-                <Table aria-label="Lista urządzeń" size="small">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Typ</TableCell>
-                            <TableCell>Status</TableCell>
-                            <TableCell>Nazwa</TableCell>
-                            <TableCell>Pamięć</TableCell>
-                            <TableCell>Dysk twardy</TableCell>
-                            <TableCell>Ekran</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {devices && devices.map((device, index) => (
-                            <TableRow key={index} className={classes.row} onClick={openDialog(device)} hover>
-                                <TableCell>{getDeviceTypeText(device.deviceType)}</TableCell>
-                                <TableCell>
-                                    <Chip style={{ backgroundColor: getDeviceStatusColor(device.status) }} label={getDeviceStatusText(device.status)} className={classes.tag} />
-                                </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : ''}
-                                </TableCell>
-                                <TableCell>{device.ram} GB</TableCell>
-                                <TableCell>{device.hdd} GB</TableCell>
-                                <TableCell>{device.screenSize}&quot;</TableCell>
+            {devices && devices.length > 0 && (
+                <TableContainer>
+                    <Table aria-label="Lista urządzeń" size="small">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Typ</TableCell>
+                                <TableCell>Status</TableCell>
+                                <TableCell>Nazwa</TableCell>
+                                <TableCell>Pamięć</TableCell>
+                                <TableCell>Dysk twardy</TableCell>
+                                <TableCell>Ekran</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {devices && devices.map((device, index) => (
+                                <TableRow key={index} className={classes.row} onClick={openDialog(device)} hover>
+                                    <TableCell>{getDeviceTypeText(device.deviceType)}</TableCell>
+                                    <TableCell>
+                                        <Chip style={{ backgroundColor: getDeviceStatusColor(device.status) }} label={getDeviceStatusText(device.status)} className={classes.tag} />
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        {device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : ''}
+                                    </TableCell>
+                                    <TableCell>{device.ram} GB</TableCell>
+                                    <TableCell>{device.hdd} GB</TableCell>
+                                    <TableCell>{device.screenSize}&quot;</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            )}
             {selectedDevice && (
                 <Dialog onClose={closeDialog} open={dialogOpen} classes={{ paper: classes.dialog }}>
                     <DeviceDetails device={selectedDevice} />
