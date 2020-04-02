@@ -47,6 +47,7 @@ export function signOut () {
                     type: ReduxActionType.USER_SIGNOUT
                 });
 
+                /* Note: can only resolve - even if any requests fail, need to clean user/token and resolve anyway */
                 return resolve();
             }, 1000);
         });

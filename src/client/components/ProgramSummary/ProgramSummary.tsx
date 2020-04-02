@@ -76,7 +76,8 @@ export function ProgramSummary (props: Props) {
 
         try {
             const summary = await dispatch(loadProgramSummary());
-            setDevices(summary.totalDevices);
+            const total = Object.keys(summary.statuses).reduce((all, current) => all + summary.statuses[current], 0);
+            setDevices(total);
         } catch (error) {
             setError(error.message);
         }

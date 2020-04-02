@@ -1,5 +1,5 @@
 /* Libraries */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, PropsWithChildren } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector as reduxUseSelector, useDispatch as reduxUseDispatch, TypedUseSelectorHook } from 'react-redux';
 
@@ -9,7 +9,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { getByToken } from 'client/actions/user';
+import { getByToken, signOut } from 'client/actions/user';
 import Config from 'client/lib/config';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 
@@ -21,40 +21,52 @@ import SignInPage from 'client/pages/SignInPage';
 const useSelector = reduxUseSelector as TypedUseSelectorHook<ReduxState>;
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
-export function Router () {
-    const user = useSelector((state) => state.user);
+function UserDataFetcher ({ children }: PropsWithChildren<{}>) {
     const [ loading, setLoading ] = useState(true);
+    const [ error, setError ] = useState(false);
+    const { token, email } = useSelector((state) => state.user);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        if (!user.token) {
-            setLoading(false);
-        } else {
-            if (!user.email) loadUserData();
-        }
-    });
 
     async function loadUserData () {
         try {
-            await dispatch(getByToken(user.token));
+            await dispatch(getByToken(token));
+        } catch (error) {
+            await dispatch(signOut());
+            setError(true);
         } finally {
             setLoading(false);
         }
     }
 
-    function requireAuthentication (component: any) {
-        if (user.token) return component;
+    useEffect(() => {
+        (() => {
+            if (!token) return setError(true);
+            if (!email) return loadUserData();
 
-        return () => <Redirect to="/admin/signin" />
-    }
+            return setLoading(false);
+        })();
+    }, [ token ]);
 
+    if (error) return <Redirect to="/admin/signin" />
     if (loading) return <LoadingOverlay />;
+
+    return (<>{children}</>);
+}
+
+export function Router () {
+    function requireAuthentication (Component: () => JSX.Element) {
+        return () => (
+            <UserDataFetcher>
+                <Component />
+            </UserDataFetcher>
+        );
+    }
 
     return (
         <BrowserRouter basename="/#">
             <Switch>
                 <Route path="/admin/signin" component={SignInPage} exact={true} />
-                <Route path="/admin" component={requireAuthentication(AdminPage)} />
+                <Route path="/admin" render={requireAuthentication(AdminPage)} />
                 {!Config.MAINTENANCE_MODE && (<Route path="/" component={LandingPage} />)}
                 {Config.MAINTENANCE_MODE && (<Route path="/" component={MaintenancePage} />)}
                 <Route render={() => <Redirect to="/" />} />

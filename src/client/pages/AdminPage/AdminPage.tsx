@@ -14,6 +14,7 @@ import { ReduxState } from 'client/model/Redux';
 import { signOut } from 'client/actions/user';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 
+import DashboardPage from 'client/pages/DashboardPage';
 import ListDevicesPage from 'client/pages/ListDevicesPage';
 
 const drawerWidth = 300;
@@ -161,6 +162,10 @@ export function AdminPage () {
                 </AppBar>
                 <Drawer variant="persistent" anchor="left" open={leftMenuOpen} className={classes.drawer} classes={{ paper: classes.drawerPaper }}>
                     <List>
+                        <ListItem button onClick={goTo('/admin')}>
+                            <ListItemIcon><Icon>bar_chart</Icon></ListItemIcon>
+                            <ListItemText primary="Statystyki" />
+                        </ListItem>
                         <ListItem button onClick={goTo('/admin/devices')}>
                             <ListItemIcon><Icon>devices</Icon></ListItemIcon>
                             <ListItemText primary="Urządzenia" />
@@ -170,7 +175,8 @@ export function AdminPage () {
             </section>
             <main className={clx(classes.content, { [classes.contentShifted]: leftMenuOpen })}>
                 <Switch>
-                    <Route path="/admin/devices" component={ListDevicesPage} />
+                    <Route path="/admin" exact={true} component={DashboardPage} />
+                    <Route path="/admin/devices" exact={true} component={ListDevicesPage} />
                 </Switch>
             </main>
         </section>

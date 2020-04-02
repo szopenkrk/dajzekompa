@@ -1,4 +1,6 @@
 /* Models */
+import { Action } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 import { Device } from 'common/model/Device';
 import { ProgramSummary } from 'common/model/Program';
 
@@ -16,6 +18,8 @@ export type ReduxState = {
     ui: StateUI;
     user: StateUser;
 };
+
+export type ReduxThunkAction<T> = ThunkAction<Promise<T>, ReduxState, undefined, Action<ReduxActionType>>;
 
 export type StateUI = {
     loading: boolean;

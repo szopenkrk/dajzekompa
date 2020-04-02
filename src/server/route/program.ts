@@ -9,18 +9,28 @@ import knex from 'server/database/knex';
 import Log from 'server/controller/Log';
 import { respondSuccess, closeWithError } from 'server/lib/http';
 import { DBTable } from 'server/model/DB';
+import { DeviceStatus } from 'common/model/Device';
 
 export default {
     method: HTTPMethod.GET,
     url: '/api/program',
     controller: async (req: Request, res: Response) => {
         const programSummary: ProgramSummary = {
-            totalDevices: null
+            statuses: {
+                [DeviceStatus.RECEIVED]: 0,
+                [DeviceStatus.SENT_TO_SERVICE]: 0,
+                [DeviceStatus.IN_SERVICE]: 0,
+                [DeviceStatus.SENT_TO_RECIPIENT]: 0,
+                [DeviceStatus.COMPLETE]: 0
+            }
         };
 
         try {
-            const result = await knex(DBTable.DEVICES).count();
-            programSummary.totalDevices = parseInt(`${result[0].count}`, 10);
+            const result = await knex(DBTable.DEVICES).select('status').count('status as total').groupBy('status');
+
+            result.forEach((item) => {
+                programSummary.statuses[item.status] = parseInt(item.total, 10);
+            });
         } catch (error) {
             Log.error(error);
 

@@ -4,7 +4,7 @@ import { ReduxActionType, StateProgram } from 'client/model/Redux';
 
 function getInitialState (): StateProgram {
     return {
-        totalDevices: null
+        statuses: null
     };
 }
 

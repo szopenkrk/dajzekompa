@@ -94,7 +94,6 @@ export function DevicesList () {
 
     function openDialog (device: Device) {
         return () => {
-            console.log(device);
             setSelectedDevice(device);
             setDialogOpen(true);
         }
