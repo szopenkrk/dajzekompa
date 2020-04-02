@@ -1,7 +1,7 @@
 {
-    "name": "projektmiasto",
+    "name": "dajzekompa",
     "version": "0.1.0",
-    "description": "Projekt Miasto",
+    "description": "Dajże Kompa",
     "main": "index.js",
     "scripts": {
         "build": "webpack",
@@ -18,18 +18,17 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/szopenkrk/projektMiasto.git"
+        "url": "git+https://github.com/szopenkrk/dajzekompa.git"
     },
     "keywords": [
-        "projekt",
-        "miasto"
+        "dajzekompa"
     ],
     "author": "",
     "license": "UNLICENSED",
     "bugs": {
-        "url": "https://github.com/szopenkrk/projektMiasto/issues"
+        "url": "https://github.com/szopenkrk/dajzekompa/issues"
     },
-    "homepage": "https://github.com/szopenkrk/projektMiasto#readme",
+    "homepage": "https://github.com/szopenkrk/dajzekompa#readme",
     "devDependencies": {
         "@types/body-parser": "^1.19.0",
         "@types/classnames": "^2.2.10",

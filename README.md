@@ -1,4 +1,4 @@
-# Projekt Miasto
+# dajzekompa
 
 ## Setup
 In order to run the project locally, you need to install node dependencies first:
@@ -6,9 +6,9 @@ In order to run the project locally, you need to install node dependencies first
 $ npm install
 ```
 
-Before you start the application, you need to have a running database locally, that the application will use. Easiest way to set it up is with docker. Just use `postgres`/`postgres` as credentials and `projektmiasto` as database name and it'll work. You can use the following command to run the docker database locally:
+Before you start the application, you need to have a running database locally, that the application will use. Easiest way to set it up is with docker. Just use `postgres`/`postgres` as credentials and `dajzekompa` as database name and it'll work. You can use the following command to run the docker database locally:
 ```bash
-$ docker container run -d -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=projektmiasto -p 5432:5432 postgres:12-alpine
+$ docker container run -d -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=dajzekompa -p 5432:5432 postgres:12-alpine
 ```
 
 You can also run the docker-compose stack instead, but it'll first build a docker image of the application, so you need to build & package it before (just once):
