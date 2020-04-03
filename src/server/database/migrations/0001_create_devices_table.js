@@ -5,14 +5,13 @@ exports.up = (knex) => {
         table.bigIncrements('id');
         table.enum('person_type', ['PERSON', 'COMPANY']).notNullable();
         table.string('company_name').defaultTo('');
-        table.string('name').defaultTo('');
-        table.string('surname').defaultTo('');
         table.string('nip').defaultTo('');
-        table.string('companyAddress').defaultTo('');
-        table.string('companyEmail').defaultTo('');
         table.string('first_name').defaultTo('');
         table.string('last_name').defaultTo('');
-        table.string('address').defaultTo('');
+        table.string('street').notNullable();
+        table.string('street_number').notNullable();
+        table.string('city').notNullable();
+        table.string('postcode').notNullable();
         table.string('email').notNullable();
         table.enum('device_type', ['NOTEBOOK', 'DESKTOP']).notNullable();
         table.enum('status', statuses).notNullable().defaultTo('RECEIVED');

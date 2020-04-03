@@ -9,14 +9,13 @@ export type DBSchemaDevice = {
     id?: string;
     personType: PersonType;
     companyName: string;
-    companyEmail: string;
-    companyAddress: string;
     nip: string;
-    name: string;
-    surname: string;
     firstName: string;
     lastName: string;
-    address: string;
+    street: string;
+    streetNumber: string;
+    city: string;
+    postcode: string;
     email: string;
     deviceType: DeviceType;
     notebookName: string;
