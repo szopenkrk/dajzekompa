@@ -82,7 +82,7 @@ export function loadDevices () {
 
         if (cache.length) return cache;
 
-        const devices = await request<Device[]>('GET', '/list');
+        const devices = await request<Device[]>('GET', '/devices');
 
         dispatch({
             type: ReduxActionType.DEVICES_LOAD,

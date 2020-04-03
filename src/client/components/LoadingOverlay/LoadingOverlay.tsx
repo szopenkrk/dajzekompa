@@ -5,6 +5,7 @@ import { CircularProgress, makeStyles } from '@material-ui/core';
 
 type Props = {
     className?: string;
+    noBackground?: boolean;
 };
 
 const useStyles = makeStyles({
@@ -23,9 +24,10 @@ const useStyles = makeStyles({
 
 export const LoadingOverlay = (props: Props) => {
     const classes = useStyles();
+    const style =  !props.noBackground ? { backgroundColor: 'rgba(255, 255, 255, 0.8)' } : {};
 
     return (
-        <div className={clx(classes.container, { [props.className]: !!props.className })}>
+        <div className={clx(classes.container, { [props.className]: !!props.className })} style={style}>
             <CircularProgress thickness={3} variant="indeterminate" />
         </div>
     );

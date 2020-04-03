@@ -1,14 +1,14 @@
 /* Application files */
 import render from './render';
-import add from './add';
-import list from './list';
+import device from './device';
+import receiver from './receiver';
 import program from './program';
 import status from './status';
 
 export default [
-    render,
-    add,
-    list,
+    ...device,
+    ...receiver,
     program,
+    render,
     status
 ];

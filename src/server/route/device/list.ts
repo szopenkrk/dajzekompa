@@ -61,7 +61,7 @@ function buildNestedObjectFromQuery (items: DBSchemaDeviceWithPhoto[]): Device[]
 
 export default {
     method: HTTPMethod.GET,
-    url: '/api/list',
+    url: '/api/devices',
     controller: async (req: Request, res: Response) => {
         let items: DBSchemaDeviceWithPhoto[];
 

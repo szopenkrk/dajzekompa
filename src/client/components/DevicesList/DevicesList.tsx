@@ -1,11 +1,11 @@
 /* Libraries */
 import React, { useState, useEffect } from 'react'
 import { useDispatch as reduxUseDispatch } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { makeStyles, Typography, Chip, TableContainer, Table, TableBody, TableRow, TableCell, TableHead, Dialog } from '@material-ui/core';
 
 /* Models */
 import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { Device, DeviceType } from 'common/model/Device';
 import { ReduxState } from 'client/model/Redux';
 
@@ -45,9 +45,6 @@ const useStyles = makeStyles({
     icon: {
         fontSize: 18,
         marginRight: 3
-    },
-    loading: {
-        backgroundColor: 'rgba(255, 255, 255, 0.8)'
     },
     row: {
         cursor: 'pointer'
@@ -110,7 +107,7 @@ export function DevicesList () {
 
     return (
         <>
-            {loading && (<LoadingOverlay className={classes.loading} />)}
+            {loading && (<LoadingOverlay />)}
             {error && (<ErrorBox>{error}</ErrorBox>)}
             {devices && devices.length === 0 && (
                 <Typography variant="subtitle1">Brak urządzeń na liście.</Typography>

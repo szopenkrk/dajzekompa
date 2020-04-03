@@ -16,6 +16,7 @@ import LoadingOverlay from 'client/components/LoadingOverlay';
 
 import DashboardPage from 'client/pages/DashboardPage';
 import ListDevicesPage from 'client/pages/ListDevicesPage';
+import ListReceiversPage from 'client/pages/ListReceiversPage';
 
 const drawerWidth = 300;
 
@@ -170,6 +171,10 @@ export function AdminPage () {
                             <ListItemIcon><Icon>devices</Icon></ListItemIcon>
                             <ListItemText primary="Urządzenia" />
                         </ListItem>
+                        <ListItem button onClick={goTo('/admin/receivers')}>
+                            <ListItemIcon><Icon>supervisor_account</Icon></ListItemIcon>
+                            <ListItemText primary="Potrzebujący" />
+                        </ListItem>
                     </List>
                 </Drawer>
             </section>
@@ -177,6 +182,7 @@ export function AdminPage () {
                 <Switch>
                     <Route path="/admin" exact={true} component={DashboardPage} />
                     <Route path="/admin/devices" exact={true} component={ListDevicesPage} />
+                    <Route path="/admin/receivers" exact={true} component={ListReceiversPage} />
                 </Switch>
             </main>
         </section>

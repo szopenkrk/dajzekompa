@@ -64,9 +64,6 @@ const useStyles = makeStyles((theme) => ({
     },
     messageTitle: {
         textAlign: 'center'
-    },
-    loading: {
-        backgroundColor: 'rgba(255, 255, 255, 0.8)'
     }
 }));
 
@@ -148,7 +145,7 @@ export function SubmitDevicePage () {
 
     return (
         <SubPage title="Podaruj kompa">
-            {loading && (<LoadingOverlay className={classes.loading} />)}
+            {loading && (<LoadingOverlay />)}
             {error && (<ErrorBox>{error}</ErrorBox>)}
             {complete && !error && (
                 <div className={classes.message}>

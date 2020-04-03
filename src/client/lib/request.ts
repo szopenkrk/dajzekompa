@@ -8,6 +8,7 @@ export function request<T> (method: string, path: string, body?: any): Promise<T
     return new Promise<T>(async (resolve, reject) => {
         if (body && !(body instanceof FormData)) {
             headers.append('Content-Type', 'application/json');
+            body = JSON.stringify(body);
         }
 
         try {

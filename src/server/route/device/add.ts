@@ -60,6 +60,10 @@ const schema = joi.object({
     comments: joi.string(),
     firstName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),
     lastName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),
+    street: joi.string().required(),
+    streetNumber: joi.string().required(),
+    city: joi.string().required(),
+    postcode: joi.string().required(),
     companyName: joi.when('personType', { is: PersonType.COMPANY, then: joi.string().required() }),
     nip: joi.when('personType', { is: PersonType.COMPANY, then: joi.string().required() }),
 });

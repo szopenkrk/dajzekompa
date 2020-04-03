@@ -1,8 +1,10 @@
 import { PersonType, DeviceType, DeviceStatus } from 'common/model/Device';
+import { Receiver } from 'common/model/Receiver';
 
 export enum DBTable {
     DEVICES = 'devices',
-    PHOTOS = 'photos'
+    PHOTOS = 'photos',
+    RECEIVERS = 'receivers'
 }
 
 export type DBSchemaDevice = {
@@ -35,3 +37,7 @@ export type DBSchemaPhoto = {
     deviceId: string;
     url: string;
 };
+
+export type DBSchemaReceiver = {
+    id?: string;
+} & Receiver;

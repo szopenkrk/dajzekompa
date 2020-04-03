@@ -93,7 +93,7 @@ export function ProgramSummary (props: Props) {
 
     return (
         <section className={clx(classes.container, { [props.className]: !!props.className })}>
-            {loading && <LoadingOverlay />}
+            {loading && <LoadingOverlay noBackground />}
             {!loading && (
                 <>
                     <Typography variant="subtitle2">Jesteśmy w:</Typography>
