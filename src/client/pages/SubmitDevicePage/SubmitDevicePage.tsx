@@ -171,12 +171,12 @@ export function SubmitDevicePage () {
                         </FormControl>
                         {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="Nazwa firmy" className={classes.input} onChange={updateField('companyName')} />}
                         {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="NIP" className={classes.input} onChange={updateField('nip')} />}
-                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} />}
-                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} />}
-                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Ulica" className={classes.input} onChange={updateField('street')} style={getHorizontalInputStyles(75, true)} />}
-                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Numer" className={classes.input} onChange={updateField('streetNumber')} style={getHorizontalInputStyles(25, false)} />}
-                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(25, true)} />}
-                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Miejscowość" className={classes.input} onChange={updateField('city')} style={getHorizontalInputStyles(75, false)} />}
+                        <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} />
+                        <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} />
+                         <TextField variant="outlined" label="Ulica" className={classes.input} onChange={updateField('street')} style={getHorizontalInputStyles(75, true)} />
+                        <TextField variant="outlined" label="Numer" className={classes.input} onChange={updateField('streetNumber')} style={getHorizontalInputStyles(25, false)} />
+                        <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(25, true)} />
+                        <TextField variant="outlined" label="Miejscowość" className={classes.input} onChange={updateField('city')} style={getHorizontalInputStyles(75, false)} />
                         <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} />
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
