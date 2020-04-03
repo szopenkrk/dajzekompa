@@ -1,7 +1,7 @@
 /* Libraries */
 import React, { useState, useEffect } from 'react'
-import { useDispatch as reduxUseDispatch } from 'react-redux';
-import { makeStyles, Typography, Chip, TableContainer, Table, TableBody, TableRow, TableCell, TableHead, Dialog } from '@material-ui/core';
+import { useSelector as reduxUseSelector, useDispatch as reduxUseDispatch, TypedUseSelectorHook } from 'react-redux';
+import { makeStyles, Typography, Chip, TableContainer, Table, TableBody, TableRow, TableCell, TableHead, Dialog, DialogTitle, IconButton, Icon, DialogContent, useMediaQuery, useTheme } from '@material-ui/core';
 
 /* Models */
 import { Action } from 'redux';
@@ -11,23 +11,15 @@ import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
 import { getDeviceStatusColor, getDeviceStatusText } from 'client/lib/device';
-import { loadDevices } from 'client/actions/devices';
+import { list as listDevices } from 'client/actions/devices';
 import ErrorBox from 'client/components/ErrorBox';
 import DeviceDetails from 'client/components/DeviceDetails';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 
-const useStyles = makeStyles({
-    panel: {
-        width: '100%'
-    },
-    panelPart: {
-        display: 'flex'
-    },
-    content: {
-        padding: 24,
-        display: 'flex',
-        flexWrap: 'wrap'
-    },
+const useSelector = reduxUseSelector as TypedUseSelectorHook<ReduxState>;
+const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
+
+const useStyles = makeStyles((theme) => ({
     tag: {
         marginRight: 10,
         marginTop: -2,
@@ -37,26 +29,32 @@ const useStyles = makeStyles({
         fontWeight: 700,
         color: '#ffffff'
     },
-    iconWrapper: {
-        display: 'flex',
-        marginLeft: 5,
-        alignItems: 'center'
-    },
-    icon: {
-        fontSize: 18,
-        marginRight: 3
-    },
     row: {
         cursor: 'pointer'
     },
     dialog: {
-        padding: 40,
         width: 1200,
-        maxWidth: '100%'
+        maxWidth: '100%',
+        padding: theme.spacing(3)
+    },
+    dialogTitle: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 0,
+        [theme.breakpoints.down('xs')]: {
+            padding: `${theme.spacing(2)}px 0`
+        }
+    },
+    dialogContent: {
+        padding: 0,
+        [theme.breakpoints.down('xs')]: {
+            height: '100%',
+            display: 'flex',
+            // alignItems: 'center' /* TODO: Causes dialog content hidden under title, investigate */
+        }
     }
-});
-
-const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
+}));
 
 function getDeviceTypeText (type: DeviceType): string {
     switch (type) {
@@ -67,21 +65,22 @@ function getDeviceTypeText (type: DeviceType): string {
 }
 
 export function DevicesList () {
+    const classes = useStyles();
     const dispatch = useDispatch();
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('xs'));
+    const devices = useSelector((state) => state.devices);
     const [ loading, setLoading ] = useState(true);
     const [ error, setError ] = useState('');
-    const [ devices, setDevices ] = useState(null as Device[]);
-    const [ dialogOpen, setDialogOpen ] = useState(false);
+    const [ detailsDialogOpen, setDetailsDialogOpen ] = useState(false);
     const [ selectedDevice, setSelectedDevice ] = useState(null);
-    const classes = useStyles();
 
-    async function requestLoadDevices () {
+    async function reqestListDevices () {
         setError('');
         setLoading(true);
 
         try {
-            const devices = await dispatch(loadDevices());
-            setDevices(devices);
+            await dispatch(listDevices());
         } catch (error) {
             setError(error.message);
         }
@@ -89,30 +88,29 @@ export function DevicesList () {
         setLoading(false);
     }
 
-    function openDialog (device: Device) {
+    function toggleDetailsDialog (val?: boolean, device?: Device) {
         return () => {
-            setSelectedDevice(device);
-            setDialogOpen(true);
-        }
-    }
+            setSelectedDevice(device || null);
 
-    function closeDialog () {
-        setDialogOpen(false);
-        setSelectedDevice(null);
+            if (typeof val !== 'undefined') return setDetailsDialogOpen(val);
+
+            return setDetailsDialogOpen(!detailsDialogOpen);
+        };
     }
 
     useEffect(() => {
-        requestLoadDevices();
+        reqestListDevices();
     }, []);
+
+    if (loading) return <LoadingOverlay />;
+    if (error) return <ErrorBox>{error}</ErrorBox>;
 
     return (
         <>
-            {loading && (<LoadingOverlay />)}
-            {error && (<ErrorBox>{error}</ErrorBox>)}
-            {devices && devices.length === 0 && (
-                <Typography variant="subtitle1">Brak urządzeń na liście.</Typography>
+            {devices.length === 0 && (
+                <Typography variant="subtitle1">Brak urządzeń.</Typography>
             )}
-            {devices && devices.length > 0 && (
+            {devices.length > 0 && (
                 <TableContainer>
                     <Table aria-label="Lista urządzeń" size="small">
                         <TableHead>
@@ -127,7 +125,7 @@ export function DevicesList () {
                         </TableHead>
                         <TableBody>
                             {devices && devices.map((device, index) => (
-                                <TableRow key={index} className={classes.row} onClick={openDialog(device)} hover>
+                                <TableRow key={index} className={classes.row} onClick={toggleDetailsDialog(true, device)} hover>
                                     <TableCell>{getDeviceTypeText(device.deviceType)}</TableCell>
                                     <TableCell>
                                         <Chip style={{ backgroundColor: getDeviceStatusColor(device.status) }} label={getDeviceStatusText(device.status)} className={classes.tag} />
@@ -144,9 +142,17 @@ export function DevicesList () {
                     </Table>
                 </TableContainer>
             )}
-            {selectedDevice && (
-                <Dialog onClose={closeDialog} open={dialogOpen} classes={{ paper: classes.dialog }}>
-                    <DeviceDetails device={selectedDevice} />
+            {detailsDialogOpen && selectedDevice && (
+                <Dialog onClose={toggleDetailsDialog(false)} open={detailsDialogOpen} classes={{ paper: classes.dialog }} fullScreen={mobile}>
+                    <DialogTitle className={classes.dialogTitle} disableTypography>
+                        <Typography variant="h6">Szczegóły urządzenia</Typography>
+                        <IconButton aria-label="Zamknij" onClick={toggleDetailsDialog(false)}>
+                            <Icon>close</Icon>
+                        </IconButton>
+                    </DialogTitle>
+                    <DialogContent className={classes.dialogContent}>
+                        <DeviceDetails device={selectedDevice} />
+                    </DialogContent>
                 </Dialog>
             )}
         </>

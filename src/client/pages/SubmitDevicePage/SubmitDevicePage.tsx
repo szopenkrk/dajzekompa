@@ -11,7 +11,7 @@ import { DeviceForm } from 'client/model/Form';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { addDevice } from 'client/actions/devices';
+import { add as addDevice } from 'client/actions/devices';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import PhotoUploader from 'client/components/PhotoUploader';
 import ErrorBox from 'client/components/ErrorBox';

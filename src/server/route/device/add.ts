@@ -122,6 +122,6 @@ export default {
             return closeWithError(res, { error }, HTTPCode.INTERNAL_SERVER_ERROR);
         }
 
-        return respondSuccess(res, { message: 'Wniosek został przyjęty.' });
+        return respondSuccess(res, device);
     }
 } as APIRoute;

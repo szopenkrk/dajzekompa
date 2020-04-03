@@ -1,10 +1,12 @@
 /* Models */
 import { Device, PersonType, DeviceType } from 'common/model/Device';
-import { ReduxActionType } from 'client/model/Redux';
+import { ReduxActionType, ReduxThunkAction } from 'client/model/Redux';
 import { DeviceForm } from 'client/model/Form';
 
 /* Application files */
 import { request } from 'client/lib/request';
+
+let loaded = false;
 
 function base64toBlob (base64: string): Blob {
     const type = base64.split(',')[0].split(':')[1].split(';')[0];
@@ -63,8 +65,25 @@ function sanitizeDeviceObject (form: DeviceForm): Device {
     return device;
 }
 
-export function addDevice (form: DeviceForm) {
-    return () => {
+export function list (): ReduxThunkAction<Device[]> {
+    return async (dispatch, getState) => {
+        if (loaded) return getState().devices;
+
+        const devices = await request<Device[]>('GET', '/devices');
+
+        dispatch({
+            type: ReduxActionType.DEVICES_ADD,
+            devices
+        });
+
+        loaded = true;
+
+        return devices;
+    }
+}
+
+export function add (form: DeviceForm): ReduxThunkAction<Device> {
+    return async (dispatch) => {
         const device = sanitizeDeviceObject(form);
         const formData = new FormData();
 
@@ -72,23 +91,15 @@ export function addDevice (form: DeviceForm) {
         delete form.photos;
         formData.append('device', JSON.stringify(device));
 
-        return request('POST', '/devices', formData);
+        const result = await request<Device>('POST', '/devices', formData);
+
+        if (loaded) {
+            dispatch({
+                type: ReduxActionType.DEVICES_ADD,
+                devices: [ result ]
+            });
+        }
+
+        return result;
     };
-}
-
-export function loadDevices () {
-    return async (dispatch: any, getState) => {
-        const cache = getState().devices;
-
-        if (cache.length) return cache;
-
-        const devices = await request<Device[]>('GET', '/devices');
-
-        dispatch({
-            type: ReduxActionType.DEVICES_LOAD,
-            devices
-        });
-
-        return devices;
-    }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const exec = require('child_process').exec;
 const CopyWebpackPlugin = require('copy-webpack-plugin');

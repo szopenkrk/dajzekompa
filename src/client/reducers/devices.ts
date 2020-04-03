@@ -8,8 +8,8 @@ function getInitialState (): StateDevices {
 
 export default function (state: StateDevices = getInitialState(), action: AnyAction): StateDevices {
     switch (action.type) {
-        case ReduxActionType.DEVICES_LOAD: {
-            return action.devices || [];
+        case ReduxActionType.DEVICES_ADD: {
+            return state.concat(action.devices);
         }
         default: return state;
     }

@@ -3,7 +3,7 @@ import React from 'react';
 
 /* Models */
 import { Device, PersonType } from 'common/model/Device';
-import { makeStyles, Typography, Chip, Paper } from '@material-ui/core';
+import { makeStyles, Typography, Chip, Paper, useTheme, useMediaQuery } from '@material-ui/core';
 
 /* Application files */
 import { getDeviceStatusColor, getDeviceStatusText } from 'client/lib/device';
@@ -13,7 +13,12 @@ type Props = {
     device: Device;
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+    container: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+    },
     statusWrapper: {
         width: '100%',
         display: 'flex',
@@ -33,13 +38,20 @@ const useStyles = makeStyles({
     horizontally: {
         display: 'flex'
     },
+    details: {
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+            maxWidth: 'none'
+        }
+    },
     comments: {
         backgroundColor: 'rgba(0, 0, 0, .03)',
         padding: 10
     },
     gallery: {
         width: '100%',
-        display: 'flex'
+        display: 'flex',
+        flexWrap: 'wrap'
     },
     thumbnail: {
         width: 300,
@@ -52,19 +64,21 @@ const useStyles = makeStyles({
         border: '1px solid rgba(0, 0, 0, 0.23)',
         margin: '10px 5px'
     }
-});
+}));
 
 export function DeviceDetails ({ device }: Props) {
     const classes = useStyles();
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down('xs'));
 
     return (
-        <>
+        <div className={classes.container}>
             <div className={classes.statusWrapper}>
                 <Typography variant="subtitle2">Status:</Typography>
                 <Chip style={{ backgroundColor: getDeviceStatusColor(device.status) }} label={getDeviceStatusText(device.status)} className={classes.tag} />
             </div>
-            <div className={classes.horizontally}>
-                <DetailsList label="Dane kontaktowe" data={[
+            <div className={!mobile ? classes.horizontally : ''}>
+                <DetailsList label="Dane kontaktowe" className={classes.details} data={[
                     { label: 'Nazwa firmy', value: device.companyName, show: device.personType === PersonType.COMPANY },
                     { label: 'NIP', value: device.nip, show: device.personType === PersonType.COMPANY },
                     { label: 'Imię', value: device.firstName, show: device.personType === PersonType.PERSON },
@@ -74,7 +88,7 @@ export function DeviceDetails ({ device }: Props) {
                     { label: 'Kod pocztowy', value: device.postcode },
                     { label: 'Miasto', value: device.city }
                 ]} />
-                <DetailsList label="Specyfikacja sprzętu" data={[
+                <DetailsList label="Specyfikacja sprzętu" className={classes.details} data={[
                     { label: 'Rozmiar ekranu', value: `${device.screenSize}"` },
                     { label: 'RAM', value: `${device.ram}GB` },
                     { label: 'HDD', value: `${device.hdd}GB` }
@@ -98,7 +112,7 @@ export function DeviceDetails ({ device }: Props) {
                     <article key={index} className={classes.thumbnail} style={{ backgroundImage: `url("${photo}")`}}></article>
                 ))}
             </Paper>
-        </>
+        </div>
     );
 }
 

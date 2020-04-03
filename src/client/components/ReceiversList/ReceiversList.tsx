@@ -32,7 +32,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 0
+        padding: 0,
+        [theme.breakpoints.down('xs')]: {
+            padding: `${theme.spacing(2)}px 0`
+        }
     },
     dialogContent: {
         padding: 0,
@@ -69,9 +72,9 @@ export function ReceiversList () {
 
     function toggleAddDialog (val?: boolean) {
         return () => {
-            if (typeof val === 'undefined') return setAddDialogOpen(!addDialogOpen);
+            if (typeof val !== 'undefined') return setAddDialogOpen(val);
 
-            return setAddDialogOpen(val);
+            return setAddDialogOpen(!addDialogOpen);
         };
     }
 

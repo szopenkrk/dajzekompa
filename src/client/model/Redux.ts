@@ -6,7 +6,7 @@ import { ProgramSummary } from 'common/model/Program';
 import { Receiver } from 'common/model/Receiver';
 
 export enum ReduxActionType {
-    DEVICES_LOAD = 'DEVICES_LOAD',
+    DEVICES_ADD = 'DEVICES_ADD',
     PROGRAM_SUMMARY_LOAD = 'PROGRAM_SUMMARY_LOAD',
     UI_SET_LOADING = 'UI_SET_LOADING',
     USER_SIGNIN = 'USER_SIGNIN',

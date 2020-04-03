@@ -58,11 +58,12 @@ export function ReceiverAdd ({ onComplete }: Props) {
         try {
             const receiver = await dispatch(addReceiver(form));
 
-            setLoading(false);
-            onComplete && onComplete(receiver);
+            if (onComplete) return onComplete(receiver);
         } catch (error) {
             setError(error.message);
         }
+
+        setLoading(false);
     }
 
     function getHorizontalInputStyles (percentageWidth: number, first: boolean) {

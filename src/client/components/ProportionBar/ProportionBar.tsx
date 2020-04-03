@@ -1,6 +1,8 @@
 /* Libraries */
 import React from 'react';
+import clx from 'classnames';
 import { makeStyles, Typography } from '@material-ui/core';
+import { grey } from '@material-ui/core/colors';
 
 type Props = {
     proportions: {
@@ -21,8 +23,12 @@ const useStyles = makeStyles({
         display: 'flex'
     },
     element: {
+        width: '100%',
         height: '100%',
         textAlign: 'center'
+    },
+    empty: {
+        backgroundColor: grey[500]
     }
 });
 
@@ -32,7 +38,12 @@ export function ProportionBar (props: Props) {
 
     return (
         <div className={classes.root}>
-            {props.proportions.map((element, index) => (
+            {total === 0 && (
+                <div className={clx(classes.element, classes.empty)}>
+                    <Typography variant="caption">Brak (100%)</Typography>
+                </div>
+            )}
+            {total > 0 && props.proportions.map((element, index) => (
                 <div className={classes.element} key={index} style={{ backgroundColor: element.color, width: `${element.value / total * 100}%` }}>
                     <Typography variant="caption">{element.label} ({(element.value / total * 100).toFixed(1)}%)</Typography>
                 </div>

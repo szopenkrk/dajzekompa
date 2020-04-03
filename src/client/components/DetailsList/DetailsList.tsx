@@ -1,5 +1,6 @@
 /* Libraries */
 import React from 'react';
+import clx from 'classnames';
 import { Table, TableBody, TableRow, TableCell, makeStyles, TableHead } from '@material-ui/core';
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
         value: any;
         show?: boolean;
     }[];
+    className?: string;
 }
 
 const useStyles = makeStyles({
@@ -29,7 +31,7 @@ export function DetailsList (props: Props) {
     const classes = useStyles();
 
     return (
-        <Table className={classes.detailsTable} {...(props.label ? { 'aria-label': props.label } : {})}>
+        <Table className={clx(classes.detailsTable, { [props.className]: props.className })} {...(props.label ? { 'aria-label': props.label } : {})}>
             {props.label && (
                 <TableHead>
                     <TableRow>
