@@ -1,12 +1,13 @@
 /* Libraries */
 import React, { useState } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
-import {makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon } from '@material-ui/core';
+import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme } from '@material-ui/core';
 
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { DeviceType, PersonType } from 'common/model/Device';
+import { DeviceForm } from 'client/model/Form';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
@@ -16,9 +17,7 @@ import PhotoUploader from 'client/components/PhotoUploader';
 import ErrorBox from 'client/components/ErrorBox';
 import SubPage from 'client/pages/SubPage';
 
-/* Application files */
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     icon: {
         fontSize: 70,
         color: '#00b848',
@@ -35,7 +34,7 @@ const useStyles = makeStyles({
     },
     input: {
         width: '100%',
-        marginBottom: 5
+        margin: `${theme.spacing(1)}px 0`
     },
     radios: {
         flexDirection: 'row'
@@ -69,7 +68,7 @@ const useStyles = makeStyles({
     loading: {
         backgroundColor: 'rgba(255, 255, 255, 0.8)'
     }
-});
+}));
 
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
@@ -79,6 +78,10 @@ const formModel = {
     nip: '',
     firstName: '',
     lastName: '',
+    street: '',
+    streetNumber: '',
+    city: '',
+    postcode: '',
     email: '',
     deviceType: DeviceType.NOTEBOOK,
     notebookName: '',
@@ -91,10 +94,11 @@ const formModel = {
     speakers: false,
     photos: [],
     comments: ''
-};
+} as DeviceForm;
 
 export function SubmitDevicePage () {
     const classes = useStyles();
+    const theme = useTheme();
     const dispatch = useDispatch();
     const [ loading, setLoading ] = useState(false);
     const [ complete, setComplete ] = useState(false);
@@ -115,6 +119,13 @@ export function SubmitDevicePage () {
         }
 
         setLoading(false);
+    }
+
+    function getHorizontalInputStyles (percentageWidth: number, first: boolean) {
+        return {
+            width: first ? `${percentageWidth}%` : `calc(${percentageWidth}% - ${theme.spacing(1)}px)`,
+            ...(first ? {} : { marginLeft: theme.spacing(1) })
+        };
     }
 
     function updateField (name: string) {
@@ -160,8 +171,12 @@ export function SubmitDevicePage () {
                         </FormControl>
                         {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="Nazwa firmy" className={classes.input} onChange={updateField('companyName')} />}
                         {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="NIP" className={classes.input} onChange={updateField('nip')} />}
-                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} />}
-                        {form.personType === PersonType.PERSON && <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} />}
+                        <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} />
+                        <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} />
+                         <TextField variant="outlined" label="Ulica" className={classes.input} onChange={updateField('street')} style={getHorizontalInputStyles(75, true)} />
+                        <TextField variant="outlined" label="Numer" className={classes.input} onChange={updateField('streetNumber')} style={getHorizontalInputStyles(25, false)} />
+                        <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(25, true)} />
+                        <TextField variant="outlined" label="Miejscowość" className={classes.input} onChange={updateField('city')} style={getHorizontalInputStyles(75, false)} />
                         <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} />
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>

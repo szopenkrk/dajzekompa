@@ -64,17 +64,20 @@ export function DeviceDetails ({ device }: Props) {
                 <Chip style={{ backgroundColor: getDeviceStatusColor(device.status) }} label={getDeviceStatusText(device.status)} className={classes.tag} />
             </div>
             <div className={classes.horizontally}>
-                <DetailsList label="Specyfikacja sprzętu" data={[
-                    { label: 'Rozmiar ekranu', value: `${device.screenSize}"` },
-                    { label: 'RAM', value: `${device.ram}GB` },
-                    { label: 'HDD', value: `${device.hdd}GB` }
-                ]} />
                 <DetailsList label="Dane kontaktowe" data={[
                     { label: 'Nazwa firmy', value: device.companyName, show: device.personType === PersonType.COMPANY },
                     { label: 'NIP', value: device.nip, show: device.personType === PersonType.COMPANY },
                     { label: 'Imię', value: device.firstName, show: device.personType === PersonType.PERSON },
                     { label: 'Nazwisko', value: device.lastName, show: device.personType === PersonType.PERSON },
-                    { label: 'E-mail', value: device.email }
+                    { label: 'E-mail', value: device.email },
+                    { label: 'Ulica', value: `${device.street} ${device.streetNumber}` },
+                    { label: 'Kod pocztowy', value: device.postcode },
+                    { label: 'Miasto', value: device.city }
+                ]} />
+                <DetailsList label="Specyfikacja sprzętu" data={[
+                    { label: 'Rozmiar ekranu', value: `${device.screenSize}"` },
+                    { label: 'RAM', value: `${device.ram}GB` },
+                    { label: 'HDD', value: `${device.hdd}GB` }
                 ]} />
             </div>
             {device.comments && (

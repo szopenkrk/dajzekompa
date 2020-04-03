@@ -12,6 +12,10 @@ export type DBSchemaDevice = {
     nip: string;
     firstName: string;
     lastName: string;
+    street: string;
+    streetNumber: string;
+    city: string;
+    postcode: string;
     email: string;
     deviceType: DeviceType;
     notebookName: string;

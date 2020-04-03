@@ -8,6 +8,10 @@ exports.up = (knex) => {
         table.string('nip').defaultTo('');
         table.string('first_name').defaultTo('');
         table.string('last_name').defaultTo('');
+        table.string('street').notNullable();
+        table.string('street_number').notNullable();
+        table.string('city').notNullable();
+        table.string('postcode').notNullable();
         table.string('email').notNullable();
         table.enum('device_type', ['NOTEBOOK', 'DESKTOP']).notNullable();
         table.enum('status', statuses).notNullable().defaultTo('RECEIVED');

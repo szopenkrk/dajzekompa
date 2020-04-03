@@ -7,17 +7,17 @@ import { S3 } from 'aws-sdk';
 
 /* Models */
 import { Request, Response } from 'express';
-import { PersonType, DeviceType, Device, DeviceStatus } from 'common/model/Device';
+import { Device, DeviceStatus, DeviceType, PersonType } from 'common/model/Device';
 import { APIRoute } from 'server/model/API';
-import { HTTPMethod, HTTPCode } from 'server/model/HTTP';
-import { DBTable, DBSchemaDevice } from 'server/model/DB';
+import { HTTPCode, HTTPMethod } from 'server/model/HTTP';
+import { DBSchemaDevice, DBTable } from 'server/model/DB';
 
 /* Application files */
 import knex from 'server/database/knex';
 import Log from 'server/controller/Log';
 import APIError from 'server/controller/APIError';
 import Config from 'server/lib/config';
-import { respondSuccess, closeWithError, validateRequestPayload } from 'server/lib/http';
+import { closeWithError, respondSuccess, validateRequestPayload } from 'server/lib/http';
 
 function buildQueryDeviceObject (device: Device): DBSchemaDevice {
     return {
@@ -34,6 +34,10 @@ function buildQueryDeviceObject (device: Device): DBSchemaDevice {
         comments: device.comments,
         firstName: device.personType === PersonType.PERSON ? device.firstName : '',
         lastName: device.personType === PersonType.PERSON ? device.lastName : '',
+        street: device.street,
+        streetNumber: device.streetNumber,
+        city: device.city,
+        postcode: device.postcode,
         companyName: device.personType === PersonType.COMPANY ? device.companyName : '',
         nip: device.personType === PersonType.COMPANY ? device.nip : '',
         notebookName: device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : '',
