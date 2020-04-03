@@ -1,7 +1,7 @@
 /* Libraries */
 import React, { useState } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
-import {makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme } from '@material-ui/core';
+import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme } from '@material-ui/core';
 
 /* Models */
 import { Action } from 'redux';
