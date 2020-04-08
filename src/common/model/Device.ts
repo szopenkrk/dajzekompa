@@ -34,7 +34,8 @@ export enum PersonType {
 
 export enum DeviceType {
     NOTEBOOK = 'NOTEBOOK',
-    DESKTOP = 'DESKTOP'
+    DESKTOP = 'DESKTOP',
+    TABLET = 'TABLET'
 }
 
 export enum DeviceStatus {

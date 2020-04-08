@@ -208,6 +208,10 @@ export function SubmitDevicePage () {
                     <section className={classes.formSection}>
                         <TextField variant="outlined" label="Dodatkowe informacje i komentarze" className={classes.input} onChange={updateField('comments')} multiline rows={3} />
                     </section>
+                    <section>
+                        {/* Akceptacja RODO */}
+                        {/* Akceptacja Umowy */}
+                    </section>
                     <section className={classes.actions}>
                         <Button variant="contained" type="submit" color="primary">Wyślij</Button>
                     </section>
