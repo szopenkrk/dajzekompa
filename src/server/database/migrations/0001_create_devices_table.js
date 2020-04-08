@@ -13,6 +13,7 @@ exports.up = (knex) => {
         table.string('city').notNullable();
         table.string('postcode').notNullable();
         table.string('email').notNullable();
+        table.string('bank_account').notNullable();
         table.enum('device_type', ['NOTEBOOK', 'DESKTOP']).notNullable();
         table.enum('status', statuses).notNullable().defaultTo('RECEIVED');
         table.string('notebook_name').defaultTo('');

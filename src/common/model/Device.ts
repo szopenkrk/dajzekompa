@@ -11,6 +11,7 @@ export type RawDevice = {
     companyName?: string;
     nip?: string;
     email: string;
+    bankAccount: string;
     deviceType: DeviceType;
     notebookName?: string;
     monitor?: boolean;
