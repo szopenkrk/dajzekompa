@@ -4,7 +4,8 @@ import { Receiver } from 'common/model/Receiver';
 export enum DBTable {
     DEVICES = 'devices',
     PHOTOS = 'photos',
-    RECEIVERS = 'receivers'
+    RECEIVERS = 'receivers',
+    ASSIGNMENTS = 'assignments'
 }
 
 export type DBSchemaDevice = {
@@ -41,3 +42,18 @@ export type DBSchemaPhoto = {
 export type DBSchemaReceiver = {
     id?: string;
 } & Receiver;
+
+export type DBSchemaAssignment = {
+    receiverId: string;
+    deviceId: string;
+};
+
+export type DBSchemaCompleteReceiver = DBSchemaReceiver & DBSchemaAssignment & DBSchemaDevice & DBSchemaPhoto & {
+    receiverFirstName: string;
+    receiverLastName: string;
+    receiverEmail: string;
+    receiverStreet: string;
+    receiverStreetNumber: string;
+    receiverPostcode: string;
+    receiverCity: string;
+};

@@ -42,11 +42,6 @@ function sanitizeDeviceObject (form: DeviceForm): Device {
         delete device.nip;
     }
 
-    if (device.personType === PersonType.COMPANY) {
-        delete device.firstName;
-        delete device.lastName;
-    }
-
     if (device.deviceType === DeviceType.DESKTOP) {
         delete device.notebookName
     }

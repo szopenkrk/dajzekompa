@@ -1,7 +1,6 @@
 exports.up = (knex) => {
     return knex.schema.createTable('receivers', table => {
         table.bigIncrements('id');
-        table.bigInteger('device_id');
         table.string('first_name').defaultTo('');
         table.string('last_name').defaultTo('');
         table.string('street').notNullable();
@@ -11,7 +10,6 @@ exports.up = (knex) => {
         table.string('email').notNullable();
 
         table.index(['id']);
-        table.foreign('device_id').references('devices.id');
     });
 };
 
