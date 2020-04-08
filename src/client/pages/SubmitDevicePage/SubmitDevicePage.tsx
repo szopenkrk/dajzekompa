@@ -18,6 +18,7 @@ import LoadingOverlay from 'client/components/LoadingOverlay';
 import PhotoUploader from 'client/components/PhotoUploader';
 import ErrorBox from 'client/components/ErrorBox';
 import SubPage from 'client/pages/SubPage';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -72,6 +73,21 @@ const useStyles = makeStyles((theme) => ({
     },
     tooltip: {
         width: 300
+    },
+    link: {
+        color: theme.palette.primary.main,
+        '&:hover': {
+            textDecoration: 'underline',
+            '& > .material-icons': {
+                borderBottom: `1.5px solid ${theme.palette.primary.main}`
+            }
+        }
+    },
+    linkIcon: {
+        fontSize: '1rem',
+        position: 'relative',
+        top: 3,
+        borderBottom: `1.5px solid rgba(0, 0, 0, 0)`
     }
 }));
 
@@ -293,11 +309,12 @@ export function SubmitDevicePage () {
                     </section>
                     <section>
                         {/* Akceptacja RODO */}
-                        <FormControl component="fieldset" className={classes.input}>
-                            <FormLabel component="legend" className={classes.legend}>Rodo i </FormLabel>
+                        <FormControl component="fieldset" className={classes.input} required>
                             <FormGroup>
-                                <FormControlLabel control={ <Checkbox checked={form.rodo} onChange={updateField('rodo')} name="rodo" />} label="Akceptuje RODO" />
-                                <FormControlLabel control={ <Checkbox checked={form.rights} onChange={updateField('rights')} name="monitor" />} label="Akceptuje regulamin akcji" />
+                                <FormControlLabel control={ <Checkbox checked={form.rodo} onChange={updateField('rodo')} name="rodo" required />} label="Akceptuję RODO." />
+                                <FormControlLabel control={ <Checkbox checked={form.rights} onChange={updateField('rights')} name="monitor" required />} label={(
+                                    <>Akceptuję <Link to="/regulamin" className={classes.link} target="_blank">regulamin akcji <Icon className={classes.linkIcon}>launch</Icon></Link>.</>
+                                )} />
                             </FormGroup>
                         </FormControl>
                         {/* Akceptacja Umowy */}
