@@ -1,28 +1,13 @@
 /* Models */
-import { ReceiverForm } from 'client/model/Form';
 import { ReduxThunkAction, ReduxActionType } from 'client/model/Redux';
 import { Receiver } from 'common/model/Receiver';
 
 /* Application files */
+import Config from 'client/lib/config';
 import { request } from 'client/lib/request';
+import { FormModel, sanitize } from 'client/lib/receiver';
 
 let loaded = false;
-
-function sanitizePhoneNumber (raw: string): string {
-    if (raw.startsWith('00')) raw = raw.replace(/^00/g, '+');
-    if (!raw.startsWith('+')) raw = '48' + raw;
-
-    return '+' + raw.replace(/\D+/g, '');
-}
-
-function sanitizeReceiver (form: ReceiverForm): Receiver {
-    return {
-        ...form,
-        locker: form.locker.id,
-        phone: sanitizePhoneNumber(form.phone),
-        complete: false
-    };
-}
 
 export function list (): ReduxThunkAction<Receiver[]> {
     return async (dispatch, getState) => {
@@ -41,9 +26,9 @@ export function list (): ReduxThunkAction<Receiver[]> {
     };
 }
 
-export function add (form: ReceiverForm): ReduxThunkAction<Receiver> {
+export function add (form: FormModel): ReduxThunkAction<Receiver> {
     return async (dispatch) => {
-        const receiver = sanitizeReceiver(form);
+        const receiver = sanitize(form);
         const result = await request<Receiver>('POST', '/receivers', receiver);
 
         if (loaded) {
@@ -54,5 +39,27 @@ export function add (form: ReceiverForm): ReduxThunkAction<Receiver> {
         }
 
         return result;
+    };
+}
+
+export function update (id: string, form: FormModel): ReduxThunkAction<Receiver> {
+    return async (dispatch) => {
+        const receiver = sanitize(form);
+        const result = await request<Receiver>('PUT', `/receivers/${id}`, receiver);
+
+        if (loaded) {
+            dispatch({
+                type: ReduxActionType.RECEIVERS_UPDATE,
+                receivers: [ result ]
+            });
+        }
+
+        return result;
+    };
+}
+
+export function download (): ReduxThunkAction<void> {
+    return async () => {
+        window.open(`${Config.API_URL}/receivers/download`, '_blank');
     };
 }

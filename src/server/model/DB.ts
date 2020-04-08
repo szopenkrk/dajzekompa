@@ -20,6 +20,7 @@ export type DBSchemaDevice = {
     city: string;
     postcode: string;
     email: string;
+    bankAccount: string;
     deviceType: DeviceType;
     notebookName: string;
     ram: number;

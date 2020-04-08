@@ -38,6 +38,7 @@ function buildQueryDeviceObject (device: Device): DBSchemaDevice {
         streetNumber: device.streetNumber,
         city: device.city,
         postcode: device.postcode,
+        bankAccount: device.bankAccount,
         companyName: device.personType === PersonType.COMPANY ? device.companyName : '',
         nip: device.personType === PersonType.COMPANY ? device.nip : '',
         notebookName: device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : '',
@@ -66,6 +67,7 @@ const schema = joi.object({
     postcode: joi.string().required(),
     companyName: joi.when('personType', { is: PersonType.COMPANY, then: joi.string().required() }),
     nip: joi.when('personType', { is: PersonType.COMPANY, then: joi.string().required() }),
+    bankAccount: joi.string().regex(/^[0-9]{26}$/).required()
 });
 
 const s3 = new S3({
