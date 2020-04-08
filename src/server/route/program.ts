@@ -38,6 +38,7 @@ export default {
                 [DeviceStatus.RECEIVED]: 0,
                 [DeviceStatus.SENT_TO_SERVICE]: 0,
                 [DeviceStatus.IN_SERVICE]: 0,
+                [DeviceStatus.SERVICE_COMPLETE]: 0,
                 [DeviceStatus.SENT_TO_RECIPIENT]: 0,
                 [DeviceStatus.COMPLETE]: 0
             },

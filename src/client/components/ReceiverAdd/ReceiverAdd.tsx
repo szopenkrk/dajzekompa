@@ -28,11 +28,12 @@ const formModel = {
     firstName: '',
     lastName: '',
     email: '',
+    phone: '',
     street: '',
     streetNumber: '',
     city: '',
     postcode: '',
-    locker: '',
+    locker: ''
 } as ReceiverForm;
 
 const useStyles = makeStyles((theme) => ({
@@ -113,6 +114,7 @@ export function ReceiverAdd ({ onComplete }: Props) {
                 <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} fullWidth autoFocus />
                 <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} fullWidth />
                 <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} fullWidth />
+                <TextField variant="outlined" label="Numer telefonu" className={classes.input} onChange={updateField('phone')} fullWidth />
                 <TextField variant="outlined" label="Ulica" className={classes.input} onChange={updateField('street')} style={getHorizontalInputStyles(75, true)} />
                 <TextField variant="outlined" label="Numer" className={classes.input} onChange={updateField('streetNumber')} style={getHorizontalInputStyles(25, false)} />
                 <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(35, true)} />

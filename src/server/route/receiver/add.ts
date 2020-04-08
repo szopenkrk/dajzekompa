@@ -16,19 +16,14 @@ import { Receiver } from 'common/model/Receiver';
 
 function buildQueryReceiverObject (receiver: Receiver): DBSchemaReceiver {
     return {
-        email: receiver.email,
-        firstName: receiver.firstName,
-        lastName: receiver.lastName,
-        street: receiver.street,
-        streetNumber: receiver.streetNumber,
-        city: receiver.city,
-        postcode: receiver.postcode,
-        locker: receiver.locker
+        ...receiver,
+        complete: false
     };
 }
 
 const schema = joi.object({
     email: joi.string().email().required(),
+    phone: joi.string().regex(/^\+[0-9]{11}$/).required(),
     firstName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),
     lastName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),
     street: joi.string().required(),
