@@ -72,9 +72,10 @@ export function HeroBanner () {
                 <div className={classes.half}>
                     <Typography variant="h2" className={classes.title}>DAJŻE KOMPA</Typography>
                     <Typography variant="subtitle1" className={classes.description}>
-                        <b>Polskie szkoły stanęły przed nie lada wyzwaniem!</b> Nauczanie on-line spadło na nie jak grom z jasnego nieba.... W większości
-                        z nich zaczęto już pracować zdalnie, ale to nie oznacza, że wszyscy mają dostęp do komputera, tableta czy Internetu. <b>Niestety,
-                        wiele dzieci, a także nauczycieli, nie posiada w domu sprzętu</b>, który pozwoliłby na uczenie i odrabianie lekcji on-line.
+                        <b>Opis akcji:</b><br/>
+                        W związku z pandemią koronawirusa szkoły realizują naukę z uczniami on-line. Niestety,
+                        <b>wszystkie dzieci, a także nie wszyscy nauczyciele</b>mają dostęp do komputera czy tabletu.<br/>
+                        <b>#DajżeKompa</b> - jeśli posiadasz <b>niepotrzebny sprzęt komputerowy, przekaż go</b> na potrzeby naszej akcji. Będziemy razem walczyć z wykluczeniem cyfrowym.
                     </Typography>
                     <Button color="primary" endIcon={<img src={arrowRight} />} className={classes.linkButton}>Czytaj więcej</Button>
                     <Separator />

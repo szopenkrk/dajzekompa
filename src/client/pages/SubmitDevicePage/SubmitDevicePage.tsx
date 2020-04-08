@@ -101,6 +101,7 @@ const formModel = {
     photos: [],
     comments: '',
     rodo: false,
+    rights: false,
 } as DeviceForm;
 
 export function SubmitDevicePage () {
@@ -293,12 +294,14 @@ export function SubmitDevicePage () {
                     <section>
                         {/* Akceptacja RODO */}
                         <FormControl component="fieldset" className={classes.input}>
-                            <FormLabel component="legend" className={classes.legend}>Akceptacja RODO</FormLabel>
+                            <FormLabel component="legend" className={classes.legend}>Rodo i </FormLabel>
                             <FormGroup>
                                 <FormControlLabel
                                     control={
                                         <Checkbox checked={form.rodo}
                                     onChange={updateField('rodo')} name="rodo" />} label="Akceptuje RODO" />
+                                <Checkbox checked={form.rights}
+                                          onChange={updateField('rights')} name="rights" />} label="Akceptuje regulamin " />
                             </FormGroup>
                         </FormControl>
                         {/* Akceptacja Umowy */}
