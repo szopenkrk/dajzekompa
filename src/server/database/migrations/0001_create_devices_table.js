@@ -1,4 +1,4 @@
-const statuses = ['RECEIVED', 'SENT_TO_SERVICE', 'IN_SERVICE', 'SENT_TO_RECIPIENT', 'COMPLETE'];
+const statuses = ['RECEIVED', 'SENT_TO_SERVICE', 'IN_SERVICE', 'SERVICE_COMPLETE', 'SENT_TO_RECIPIENT', 'COMPLETE'];
 
 exports.up = (knex) => {
     return knex.schema.createTable('devices', table => {

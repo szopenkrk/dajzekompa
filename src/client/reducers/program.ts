@@ -4,7 +4,8 @@ import { ReduxActionType, StateProgram } from 'client/model/Redux';
 
 function getInitialState (): StateProgram {
     return {
-        statuses: null
+        statuses: null,
+        regions: []
     };
 }
 

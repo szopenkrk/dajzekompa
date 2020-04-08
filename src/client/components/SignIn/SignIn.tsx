@@ -4,7 +4,7 @@ import { makeStyles, Paper, Button, TextField } from '@material-ui/core';
 
 /* Models */
 import { StateUser } from 'client/model/Redux';
-import LoadingOverlay from '../LoadingOverlay';
+import LoadingOverlay from 'client/components/LoadingOverlay';
 
 type Props = {
     onSignIn: (email: string, password: string) => Promise<StateUser>;

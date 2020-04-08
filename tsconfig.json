@@ -23,6 +23,7 @@
         "noImplicitThis": true,
         "noImplicitAny": false,
         "noUnusedLocals": true,
+        "resolveJsonModule": true,
         "paths": {
             "server/*": [ "./src/server/*" ],
             "client/*": [ "./src/client/*" ],

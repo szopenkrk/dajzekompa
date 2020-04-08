@@ -7,11 +7,13 @@ import { Typography, makeStyles } from '@material-ui/core';
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { Region } from 'common/model/Program';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
 import { loadProgramSummary } from 'client/actions/program';
 import LoadingOverlay from 'client/components/LoadingOverlay';
+import RegionMap from 'client/components/RegionMap';
 
 type Props = {
     className?: string;
@@ -69,6 +71,7 @@ export function ProgramSummary (props: Props) {
     const [ error, setError ] = useState('');
     const [ loading, setLoading ] = useState(true);
     const [ devices, setDevices ] = useState(0);
+    const [ regions, setRegions ] = useState([] as Region[]);
 
     async function requestProgramSummary () {
         setError('');
@@ -77,7 +80,9 @@ export function ProgramSummary (props: Props) {
         try {
             const summary = await dispatch(loadProgramSummary());
             const total = Object.keys(summary.statuses).reduce((all, current) => all + summary.statuses[current], 0);
+
             setDevices(total);
+            setRegions(summary.regions);
         } catch (error) {
             setError(error.message);
         }
@@ -98,7 +103,7 @@ export function ProgramSummary (props: Props) {
                 <>
                     <Typography variant="subtitle2">Jesteśmy w:</Typography>
                     <div className={classes.map}>
-                        {/* TODO: Add map */}
+                        <RegionMap active={regions} />
                     </div>
                     <Typography variant="subtitle2">PRZEKAZALIŚMY:</Typography>
                     <div className={classes.counter}>

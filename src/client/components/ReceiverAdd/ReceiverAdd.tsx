@@ -1,6 +1,8 @@
 /* Libraries */
-import React, { useState } from 'react';
-import { useDispatch as reduxUseDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector as reduxUseSelector, useDispatch as reduxUseDispatch, TypedUseSelectorHook } from 'react-redux';
+import { TextField, makeStyles, useTheme, Button } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
 
 /* Models */
 import { Action } from 'redux';
@@ -11,25 +13,27 @@ import { ReceiverForm } from 'client/model/Form';
 
 /* Application files */
 import { add as addReceiver } from 'client/actions/receivers';
-import { TextField, makeStyles, useTheme, Button } from '@material-ui/core';
-import LoadingOverlay from '../LoadingOverlay';
-import ErrorBox from '../ErrorBox';
+import { list as listLockers } from 'client/actions/lockers';
+import LoadingOverlay from 'client/components/LoadingOverlay';
+import ErrorBox from 'client/components/ErrorBox';
 
 type Props = {
     onComplete?: (receiver: Receiver) => void;
 };
 
+const useSelector = reduxUseSelector as TypedUseSelectorHook<ReduxState>;
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
 const formModel = {
     firstName: '',
     lastName: '',
     email: '',
+    phone: '',
     street: '',
     streetNumber: '',
     city: '',
     postcode: '',
-    paczkomat: '',
+    locker: ''
 } as ReceiverForm;
 
 const useStyles = makeStyles((theme) => ({
@@ -46,9 +50,22 @@ export function ReceiverAdd ({ onComplete }: Props) {
     const classes = useStyles();
     const dispatch = useDispatch();
     const theme = useTheme();
+    const lockers = useSelector((state) => state.lockers) || [];
     const [ form, setForm ] = useState({ ...formModel });
     const [ loading, setLoading ] = useState(false);
     const [ error, setError ] = useState('');
+
+    async function requestListLockers () {
+        setLoading(true);
+
+        try {
+            await dispatch(listLockers());
+        } catch (error) {
+            setError(error.message);
+        }
+
+        setLoading(false);
+    }
 
     async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -75,7 +92,7 @@ export function ReceiverAdd ({ onComplete }: Props) {
     }
 
     function updateField (name: string) {
-        return (e: React.ChangeEvent<HTMLInputElement>, value?: any) => {
+        return (e: React.ChangeEvent<HTMLInputElement | any>, value?: any) => { /* TODO: Possible bug in material typings, Autocomplete change event is not of HTMLInputElement but of {} */
             if (typeof value === 'undefined') value = e.target.value;
 
             setForm({
@@ -85,6 +102,10 @@ export function ReceiverAdd ({ onComplete }: Props) {
         };
     }
 
+    useEffect(() => {
+        requestListLockers();
+    }, []);
+
     return (
         <>
             {error && <ErrorBox>{error}</ErrorBox>}
@@ -93,14 +114,14 @@ export function ReceiverAdd ({ onComplete }: Props) {
                 <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} fullWidth autoFocus />
                 <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} fullWidth />
                 <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} fullWidth />
+                <TextField variant="outlined" label="Numer telefonu" className={classes.input} onChange={updateField('phone')} fullWidth />
                 <TextField variant="outlined" label="Ulica" className={classes.input} onChange={updateField('street')} style={getHorizontalInputStyles(75, true)} />
                 <TextField variant="outlined" label="Numer" className={classes.input} onChange={updateField('streetNumber')} style={getHorizontalInputStyles(25, false)} />
                 <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(35, true)} />
                 <TextField variant="outlined" label="Miejscowość" className={classes.input} onChange={updateField('city')} style={getHorizontalInputStyles(65, false)} />
-                {/*TODO*/}
-                {/* Jaka szkołą -> pobranie listy szkół jeśli ktoś wybierze szkoła prywatna to leci alert szkoła prywatna nie wchodzi do programu */}
-                {/*lista paczkomatów pobierana z jsona/csv dostarczonego od inpost*!/*/}
-                <TextField variant="outlined" label="Adres Paczkomatu" className={classes.input} onChange={updateField('paczkomat')} style={getHorizontalInputStyles(65, false)} />
+                <Autocomplete options={lockers} getOptionLabel={(option) => option.label} onChange={updateField('locker')} renderInput={(params) => (
+                    <TextField {...params} variant="outlined" label="Paczkomat" className={classes.input} fullWidth />
+                )} />
                 <Button variant="contained" color="primary" type="submit" fullWidth>Dodaj</Button>
             </form>
         </>
