@@ -3,6 +3,7 @@ import { ReduxThunkAction, ReduxActionType } from 'client/model/Redux';
 import { Receiver } from 'common/model/Receiver';
 
 /* Application files */
+import Config from 'client/lib/config';
 import { request } from 'client/lib/request';
 import { FormModel, sanitize } from 'client/lib/receiver';
 
@@ -54,5 +55,11 @@ export function update (id: string, form: FormModel): ReduxThunkAction<Receiver>
         }
 
         return result;
-    }
+    };
+}
+
+export function download (): ReduxThunkAction<void> {
+    return async () => {
+        window.open(`${Config.API_URL}/receivers/download`, '_blank');
+    };
 }

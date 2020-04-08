@@ -1,7 +1,8 @@
 /* Application files */
 import React, { useState, useEffect } from 'react';
 import { useSelector as reduxUseSelector, useDispatch as reduxUseDispatch, TypedUseSelectorHook } from 'react-redux';
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Typography, Fab, Icon, Dialog, makeStyles, useMediaQuery, useTheme, DialogTitle, IconButton, DialogContent } from '@material-ui/core';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Typography, Fab, Icon, Dialog, makeStyles, useMediaQuery, useTheme, DialogTitle, IconButton, DialogContent, Toolbar, Button } from '@material-ui/core';
+import { green, red } from '@material-ui/core/colors';
 
 /* Models */
 import { Action } from 'redux';
@@ -10,7 +11,7 @@ import { Receiver } from 'common/model/Receiver';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { list as listReceivers } from 'client/actions/receivers';
+import { list as listReceivers, download } from 'client/actions/receivers';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import ErrorBox from 'client/components/ErrorBox';
 import ReceiverUpsert from 'client/components/ReceiverUpsert';
@@ -19,6 +20,9 @@ const useSelector = reduxUseSelector as TypedUseSelectorHook<ReduxState>;
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
 const useStyles = makeStyles((theme) => ({
+    toolbar: {
+        width: '100%'
+    },
     row: {
         cursor: 'pointer'
     },
@@ -26,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         bottom: theme.spacing(2),
         right: theme.spacing(2)
+    },
+    icon: {
+        position: 'relative',
+        top: 2
     },
     dialog: {
         width: 600,
@@ -76,6 +84,16 @@ export function ReceiversList () {
         setLoading(false);
     }
 
+    async function exportToCsv () {
+        setError('');
+
+        try {
+            await dispatch(download());
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
     function toggleAddDialog (val?: boolean) {
         return () => {
             if (typeof val !== 'undefined') return setAddDialogOpen(val);
@@ -108,26 +126,33 @@ export function ReceiversList () {
                 <Typography variant="subtitle1">Brak osób potrzebujących.</Typography>
             )}
             {receivers.length > 0 && (
-                <TableContainer>
-                    <Table aria-label="Lista osób potrzebujących" size="small">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Imię i nazwisko</TableCell>
-                                <TableCell>Miasto</TableCell>
-                                <TableCell>Urządzeń</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {receivers.map((receiver, index) => (
-                                <TableRow key={index} onClick={toggleEditDialog(true, receiver)} className={classes.row} hover>
-                                    <TableCell>{receiver.firstName} {receiver.lastName}</TableCell>
-                                    <TableCell>{receiver.city}</TableCell>
-                                    <TableCell>0</TableCell>
+                <>
+                    <Toolbar className={classes.toolbar}>
+                        <Button color="primary" variant="contained" onClick={exportToCsv} startIcon={<Icon>get_app</Icon>}>Eksportuj do CSV</Button>
+                    </Toolbar>
+                    <TableContainer>
+                        <Table aria-label="Lista osób potrzebujących" size="small">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Imię i nazwisko</TableCell>
+                                    <TableCell>Miasto</TableCell>
+                                    <TableCell>Urządzeń</TableCell>
+                                    <TableCell>Komplet</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {receivers.map((receiver, index) => (
+                                    <TableRow key={index} onClick={toggleEditDialog(true, receiver)} className={classes.row} hover>
+                                        <TableCell>{receiver.firstName} {receiver.lastName}</TableCell>
+                                        <TableCell>{receiver.city}</TableCell>
+                                        <TableCell>0</TableCell>
+                                        <TableCell><Icon className={classes.icon} style={{ color: receiver.complete ? green[400] : red[400] }}>{receiver.complete ? 'done' : 'close'}</Icon></TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </>
             )}
             <Fab aria-label="Dodaj osobę potrzebującą" color="primary" onClick={toggleAddDialog()} className={classes.fab}>
                 <Icon>add</Icon>

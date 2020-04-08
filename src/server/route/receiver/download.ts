@@ -20,7 +20,7 @@ function pad (n: number, width: number, z: string = '0') {
 
 export default {
     method: HTTPMethod.GET,
-    url: '/api/receivers/send',
+    url: '/api/receivers/download',
     controller: async (req: Request, res: Response) => {
         const results = await knex(DBTable.RECEIVERS).select().where('complete', true) as DBSchemaReceiver[];
         const receivers = sanitizeReceiver(results).map((r) => ({ ...r, phone: r.phone.replace('+48', '') }));
