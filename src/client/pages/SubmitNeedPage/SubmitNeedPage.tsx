@@ -5,7 +5,7 @@ import { makeStyles, Typography, Button, Icon } from '@material-ui/core';
 /* Application files */
 import SubPage from 'client/pages/SubPage';
 import Separator from 'client/components/Separator';
-import ReceiverAdd from "client/components/ReceiverAdd";
+import ReceiverUpsert from "client/components/ReceiverUpsert";
 
 const useStyles = makeStyles({
     panel: {
@@ -68,7 +68,7 @@ export function SubmitNeedPage () {
                     </section>
                 </div>
             )}
-            {!complete && <ReceiverAdd onComplete={finish} />}
+            {!complete && <ReceiverUpsert onComplete={finish} />}
             <article className={classes.panel}>
                 <Typography variant="body1" className={classes.panelTitle}>Potrzebujesz sprzętu?</Typography>
                 <Typography variant="body1">Zgłoś się do swojej szkoły - wychowawcy, nauczyciela lub dyrektora. Dyrektorzy szkół lub osoby przez nich wyznaczone mogą wnioskować o sprzęt dla Ciebie.</Typography>

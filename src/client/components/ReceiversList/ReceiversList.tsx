@@ -6,18 +6,22 @@ import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Typog
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { Receiver } from 'common/model/Receiver';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
 import { list as listReceivers } from 'client/actions/receivers';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import ErrorBox from 'client/components/ErrorBox';
-import ReceiverAdd from 'client/components/ReceiverAdd';
+import ReceiverUpsert from 'client/components/ReceiverUpsert';
 
 const useSelector = reduxUseSelector as TypedUseSelectorHook<ReduxState>;
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
 const useStyles = makeStyles((theme) => ({
+    row: {
+        cursor: 'pointer'
+    },
     fab: {
         position: 'absolute',
         bottom: theme.spacing(2),
@@ -56,6 +60,8 @@ export function ReceiversList () {
     const [ loading, setLoading ] = useState(true);
     const [ error, setError ] = useState('');
     const [ addDialogOpen, setAddDialogOpen ] = useState(false);
+    const [ editDialogOpen, setEditDialogOpen ] = useState(false);
+    const [ selectedReceiver, setSelectedReceiver ] = useState(null);
 
     async function requestListReceivers () {
         setError('');
@@ -75,6 +81,17 @@ export function ReceiversList () {
             if (typeof val !== 'undefined') return setAddDialogOpen(val);
 
             return setAddDialogOpen(!addDialogOpen);
+        };
+    }
+
+    function toggleEditDialog (val: boolean, receiver?: Receiver) {
+        return () => {
+            if (val) setSelectedReceiver(receiver);
+            else setSelectedReceiver(null);
+
+            if (typeof val !== 'undefined') return setEditDialogOpen(val);
+
+            return setEditDialogOpen(!editDialogOpen);
         };
     }
 
@@ -102,7 +119,7 @@ export function ReceiversList () {
                         </TableHead>
                         <TableBody>
                             {receivers.map((receiver, index) => (
-                                <TableRow key={index}>
+                                <TableRow key={index} onClick={toggleEditDialog(true, receiver)} className={classes.row} hover>
                                     <TableCell>{receiver.firstName} {receiver.lastName}</TableCell>
                                     <TableCell>{receiver.city}</TableCell>
                                     <TableCell>0</TableCell>
@@ -115,16 +132,16 @@ export function ReceiversList () {
             <Fab aria-label="Dodaj osobę potrzebującą" color="primary" onClick={toggleAddDialog()} className={classes.fab}>
                 <Icon>add</Icon>
             </Fab>
-            {addDialogOpen && (
-                <Dialog open={addDialogOpen} onClose={toggleAddDialog(false)} classes={{ paper: classes.dialog }} fullScreen={mobile}>
+            {(addDialogOpen || editDialogOpen) && (
+                <Dialog open={selectedReceiver ? editDialogOpen : addDialogOpen} onClose={selectedReceiver ? toggleEditDialog(false) : toggleAddDialog(false)} classes={{ paper: classes.dialog }} fullScreen={mobile}>
                     <DialogTitle className={classes.dialogTitle} disableTypography>
-                        <Typography variant="h6">Dodaj osobę potrzebującą</Typography>
-                        <IconButton aria-label="Zamknij" onClick={toggleAddDialog(false)}>
+                        <Typography variant="h6">{selectedReceiver ? 'Zaktualizuj' : 'Dodaj'} osobę potrzebującą</Typography>
+                        <IconButton aria-label="Zamknij" onClick={selectedReceiver ? toggleEditDialog(false) : toggleAddDialog(false)}>
                             <Icon>close</Icon>
                         </IconButton>
                     </DialogTitle>
                     <DialogContent className={classes.dialogContent}>
-                        <ReceiverAdd onComplete={toggleAddDialog(false)} />
+                        <ReceiverUpsert onComplete={toggleAddDialog(false)} {...(selectedReceiver ? { receiver: selectedReceiver } : {})} />
                     </DialogContent>
                 </Dialog>
             )}
