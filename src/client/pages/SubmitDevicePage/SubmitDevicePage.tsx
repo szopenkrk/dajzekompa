@@ -296,12 +296,8 @@ export function SubmitDevicePage () {
                         <FormControl component="fieldset" className={classes.input}>
                             <FormLabel component="legend" className={classes.legend}>Rodo i </FormLabel>
                             <FormGroup>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox checked={form.rodo}
-                                    onChange={updateField('rodo')} name="rodo" />} label="Akceptuje RODO" />
-                                <Checkbox checked={form.rights}
-                                          onChange={updateField('rights')} name="rights" />} label="Akceptuje regulamin " />
+                                <FormControlLabel control={ <Checkbox checked={form.rodo} onChange={updateField('rodo')} name="rodo" />} label="Akceptuje RODO" />
+                                <FormControlLabel control={ <Checkbox checked={form.rights} onChange={updateField('rights')} name="monitor" />} label="Akceptuje regulamin akcji" />
                             </FormGroup>
                         </FormControl>
                         {/* Akceptacja Umowy */}
