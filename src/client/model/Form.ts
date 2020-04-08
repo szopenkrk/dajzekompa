@@ -1,6 +1,7 @@
 /* Models */
 import { RawDevice } from 'common/model/Device';
 import { Receiver } from 'common/model/Receiver';
+import { Locker } from 'common/model/Locker';
 
 export type DeviceForm = RawDevice & {
     ram: string;
@@ -8,4 +9,6 @@ export type DeviceForm = RawDevice & {
     screenSize: string;
 }
 
-export type ReceiverForm = Receiver;
+export type ReceiverForm = Receiver & {
+    locker: Locker;
+};

@@ -4,6 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import { Device } from 'common/model/Device';
 import { ProgramSummary } from 'common/model/Program';
 import { Receiver } from 'common/model/Receiver';
+import { Locker } from 'common/model/Locker';
 
 export enum ReduxActionType {
     DEVICES_ADD = 'DEVICES_ADD',
@@ -11,7 +12,8 @@ export enum ReduxActionType {
     UI_SET_LOADING = 'UI_SET_LOADING',
     USER_SIGNIN = 'USER_SIGNIN',
     USER_SIGNOUT = 'USER_SIGNOUT',
-    RECEIVERS_ADD = 'RECEIVERS_ADD'
+    RECEIVERS_ADD = 'RECEIVERS_ADD',
+    LOCKERS_ADD = 'LOCKERS_ADD'
 }
 
 export type ReduxState = {
@@ -20,6 +22,7 @@ export type ReduxState = {
     ui: StateUI;
     user: StateUser;
     receivers: StateReceivers;
+    lockers: StateLockers;
 };
 
 export type ReduxThunkAction<T> = ThunkAction<Promise<T>, ReduxState, undefined, Action<ReduxActionType>>;
@@ -38,5 +41,7 @@ export type StateUser = {
 export type StateDevices = Device[];
 
 export type StateReceivers = Receiver[];
+
+export type StateLockers = Locker[];
 
 export type StateProgram = ProgramSummary;

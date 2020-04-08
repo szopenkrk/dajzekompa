@@ -13,7 +13,7 @@ import { ReduxState } from 'client/model/Redux';
 /* Application files */
 import { loadProgramSummary } from 'client/actions/program';
 import LoadingOverlay from 'client/components/LoadingOverlay';
-import RegionMap from '../RegionMap';
+import RegionMap from 'client/components/RegionMap';
 
 type Props = {
     className?: string;

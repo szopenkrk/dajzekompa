@@ -6,4 +6,5 @@ export type Receiver = {
     streetNumber: string;
     city: string;
     postcode: string;
+    locker: string;
 };

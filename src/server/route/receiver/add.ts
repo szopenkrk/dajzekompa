@@ -22,7 +22,8 @@ function buildQueryReceiverObject (receiver: Receiver): DBSchemaReceiver {
         street: receiver.street,
         streetNumber: receiver.streetNumber,
         city: receiver.city,
-        postcode: receiver.postcode
+        postcode: receiver.postcode,
+        locker: receiver.locker
     };
 }
 
@@ -33,7 +34,8 @@ const schema = joi.object({
     street: joi.string().required(),
     streetNumber: joi.string().required(),
     city: joi.string().required(),
-    postcode: joi.string().required()
+    postcode: joi.string().required(),
+    locker: joi.string().required()
 });
 
 export default {

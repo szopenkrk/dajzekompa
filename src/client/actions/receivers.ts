@@ -9,7 +9,10 @@ import { request } from 'client/lib/request';
 let loaded = false;
 
 function sanitizeReceiver (form: ReceiverForm): Receiver {
-    return form;
+    return {
+        ...form,
+        locker: form.locker.id
+    };
 }
 
 export function list (): ReduxThunkAction<Receiver[]> {
