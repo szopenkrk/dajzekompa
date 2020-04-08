@@ -4,7 +4,8 @@ import { Receiver } from 'common/model/Receiver';
 export enum DBTable {
     DEVICES = 'devices',
     PHOTOS = 'photos',
-    RECEIVERS = 'receivers'
+    RECEIVERS = 'receivers',
+    CITIES = 'cities'
 }
 
 export type DBSchemaDevice = {
