@@ -97,7 +97,9 @@ export function ReceiverAdd ({ onComplete }: Props) {
                 <TextField variant="outlined" label="Numer" className={classes.input} onChange={updateField('streetNumber')} style={getHorizontalInputStyles(25, false)} />
                 <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(35, true)} />
                 <TextField variant="outlined" label="Miejscowość" className={classes.input} onChange={updateField('city')} style={getHorizontalInputStyles(65, false)} />
-                {/*lista paczkomatów pobierana z jsona/csv dostarczonego od inpost*/}
+                {/*TODO*/}
+                {/* Jaka szkołą -> pobranie listy szkół jeśli ktoś wybierze szkoła prywatna to leci alert szkoła prywatna nie wchodzi do programu */}
+                {/*lista paczkomatów pobierana z jsona/csv dostarczonego od inpost*!/*/}
                 <TextField variant="outlined" label="Adres Paczkomatu" className={classes.input} onChange={updateField('paczkomat')} style={getHorizontalInputStyles(65, false)} />
                 <Button variant="contained" color="primary" type="submit" fullWidth>Dodaj</Button>
             </form>

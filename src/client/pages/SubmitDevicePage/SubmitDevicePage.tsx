@@ -80,6 +80,7 @@ const formModel = {
     city: '',
     postcode: '',
     email: '',
+    bankAccount: '',
     deviceType: DeviceType.NOTEBOOK,
     notebookName: '',
     ram: '0',
@@ -175,6 +176,7 @@ export function SubmitDevicePage () {
                         <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(25, true)} />
                         <TextField variant="outlined" label="Miejscowość" className={classes.input} onChange={updateField('city')} style={getHorizontalInputStyles(75, false)} />
                         <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} />
+                        <TextField variant="outlined" label="Numer konta" className={classes.input} onChange={updateField('bankAccount')} />
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
                     <section className={classes.formSection}>
