@@ -122,6 +122,7 @@ export function ReceiverAdd ({ onComplete }: Props) {
                 <Autocomplete options={lockers} getOptionLabel={(option) => option.label} onChange={updateField('locker')} renderInput={(params) => (
                     <TextField {...params} variant="outlined" label="Paczkomat" className={classes.input} fullWidth />
                 )} />
+                {/*<Maps lat='51.505' lng='-0.09' zoom='13'/>*/}
                 <Button variant="contained" color="primary" type="submit" fullWidth>Dodaj</Button>
             </form>
         </>
