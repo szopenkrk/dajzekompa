@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
 import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme } from '@material-ui/core';
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Tooltip from "@material-ui/core/Tooltip";
 
 /* Models */
 import { Action } from 'redux';
@@ -64,6 +66,12 @@ const useStyles = makeStyles((theme) => ({
     },
     messageTitle: {
         textAlign: 'center'
+    },
+    helper: {
+        cursor: "pointer"
+    },
+    tooltip: {
+        width: 300
     }
 }));
 
@@ -91,7 +99,8 @@ const formModel = {
     microphone: false,
     speakers: false,
     photos: [],
-    comments: ''
+    comments: '',
+    rodo: false,
 } as DeviceForm;
 
 export function SubmitDevicePage () {
@@ -176,7 +185,24 @@ export function SubmitDevicePage () {
                         <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(25, true)} />
                         <TextField variant="outlined" label="Miejscowość" className={classes.input} onChange={updateField('city')} style={getHorizontalInputStyles(75, false)} />
                         <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} />
-                        <TextField variant="outlined" label="Numer konta" className={classes.input} onChange={updateField('bankAccount')} />
+                        <TextField
+                            variant="outlined"
+                            label="Numer konta"
+                            className={classes.input}
+                            onChange={updateField('bankAccount')}
+                            InputProps={{
+                                endAdornment: (
+                                       <InputAdornment position="end" className={classes.helper}>
+                                           <Tooltip
+                                               title="Numer konta na który przelejemy 1 gr"
+                                               classes={{ tooltip: classes.tooltip }}
+                                           >
+                                               <Icon>help</Icon>
+                                           </Tooltip>
+                                       </InputAdornment>
+                                   )
+                            }}
+                        />
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
                     <section className={classes.formSection}>
@@ -187,9 +213,63 @@ export function SubmitDevicePage () {
                             </RadioGroup>
                         </FormControl>
                         {form.deviceType === DeviceType.NOTEBOOK && <TextField variant="outlined" label="Producent i model" className={classes.input} onChange={updateField('notebookName')} />}
-                        <TextField variant="outlined" label="Pamięć RAM (GB)" type="number" className={classes.input} onChange={updateField('ram')} />
-                        <TextField variant="outlined" label="Pojemność dysku (GB)" type="number" className={classes.input} onChange={updateField('hdd')} />
-                        <TextField variant="outlined" label="Rozmiar ekranu (cale)" type="number" className={classes.input} onChange={updateField('screenSize')} />
+                        <TextField
+                            variant="outlined"
+                            label="Pamięć RAM (GB)"
+                            type="number"
+                            className={classes.input}
+                            onChange={updateField('ram')}
+                            InputProps={{
+                               endAdornment: (
+                                   <InputAdornment position="end" className={classes.helper}>
+                                       <Tooltip
+                                           title="Pamięć ram znajdziesz klikając cntr alt delete następnie klikając wiecej wybierając zakładkę pamięc i podając liczbe max ram."
+                                           classes={{ tooltip: classes.tooltip }}
+                                       >
+                                           <Icon>help</Icon>
+                                       </Tooltip>
+                                   </InputAdornment>
+                               )
+                            }}
+                        />
+                        <TextField
+                            variant="outlined"
+                            label="Pojemność dysku (GB)"
+                            type="number"
+                            className={classes.input}
+                            onChange={updateField('hdd')}
+                            InputProps={{
+                               endAdornment: (
+                                   <InputAdornment position="end" className={classes.helper}>
+                                       <Tooltip
+                                           title="Wielkość dysku znajdziesz wchodząc do Mój Komputer i klikając prawym przyciskiem myszy na dysku tam zobaczysz informacje na temat wielkości dysku."
+                                           classes={{ tooltip: classes.tooltip }}
+                                       >
+                                           <Icon>help</Icon>
+                                       </Tooltip>
+                                   </InputAdornment>
+                               )
+                            }}
+                        />
+                        <TextField
+                            variant="outlined"
+                            label="Rozmiar ekranu (cale)"
+                            type="number"
+                            className={classes.input}
+                            onChange={updateField('screenSize')}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end" className={classes.helper}>
+                                        <Tooltip
+                                            title="Jesli nie masz wiedzy na ten temat weź metr i zmierz po przekątnej 1 cal = 2,54 cm."
+                                            classes={{ tooltip: classes.tooltip }}
+                                        >
+                                            <Icon>help</Icon>
+                                        </Tooltip>
+                                    </InputAdornment>
+                                )
+                            }}
+                        />
                         {form.deviceType === DeviceType.DESKTOP && (
                             <FormControl component="fieldset" className={classes.input}>
                                 <FormLabel component="legend" className={classes.legend}>Elementy dołączone do zestawu:</FormLabel>
@@ -212,6 +292,15 @@ export function SubmitDevicePage () {
                     </section>
                     <section>
                         {/* Akceptacja RODO */}
+                        <FormControl component="fieldset" className={classes.input}>
+                            <FormLabel component="legend" className={classes.legend}>Akceptacja RODO</FormLabel>
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox checked={form.rodo}
+                                    onChange={updateField('rodo')} name="rodo" />} label="Akceptuje RODO" />
+                            </FormGroup>
+                        </FormControl>
                         {/* Akceptacja Umowy */}
                     </section>
                     <section className={classes.actions}>

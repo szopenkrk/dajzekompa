@@ -33,7 +33,7 @@ const formModel = {
     streetNumber: '',
     city: '',
     postcode: '',
-    locker: ''
+    locker: '',
 } as ReceiverForm;
 
 const useStyles = makeStyles((theme) => ({

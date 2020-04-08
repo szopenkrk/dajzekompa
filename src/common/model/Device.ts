@@ -19,6 +19,7 @@ export type RawDevice = {
     speakers?: boolean;
     photos: string[];
     comments: string;
+    rodo: boolean;
 };
 
 export type Device = RawDevice & {
