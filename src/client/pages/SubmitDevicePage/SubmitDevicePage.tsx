@@ -80,6 +80,7 @@ const formModel = {
     city: '',
     postcode: '',
     email: '',
+    bankAccount: '',
     deviceType: DeviceType.NOTEBOOK,
     notebookName: '',
     ram: '0',
@@ -175,6 +176,7 @@ export function SubmitDevicePage () {
                         <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(25, true)} />
                         <TextField variant="outlined" label="Miejscowość" className={classes.input} onChange={updateField('city')} style={getHorizontalInputStyles(75, false)} />
                         <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} />
+                        <TextField variant="outlined" label="Numer konta" className={classes.input} onChange={updateField('bankAccount')} />
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
                     <section className={classes.formSection}>
@@ -207,6 +209,10 @@ export function SubmitDevicePage () {
                     <Typography variant="h5" className={classes.subtitle}>Dodatkowe informacje</Typography>
                     <section className={classes.formSection}>
                         <TextField variant="outlined" label="Dodatkowe informacje i komentarze" className={classes.input} onChange={updateField('comments')} multiline rows={3} />
+                    </section>
+                    <section>
+                        {/* Akceptacja RODO */}
+                        {/* Akceptacja Umowy */}
                     </section>
                     <section className={classes.actions}>
                         <Button variant="contained" type="submit" color="primary">Wyślij</Button>
