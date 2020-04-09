@@ -55,7 +55,9 @@ export function RodoPage () {
                 <br /><br />
                 W związku z powyższym administrator serwisu internetowego <a href={url} className={classes.link}>{url}</a> którym jest <b>Fundacja Poland Business Run</b> oraz dla spełnienia obowiązku informacyjnego określonego w art. 13 RODO informuje, że w obrębie serwisu stosuje następującą <b>Politykę prywatności</b>:
             </p>
+            <br />
             <Typography variant="h6" className={classes.title}>Polityka Prywatności i Ochrony Danych Osobowych RODO w serwisie internetowym {url}</Typography>
+            <br />
             <Typography variant="body1" className={classes.title}><b>Informacje ogólne</b></Typography>
             <ol>
                 <li>Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem przez nich ze strony internetowej <b>Fundacji Poland Business Run</b> pod adresem <a href={url} className={classes.link}>{url}</a>.</li>
