@@ -24,6 +24,7 @@ function sanitizeDeviceObject (form: DeviceForm): Device {
     let device: Device = {
         ...form,
         nip: form.nip.replace(/\D+/g, ''),
+        bankAccount: form.bankAccount.replace(/\D+/g, ''),
         ram: parseFloat(form.ram),
         hdd: parseFloat(form.hdd),
         screenSize: parseFloat(form.screenSize)

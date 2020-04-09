@@ -7,8 +7,8 @@ export type DeviceForm = RawDevice & {
     ram: string;
     hdd: string;
     screenSize: string;
-}
+};
 
-export type ReceiverForm = Receiver & {
+export type ReceiverForm = Omit<Receiver, 'locker'> & {
     locker: Locker;
 };
