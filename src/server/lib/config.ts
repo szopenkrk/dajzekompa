@@ -43,7 +43,7 @@ function getConfig (prop: string, type: string): any {
 }
 
 export default class Config {
-    public static __CLIENT_ENABLED__: string[] = [ 'NODE_ENV', 'MAINTENANCE_MODE', 'API_URL' ];
+    public static __CLIENT_ENABLED__: string[] = [ 'NODE_ENV', 'MAINTENANCE_MODE', 'API_URL', 'RECEIVERS_LIMIT', 'CONTACT_EMAIL' ];
 
     /* System level */
     public static APP_NAME: string = getConfig('APP_NAME', 'string');
@@ -59,4 +59,6 @@ export default class Config {
     public static AWS_ACCESS_KEY_ID: string = getConfig('AWS_ACCESS_KEY_ID', 'string');
     public static AWS_SECRET_ACCESS_KEY: string = getConfig('AWS_SECRET_ACCESS_KEY', 'string');
     public static AWS_S3_BUCKET_NAME: string = getConfig('AWS_S3_BUCKET_NAME', 'string');
+    public static RECEIVERS_LIMIT: number = getConfig('RECEIVERS_LIMIT', 'number');
+    public static CONTACT_EMAIL: string = getConfig('CONTACT_EMAIL', 'string');
 }
