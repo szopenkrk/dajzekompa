@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
 import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 /* Models */
 import { Action } from 'redux';
@@ -45,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
         '& > span:first-of-type': {
             paddingLeft: 0
         }
+    },
+    link: {
+        color: theme.palette.primary.main,
+        textDecoration: 'underline'
     },
     legend: {
         textAlign: 'left',
@@ -91,7 +96,9 @@ const formModel = {
     microphone: false,
     speakers: false,
     photos: [],
-    comments: ''
+    comments: '',
+    acceptedTerms: false,
+    acceptedClause: false
 } as DeviceForm;
 
 export function SubmitDevicePage () {
@@ -210,9 +217,19 @@ export function SubmitDevicePage () {
                     <section className={classes.formSection}>
                         <TextField variant="outlined" label="Dodatkowe informacje i komentarze" className={classes.input} onChange={updateField('comments')} multiline rows={3} />
                     </section>
-                    <section>
-                        {/* Akceptacja RODO */}
-                        {/* Akceptacja Umowy */}
+                    <section style={{ marginTop: theme.spacing(2) }}>
+                        <FormControlLabel control={<Checkbox onChange={updateField('acceptedTerms')} />} label={(
+                            <div style={{ textAlign: 'left' }}>
+                                Zapoznałam/em się i akceptuję <Link to="/regulamin" target="_blank" className={classes.link}>Regulamin Akcji &quot;Dajże Kompa&quot;</Link> oraz <Link to="/rodo" target="_blank" className={classes.link}>Politykę Prywatności</Link>.*
+                            </div>
+                        )} />
+                    </section>
+                    <section style={{ marginTop: theme.spacing(2) }}>
+                        <FormControlLabel control={<Checkbox onChange={updateField('acceptedClause')} />} label={(
+                            <div style={{ textAlign: 'left' }}>
+                                Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane w celu zawarcia umowy kupna-sprzedaży oraz przekazania darowizny. Szczegółowe informacje dotyczące przetwarzania Pani/Pana danych znajdują się <Link to="/klauzula" target="_blank" className={classes.link}>tutaj</Link>.*
+                            </div>
+                        )} />
                     </section>
                     <section className={classes.actions}>
                         <Button variant="contained" type="submit" color="primary">Wyślij</Button>
