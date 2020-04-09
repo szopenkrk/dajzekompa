@@ -14,7 +14,8 @@ export enum FormField {
     STREET_NUMBER = 'streetNumber',
     CITY = 'city',
     POSTCODE = 'postcode',
-    LOCKER = 'locker'
+    LOCKER = 'locker',
+    SCHOOL = 'school'
 }
 
 export type FormModel = {
@@ -27,6 +28,7 @@ export type FormModel = {
     [FormField.CITY]: string;
     [FormField.POSTCODE]: string;
     [FormField.LOCKER]: Locker;
+    [FormField.SCHOOL]: string;
 }
 
 export type FormList<T> = {
@@ -53,7 +55,8 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.STREET_NUMBER]: '',
         [FormField.CITY]: '',
         [FormField.POSTCODE]: '',
-        [FormField.LOCKER]: null
+        [FormField.LOCKER]: null,
+        [FormField.SCHOOL]: ''
     }, base);
 }
 
@@ -68,6 +71,7 @@ export function getValidators (field: FormField): Validator[] {
         case FormField.CITY: return [ isRequired() ];
         case FormField.POSTCODE: return [ isRequired() ];
         case FormField.LOCKER: return [ isRequired() ];
+        case FormField.SCHOOL: return [ isRequired() ];
         default: return [];
     }
 }

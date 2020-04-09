@@ -14,7 +14,8 @@ export enum ReduxActionType {
     USER_SIGNOUT = 'USER_SIGNOUT',
     RECEIVERS_ADD = 'RECEIVERS_ADD',
     RECEIVERS_UPDATE = 'RECEIVERS_UPDATE',
-    LOCKERS_ADD = 'LOCKERS_ADD'
+    LOCKERS_ADD = 'LOCKERS_ADD',
+    SCHOOLS_ADD = 'SCHOOLS_ADD'
 }
 
 export type ReduxState = {
@@ -24,6 +25,7 @@ export type ReduxState = {
     user: StateUser;
     receivers: StateReceivers;
     lockers: StateLockers;
+    schools: StateSchools;
 };
 
 export type ReduxThunkAction<T> = ThunkAction<Promise<T>, ReduxState, undefined, Action<ReduxActionType>>;
@@ -46,3 +48,5 @@ export type StateReceivers = Receiver[];
 export type StateLockers = Locker[];
 
 export type StateProgram = ProgramSummary;
+
+export type StateSchools = string[];

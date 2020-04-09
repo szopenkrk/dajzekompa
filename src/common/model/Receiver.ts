@@ -9,5 +9,6 @@ export type Receiver = {
     city: string;
     postcode: string;
     locker: string;
+    school: string;
     complete: boolean;
 };

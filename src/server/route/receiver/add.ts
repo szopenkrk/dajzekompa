@@ -30,7 +30,8 @@ const schema = joi.object({
     streetNumber: joi.string().required(),
     city: joi.string().required(),
     postcode: joi.string().required(),
-    locker: joi.string().required()
+    locker: joi.string().required(),
+    school: joi.string().required()
 });
 
 export default {

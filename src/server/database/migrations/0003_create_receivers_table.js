@@ -10,6 +10,7 @@ exports.up = (knex) => {
         table.string('email').notNullable();
         table.string('phone').notNullable();
         table.string('locker').notNullable();
+        table.string('school').notNullable();
         table.boolean('complete').defaultTo(false);
 
         table.index(['id']);

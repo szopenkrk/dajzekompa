@@ -16,6 +16,7 @@ import { ReduxState } from 'client/model/Redux';
 /* Application files */
 import { add as addReceiver, update as updateReceiver } from 'client/actions/receivers';
 import { list as listLockers } from 'client/actions/lockers';
+import { list as listSchools } from 'client/actions/schools';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import ErrorBox from 'client/components/ErrorBox';
 import { FormField, ValidationResult, emptyModel, validateForm, validateField, create } from 'client/lib/receiver';
@@ -44,6 +45,7 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
     const theme = useTheme();
 
     const lockers = useSelector((state) => state.lockers) || [];
+    const schools = useSelector((state) => state.schools);
 
     const [ form, setForm ] = useState(emptyModel());
     const [ loading, setLoading ] = useState(false);
@@ -55,18 +57,6 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
         const locker = lockers.find((l) => l.id === receiver.locker);
 
         if (locker) setForm(emptyModel({ ...receiver, locker }));
-    }
-
-    async function requestListLockers () {
-        setLoading(true);
-
-        try {
-            await dispatch(listLockers());
-        } catch (error) {
-            setError(error.message);
-        }
-
-        setLoading(false);
     }
 
     async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
@@ -146,7 +136,13 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
     }
 
     useEffect(() => {
-        requestListLockers();
+        setLoading(true);
+
+        Promise.all([ dispatch(listLockers()), dispatch(listSchools()) ]).catch(() => {
+            setError('Ups, coś poszło nie tak!');
+        }).finally(() => {
+            setLoading(false);
+        });
     }, []);
 
     return (
@@ -154,7 +150,19 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
             {error && <ErrorBox>{error}</ErrorBox>}
             {loading && <LoadingOverlay />}
             <form onSubmit={onSubmit} className={classes.form}>
-                {createInputElement(FormField.FIRST_NAME, 'Imię', true, true)}
+                <Autocomplete options={schools} getOptionLabel={(option) => option} onChange={updateField(FormField.SCHOOL)} onBlur={setDirty(FormField.SCHOOL)} value={form.school} renderInput={(props) => (
+                    <TextField
+                        {...props}
+                        variant="outlined"
+                        label="Nazwa szkoły"
+                        className={classes.input}
+                        error={!!validation[FormField.SCHOOL]}
+                        helperText={validation[FormField.SCHOOL]}
+                        autoFocus
+                        fullWidth
+                    />
+                )} />
+                {createInputElement(FormField.FIRST_NAME, 'Imię', true, false)}
                 {createInputElement(FormField.LAST_NAME, 'Nazwisko', true, false)}
                 {createInputElement(FormField.EMAIL, 'E-mail', true, false)}
                 {createInputElement(FormField.PHONE, 'Numer telefonu', true, false)}
