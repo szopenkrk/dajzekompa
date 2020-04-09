@@ -59,4 +59,11 @@ export default class Config {
     public static AWS_ACCESS_KEY_ID: string = getConfig('AWS_ACCESS_KEY_ID', 'string');
     public static AWS_SECRET_ACCESS_KEY: string = getConfig('AWS_SECRET_ACCESS_KEY', 'string');
     public static AWS_S3_BUCKET_NAME: string = getConfig('AWS_S3_BUCKET_NAME', 'string');
+    public static GOOGLE_APPLICATION_CREDENTIALS: string = getConfig('GOOGLE_APPLICATION_CREDENTIALS', 'string');
+    public static GOOGLE_PROJECT_ID: string = getConfig('GOOGLE_PROJECT_ID', 'string');
+    public static GOOGLE_KMS_KEYRING: string = getConfig('GOOGLE_KMS_KEYRING', 'string');
+    public static GOOGLE_KMS_LOCATION: string = getConfig('GOOGLE_KMS_LOCATION', 'string');
+    public static GOOGLE_KMS_KEY_NAME: string = getConfig('GOOGLE_KMS_KEY_NAME', 'string');
+    public static GOOGLE_KMS_KEY_VERSION: number = getConfig('GOOGLE_KMS_KEY_VERSION', 'number');
+    public static AUTH_TOKEN_TTL: number = getConfig('AUTH_TOKEN_TTL', 'number');
 }

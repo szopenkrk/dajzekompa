@@ -99,7 +99,8 @@ module.exports = [
         externals: {
             ...switchEnvs({
                 express: 'commonjs express',
-                knex: 'commonjs knex'
+                knex: 'commonjs knex',
+                '@google-cloud/kms': 'commonjs @google-cloud/kms'
             })
         },
         module: {
