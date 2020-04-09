@@ -197,6 +197,7 @@ export function TermsPage () {
             </section>
             <section className={classes.section}>
                 <Typography variant="h5">3. Warunki akcji "Dajże kompa"</Typography>
+                <br />
                 <b>[Dający kompa]</b>
                 <TableContainer>
                     <Table className={classes.table}>
