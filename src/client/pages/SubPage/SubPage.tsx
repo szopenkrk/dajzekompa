@@ -1,5 +1,6 @@
 /* Library */
 import React, { PropsWithChildren } from 'react';
+import clx from 'classnames';
 import { Typography, makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
 
 /* Application files */
@@ -9,6 +10,7 @@ import Partners from 'client/components/Partners';
 
 type Props = PropsWithChildren<{
     title?: string;
+    className?: string;
 }>;
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +59,7 @@ export function SubPage (props: Props) {
     const classes = useStyles();
 
     return (
-        <div className={classes.container}>
+        <div className={clx(classes.container, { [props.className]: !!props.className })}>
             <section className={classes.content}>
                 {props.title && (<Typography variant="h2" className={classes.title}>{props.title}</Typography>)}
                 {props.children}

@@ -93,6 +93,12 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
         };
     }
 
+    function validateSingleField (name: FormField, value?: any) {
+        const result = validateField(name, value || form[name]);
+
+        setValidation({ ...validation, ...result });
+    }
+
     function updateField (name: FormField) {
         return (e: React.ChangeEvent<HTMLInputElement | any>, value?: any) => {
             if (typeof value === 'undefined') value = e.target.value;
@@ -100,12 +106,6 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
 
             setForm({  ...form, [name]: value });
         };
-    }
-
-    function validateSingleField (name: FormField, value?: any) {
-        const result = validateField(name, value || form[name]);
-
-        setValidation({ ...validation, ...result });
     }
 
     function setDirty (name: FormField) {

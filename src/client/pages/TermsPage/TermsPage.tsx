@@ -42,7 +42,7 @@ export function TermsPage () {
 
     return (
         <SubPage>
-            <Typography variant="h5" className={classes.title}>Regulamin serwisu internetowego akcji "Dajże kompa"</Typography>
+            <Typography variant="h5" className={classes.title}>Regulamin serwisu internetowego akcji &quot;Dajże kompa&quot;</Typography>
             <section className={classes.section}>
                 Niniejszy Regulamin określa zasady świadczenia i korzystania z usług świadczonych drogą
                 elektroniczną oferowanych przez Właściciela Serwisu za pośrednictwem strony internetowej
@@ -196,7 +196,7 @@ export function TermsPage () {
                 </TableContainer>
             </section>
             <section className={classes.section}>
-                <Typography variant="h5">3. Warunki akcji "Dajże kompa"</Typography>
+                <Typography variant="h5">3. Warunki akcji &quot;Dajże kompa&quot;</Typography>
                 <br />
                 <b>[Dający kompa]</b>
                 <TableContainer>
