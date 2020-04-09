@@ -2,6 +2,7 @@
 import React from 'react';
 import clx from 'classnames';
 import { makeStyles, Button, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 /* Application files */
 import arrowRight from 'client/assets/images/icon-arrow-right.svg';
@@ -72,16 +73,17 @@ export function HeroBanner () {
                 <div className={classes.half}>
                     <Typography variant="h2" className={classes.title}>DAJŻE KOMPA</Typography>
                     <Typography variant="subtitle1" className={classes.description}>
-                        <b>Opis akcji:</b><br/>
                         W związku z pandemią koronawirusa szkoły realizują naukę z uczniami on-line. Niestety,
-                        <b>wszystkie dzieci, a także nie wszyscy nauczyciele</b>mają dostęp do komputera czy tabletu.<br/>
-                        <b>#DajżeKompa</b> - jeśli posiadasz <b>niepotrzebny sprzęt komputerowy, przekaż go</b> na potrzeby naszej akcji. Będziemy razem walczyć z wykluczeniem cyfrowym.
+                        <b>wszystkie dzieci, a także nie wszyscy nauczyciele</b> mają dostęp do komputera czy tabletu.
+                        <p>
+                            <b>#DajżeKompa</b> - jeśli posiadasz <b>niepotrzebny sprzęt komputerowy, przekaż go</b> na potrzeby naszej akcji. Będziemy razem walczyć z wykluczeniem cyfrowym.
+                        </p>
                     </Typography>
-                    <Button color="primary" endIcon={<img src={arrowRight} />} className={classes.linkButton}>Czytaj więcej</Button>
+                    <Button color="primary" endIcon={<img src={arrowRight} />} className={classes.linkButton}><Link to="/o-akcji">Czytaj więcej</Link></Button>
                     <Separator />
                     <div className={classes.actions}>
-                        <Button variant="contained" color="primary">Podaruj kompa</Button>
-                        <Button variant="outlined" color="primary">Zgłoś potrzebę</Button>
+                        <Button variant="contained" color="primary"><Link to="/podaruj-kompa">Podaruj kompa</Link></Button>
+                        <Button variant="outlined" color="primary"><Link to="/zglos-potrzebe">Zgłoś potrzebę</Link></Button>
                     </div>
                 </div>
                 <div className={classes.half}>
