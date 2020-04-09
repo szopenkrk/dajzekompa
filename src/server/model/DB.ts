@@ -5,7 +5,8 @@ export enum DBTable {
     DEVICES = 'devices',
     PHOTOS = 'photos',
     RECEIVERS = 'receivers',
-    CITIES = 'cities'
+    CITIES = 'cities',
+    USERS = 'users'
 }
 
 export type DBSchemaDevice = {
@@ -43,3 +44,11 @@ export type DBSchemaPhoto = {
 export type DBSchemaReceiver = {
     id?: string;
 } & Receiver;
+
+export type DBSchemaUser = {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+};
