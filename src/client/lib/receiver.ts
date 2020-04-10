@@ -1,11 +1,12 @@
 /* Models */
 import { Locker } from 'common/model/Locker';
-import { Receiver } from 'common/model/Receiver';
+import { Receiver, ReceiverPersonType } from 'common/model/Receiver';
 
 /* Application files */
-import { Validator, isRequired } from 'client/lib/validators';
+import { Validator, isRequired, isRequiredIf } from 'client/lib/validators';
 
 export enum FormField {
+    PERSON_TYPE = 'personType',
     FIRST_NAME = 'firstName',
     LAST_NAME = 'lastName',
     EMAIL = 'email',
@@ -15,10 +16,12 @@ export enum FormField {
     CITY = 'city',
     POSTCODE = 'postcode',
     LOCKER = 'locker',
-    SCHOOL = 'school'
+    SCHOOL = 'school',
+    SCHOOL_GRADE = 'grade'
 }
 
 export type FormModel = {
+    [FormField.PERSON_TYPE]: ReceiverPersonType;
     [FormField.FIRST_NAME]: string;
     [FormField.LAST_NAME]: string;
     [FormField.EMAIL]: string;
@@ -29,6 +32,7 @@ export type FormModel = {
     [FormField.POSTCODE]: string;
     [FormField.LOCKER]: Locker;
     [FormField.SCHOOL]: string;
+    [FormField.SCHOOL_GRADE]: string;
 }
 
 export type FormList<T> = {
@@ -47,6 +51,7 @@ export function create<T> (value: T): Partial<FormList<T>> {
 
 export function emptyModel (base: Partial<FormModel> = {}): FormModel {
     return Object.assign({
+        [FormField.PERSON_TYPE]: ReceiverPersonType.STUDENT,
         [FormField.FIRST_NAME]: '',
         [FormField.LAST_NAME]: '',
         [FormField.EMAIL]: '',
@@ -56,12 +61,14 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.CITY]: '',
         [FormField.POSTCODE]: '',
         [FormField.LOCKER]: null,
-        [FormField.SCHOOL]: ''
+        [FormField.SCHOOL]: '',
+        [FormField.SCHOOL_GRADE]: '',
     }, base);
 }
 
 export function getValidators (field: FormField): Validator[] {
     switch (field) {
+        case FormField.PERSON_TYPE: return [ isRequired() ];
         case FormField.FIRST_NAME: return [ isRequired() ];
         case FormField.LAST_NAME: return [ isRequired() ];
         case FormField.EMAIL: return [ isRequired() ];
@@ -72,6 +79,7 @@ export function getValidators (field: FormField): Validator[] {
         case FormField.POSTCODE: return [ isRequired() ];
         case FormField.LOCKER: return [ isRequired() ];
         case FormField.SCHOOL: return [ isRequired() ];
+        case FormField.SCHOOL_GRADE: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT) ];
         default: return [];
     }
 }
@@ -80,15 +88,15 @@ export function validateForm (form: FormModel): ValidationResult {
     return Object.values(FormField).map((field) => {
         const value = form[field];
 
-        return validateField(field, value);
+        return validateField(field, value, { form });
     }).reduce((all, current) => {
         return Object.assign(all, current);
     }, {});
 }
 
-export function validateField (field: FormField, value: any): ValidationResult {
+export function validateField (field: FormField, value: any, options: any): ValidationResult {
     const validators = getValidators(field);
-    const results = validators.map((v) => v(value));
+    const results = validators.map((v) => v(value, options));
     const error = results.find((r) => !!r) || false;
 
     return { [field]: error };

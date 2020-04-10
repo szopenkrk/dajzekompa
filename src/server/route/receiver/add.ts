@@ -3,7 +3,6 @@ import joi from '@hapi/joi';
 
 /* Models */
 import { Request, Response } from 'express';
-import { PersonType } from 'common/model/Device';
 import { APIRoute } from 'server/model/API';
 import { HTTPCode, HTTPMethod } from 'server/model/HTTP';
 import { DBTable, DBSchemaReceiver } from 'server/model/DB';
@@ -12,7 +11,7 @@ import { DBTable, DBSchemaReceiver } from 'server/model/DB';
 import knex from 'server/database/knex';
 import Log from 'server/controller/Log';
 import { closeWithError, respondSuccess, validateRequestPayload } from 'server/lib/http';
-import { Receiver } from 'common/model/Receiver';
+import { Receiver, ReceiverPersonType } from 'common/model/Receiver';
 
 function buildQueryReceiverObject (receiver: Receiver): DBSchemaReceiver {
     return {
@@ -22,16 +21,18 @@ function buildQueryReceiverObject (receiver: Receiver): DBSchemaReceiver {
 }
 
 const schema = joi.object({
+    personType: joi.string().valid(...[ ReceiverPersonType.STUDENT, ReceiverPersonType.TEACHER ]).required(),
     email: joi.string().email().required(),
     phone: joi.string().regex(/^\+[0-9]{11}$/).required(),
-    firstName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),
-    lastName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),
+    firstName: joi.string().required(),
+    lastName: joi.string().required(),
     street: joi.string().required(),
     streetNumber: joi.string().required(),
     city: joi.string().required(),
     postcode: joi.string().required(),
     locker: joi.string().required(),
-    school: joi.string().required()
+    school: joi.string().required(),
+    grade: joi.when('personType', { is: ReceiverPersonType.STUDENT, then: joi.string().required() }),
 });
 
 export default {

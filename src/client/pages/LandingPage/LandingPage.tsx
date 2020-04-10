@@ -43,6 +43,9 @@ const useStyles = makeStyles(() => ({
     },
     separator: {
         margin: '20px 0'
+    },
+    separatorThin: {
+        margin: 0
     }
 }));
 
@@ -57,7 +60,7 @@ export function LandingPage () {
                 {location.pathname === '/' && <HeroBanner />}
             </header>
             <main className={clx(classes.container, classes.main)}>
-                <Separator />
+                <Separator className={classes.separatorThin} />
                 <Switch>
                     <Route path="/" exact={true} component={HomePage} />
                     <Route path="/o-akcji" exact={true} component={AboutPage} />

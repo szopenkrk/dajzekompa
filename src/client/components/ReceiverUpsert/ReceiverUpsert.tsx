@@ -1,14 +1,14 @@
 /* Libraries */
 import React, { useState, useEffect } from 'react';
 import { useSelector as reduxUseSelector, useDispatch as reduxUseDispatch, TypedUseSelectorHook } from 'react-redux';
-import { TextField, makeStyles, useTheme, Button, TextFieldProps } from '@material-ui/core';
+import { TextField, makeStyles, useTheme, Button, TextFieldProps, FormControl, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
-import { Receiver } from 'common/model/Receiver';
+import { Receiver, ReceiverPersonType } from 'common/model/Receiver';
 // import { Locker } from 'common/model/Locker';
 import { ReduxState } from 'client/model/Redux';
 // import { ReceiverForm } from 'client/model/Form';
@@ -36,6 +36,16 @@ const useStyles = makeStyles((theme) => ({
     input: {
         margin: `${theme.spacing(1)}px 0`,
         marginTop: 0
+    },
+    radioGroup: {
+        width: '100%',
+        margin: `${theme.spacing(1)}px 0`,
+        '& > div': {
+            flexDirection: 'row'
+        },
+        '& label': {
+            flex: 1
+        }
     }
 }));
 
@@ -94,7 +104,7 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
     }
 
     function validateSingleField (name: FormField, value?: any) {
-        const result = validateField(name, value || form[name]);
+        const result = validateField(name, value || form[name], { form });
 
         setValidation({ ...validation, ...result });
     }
@@ -150,6 +160,12 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
             {error && <ErrorBox>{error}</ErrorBox>}
             {loading && <LoadingOverlay />}
             <form onSubmit={onSubmit} className={classes.form}>
+                <FormControl component="fieldset" className={classes.radioGroup}>
+                    <RadioGroup name={FormField.PERSON_TYPE} defaultValue={ReceiverPersonType.STUDENT} onChange={updateField(FormField.PERSON_TYPE)}>
+                        <FormControlLabel control={<Radio autoFocus />} label="Uczeń" value={ReceiverPersonType.STUDENT} />
+                        <FormControlLabel control={<Radio />} label="Nauczyciel" value={ReceiverPersonType.TEACHER} />
+                    </RadioGroup>
+                </FormControl>
                 <Autocomplete options={schools} getOptionLabel={(option) => option} onChange={updateField(FormField.SCHOOL)} onBlur={setDirty(FormField.SCHOOL)} value={form.school} renderInput={(props) => (
                     <TextField
                         {...props}
@@ -158,10 +174,10 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
                         className={classes.input}
                         error={!!validation[FormField.SCHOOL]}
                         helperText={validation[FormField.SCHOOL]}
-                        autoFocus
                         fullWidth
                     />
                 )} />
+                {form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT && createInputElement(FormField.SCHOOL_GRADE, 'Klasa', true, false)}
                 {createInputElement(FormField.FIRST_NAME, 'Imię', true, false)}
                 {createInputElement(FormField.LAST_NAME, 'Nazwisko', true, false)}
                 {createInputElement(FormField.EMAIL, 'E-mail', true, false)}

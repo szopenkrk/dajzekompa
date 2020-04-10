@@ -1,5 +1,6 @@
 export type Receiver = {
     id?: string;
+    personType: ReceiverPersonType;
     firstName: string;
     lastName: string;
     email: string;
@@ -12,3 +13,8 @@ export type Receiver = {
     school: string;
     complete: boolean;
 };
+
+export enum ReceiverPersonType {
+    STUDENT = 'STUDENT',
+    TEACHER = 'TEACHER'
+}
