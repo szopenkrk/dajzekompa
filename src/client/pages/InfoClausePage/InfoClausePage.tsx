@@ -1,9 +1,10 @@
 /* Libraries */
 import React from 'react';
+import { makeStyles, Typography } from '@material-ui/core';
 
 /* Application files */
+import Config from 'client/lib/config';
 import SubPage from 'client/pages/SubPage';
-import { makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -35,18 +36,19 @@ const useStyles = makeStyles((theme) => ({
 
 export function InfoClausePage () {
     const classes = useStyles();
+    const mail = Config.CONTACT_EMAIL;
 
     return (
         <SubPage className={classes.container}>
             <Typography variant="h6" className={classes.title}>Klauzula informacyjna dla użytkowników Serwisu</Typography>
             Zgodnie z art 13 ust 1 i 2 RODO niniejszym informujemy, iż:
             <ol>
-                <li>Administratorem Pani/Pana danych osobowych jest Fundacja Poland Business Run z siedzibą w Krakowie (31-137), ul Siemiradzkiego 17/ 2, posiadająca REGON: 364424465, NIP: 6762507232, wpisana do rejestru stowarzyszeń, innych organizacji społecznych i zawodowych, fundacji oraz samodzielnych publicznych zakładów opieki zdrowotnej Krajowego Rejestru Sądowego pod numerem KRS 0000617320, której akta rejestrowe przechowywane są przez Sąd Rejonowy dla Krakowa – Śródmieścia w Krakowie, XI Wydział Gospodarczy KRS, tel. 123957811, e-mail: biuro@polandbusinessrun.pl</li>
+                <li>Administratorem Pani/Pana danych osobowych jest Fundacja Poland Business Run z siedzibą w Krakowie (31-137), ul Siemiradzkiego 17/ 2, posiadająca REGON: 364424465, NIP: 6762507232, wpisana do rejestru stowarzyszeń, innych organizacji społecznych i zawodowych, fundacji oraz samodzielnych publicznych zakładów opieki zdrowotnej Krajowego Rejestru Sądowego pod numerem KRS 0000617320, której akta rejestrowe przechowywane są przez Sąd Rejonowy dla Krakowa – Śródmieścia w Krakowie, XI Wydział Gospodarczy KRS, tel. 123957811, e-mail: {mail}}</li>
                 <li>Administrator wyznaczył Inspektora Ochrony Danych z którym można się kontaktować pod adresem email: iod@iods.pl.</li>
                 <li>
-                    Pani/Pan dane osobowe  podane w formularzu będą przetwarzane wyłącznie w celu:
+                    Pani/Pan dane osobowe podane w formularzu ​będą przetwarzane wyłącznie w celu:
                     <ol className={classes.bracketedList}>
-                        <li>zgłoszenia uczestnictwa w akcji „Dajże Kompa”, zmierzającego do zawarcia umowy, przekazania darowizny lub podejmowania innych działań na Pani/Pana żądanie przed zawarciem umowy (podstawa prawna: art. 6 ust. 1 lit b RODO),</li>
+                        <li>zgłoszenia uczestnictwa w akcji „Dajże Kompa”, zmierzającego do zawarcia umowy, przekazania darowizny ​lub podejmowania innych działań na Pani/Pana żądanie przed zawarciem umowy (podstawa prawna: art. 6 ust. 1 lit b RODO),</li>
                         <li>zgłoszenia uczestnictwa w akcji „Dajże Kompa”, zamierzającego do otrzymania darowizny w postaci sprzętu komputerowego, a także w celu niezbędnego kontaktu w ramach akcji (art. 6 ust. 1 lit. b RODO),</li>
                         <li>weryfikacji zgłoszenia osoby potencjalnie obdarowanej u dyrektorów szkół, pod kątem zgodności z wytycznymi regulaminu (art. 6 ust. 1 lit. a RODO),</li>
                         <li>realizacji obowiązków podatkowych i księgowo-rachunkowych oraz innych obowiązków prawnych ciążących na Administratorze (podstawa prawna: art. 6 ust. 1 lit c RODO),</li>
@@ -60,10 +62,10 @@ export function InfoClausePage () {
                     <ol className={classes.bracketedList}>
                         <li>Dostępu do treści swoich danych osobowych, czyli prawo do uzyskania potwierdzenia czy Administrator przetwarza dane oraz informacji dotyczących takiego przetwarzania,</li>
                         <li>Prawo do sprostowania danych, jeżeli dane przetwarzane przez Administratora są nieprawidłowe lub niekompletne,</li>
-                        <li>Usunięcia lub ograniczenia przetwarzania danych osobowych – w sytuacji gdy przetwarzanie odbywa się na podstawie udzielonej Administratorowi  zgody,</li>
+                        <li>Usunięcia lub ograniczenia przetwarzania danych osobowych – w sytuacji gdy przetwarzanie odbywa się na podstawie udzielonej Administratorowi zgody,</li>
                         <li>Przenoszenia danych,</li>
                         <li>Wniesienie sprzeciwu wobec przetwarzania danych na podstawie uzasadnionego interesu Administratora lub wobec przetwarzania w celu marketingu bezpośredniego,</li>
-                        <li>Cofnięcia zgody w dowolnym momencie bez wpływu na zgodność z prawem przetwarzania, którego dokonano na podstawie zgody przed jej cofnięciem - jeżeli przetwarzanie odbywa się na podstawie udzielonej Administratorowi  zgody, – w przypadkach i na warunkach określonych w Rozporządzeniu ogólnym. Prawa wymienione w pkt 1-6 powyżej można zrealizować poprzez kontakt z Fundacją Poland Business Run, e-mail: biuro@polandbusinessrun.pl</li>
+                        <li>Cofnięcia zgody w dowolnym momencie bez wpływu na zgodność z prawem przetwarzania, którego dokonano na podstawie zgody przed jej cofnięciem - jeżeli przetwarzanie odbywa się na podstawie udzielonej Administratorowi zgody – w przypadkach i na warunkach określonych w Rozporządzeniu ogólnym. Prawa wymienione w pkt 1-6 powyżej można zrealizować poprzez kontakt z Fundacją Poland Business Run, e-mail: {mail}.</li>
                     </ol>
                 </li>
                 <li>Pani/Pana dane osobowe mogą być przekazywane podmiotom przetwarzającym dane osobowe na zlecenie Administratora np. dostawcom usług IT i innym podmiotom przetwarzającym dane w celu określonych przez Administratora - przy czym takie podmioty przetwarzają dane wyłącznie na podstawie umowy z Administratorem.</li>
@@ -73,7 +75,7 @@ export function InfoClausePage () {
                 <li>Dane osobowe nie będą przetwarzane w sposób zautomatyzowany, w tym w formie profilowania.</li>
                 <li>Dane osobowe nie będą przekazywane do organizacji międzynarodowych, jednakże mogą być przekazywane do państw trzecich (m.in. USA) poprzez korzystanie przez Administratora z narzędzi firm mających siedziby lub oddziały poza UE.</li>
             </ol>
-            Administrator dokłada wszelkich starań, aby zapewnić wszelkie środki fizycznej, technicznej i organizacyjnej ochrony danych osobowych przed ich przypadkowym czy umyślnym zniszczeniem, utratą, zmianą, nieuprawnionym ujawnieniem, wykorzystaniem czy dostępem, zgodnie ze wszystkimi obowiązującymi przepisami.
+            Administrator dokłada wszelkich starań, aby zapewnić wszelkie środki fizycznej, technicznej i organizacyjnej ochrony danych osobowych ​przed ich przypadkowym czy umyślnym zniszczeniem, utratą, zmianą, nieuprawnionym ujawnieniem, wykorzystaniem czy dostępem, zgodnie ze wszystkimi obowiązującymi przepisami.
         </SubPage>
     );
 }
