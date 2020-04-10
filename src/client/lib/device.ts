@@ -31,34 +31,38 @@ export enum FormField {
     PHOTOS = 'photos',
     COMMENTS = 'comments',
     CONSENT_TERMS_AND_PRIVACY = 'consentTap',
-    CONSENT_INFO_CLAUSE = 'consentInfc'
+    CONSENT_INFO_CLAUSE = 'consentInfc',
+    CONSENT_DATA_CLEANED = 'consentDtcl',
+    CONSENT_PUBLIC_LIST = 'consentPbl'
 }
 
 export type FormModel = {
-    [FormField.PERSON_TYPE]: DevicePersonType,
-    [FormField.COMPANY_NAME]: string,
-    [FormField.NIP]: string,
-    [FormField.FIRST_NAME]: string,
-    [FormField.LAST_NAME]: string,
-    [FormField.EMAIL]: string,
-    [FormField.STREET]: string,
-    [FormField.STREET_NUMBER]: string,
-    [FormField.CITY]: string,
-    [FormField.POSTCODE]: string,
-    [FormField.BANK_ACCOUNT]: string,
-    [FormField.DEVICE_TYPE]: DeviceType,
-    [FormField.NOTEBOOK_NAME]: string,
-    [FormField.RAM]: string,
-    [FormField.HDD]: string,
-    [FormField.SCREEN_SIZE]: string,
-    [FormField.MONITOR]: boolean,
-    [FormField.CAMERA]: boolean,
-    [FormField.MICROPHONE]: boolean,
-    [FormField.SPEAKERS]: boolean,
-    [FormField.PHOTOS]: string[],
-    [FormField.COMMENTS]: string,
-    [FormField.CONSENT_TERMS_AND_PRIVACY]: boolean,
-    [FormField.CONSENT_INFO_CLAUSE]: boolean
+    [FormField.PERSON_TYPE]: DevicePersonType;
+    [FormField.COMPANY_NAME]: string;
+    [FormField.NIP]: string;
+    [FormField.FIRST_NAME]: string;
+    [FormField.LAST_NAME]: string;
+    [FormField.EMAIL]: string;
+    [FormField.STREET]: string;
+    [FormField.STREET_NUMBER]: string;
+    [FormField.CITY]: string;
+    [FormField.POSTCODE]: string;
+    [FormField.BANK_ACCOUNT]: string;
+    [FormField.DEVICE_TYPE]: DeviceType;
+    [FormField.NOTEBOOK_NAME]: string;
+    [FormField.RAM]: string;
+    [FormField.HDD]: string;
+    [FormField.SCREEN_SIZE]: string;
+    [FormField.MONITOR]: boolean;
+    [FormField.CAMERA]: boolean;
+    [FormField.MICROPHONE]: boolean;
+    [FormField.SPEAKERS]: boolean;
+    [FormField.PHOTOS]: string[];
+    [FormField.COMMENTS]: string;
+    [FormField.CONSENT_TERMS_AND_PRIVACY]: boolean;
+    [FormField.CONSENT_INFO_CLAUSE]: boolean;
+    [FormField.CONSENT_DATA_CLEANED]: boolean;
+    [FormField.CONSENT_PUBLIC_LIST]: boolean;
 }
 
 export type FormList<T> = {
@@ -99,7 +103,9 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.PHOTOS]: [],
         [FormField.COMMENTS]: '',
         [FormField.CONSENT_TERMS_AND_PRIVACY]: false,
-        [FormField.CONSENT_INFO_CLAUSE]: false
+        [FormField.CONSENT_INFO_CLAUSE]: false,
+        [FormField.CONSENT_DATA_CLEANED]: false,
+        [FormField.CONSENT_PUBLIC_LIST]: false
     }, base);
 }
 
@@ -123,6 +129,7 @@ export function getValidators (field: FormField): Validator[] {
         case FormField.SCREEN_SIZE: return [ isRequired() ];
         case FormField.CONSENT_TERMS_AND_PRIVACY: return [ isRequired() ];
         case FormField.CONSENT_INFO_CLAUSE: return [ isRequired() ];
+        case FormField.CONSENT_DATA_CLEANED: return [ isRequired() ];
         default: return [];
     }
 }
@@ -155,11 +162,13 @@ export function sanitize (form: FormModel): Device {
         [FormField.HDD]: parseFloat(form[FormField.HDD]),
         [FormField.SCREEN_SIZE]: parseFloat(form[FormField.SCREEN_SIZE]),
         [FormField.CONSENT_TERMS_AND_PRIVACY]: now,
-        [FormField.CONSENT_INFO_CLAUSE]: now
+        [FormField.CONSENT_INFO_CLAUSE]: now,
+        [FormField.CONSENT_DATA_CLEANED]: now,
+        [FormField.CONSENT_PUBLIC_LIST]: form[FormField.CONSENT_PUBLIC_LIST] ? now : null
     };
 
     device = Object.keys(device).reduce((all, current) => {
-        if (typeof device[current] === 'undefined' || device[current] === '') return all;
+        if (typeof device[current] === 'undefined' || device[current] === '' || device[current] === null) return all;
 
         all[current] = device[current];
 
@@ -194,6 +203,8 @@ export function desanitize (device: Device): FormModel {
         ...device,
         [FormField.CONSENT_TERMS_AND_PRIVACY]: !!device[FormField.CONSENT_TERMS_AND_PRIVACY],
         [FormField.CONSENT_INFO_CLAUSE]: !!device[FormField.CONSENT_INFO_CLAUSE],
+        [FormField.CONSENT_DATA_CLEANED]: !!device[FormField.CONSENT_DATA_CLEANED],
+        [FormField.CONSENT_PUBLIC_LIST]: !!device[FormField.CONSENT_PUBLIC_LIST],
         [FormField.COMPANY_NAME]: device[FormField.COMPANY_NAME] || '',
         [FormField.NIP]: device[FormField.NIP] || '',
         [FormField.NOTEBOOK_NAME]: device[FormField.NOTEBOOK_NAME] || '',

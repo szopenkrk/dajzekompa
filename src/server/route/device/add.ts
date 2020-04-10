@@ -60,7 +60,9 @@ const schema = joi.object({
     nip: joi.when('personType', { is: DevicePersonType.COMPANY, then: joi.string().required() }),
     bankAccount: joi.string().regex(/^[0-9]{26}$/).required(),
     consentTap: joi.number().required(),
-    consentInfc: joi.number().required()
+    consentInfc: joi.number().required(),
+    consentDtcl: joi.number().required(),
+    consentPbl: joi.number().allow(null),
 });
 
 const s3 = new S3({

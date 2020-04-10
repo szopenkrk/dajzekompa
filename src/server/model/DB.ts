@@ -34,6 +34,8 @@ export type DBSchemaDevice = {
     status: DeviceStatus;
     consentTap: number;
     consentInfc: number;
+    consentDtcl: number;
+    consentPbl: number;
 };
 
 export type DBSchemaPhoto = {

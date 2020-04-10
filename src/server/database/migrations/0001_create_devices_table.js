@@ -28,6 +28,8 @@ exports.up = (knex) => {
 
         table.integer('consentTap').notNullable();
         table.integer('consentInfc').notNullable();
+        table.integer('consentDtcl').notNullable();
+        table.integer('consentPbl');
 
         table.index(['id']);
     });

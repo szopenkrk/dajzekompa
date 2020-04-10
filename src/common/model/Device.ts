@@ -22,6 +22,8 @@ export type RawDevice = {
     comments: string;
     consentTap: number;
     consentInfc: number;
+    consentDtcl: number;
+    consentPbl: number;
 };
 
 export type Device = RawDevice & {

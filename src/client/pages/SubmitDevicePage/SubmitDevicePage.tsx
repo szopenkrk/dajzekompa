@@ -95,6 +95,8 @@ export function SubmitDevicePage () {
     const [ validation, setValidation ] = useState({} as ValidationResult);
     const [ pristine, setPristine ] = useState(create(true));
 
+    const url = window.location.host;
+
     async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
@@ -154,8 +156,9 @@ export function SubmitDevicePage () {
 
     function someConsentsNotAgreed () {
         return [
-            !!validation['consentTap'],
-            !!validation['consentInfc'],
+            !!validation[FormField.CONSENT_TERMS_AND_PRIVACY],
+            !!validation[FormField.CONSENT_INFO_CLAUSE],
+            !!validation[FormField.CONSENT_DATA_CLEANED]
         ].every(c => c);
     }
 
@@ -262,6 +265,16 @@ export function SubmitDevicePage () {
                                 <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_INFO_CLAUSE]} onChange={updateField(FormField.CONSENT_INFO_CLAUSE)} />} label={(
                                     <>
                                         Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>. *
+                                    </>
+                                )} />
+                                <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_DATA_CLEANED]} onChange={updateField(FormField.CONSENT_DATA_CLEANED)} />} label={(
+                                    <>
+                                        Oświadczam, że przekazany przeze mnie sprzęt jest wyczyszczony z wszelkich danych osobowych oraz danych firmowych. *
+                                    </>
+                                )} />
+                                <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_PUBLIC_LIST]} onChange={updateField(FormField.CONSENT_PUBLIC_LIST)} />} label={(
+                                    <>
+                                        Wyrażam zgodę na zamieszczenie moich danych osobowych w postaci imię i nazwisko lub nazwa firmy, na liście darczyńców biorących udział w Akcji, na stronie {url}.
                                     </>
                                 )} />
                             </FormGroup>
