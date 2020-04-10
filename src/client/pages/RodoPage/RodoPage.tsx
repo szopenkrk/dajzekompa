@@ -1,5 +1,6 @@
 /* Libraries */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 /* Application files */
 import Config from 'client/lib/config';
@@ -46,6 +47,10 @@ export function RodoPage () {
     const mail = Config.CONTACT_EMAIL;
     const url = window.location.host;
 
+    function getLinkToPage (path: string, text: string, classes: string) {
+        return <Link to={`${url}/#/${path}`} className={classes} target="_blank" rel="noopener norefferer">{text}</Link>;
+    }
+
     return (
         <SubPage className={classes.container}>
             <p>
@@ -53,14 +58,14 @@ export function RodoPage () {
                 <br /><br />
                 <b>Od dnia 25 maja 2018 r.</b> wszystkie podmioty przetwarzające dane osobowe, zobowiązane są do stosowania <i>Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE</i> (Rozporządzenie ogólne o ochronie danych, zwane dalej: <b>RODO</b>).
                 <br /><br />
-                W związku z powyższym administrator serwisu internetowego <a href={url} className={classes.link}>{url}</a> którym jest <b>Fundacja Poland Business Run</b> oraz dla spełnienia obowiązku informacyjnego określonego w art. 13 RODO informuje, że w obrębie serwisu stosuje następującą <b>Politykę prywatności</b>:
+                W związku z powyższym administrator serwisu internetowego {getLinkToPage('', url, classes.link)} którym jest <b>Fundacja Poland Business Run</b> oraz dla spełnienia obowiązku informacyjnego określonego w art. 13 RODO informuje, że w obrębie serwisu stosuje następującą <b>Politykę prywatności</b>:
             </p>
             <br />
             <Typography variant="h6" className={classes.title}>Polityka Prywatności i Ochrony Danych Osobowych RODO w serwisie internetowym {url}</Typography>
             <br />
             <Typography variant="body1" className={classes.title}><b>Informacje ogólne</b></Typography>
             <ol>
-                <li>Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem przez nich ze strony internetowej <b>Fundacji Poland Business Run</b> pod adresem <a href={url} className={classes.link}>{url}</a>.</li>
+                <li>Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem przez nich ze strony internetowej <b>Fundacji Poland Business Run</b> pod adresem {getLinkToPage('', url, classes.link)}.</li>
                 <li>Administratorem danych zawartych w serwisie jest <b>Fundacja Poland Business Run</b>, z siedzibą w ul. Siemiradzkiego 17/2, 31-137.</li>
                 <li>
                     W trosce o bezpieczeństwo powierzonych nam danych osobowych wdrożyliśmy procedury które mają zapobiec naruszenia bezpieczeństwa danych osobowych. Obowiązujące procedury są zgodne z obowiązującym prawem, w szczególności z:
@@ -70,7 +75,7 @@ export function RodoPage () {
                         <li>Ustawą o świadczeniu usług drogą elektroniczną 18 lipca 2002 r.</li>
                     </ol>
                 </li>
-                <li>Dane Osobowe mogą być przetwarzane na podstawie zgody wyrażonej przez Użytkownika oraz w przypadkach, w których przepisy prawa upoważniają Administratora do przetwarzania danych osobowych  w celu realizacji zawartej pomiędzy stronami umowy, na podstawie przepisów prawa lub gdy przetwarzanie jest niezbędne do celów wynikających z prawnie uzasadnionych interesów realizowanych przez Administratora.</li>
+                <li>Dane Osobowe mogą być przetwarzane na podstawie zgody wyrażonej przez Użytkownika oraz w przypadkach, w których przepisy prawa upoważniają Administratora do przetwarzania danych osobowych w celu realizacji zawartej pomiędzy stronami umowy, na podstawie przepisów prawa lub gdy przetwarzanie jest niezbędne do celów wynikających z prawnie uzasadnionych interesów realizowanych przez Administratora.</li>
                 <li>
                     Serwis realizuje funkcje pozyskiwania informacji o użytkownikach i ich zachowaniach:
                     <ol className={classes.bracketedList}>
@@ -78,12 +83,12 @@ export function RodoPage () {
                             Poprzez dobrowolne wprowadzenie do formularza następujących informacji:
                             <ol className={classes.letteredList}>
                                 <li>w zakresie: danych osobowych darczyńcy będącego osobą fizyczną, w tym jednoosobowego przedsiębiorcy tj.: imienia, nazwiska, danych adresowych, adresu e-mail, nr telefonu, danych sprzętu komputerowego, dla celów przekazania sprzętu w postaci komputera („Sprzęt”) w ramach Akcji, skontaktowania się ze mną w tym celu oraz do odbioru Sprzętu – na podstawie art. 6 ust. 1 lit. b RODO;</li>
-                                <li>w zakresie:  danych osobowych osób wskazanych do kontaktu od przedsiębiorcy tj.: imienia, nazwiska, danych adresowych, adresu e-mail, nr telefonu, danych sprzętu w postaci komputera, dla celów przekazania sprzętu w postaci komputera („Sprzęt”), w związku z zawartą umową oraz w ramach Akcji, skontaktowania się ze mną w tym celu oraz do odbioru Sprzętu – na podstawie art. 6 ust. 1 lit. b RODO;</li>
-                                <li>w zakresie: danych osobowych obdarowanego, tj. nauczyciela lub dziecka oraz jego rodzica/opiekuna prawnego tj.: imienia, nazwiska, danych adresowych, adresu e-mail, nr telefonu oraz imienia i nazwiska dziecka (jeżeli dotyczy), nazwa i numer szkoły podstawowej do której uczęszcza dziecko/ w której pracuje nauczyciel  dla celów przekazania darowizny, dostarczenia dziecku Sprzętu w ramach Akcji, skontaktowania się z rodzicem/opiekunem w tym celu oraz do odbioru tego Sprzętu – na podstawie art. 6 ust. 1 lit. b RODO;</li>
+                                <li>w zakresie: danych osobowych osób wskazanych do kontaktu od przedsiębiorcy tj.: imienia, nazwiska, danych adresowych, adresu e-mail, nr telefonu, danych sprzętu w postaci komputera, dla celów przekazania sprzętu w postaci komputera („Sprzęt”), w związku z zawartą umową oraz w ramach Akcji, skontaktowania się ze mną w tym celu oraz do odbioru Sprzętu – na podstawie art. 6 ust. 1 lit. b RODO;</li>
+                                <li>w zakresie: danych osobowych obdarowanego, tj. nauczyciela lub dziecka oraz jego rodzica/opiekuna prawnego tj.: imienia, nazwiska, danych adresowych, adresu e-mail, nr telefonu oraz imienia i nazwiska dziecka (jeżeli dotyczy), nazwa i numer szkoły podstawowej do której uczęszcza dziecko/ w której pracuje nauczyciel dla celów przekazania darowizny, dostarczenia dziecku Sprzętu w ramach Akcji, skontaktowania się z rodzicem/opiekunem w tym celu oraz do odbioru tego Sprzętu – na podstawie art. 6 ust. 1 lit. b RODO;</li>
                                 <li>w zakresie: danych osobowych Kontrahenta oraz osób kontaktowych Kontrahenta: imienia, nazwiska, firmy, adresu prowadzenia działalności gospodarczej, numeru NIP, numeru rachunku bankowego, adresu do korespondencji, adresu e-mail – w celu realizacji obowiązków prawnych ciążących na administratorze w związku z realizacją umowy – tj. na podstawie art. 6 ust. 1 lit c) RODO, a także w celu ustalenia, dochodzenia lub obrony roszczeń (art. 6 ust. 1 lit. f RODO)</li>
                             </ol>
                         </li>
-                        <li>Poprzez kody monitorujące ruch na stronie www (w tym m.in. poprzez zapisywanie w urządzeniach końcowych pliki cookies  - tzw. „ciasteczka”),</li>
+                        <li>Poprzez kody monitorujące ruch na stronie www (w tym m.in. poprzez zapisywanie w urządzeniach końcowych pliki cookies - tzw. „ciasteczka”),</li>
                         <li>Serwis może zapisać ponadto informacje o parametrach połączenia (w tym oznaczenie czasu, adres IP).</li>
                     </ol>
                 </li>
@@ -96,7 +101,7 @@ export function RodoPage () {
             </ol>
             <Typography variant="body1" className={classes.title}><b>Informacje o plikach cookies.</b></Typography>
             <ol>
-                <li>Serwis korzysta z plików cookies  (tzw. „ciasteczka”), które stanowią dane informatyczne, w szczególności pliki tekstowe, które przechowywane są w urządzeniu końcowym Użytkownika Serwisu i przeznaczone są do korzystania ze stron internetowych Serwisu. Cookies zazwyczaj zawierają nazwę strony internetowej, z której pochodzą, czas przechowywania ich na urządzeniu końcowym oraz unikalny numer. Podmiotem zamieszczającym na urządzeniu końcowym Użytkownika Serwisu pliki cookies oraz uzyskującym do nich dostęp jest operator Serwisu {url}.</li>
+                <li>Serwis korzysta z plików cookies (tzw. „ciasteczka”), które stanowią dane informatyczne, w szczególności pliki tekstowe, które przechowywane są w urządzeniu końcowym Użytkownika Serwisu i przeznaczone są do korzystania ze stron internetowych Serwisu. Cookies zazwyczaj zawierają nazwę strony internetowej, z której pochodzą, czas przechowywania ich na urządzeniu końcowym oraz unikalny numer. Podmiotem zamieszczającym na urządzeniu końcowym Użytkownika Serwisu pliki cookies oraz uzyskującym do nich dostęp jest operator Serwisu {getLinkToPage('', url, classes.link)}}.</li>
                 <li>
                     Pliki cookies wykorzystywane są w następujących celach:
                     <ol className={classes.letteredList}>
