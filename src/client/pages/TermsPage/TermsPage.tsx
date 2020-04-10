@@ -200,7 +200,7 @@ export function TermsPage () {
                     Opisana w postanowieniu poprzedzającym cena zostanie zapłacona na rzecz Dającego Kompa przelewem bankowym na rachunek bankowy wskazany przez Dającego Kompa w formularzu, w terminie 30 dni od dnia otrzymania przez Fundację prawidłowo wystawionej faktury. Za dzień dokonania zapłaty Strony uznają dzień obciążenia rachunku Fundacji.
                 </li>
                 <li>
-                    Dający Kompa może zrzec się należnego mu wynagrodzenia i przekazać je na cele statutowe Fundacji poprzez wypełnienie formularza umowy darowizny otrzymanego od Fundacji w wiadomości e-mail po zgłoszeniu Sprzętu za pośrednictwem Serwisu.
+                    Dający Kompa może przekazać należne mu wynagrodzenie na cele statutowe Fundacji poprzez wypełnienie formularza umowy darowizny otrzymanego od Fundacji w wiadomości e-mail po zgłoszeniu Sprzętu za pośrednictwem Serwisu.
                 </li>
                 <li>
                     Wraz z informacją o pomyślnej weryfikacji zgłoszenia Dający Kompa otrzyma Etykietę z adresem wysyłki Sprzętu (w formie elektronicznej). Dający Kompa:
