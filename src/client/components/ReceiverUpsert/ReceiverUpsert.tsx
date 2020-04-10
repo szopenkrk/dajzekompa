@@ -25,6 +25,7 @@ import { FormField, ValidationResult, emptyModel, validateForm, validateField, c
 type Props = {
     onComplete?: (receiver: Receiver) => void;
     receiver?: Receiver;
+    noConsents?: boolean;
 };
 
 const useSelector = reduxUseSelector as TypedUseSelectorHook<ReduxState>;
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function ReceiverUpsert ({ onComplete, receiver }: Props) {
+export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
     const classes = useStyles();
     const dispatch = useDispatch();
     const theme = useTheme();
@@ -78,7 +79,20 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
     if (receiver && !form.locker) {
         const locker = lockers.find((l) => l.id === receiver.locker);
 
-        if (locker) setForm(emptyModel(desanitize(receiver, lockers)));
+        if (locker) {
+            const base = desanitize(receiver, lockers);
+            const model = emptyModel({
+                ...base,
+                ...(noConsents ? {
+                    consentTap: true,
+                    consentInfc: true,
+                    consentSchv: true,
+                    consentCrtr: true
+                } : {})
+            });
+
+            setForm(model);
+        }
     }
 
     async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
@@ -218,31 +232,33 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
                         fullWidth
                     />
                 )} />
-                <FormControl className={classes.consents} error={someConsentsNotAgreed()}>
-                    <FormLabel component="legend">Wymagane zgody:</FormLabel>
-                    <FormGroup>
-                        <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_TERMS_AND_PRIVACY]} onChange={updateField(FormField.CONSENT_TERMS_AND_PRIVACY)} />} label={(
-                            <>
-                                Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/rodo" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>. *
-                            </>
-                        )} />
-                        <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_INFO_CLAUSE]} onChange={updateField(FormField.CONSENT_INFO_CLAUSE)} />} label={(
-                            <>
-                                Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>. *
-                            </>
-                        )} />
-                        <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_SCHOOL_VERIFICATION]} onChange={updateField(FormField.CONSENT_SCHOOL_VERIFICATION)} />} label={(
-                            <>
-                                Wyrażam zgodę na weryfikację mojego zgłoszenia u właściwego dyrektora szkoły, w celu potwierdzenia czy przysługuje mi sprzęt zgodnie z regulaminem Akcji  „Dajże Kompa”. *
-                            </>
-                        )} />
-                        <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_CARETAKER]} onChange={updateField(FormField.CONSENT_CARETAKER)} />} label={(
-                            <>
-                                Oświadczam, że jestem opiekunem prawnym/rodzicem dziecka, którego dane zostały przeze mnie podane w formularzu. *
-                            </>
-                        )} />
-                    </FormGroup>
-                </FormControl>
+                {!noConsents && (
+                    <FormControl className={classes.consents} error={someConsentsNotAgreed()}>
+                        <FormLabel component="legend">Wymagane zgody:</FormLabel>
+                        <FormGroup>
+                            <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_TERMS_AND_PRIVACY]} onChange={updateField(FormField.CONSENT_TERMS_AND_PRIVACY)} />} label={(
+                                <>
+                                    Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/rodo" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>. *
+                                </>
+                            )} />
+                            <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_INFO_CLAUSE]} onChange={updateField(FormField.CONSENT_INFO_CLAUSE)} />} label={(
+                                <>
+                                    Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>. *
+                                </>
+                            )} />
+                            <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_SCHOOL_VERIFICATION]} onChange={updateField(FormField.CONSENT_SCHOOL_VERIFICATION)} />} label={(
+                                <>
+                                    Wyrażam zgodę na weryfikację mojego zgłoszenia u właściwego dyrektora szkoły, w celu potwierdzenia czy przysługuje mi sprzęt zgodnie z regulaminem Akcji  „Dajże Kompa”. *
+                                </>
+                            )} />
+                            <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_CARETAKER]} onChange={updateField(FormField.CONSENT_CARETAKER)} />} label={(
+                                <>
+                                    Oświadczam, że jestem opiekunem prawnym/rodzicem dziecka, którego dane zostały przeze mnie podane w formularzu. *
+                                </>
+                            )} />
+                        </FormGroup>
+                    </FormControl>
+                )}
                 <Button variant="contained" color="primary" type="submit" fullWidth>{receiver ? 'Zaktualizuj' : 'Dodaj'}</Button>
             </form>
         </>

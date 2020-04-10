@@ -45,6 +45,12 @@ export function add (form: FormModel): ReduxThunkAction<Receiver> {
 export function update (id: string, form: FormModel): ReduxThunkAction<Receiver> {
     return async (dispatch) => {
         const receiver = sanitize(form);
+
+        delete receiver.consentTap;
+        delete receiver.consentInfc;
+        delete receiver.consentSchv;
+        delete receiver.consentCrtr;
+
         const result = await request<Receiver>('PUT', `/receivers/${id}`, receiver);
 
         if (loaded) {

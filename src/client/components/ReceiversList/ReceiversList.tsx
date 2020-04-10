@@ -166,7 +166,7 @@ export function ReceiversList () {
                         </IconButton>
                     </DialogTitle>
                     <DialogContent className={classes.dialogContent}>
-                        <ReceiverUpsert onComplete={toggleAddDialog(false)} {...(selectedReceiver ? { receiver: selectedReceiver } : {})} />
+                        <ReceiverUpsert noConsents onComplete={toggleAddDialog(false)} {...(selectedReceiver ? { receiver: selectedReceiver } : {})} />
                     </DialogContent>
                 </Dialog>
             )}
