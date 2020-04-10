@@ -1,7 +1,7 @@
 /* Libraries */
 import React, { useState, useEffect } from 'react';
 import { useSelector as reduxUseSelector, useDispatch as reduxUseDispatch, TypedUseSelectorHook } from 'react-redux';
-import { TextField, makeStyles, useTheme, Button, TextFieldProps, FormControl, RadioGroup, FormControlLabel, Radio, FormGroup, Checkbox, FormLabel } from '@material-ui/core';
+import { TextField, makeStyles, useTheme, Button, TextFieldProps, FormControl, RadioGroup, FormControlLabel, Radio, FormGroup, Checkbox, FormLabel, Typography } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { Link } from 'react-router-dom';
 
@@ -52,6 +52,10 @@ const useStyles = makeStyles((theme) => ({
     link: {
         color: theme.palette.primary.main,
         textDecoration: 'underline'
+    },
+    title: {
+        textAlign: 'center',
+        padding: `${theme.spacing(1)}px 0`
     },
     consents: {
         padding: `${theme.spacing(2)}px 0`,
@@ -215,6 +219,13 @@ export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
                 {form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT && createInputElement(FormField.SCHOOL_GRADE, 'Klasa', true, false)}
                 {createInputElement(FormField.FIRST_NAME, 'Imię', true, false)}
                 {createInputElement(FormField.LAST_NAME, 'Nazwisko', true, false)}
+                {form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT && (
+                    <>
+                        <Typography variant="h6" className={classes.title}>Dane opiekuna</Typography>
+                        {createInputElement(FormField.CARETAKER_FIRST_NAME, 'Imię opiekuna', true, false)}
+                        {createInputElement(FormField.CARETAKER_LAST_NAME, 'Nazwisko opiekuna', true, false)}
+                    </>
+                )}
                 {createInputElement(FormField.EMAIL, 'E-mail', true, false)}
                 {createInputElement(FormField.PHONE, 'Numer telefonu', true, false)}
                 {createInputElement(FormField.STREET, 'Ulica', true, false, getHorizontalInputStyles(75, true))}

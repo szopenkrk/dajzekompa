@@ -29,24 +29,23 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         textAlign: 'center'
     },
+    radioGroup: {
+        width: '100%',
+        margin: `${theme.spacing(1)}px 0`,
+        '& > div': {
+            flexDirection: 'row'
+        },
+        '& label': {
+            flex: 1
+        }
+    },
     subtitle: {
         padding: '20px 0'
     },
-    formSection: {
-    },
     input: {
         width: '100%',
-        margin: `${theme.spacing(1)}px 0`
-    },
-    radios: {
-        flexDirection: 'row'
-    },
-    radio: {
-        width: '50%',
-        margin: 0,
-        '& > span:first-of-type': {
-            paddingLeft: 0
-        }
+        margin: `${theme.spacing(1)}px 0`,
+        marginTop: 0
     },
     link: {
         color: theme.palette.primary.main,
@@ -203,11 +202,11 @@ export function SubmitDevicePage () {
             )}
             {!complete && (
                 <form onSubmit={onSubmit} noValidate autoComplete="off" className={classes.form}>
-                    <section className={classes.formSection}>
-                        <FormControl component="fieldset" className={classes.input}>
-                            <RadioGroup name={FormField.PERSON_TYPE} defaultValue={DevicePersonType.PERSON} className={classes.radios} onChange={updateField(FormField.PERSON_TYPE)}>
-                                <FormControlLabel control={<Radio autoFocus />} label="Osoba prywatna" value={DevicePersonType.PERSON} className={classes.radio} />
-                                <FormControlLabel control={<Radio />} label="Firma" value={DevicePersonType.COMPANY} className={classes.radio} />
+                    <section>
+                        <FormControl component="fieldset" className={classes.radioGroup}>
+                            <RadioGroup name={FormField.PERSON_TYPE} defaultValue={DevicePersonType.PERSON} onChange={updateField(FormField.PERSON_TYPE)}>
+                                <FormControlLabel control={<Radio autoFocus />} label="Osoba prywatna" value={DevicePersonType.PERSON} />
+                                <FormControlLabel control={<Radio />} label="Firma" value={DevicePersonType.COMPANY} />
                             </RadioGroup>
                         </FormControl>
                         {form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY && createInputElement(FormField.COMPANY_NAME, 'Nazwa firmy')}
@@ -222,11 +221,11 @@ export function SubmitDevicePage () {
                         {createInputElement(FormField.BANK_ACCOUNT, 'Numer konta')}
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
-                    <section className={classes.formSection}>
-                        <FormControl component="fieldset" className={classes.input}>
-                            <RadioGroup name={FormField.DEVICE_TYPE} defaultValue={DeviceType.NOTEBOOK} className={classes.radios} onChange={updateField(FormField.DEVICE_TYPE)}>
-                                <FormControlLabel control={<Radio />} label="Laptop" value={DeviceType.NOTEBOOK} className={classes.radio} />
-                                <FormControlLabel control={<Radio />} label="Komputer stacjonarny" value={DeviceType.DESKTOP} className={classes.radio} />
+                    <section>
+                        <FormControl component="fieldset" className={classes.radioGroup}>
+                            <RadioGroup name={FormField.DEVICE_TYPE} defaultValue={DeviceType.NOTEBOOK} onChange={updateField(FormField.DEVICE_TYPE)}>
+                                <FormControlLabel control={<Radio />} label="Laptop" value={DeviceType.NOTEBOOK} />
+                                <FormControlLabel control={<Radio />} label="Komputer stacjonarny" value={DeviceType.DESKTOP} />
                             </RadioGroup>
                         </FormControl>
                         {form[FormField.DEVICE_TYPE] === DeviceType.NOTEBOOK && createInputElement(FormField.NOTEBOOK_NAME, 'Producent i model')}
@@ -246,11 +245,11 @@ export function SubmitDevicePage () {
                         )}
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Zdjęcia</Typography>
-                    <section className={classes.formSection}>
+                    <section>
                         <PhotoUploader onChange={updateField(FormField.PHOTOS)} mime={['image/jpeg', 'image/png', 'image/bmp']} maxSize={3145728} />
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Dodatkowe informacje</Typography>
-                    <section className={classes.formSection}>
+                    <section>
                         <TextField variant="outlined" label="Dodatkowe informacje i komentarze" className={classes.input} onChange={updateField(FormField.COMMENTS)} multiline rows={3} />
                     </section>
                     <section style={{ marginTop: theme.spacing(2) }}>

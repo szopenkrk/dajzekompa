@@ -26,6 +26,8 @@ const schema = joi.object({
     phone: joi.string().regex(/^\+[0-9]{11}$/).required(),
     firstName: joi.string().required(),
     lastName: joi.string().required(),
+    caretakerFirstName: joi.when('personType', { is: ReceiverPersonType.STUDENT, then: joi.string().required() }),
+    caretakerLastName: joi.when('personType', { is: ReceiverPersonType.STUDENT, then: joi.string().required() }),
     street: joi.string().required(),
     streetNumber: joi.string().required(),
     city: joi.string().required(),

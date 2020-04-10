@@ -9,6 +9,8 @@ import { Validator, isRequired, isRequiredIf } from 'client/lib/validators';
 export enum FormField {
     PERSON_TYPE = 'personType',
     FIRST_NAME = 'firstName',
+    CARETAKER_FIRST_NAME = 'caretakerFirstName',
+    CARETAKER_LAST_NAME = 'caretakerLastName',
     LAST_NAME = 'lastName',
     EMAIL = 'email',
     PHONE = 'phone',
@@ -29,6 +31,8 @@ export type FormModel = {
     [FormField.PERSON_TYPE]: ReceiverPersonType;
     [FormField.FIRST_NAME]: string;
     [FormField.LAST_NAME]: string;
+    [FormField.CARETAKER_FIRST_NAME]: string;
+    [FormField.CARETAKER_LAST_NAME]: string;
     [FormField.EMAIL]: string;
     [FormField.PHONE]: string;
     [FormField.STREET]: string;
@@ -63,6 +67,8 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.PERSON_TYPE]: ReceiverPersonType.STUDENT,
         [FormField.FIRST_NAME]: '',
         [FormField.LAST_NAME]: '',
+        [FormField.CARETAKER_FIRST_NAME]: '',
+        [FormField.CARETAKER_LAST_NAME]: '',
         [FormField.EMAIL]: '',
         [FormField.PHONE]: '',
         [FormField.STREET]: '',
@@ -84,6 +90,8 @@ export function getValidators (field: FormField): Validator[] {
         case FormField.PERSON_TYPE: return [ isRequired() ];
         case FormField.FIRST_NAME: return [ isRequired() ];
         case FormField.LAST_NAME: return [ isRequired() ];
+        case FormField.CARETAKER_FIRST_NAME: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT) ];
+        case FormField.CARETAKER_LAST_NAME: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT) ];
         case FormField.EMAIL: return [ isRequired() ];
         case FormField.PHONE: return [ isRequired() ];
         case FormField.STREET: return [ isRequired() ];
@@ -121,6 +129,14 @@ export function validateField (field: FormField, value: any, options: any): Vali
 
 export function sanitize (form: FormModel): Receiver {
     const now = Math.ceil(Date.now() / 1000);
+
+    form = { ...form };
+
+    if (form[FormField.PERSON_TYPE] !== ReceiverPersonType.STUDENT) {
+        delete form[FormField.SCHOOL_GRADE];
+        delete form[FormField.CARETAKER_FIRST_NAME];
+        delete form[FormField.CARETAKER_LAST_NAME];
+    }
 
     return {
         ...form,

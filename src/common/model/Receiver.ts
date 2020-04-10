@@ -3,6 +3,8 @@ export type Receiver = {
     personType: ReceiverPersonType;
     firstName: string;
     lastName: string;
+    caretakerFirstName: string;
+    caretakerLastName: string;
     email: string;
     phone: string;
     street: string;

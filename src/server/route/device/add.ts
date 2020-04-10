@@ -62,7 +62,7 @@ const schema = joi.object({
     consentTap: joi.number().required(),
     consentInfc: joi.number().required(),
     consentDtcl: joi.number().required(),
-    consentPbl: joi.number().allow(null),
+    consentPbl: joi.number()
 });
 
 const s3 = new S3({
