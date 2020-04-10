@@ -33,6 +33,10 @@ const schema = joi.object({
     locker: joi.string().required(),
     school: joi.string().required(),
     grade: joi.when('personType', { is: ReceiverPersonType.STUDENT, then: joi.string().required() }),
+    consentTap: joi.number().required(),
+    consentInfc: joi.number().required(),
+    consentSchv: joi.number().required(),
+    consentCrtr: joi.number().required()
 });
 
 export default {

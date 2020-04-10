@@ -11,7 +11,12 @@ export type Receiver = {
     postcode: string;
     locker: string;
     school: string;
+    grade: string;
     complete: boolean;
+    consentTap: number;
+    consentInfc: number;
+    consentSchv: number;
+    consentCrtr: number;
 };
 
 export enum ReceiverPersonType {

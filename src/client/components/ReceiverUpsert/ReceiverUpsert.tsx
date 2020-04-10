@@ -1,8 +1,9 @@
 /* Libraries */
 import React, { useState, useEffect } from 'react';
 import { useSelector as reduxUseSelector, useDispatch as reduxUseDispatch, TypedUseSelectorHook } from 'react-redux';
-import { TextField, makeStyles, useTheme, Button, TextFieldProps, FormControl, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
+import { TextField, makeStyles, useTheme, Button, TextFieldProps, FormControl, RadioGroup, FormControlLabel, Radio, FormGroup, Checkbox, FormLabel } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
+import { Link } from 'react-router-dom';
 
 /* Models */
 import { Action } from 'redux';
@@ -19,7 +20,7 @@ import { list as listLockers } from 'client/actions/lockers';
 import { list as listSchools } from 'client/actions/schools';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import ErrorBox from 'client/components/ErrorBox';
-import { FormField, ValidationResult, emptyModel, validateForm, validateField, create } from 'client/lib/receiver';
+import { FormField, ValidationResult, emptyModel, validateForm, validateField, create, desanitize } from 'client/lib/receiver';
 
 type Props = {
     onComplete?: (receiver: Receiver) => void;
@@ -46,6 +47,17 @@ const useStyles = makeStyles((theme) => ({
         '& label': {
             flex: 1
         }
+    },
+    link: {
+        color: theme.palette.primary.main,
+        textDecoration: 'underline'
+    },
+    consents: {
+        padding: `${theme.spacing(2)}px 0`,
+        '& label': {
+            padding: `${theme.spacing(1)}px 0`,
+            alignItems: 'start'
+        }
     }
 }));
 
@@ -66,7 +78,7 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
     if (receiver && !form.locker) {
         const locker = lockers.find((l) => l.id === receiver.locker);
 
-        if (locker) setForm(emptyModel({ ...receiver, locker }));
+        if (locker) setForm(emptyModel(desanitize(receiver, lockers)));
     }
 
     async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
@@ -145,6 +157,15 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
         );
     }
 
+    function someConsentsNotAgreed () {
+        return [
+            !!validation[FormField.CONSENT_TERMS_AND_PRIVACY],
+            !!validation[FormField.CONSENT_INFO_CLAUSE],
+            !!validation[FormField.CONSENT_INFO_CLAUSE],
+            !!validation[FormField.CONSENT_CARETAKER]
+        ].every(c => c);
+    }
+
     useEffect(() => {
         setLoading(true);
 
@@ -197,6 +218,31 @@ export function ReceiverUpsert ({ onComplete, receiver }: Props) {
                         fullWidth
                     />
                 )} />
+                <FormControl className={classes.consents} error={someConsentsNotAgreed()}>
+                    <FormLabel component="legend">Wymagane zgody:</FormLabel>
+                    <FormGroup>
+                        <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_TERMS_AND_PRIVACY]} onChange={updateField(FormField.CONSENT_TERMS_AND_PRIVACY)} />} label={(
+                            <>
+                                Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/rodo" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>. *
+                            </>
+                        )} />
+                        <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_INFO_CLAUSE]} onChange={updateField(FormField.CONSENT_INFO_CLAUSE)} />} label={(
+                            <>
+                                Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>. *
+                            </>
+                        )} />
+                        <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_SCHOOL_VERIFICATION]} onChange={updateField(FormField.CONSENT_SCHOOL_VERIFICATION)} />} label={(
+                            <>
+                                Wyrażam zgodę na weryfikację mojego zgłoszenia u właściwego dyrektora szkoły, w celu potwierdzenia czy przysługuje mi sprzęt zgodnie z regulaminem Akcji  „Dajże Kompa”. *
+                            </>
+                        )} />
+                        <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_CARETAKER]} onChange={updateField(FormField.CONSENT_CARETAKER)} />} label={(
+                            <>
+                                Oświadczam, że jestem opiekunem prawnym/rodzicem dziecka, którego dane zostały przeze mnie podane w formularzu. *
+                            </>
+                        )} />
+                    </FormGroup>
+                </FormControl>
                 <Button variant="contained" color="primary" type="submit" fullWidth>{receiver ? 'Zaktualizuj' : 'Dodaj'}</Button>
             </form>
         </>

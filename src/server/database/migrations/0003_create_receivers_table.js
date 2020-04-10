@@ -15,6 +15,11 @@ exports.up = (knex) => {
         table.string('grade').defaultTo('');
         table.boolean('complete').defaultTo(false);
 
+        table.integer('consentTap').notNullable();
+        table.integer('consentInfc').notNullable();
+        table.integer('consentSchv').notNullable();
+        table.integer('consentCrtr').notNullable();
+
         table.index(['id']);
     });
 };

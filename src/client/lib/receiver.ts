@@ -1,6 +1,7 @@
 /* Models */
 import { Locker } from 'common/model/Locker';
 import { Receiver, ReceiverPersonType } from 'common/model/Receiver';
+import { StateLockers } from 'client/model/Redux';
 
 /* Application files */
 import { Validator, isRequired, isRequiredIf } from 'client/lib/validators';
@@ -17,7 +18,11 @@ export enum FormField {
     POSTCODE = 'postcode',
     LOCKER = 'locker',
     SCHOOL = 'school',
-    SCHOOL_GRADE = 'grade'
+    SCHOOL_GRADE = 'grade',
+    CONSENT_TERMS_AND_PRIVACY = 'consentTap',
+    CONSENT_INFO_CLAUSE = 'consentInfc',
+    CONSENT_SCHOOL_VERIFICATION = 'consentSchv',
+    CONSENT_CARETAKER = 'consentCrtr'
 }
 
 export type FormModel = {
@@ -33,6 +38,10 @@ export type FormModel = {
     [FormField.LOCKER]: Locker;
     [FormField.SCHOOL]: string;
     [FormField.SCHOOL_GRADE]: string;
+    [FormField.CONSENT_TERMS_AND_PRIVACY]: boolean;
+    [FormField.CONSENT_INFO_CLAUSE]: boolean;
+    [FormField.CONSENT_SCHOOL_VERIFICATION]: boolean;
+    [FormField.CONSENT_CARETAKER]: boolean;
 }
 
 export type FormList<T> = {
@@ -63,6 +72,10 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.LOCKER]: null,
         [FormField.SCHOOL]: '',
         [FormField.SCHOOL_GRADE]: '',
+        [FormField.CONSENT_TERMS_AND_PRIVACY]: false,
+        [FormField.CONSENT_INFO_CLAUSE]: false,
+        [FormField.CONSENT_SCHOOL_VERIFICATION]: false,
+        [FormField.CONSENT_CARETAKER]: false
     }, base);
 }
 
@@ -80,6 +93,10 @@ export function getValidators (field: FormField): Validator[] {
         case FormField.LOCKER: return [ isRequired() ];
         case FormField.SCHOOL: return [ isRequired() ];
         case FormField.SCHOOL_GRADE: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT) ];
+        case FormField.CONSENT_TERMS_AND_PRIVACY: return [ isRequired() ];
+        case FormField.CONSENT_INFO_CLAUSE: return [ isRequired() ];
+        case FormField.CONSENT_SCHOOL_VERIFICATION: return [ isRequired() ];
+        case FormField.CONSENT_CARETAKER: return [ isRequired() ];
         default: return [];
     }
 }
@@ -103,11 +120,30 @@ export function validateField (field: FormField, value: any, options: any): Vali
 }
 
 export function sanitize (form: FormModel): Receiver {
+    const now = Math.ceil(Date.now() / 1000);
+
     return {
         ...form,
         locker: form.locker ? form.locker.id : '',
         phone: sanitizePhoneNumber(form.phone),
-        complete: false
+        complete: false,
+        consentTap: now,
+        consentInfc: now,
+        consentSchv: now,
+        consentCrtr: now
+    };
+}
+
+export function desanitize (receiver: Receiver, lockers: StateLockers): FormModel {
+    const locker = lockers.find((l) => l.id === receiver.locker);
+
+    return {
+        ...receiver,
+        locker,
+        consentTap: !!receiver.consentTap,
+        consentInfc: !!receiver.consentInfc,
+        consentSchv: !!receiver.consentSchv,
+        consentCrtr: !!receiver.consentCrtr
     };
 }
 
