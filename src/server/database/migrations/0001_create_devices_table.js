@@ -26,6 +26,9 @@ exports.up = (knex) => {
         table.boolean('monitor').notNullable();
         table.text('comments').defaultTo('');
 
+        table.integer('consentTap').notNullable();
+        table.integer('consentInfc').notNullable();
+
         table.index(['id']);
     });
 };

@@ -194,7 +194,7 @@ export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
         <>
             {error && <ErrorBox>{error}</ErrorBox>}
             {loading && <LoadingOverlay />}
-            <form onSubmit={onSubmit} className={classes.form}>
+            <form onSubmit={onSubmit} className={classes.form} autoComplete="off">
                 <FormControl component="fieldset" className={classes.radioGroup}>
                     <RadioGroup name={FormField.PERSON_TYPE} defaultValue={ReceiverPersonType.STUDENT} onChange={updateField(FormField.PERSON_TYPE)}>
                         <FormControlLabel control={<Radio autoFocus />} label="Uczeń" value={ReceiverPersonType.STUDENT} />

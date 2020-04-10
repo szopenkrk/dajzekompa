@@ -1,22 +1,23 @@
 /* Libraries */
 import React, { useState } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
-import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme } from '@material-ui/core';
+import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme, TextFieldProps } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { DeviceType, PersonType } from 'common/model/Device';
-import { DeviceForm } from 'client/model/Form';
+import { DeviceType, DevicePersonType } from 'common/model/Device';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
+import { ValidationResult, emptyModel, create, FormField, validateField, validateForm } from 'client/lib/device';
 import { add as addDevice } from 'client/actions/devices';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import PhotoUploader from 'client/components/PhotoUploader';
 import ErrorBox from 'client/components/ErrorBox';
 import SubPage from 'client/pages/SubPage';
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -69,49 +70,43 @@ const useStyles = makeStyles((theme) => ({
     },
     messageTitle: {
         textAlign: 'center'
+    },
+    consents: {
+        padding: `${theme.spacing(2)}px 0`,
+        textAlign: 'left',
+        '& label': {
+            padding: `${theme.spacing(1)}px 0`,
+            alignItems: 'start'
+        }
     }
 }));
 
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
-const formModel = {
-    personType: PersonType.PERSON,
-    companyName: '',
-    nip: '',
-    firstName: '',
-    lastName: '',
-    street: '',
-    streetNumber: '',
-    city: '',
-    postcode: '',
-    email: '',
-    bankAccount: '',
-    deviceType: DeviceType.NOTEBOOK,
-    notebookName: '',
-    ram: '0',
-    hdd: '0',
-    screenSize: '0',
-    monitor: false,
-    camera: false,
-    microphone: false,
-    speakers: false,
-    photos: [],
-    comments: '',
-    acceptedTerms: false,
-    acceptedClause: false
-} as DeviceForm;
-
 export function SubmitDevicePage () {
     const classes = useStyles();
-    const theme = useTheme();
     const dispatch = useDispatch();
+    const theme = useTheme();
+
+    const [ form, setForm ] = useState(emptyModel());
     const [ loading, setLoading ] = useState(false);
     const [ complete, setComplete ] = useState(false);
     const [ error, setError ] = useState('');
-    const [ form, setForm ] = useState({ ...formModel });
+    const [ validation, setValidation ] = useState({} as ValidationResult);
+    const [ pristine, setPristine ] = useState(create(true));
 
     async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
+
+        const validationResult = validateForm(form);
+        const passed = Object.values(validationResult).every((error) => !error);
+
+        if (!passed) {
+            setValidation(validationResult);
+            setError('Proszę poprawić błędy poniżej.');
+
+            return;
+        }
 
         setError('');
         setLoading(true);
@@ -133,22 +128,60 @@ export function SubmitDevicePage () {
         };
     }
 
-    function updateField (name: string) {
+    function updateField (name: FormField) {
         return (e: React.ChangeEvent<HTMLInputElement>, value?: any) => {
             if (typeof value === 'undefined') value = e.target.value;
+            if (!pristine[name]) validateSingleField(name, value);
 
-            setForm({
-                ...form,
-                [name]: value
-            });
+            setForm({ ...form, [name]: value });
         };
+    }
+
+    function setDirty (name: FormField) {
+        return () => {
+            validateSingleField(name);
+            if (!pristine[name]) return;
+
+            setPristine({ ...pristine, [name]: false });
+        };
+    }
+
+    function validateSingleField (name: FormField, value?: any) {
+        const result = validateField(name, value || form[name], { form });
+
+        setValidation({ ...validation, ...result });
+    }
+
+    function someConsentsNotAgreed () {
+        return [
+            !!validation['consentTap'],
+            !!validation['consentInfc'],
+        ].every(c => c);
+    }
+
+    function createInputElement (name: FormField, label: string, full: boolean = true, focus: boolean = false, style: CSSProperties = {}, props: TextFieldProps = {}) {
+        return (
+            <TextField
+                {...props}
+                variant="outlined"
+                label={label}
+                className={classes.input}
+                onChange={updateField(name)}
+                onBlur={setDirty(name)}
+                value={form[name]}
+                error={!!validation[name]}
+                helperText={validation[name]}
+                autoFocus={focus}
+                fullWidth={full}
+                style={style} />
+        );
     }
 
     function resetForm () {
         setLoading(false);
         setComplete(false);
         setError('');
-        setForm({ ...formModel });
+        setForm(emptyModel());
     }
 
     return (
@@ -169,67 +202,70 @@ export function SubmitDevicePage () {
                 <form onSubmit={onSubmit} noValidate autoComplete="off" className={classes.form}>
                     <section className={classes.formSection}>
                         <FormControl component="fieldset" className={classes.input}>
-                            <RadioGroup name="personType" defaultValue={PersonType.PERSON} className={classes.radios} onChange={updateField('personType')}>
-                                <FormControlLabel control={<Radio />} label="Osoba prywatna" value={PersonType.PERSON} className={classes.radio} />
-                                <FormControlLabel control={<Radio />} label="Firma" value={PersonType.COMPANY} className={classes.radio} />
+                            <RadioGroup name={FormField.PERSON_TYPE} defaultValue={DevicePersonType.PERSON} className={classes.radios} onChange={updateField(FormField.PERSON_TYPE)}>
+                                <FormControlLabel control={<Radio autoFocus />} label="Osoba prywatna" value={DevicePersonType.PERSON} className={classes.radio} />
+                                <FormControlLabel control={<Radio />} label="Firma" value={DevicePersonType.COMPANY} className={classes.radio} />
                             </RadioGroup>
                         </FormControl>
-                        {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="Nazwa firmy" className={classes.input} onChange={updateField('companyName')} />}
-                        {form.personType === PersonType.COMPANY && <TextField variant="outlined" label="NIP" className={classes.input} onChange={updateField('nip')} />}
-                        <TextField variant="outlined" label="Imię" className={classes.input} onChange={updateField('firstName')} />
-                        <TextField variant="outlined" label="Nazwisko" className={classes.input} onChange={updateField('lastName')} />
-                        <TextField variant="outlined" label="Ulica" className={classes.input} onChange={updateField('street')} style={getHorizontalInputStyles(75, true)} />
-                        <TextField variant="outlined" label="Numer" className={classes.input} onChange={updateField('streetNumber')} style={getHorizontalInputStyles(25, false)} />
-                        <TextField variant="outlined" label="Kod pocztowy" className={classes.input} onChange={updateField('postcode')} style={getHorizontalInputStyles(25, true)} />
-                        <TextField variant="outlined" label="Miejscowość" className={classes.input} onChange={updateField('city')} style={getHorizontalInputStyles(75, false)} />
-                        <TextField variant="outlined" label="E-mail" className={classes.input} onChange={updateField('email')} />
-                        <TextField variant="outlined" label="Numer konta" className={classes.input} onChange={updateField('bankAccount')} />
+                        {form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY && createInputElement(FormField.COMPANY_NAME, 'Nazwa firmy')}
+                        {form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY && createInputElement(FormField.NIP, 'NIP')}
+                        {createInputElement(FormField.FIRST_NAME, 'Imię')}
+                        {createInputElement(FormField.LAST_NAME, 'Nazwisko')}
+                        {createInputElement(FormField.EMAIL, 'E-mail')}
+                        {createInputElement(FormField.STREET, 'Ulica', true, false, getHorizontalInputStyles(75, true))}
+                        {createInputElement(FormField.STREET_NUMBER, 'Numer', true, false, getHorizontalInputStyles(25, false))}
+                        {createInputElement(FormField.POSTCODE, 'Kod pocztowy', true, false, getHorizontalInputStyles(35, true))}
+                        {createInputElement(FormField.CITY, 'Miejscowość', true, false, getHorizontalInputStyles(65, false))}
+                        {createInputElement(FormField.BANK_ACCOUNT, 'Numer konta')}
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
                     <section className={classes.formSection}>
                         <FormControl component="fieldset" className={classes.input}>
-                            <RadioGroup name="deviceType" defaultValue={DeviceType.NOTEBOOK} className={classes.radios} onChange={updateField('deviceType')}>
+                            <RadioGroup name={FormField.DEVICE_TYPE} defaultValue={DeviceType.NOTEBOOK} className={classes.radios} onChange={updateField(FormField.DEVICE_TYPE)}>
                                 <FormControlLabel control={<Radio />} label="Laptop" value={DeviceType.NOTEBOOK} className={classes.radio} />
                                 <FormControlLabel control={<Radio />} label="Komputer stacjonarny" value={DeviceType.DESKTOP} className={classes.radio} />
                             </RadioGroup>
                         </FormControl>
-                        {form.deviceType === DeviceType.NOTEBOOK && <TextField variant="outlined" label="Producent i model" className={classes.input} onChange={updateField('notebookName')} />}
-                        <TextField variant="outlined" label="Pamięć RAM (GB)" type="number" className={classes.input} onChange={updateField('ram')} />
-                        <TextField variant="outlined" label="Pojemność dysku (GB)" type="number" className={classes.input} onChange={updateField('hdd')} />
-                        <TextField variant="outlined" label="Rozmiar ekranu (cale)" type="number" className={classes.input} onChange={updateField('screenSize')} />
-                        {form.deviceType === DeviceType.DESKTOP && (
+                        {form[FormField.DEVICE_TYPE] === DeviceType.NOTEBOOK && createInputElement(FormField.NOTEBOOK_NAME, 'Producent i model')}
+                        {createInputElement(FormField.RAM, 'Pamięć RAM (GB)')}
+                        {createInputElement(FormField.HDD, 'Pojemność dysku (GB)')}
+                        {createInputElement(FormField.SCREEN_SIZE, 'Rozmiar ekranu (cale)')}
+                        {form[FormField.DEVICE_TYPE] === DeviceType.DESKTOP && (
                             <FormControl component="fieldset" className={classes.input}>
                                 <FormLabel component="legend" className={classes.legend}>Elementy dołączone do zestawu:</FormLabel>
                                 <FormGroup>
-                                    <FormControlLabel control={<Checkbox checked={form.monitor} onChange={updateField('monitor')} name="monitor" />} label="Monitor" />
-                                    <FormControlLabel control={<Checkbox checked={form.camera} onChange={updateField('camera')} name="camera" />} label="Kamera" />
-                                    <FormControlLabel control={<Checkbox checked={form.microphone} onChange={updateField('microphone')} name="microphone" />} label="Mikrofon" />
-                                    <FormControlLabel control={<Checkbox checked={form.speakers} onChange={updateField('speakers')} name="speakers" />} label="Głośniki" />
+                                    <FormControlLabel control={<Checkbox checked={form[FormField.MONITOR]} onChange={updateField(FormField.MONITOR)} name={FormField.MONITOR} />} label="Monitor" />
+                                    <FormControlLabel control={<Checkbox checked={form[FormField.CAMERA]} onChange={updateField(FormField.CAMERA)} name={FormField.CAMERA} />} label="Kamera" />
+                                    <FormControlLabel control={<Checkbox checked={form[FormField.MICROPHONE]} onChange={updateField(FormField.MICROPHONE)} name={FormField.MICROPHONE} />} label="Mikrofon" />
+                                    <FormControlLabel control={<Checkbox checked={form[FormField.SPEAKERS]} onChange={updateField(FormField.SPEAKERS)} name={FormField.SPEAKERS} />} label="Głośniki" />
                                 </FormGroup>
                             </FormControl>
                         )}
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Zdjęcia</Typography>
                     <section className={classes.formSection}>
-                        <PhotoUploader onChange={updateField('photos')} mime={['image/jpeg', 'image/png', 'image/bmp']} maxSize={3145728} />
+                        <PhotoUploader onChange={updateField(FormField.PHOTOS)} mime={['image/jpeg', 'image/png', 'image/bmp']} maxSize={3145728} />
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Dodatkowe informacje</Typography>
                     <section className={classes.formSection}>
-                        <TextField variant="outlined" label="Dodatkowe informacje i komentarze" className={classes.input} onChange={updateField('comments')} multiline rows={3} />
+                        <TextField variant="outlined" label="Dodatkowe informacje i komentarze" className={classes.input} onChange={updateField(FormField.COMMENTS)} multiline rows={3} />
                     </section>
                     <section style={{ marginTop: theme.spacing(2) }}>
-                        <FormControlLabel control={<Checkbox onChange={updateField('acceptedTerms')} />} label={(
-                            <div style={{ textAlign: 'left' }}>
-                                Zapoznałam/em się i akceptuję <Link to="/regulamin" target="_blank" className={classes.link}>Regulamin Akcji &quot;Dajże Kompa&quot;</Link> oraz <Link to="/rodo" target="_blank" className={classes.link}>Politykę Prywatności</Link>.*
-                            </div>
-                        )} />
-                    </section>
-                    <section style={{ marginTop: theme.spacing(2) }}>
-                        <FormControlLabel control={<Checkbox onChange={updateField('acceptedClause')} />} label={(
-                            <div style={{ textAlign: 'left' }}>
-                                Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane w celu zawarcia umowy kupna-sprzedaży oraz przekazania darowizny. Szczegółowe informacje dotyczące przetwarzania Pani/Pana danych znajdują się <Link to="/klauzula" target="_blank" className={classes.link}>tutaj</Link>.*
-                            </div>
-                        )} />
+                        <FormControl className={classes.consents} error={someConsentsNotAgreed()}>
+                            <FormLabel component="legend">Wymagane zgody:</FormLabel>
+                            <FormGroup>
+                                <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_TERMS_AND_PRIVACY]} onChange={updateField(FormField.CONSENT_TERMS_AND_PRIVACY)} />} label={(
+                                    <>
+                                        Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/rodo" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>. *
+                                    </>
+                                )} />
+                                <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_INFO_CLAUSE]} onChange={updateField(FormField.CONSENT_INFO_CLAUSE)} />} label={(
+                                    <>
+                                        Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>. *
+                                    </>
+                                )} />
+                            </FormGroup>
+                        </FormControl>
                     </section>
                     <section className={classes.actions}>
                         <Button variant="contained" type="submit" color="primary">Wyślij</Button>

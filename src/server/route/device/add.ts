@@ -7,7 +7,7 @@ import { S3 } from 'aws-sdk';
 
 /* Models */
 import { Request, Response } from 'express';
-import { Device, DeviceStatus, DeviceType, PersonType } from 'common/model/Device';
+import { Device, DeviceStatus, DeviceType, DevicePersonType } from 'common/model/Device';
 import { APIRoute } from 'server/model/API';
 import { HTTPCode, HTTPMethod } from 'server/model/HTTP';
 import { DBSchemaDevice, DBTable } from 'server/model/DB';
@@ -20,34 +20,25 @@ import Config from 'server/lib/config';
 import { closeWithError, respondSuccess, validateRequestPayload } from 'server/lib/http';
 
 function buildQueryDeviceObject (device: Device): DBSchemaDevice {
+    device = { ...device };
+
+    delete device.photos;
+
     return {
-        personType: device.personType,
-        email: device.email,
-        deviceType: device.deviceType,
-        ram: device.ram,
-        hdd: device.hdd,
-        screenSize: device.screenSize,
+        ...device,
         monitor: device.deviceType === DeviceType.NOTEBOOK ? true : device.monitor,
         camera: device.deviceType === DeviceType.NOTEBOOK ? true : device.camera,
         microphone: device.deviceType === DeviceType.NOTEBOOK ? true : device.microphone,
         speakers: device.deviceType === DeviceType.NOTEBOOK ? true : device.speakers,
-        comments: device.comments,
-        firstName: device.personType === PersonType.PERSON ? device.firstName : '',
-        lastName: device.personType === PersonType.PERSON ? device.lastName : '',
-        street: device.street,
-        streetNumber: device.streetNumber,
-        city: device.city,
-        postcode: device.postcode,
-        bankAccount: device.bankAccount,
-        companyName: device.personType === PersonType.COMPANY ? device.companyName : '',
-        nip: device.personType === PersonType.COMPANY ? device.nip : '',
+        companyName: device.personType === DevicePersonType.COMPANY ? device.companyName : '',
+        nip: device.personType === DevicePersonType.COMPANY ? device.nip : '',
         notebookName: device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : '',
         status: DeviceStatus.RECEIVED
     };
 }
 
 const schema = joi.object({
-    personType: joi.string().valid(...[PersonType.PERSON, PersonType.COMPANY]).required(),
+    personType: joi.string().valid(...[DevicePersonType.PERSON, DevicePersonType.COMPANY]).required(),
     email: joi.string().email().required(),
     deviceType: joi.string().valid(...[DeviceType.NOTEBOOK, DeviceType.DESKTOP]).required(),
     ram: joi.number().required(),
@@ -59,15 +50,17 @@ const schema = joi.object({
     speakers: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
     notebookName: joi.when('deviceType', { is: DeviceType.NOTEBOOK, then: joi.string().required() }),
     comments: joi.string(),
-    firstName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),
-    lastName: joi.when('personType', { is: PersonType.PERSON, then: joi.string().required() }),
+    firstName: joi.string().required(),
+    lastName: joi.string().required(),
     street: joi.string().required(),
     streetNumber: joi.string().required(),
     city: joi.string().required(),
     postcode: joi.string().required(),
-    companyName: joi.when('personType', { is: PersonType.COMPANY, then: joi.string().required() }),
-    nip: joi.when('personType', { is: PersonType.COMPANY, then: joi.string().required() }),
-    bankAccount: joi.string().regex(/^[0-9]{26}$/).required()
+    companyName: joi.when('personType', { is: DevicePersonType.COMPANY, then: joi.string().required() }),
+    nip: joi.when('personType', { is: DevicePersonType.COMPANY, then: joi.string().required() }),
+    bankAccount: joi.string().regex(/^[0-9]{26}$/).required(),
+    consentTap: joi.number().required(),
+    consentInfc: joi.number().required()
 });
 
 const s3 = new S3({

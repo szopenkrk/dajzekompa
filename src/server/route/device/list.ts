@@ -1,6 +1,6 @@
 /* Models */
 import { Request, Response } from 'express';
-import { Device, PersonType, DeviceType } from 'common/model/Device';
+import { Device, DevicePersonType, DeviceType } from 'common/model/Device';
 import { APIRoute } from 'server/model/API';
 import { HTTPMethod, HTTPCode } from 'server/model/HTTP';
 import { DBSchemaDevice, DBSchemaPhoto, DBTable } from 'server/model/DB';
@@ -25,11 +25,11 @@ function buildDeviceFromDbObject (db: DBSchemaDeviceWithPhoto): Device {
 }
 
 function sanitizeDevice (device: Device): Device {
-    if (device.personType === PersonType.PERSON) {
+    if (device.personType === DevicePersonType.PERSON) {
         delete device.companyName;
         delete device.nip;
     }
-    if (device.personType === PersonType.COMPANY) {
+    if (device.personType === DevicePersonType.COMPANY) {
         delete device.firstName;
         delete device.lastName;
     }

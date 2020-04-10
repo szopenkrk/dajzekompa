@@ -2,7 +2,7 @@
 import React from 'react';
 
 /* Models */
-import { Device, PersonType } from 'common/model/Device';
+import { Device, DevicePersonType } from 'common/model/Device';
 import { makeStyles, Typography, Chip, Paper, useTheme, useMediaQuery } from '@material-ui/core';
 
 /* Application files */
@@ -79,10 +79,10 @@ export function DeviceDetails ({ device }: Props) {
             </div>
             <div className={!mobile ? classes.horizontally : ''}>
                 <DetailsList label="Dane kontaktowe" className={classes.details} data={[
-                    { label: 'Nazwa firmy', value: device.companyName, show: device.personType === PersonType.COMPANY },
-                    { label: 'NIP', value: device.nip, show: device.personType === PersonType.COMPANY },
-                    { label: 'Imię', value: device.firstName, show: device.personType === PersonType.PERSON },
-                    { label: 'Nazwisko', value: device.lastName, show: device.personType === PersonType.PERSON },
+                    { label: 'Nazwa firmy', value: device.companyName, show: device.personType === DevicePersonType.COMPANY },
+                    { label: 'NIP', value: device.nip, show: device.personType === DevicePersonType.COMPANY },
+                    { label: 'Imię', value: device.firstName, show: device.personType === DevicePersonType.PERSON },
+                    { label: 'Nazwisko', value: device.lastName, show: device.personType === DevicePersonType.PERSON },
                     { label: 'E-mail', value: device.email },
                     { label: 'Ulica', value: `${device.street} ${device.streetNumber}` },
                     { label: 'Kod pocztowy', value: device.postcode },
