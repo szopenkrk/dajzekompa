@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch as reduxUseDispatch } from 'react-redux';
 import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme, TextFieldProps } from '@material-ui/core';
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 
 /* Models */
@@ -16,8 +17,8 @@ import { add as addDevice } from 'client/actions/devices';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import PhotoUploader from 'client/components/PhotoUploader';
 import ErrorBox from 'client/components/ErrorBox';
+import TechSpecTooltip from 'client/components/TechSpecTooltip';
 import SubPage from 'client/pages/SubPage';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -243,8 +244,11 @@ export function SubmitDevicePage () {
                                 </FormGroup>
                             </FormControl>
                         )}
+                        <TechSpecTooltip>
+                            <Typography variant="body2" style={{ textAlign: 'left' }}>Jak sprawdzić paremetry sprzętu?</Typography>
+                        </TechSpecTooltip>
                     </section>
-                    <Typography variant="h5" className={classes.subtitle}>Zdjęcia</Typography>
+                    <Typography variant="h5" className={classes.subtitle}>Zdjęcia sprzętu</Typography>
                     <section>
                         <PhotoUploader onChange={updateField(FormField.PHOTOS)} mime={['image/jpeg', 'image/png', 'image/bmp']} maxSize={3145728} />
                     </section>
@@ -254,26 +258,26 @@ export function SubmitDevicePage () {
                     </section>
                     <section style={{ marginTop: theme.spacing(2) }}>
                         <FormControl className={classes.consents} error={someConsentsNotAgreed()}>
-                            <FormLabel component="legend">Wymagane zgody:</FormLabel>
+                            <FormLabel component="legend">* - obowiązkowe</FormLabel>
                             <FormGroup>
                                 <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_TERMS_AND_PRIVACY]} onChange={updateField(FormField.CONSENT_TERMS_AND_PRIVACY)} />} label={(
                                     <>
-                                        Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/rodo" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>. *
+                                        * Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/rodo" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>.
                                     </>
                                 )} />
                                 <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_INFO_CLAUSE]} onChange={updateField(FormField.CONSENT_INFO_CLAUSE)} />} label={(
                                     <>
-                                        Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>. *
+                                        * Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu przekazania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>.
                                     </>
                                 )} />
                                 <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_DATA_CLEANED]} onChange={updateField(FormField.CONSENT_DATA_CLEANED)} />} label={(
                                     <>
-                                        Oświadczam, że przekazany przeze mnie sprzęt jest wyczyszczony z wszelkich danych osobowych oraz danych firmowych. *
+                                        * Oświadczam, że przekazany przeze mnie sprzęt jest wyczyszczony z wszelkich danych osobowych oraz danych firmowych.
                                     </>
                                 )} />
                                 <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_PUBLIC_LIST]} onChange={updateField(FormField.CONSENT_PUBLIC_LIST)} />} label={(
                                     <>
-                                        Wyrażam zgodę na zamieszczenie moich danych osobowych w postaci imię i nazwisko lub nazwa firmy, na liście darczyńców biorących udział w Akcji, na stronie {url}.
+                                        Wyrażam zgodę na zamieszczenie moich danych osobowych w postaci imienia i nazwiska lub nazwy firmy, na liście darczyńców biorących udział w Akcji, na stronie {url}.
                                     </>
                                 )} />
                             </FormGroup>

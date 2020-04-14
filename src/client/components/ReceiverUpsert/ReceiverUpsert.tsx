@@ -176,11 +176,13 @@ export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
     }
 
     function someConsentsNotAgreed () {
+        const isStudent = form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT;
+
         return [
             !!validation[FormField.CONSENT_TERMS_AND_PRIVACY],
             !!validation[FormField.CONSENT_INFO_CLAUSE],
             !!validation[FormField.CONSENT_INFO_CLAUSE],
-            !!validation[FormField.CONSENT_CARETAKER]
+            isStudent ? !!validation[FormField.CONSENT_CARETAKER] : true
         ].every(c => c);
     }
 
@@ -245,27 +247,27 @@ export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
                 )} />
                 {!noConsents && (
                     <FormControl className={classes.consents} error={someConsentsNotAgreed()}>
-                        <FormLabel component="legend">Wymagane zgody:</FormLabel>
+                        <FormLabel component="legend">* - obowiązkowe</FormLabel>
                         <FormGroup>
                             <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_TERMS_AND_PRIVACY]} onChange={updateField(FormField.CONSENT_TERMS_AND_PRIVACY)} />} label={(
                                 <>
-                                    Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/rodo" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>. *
+                                    * Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/rodo" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>.
                                 </>
                             )} />
                             <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_INFO_CLAUSE]} onChange={updateField(FormField.CONSENT_INFO_CLAUSE)} />} label={(
                                 <>
-                                    Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>. *
+                                    * Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>.
                                 </>
                             )} />
                             <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_SCHOOL_VERIFICATION]} onChange={updateField(FormField.CONSENT_SCHOOL_VERIFICATION)} />} label={(
                                 <>
-                                    Wyrażam zgodę na weryfikację mojego zgłoszenia u właściwego dyrektora szkoły, w celu potwierdzenia czy przysługuje mi sprzęt zgodnie z regulaminem Akcji  „Dajże Kompa”. *
+                                    * Wyrażam zgodę na weryfikację mojego zgłoszenia u właściwego dyrektora szkoły, w celu potwierdzenia czy przysługuje mi sprzęt zgodnie z regulaminem Akcji  „Dajże Kompa”.
                                 </>
                             )} />
                             {form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT && (
                                 <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_CARETAKER]} onChange={updateField(FormField.CONSENT_CARETAKER)} />} label={(
                                     <>
-                                        Oświadczam, że jestem opiekunem prawnym/rodzicem dziecka, którego dane zostały przeze mnie podane w formularzu. *
+                                        * Oświadczam, że jestem opiekunem prawnym/rodzicem dziecka, którego dane zostały przeze mnie podane w formularzu.
                                     </>
                                 )} />
                             )}

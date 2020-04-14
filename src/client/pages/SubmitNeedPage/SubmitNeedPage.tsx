@@ -12,6 +12,11 @@ import flowImageDesktop from 'client/assets/images/faq-receivers-desktop.png';
 import flowImageMobile from 'client/assets/images/faq-receivers-mobile.png';
 
 const useStyles = makeStyles((theme) => ({
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
     panel: {
         margin: '20px 0'
     },
@@ -48,6 +53,12 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         color: theme.palette.primary.main
+    },
+    separator: {
+        margin: `${theme.spacing(3)}px 0`
+    },
+    footer: {
+        width: '100%'
     }
 }));
 
@@ -67,23 +78,25 @@ export function SubmitNeedPage () {
 
     return (
         <SubPage title="Zgłoś potrzebę">
-            <div>
+            <section className={classes.container}>
                 <img src={mobile ? flowImageMobile : flowImageDesktop} />
-            </div>
-            {complete && (
-                <div className={classes.message}>
-                    <Icon className={classes.icon}>check_circle</Icon>
-                    <Typography variant="h5" className={classes.messageTitle}>Dziękujemy!</Typography>
-                    <Typography variant="body1" className={classes.messageTitle}>Twoje zgłoszenie zostało wysłane. Poinformujemy Cię o dalszych krokach.</Typography>
-                    <section className={classes.actions}>
-                        <Button variant="contained" color="primary" onClick={reset}>Zgłoś kolejną osobę</Button>
-                    </section>
+                {complete && (
+                    <div className={classes.message}>
+                        <Icon className={classes.icon}>check_circle</Icon>
+                        <Typography variant="h5" className={classes.messageTitle}>Dziękujemy!</Typography>
+                        <Typography variant="body1" className={classes.messageTitle}>Twoje zgłoszenie zostało wysłane. Poinformujemy Cię o dalszych krokach.</Typography>
+                        <section className={classes.actions}>
+                            <Button variant="contained" color="primary" onClick={reset}>Zgłoś kolejną osobę</Button>
+                        </section>
+                    </div>
+                )}
+                {!complete && <ReceiverUpsert onComplete={finish} />}
+                <Separator className={classes.separator} />
+                <div className={classes.footer}>
+                    <Typography variant="body1" className={classes.panelTitle}>Masz pytania?</Typography>
+                    <Typography variant="body1">Zajrzyj do działu <Link to="/faq" className={classes.link}>FAQ</Link>.</Typography>
                 </div>
-            )}
-            {!complete && <ReceiverUpsert onComplete={finish} />}
-            <Separator />
-            <Typography variant="body1" className={classes.panelTitle}>Pytania?</Typography>
-            <Typography variant="body1">Zajrzyj do działu <Link to="/faq" className={classes.link}>FAQ</Link>.</Typography>
+            </section>
         </SubPage>
     );
 }

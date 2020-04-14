@@ -1,6 +1,6 @@
 /* Libraries */
 import React from 'react';
-import { makeStyles, Typography, Button, useMediaQuery, useTheme, Tooltip } from '@material-ui/core';
+import { makeStyles, Typography, Button, useMediaQuery, useTheme } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 /* Application files */
@@ -9,6 +9,7 @@ import Separator from 'client/components/Separator';
 import Faq from 'client/components/Faq';
 import SubPage from 'client/pages/SubPage';
 import FaqItem from 'client/components/FaqItem';
+import TechSpecTooltip from 'client/components/TechSpecTooltip';
 
 import imageFlowGiversDesktop from 'client/assets/images/faq-givers-desktop.png';
 import imageFlowGiversMobile from 'client/assets/images/faq-givers-mobile.png';
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     },
     image: {
         maxWidth: '100%',
-        padding: `${theme.spacing(2)}px 0`
+        paddingTop: theme.spacing(2)
     }
 }));
 
@@ -70,7 +71,7 @@ export function FaqPage () {
                     Szukamy głównie komputerów stacjonarnych, laptopów, tabletów, monitorów, klawiatur, myszek, kamerek, zestawów słuchawkowych, drukarek i innych <b>działających</b> urządzeń, które umożliwią dzieciom i nauczycielom podłączenie się do sieci i realizację nauki on-line.
                 </FaqItem>
                 <FaqItem title="Czy mój komputer się nadaje?">
-                    Nieważny model, Mac vs. PC, Dell czy Acer, iPad vs Tablet Android - znajdziemy dobry dom dla twojego sprzętu*, o ile jest w stanie obsłużyć nowoczesną przeglądarkę internetową, ma <Tooltip title="Jakaś treść"><abbr>procesor 2,5 GHz (odpowiednik Intel Core 2 Duo i wzwyż), 4 GB RAM oraz kartę sieciową wi-fi (dowolną)</abbr></Tooltip>. Zalecany system Windows 10, ale jeśli go nie masz, to damy sobie radę. Generalnie, jeśli komputer nie jest bardzo stary, da się go odpalić, można na nim pisać i wszystko widać to wystarczy. Zanim sprzęt dotrze do dzieci i nauczycieli, wyślemy go do fachowca dla sprawdzenia, wgrania aktualnego oprogramowania i testowego uruchomienia. Ciebie natomiast prosimy o wyczyszczenie sprzętu z wszelkich danych zanim nastąpi jego przekazanie.
+                    Nieważny model, Mac vs. PC, Dell czy Acer, iPad vs Tablet Android - znajdziemy dobry dom dla twojego sprzętu*, o ile jest w stanie obsłużyć nowoczesną przeglądarkę internetową, ma <TechSpecTooltip>procesor 2,5 GHz (odpowiednik Intel Core 2 Duo i wzwyż), 4 GB RAM oraz kartę sieciową wi-fi (dowolną)</TechSpecTooltip>. Zalecany system Windows 10, ale jeśli go nie masz, to damy sobie radę. Generalnie, jeśli komputer nie jest bardzo stary, da się go odpalić, można na nim pisać i wszystko widać to wystarczy. Zanim sprzęt dotrze do dzieci i nauczycieli, wyślemy go do fachowca dla sprawdzenia, wgrania aktualnego oprogramowania i testowego uruchomienia. Ciebie natomiast prosimy o wyczyszczenie sprzętu z wszelkich danych zanim nastąpi jego przekazanie.
                 </FaqItem>
                 <FaqItem title="Jak zgłosić sprzęt do oddania?">
                     Zrób zdjęcia wszystkim sprzętom, które chcesz przekazać. Wejdź na stronę www.dajzekompa.pl do zakładki „Podaruj Kompa”, wypełnij formularz i wgraj zdjęcia. Następnie czekaj na instrukcje, które zostaną przesłane na podany przez Ciebie adres e-mail. Poprosimy Cię o wydrukowanie etykiety, którą przykleisz na paczkę, a także o dopełnienie koniecznych formalności.

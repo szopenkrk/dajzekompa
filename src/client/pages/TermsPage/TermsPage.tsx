@@ -1,7 +1,6 @@
 /* Libraries */
 import React from 'react';
 import { Typography, TableContainer, TableBody, TableRow, TableCell, Table, makeStyles } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 /* Application files */
 import Config from 'client/lib/config';
@@ -32,10 +31,6 @@ const useStyles = makeStyles((theme) => ({
     letteredList: {
         listStyleType: 'lower-alpha'
     },
-    link: {
-        color: theme.palette.primary.main,
-        textDecoration: 'underline'
-    },
     title: {
         width: '100%',
         textAlign: 'center',
@@ -47,10 +42,6 @@ export function TermsPage () {
     const classes = useStyles();
     const url = window.location.host;
     const mail = Config.CONTACT_EMAIL;
-
-    function getLinkToPage (path: string, text: string, classes: string) {
-        return <Link to={`${url}/#/${path}`} className={classes} target="_blank" rel="noopener norefferer">{text}</Link>;
-    }
 
     return (
         <SubPage className={classes.container}>
@@ -114,19 +105,19 @@ export function TermsPage () {
                         <TableRow>
                             <TableCell><b>Polityka prywatności</b></TableCell>
                             <TableCell>
-                                dokument informujący o sposobie przetwarzania danych osobowych w akcji Dajże Kompa, do pobrania w zakładce (podstronie) Serwisu pod adresem: {getLinkToPage('', url, classes.link)}.
+                                dokument informujący o sposobie przetwarzania danych osobowych w akcji Dajże Kompa, do pobrania w zakładce (podstronie) Serwisu pod adresem: {`${url}/#/rodo`}.
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell><b>Regulamin</b></TableCell>
                             <TableCell>
-                            niniejszy regulamin Serwisu, dostępny do pobrania w zakładce (podstronie) Serwisu pod adresem: {getLinkToPage('', url, classes.link)}.
+                                niniejszy regulamin Serwisu, dostępny do pobrania w zakładce (podstronie) Serwisu pod adresem: {`${url}/#/regulamin`}.
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell><b>Serwis</b></TableCell>
                             <TableCell>
-                                portal internetowy dostępny pod adresem: {getLinkToPage('', url, classes.link)}.
+                                portal internetowy dostępny pod adresem: {url}.
                             </TableCell>
                         </TableRow>
                         <TableRow>
@@ -185,7 +176,7 @@ export function TermsPage () {
                     Stan techniczny Sprzętu musi pozwalać mu na prawidłowe uruchomienie oraz realizację podstawowych operacji, takich jak uruchomienie i korzystanie z przeglądarki internetowej, instalację i korzystanie z pakietu biurowego (jak MS Office), instalację i uruchomienie aplikacji umożliwiających komunikację na odległość w czasie rzeczywistym (optymalnie, w zakresie obrazu i dźwięku).
                 </li>
                 <li>
-                    Wzięcie udziału w akcji Dajże Kompa wymaga także zaakceptowania przez Dającego Kompa Regulaminu oraz {getLinkToPage('rodo', 'Polityki Prywatności', classes.link)}.
+                    Wzięcie udziału w akcji Dajże Kompa wymaga także zaakceptowania przez Dającego Kompa Regulaminu oraz Polityki Prywatności.
                 </li>
                 <li>
                     Wysyłając formularz opisany w pkt 1 powyżej Dający Kompa zobowiązuje się przenieść na Fundację własność Sprzętu i wydać ją w sposób opisany w pkt 8 poniżej – pod warunkiem akceptacji Sprzętu przez Fundację, zgodnie z postanowieniami poniżej
@@ -211,7 +202,7 @@ export function TermsPage () {
                     </ol>
                 </li>
                 <li>
-                    Dający Kompa zobowiązuje się, przed przekazaniem Sprzętu do doręczenia Fundacji w sposób opisany powyżej, do usunięcia z niego wszelkich osobistych danych i programów komputerowych, a w szczególności programów komputerowych umożliwiających zdalny dostęp do Sprzętu lub blokujących możliwość korzystania ze Sprzętu (instrukcję w tym zakresie obejmuje zakładka Serwisu dostępna pod adresem {getLinkToPage('', url, classes.link)}.
+                    Dający Kompa zobowiązuje się, przed przekazaniem Sprzętu do doręczenia Fundacji w sposób opisany powyżej, do usunięcia z niego wszelkich osobistych danych i programów komputerowych, a w szczególności programów komputerowych umożliwiających zdalny dostęp do Sprzętu lub blokujących możliwość korzystania ze Sprzętu (instrukcję w tym zakresie obejmuje zakładka Serwisu dostępna pod adresem {`${url}/#/faq`}.
                 </li>
                 <li>
                     Dający Kompa zobowiązuje się, że Sprzęt nie będzie w swojej pamięci zawierał jakichkolwiek bezprawnych treści.
@@ -229,7 +220,7 @@ export function TermsPage () {
             <b>[Obdarowani]</b>
             <ol start={15}>
                 <li>
-                    Osoby potrzebujące (lub ich przedstawiciele ustawowi) mogą zgłaszać chęć udziału w projekcie (otrzymania Sprzętu) poprzez formularz dostępny w serwisie {getLinkToPage('', url, classes.link)}.
+                    Osoby potrzebujące (lub ich przedstawiciele ustawowi) mogą zgłaszać chęć udziału w projekcie (otrzymania Sprzętu) poprzez formularz dostępny w serwisie {`${url}/#/podaruj-kompa`}.
                 </li>
                 <li>
                     Fundacja w porozumieniu z Dyrektorami szkół samorządowych na terenie Krakowa, znając stan posiadanego przez siebie sprzętu podejmie decyzję o przyznaniu obdarowanemu Sprzętu.
@@ -287,7 +278,7 @@ export function TermsPage () {
                     Osobom, których dane są przetwarzane przysługują prawa i wolności, zgodnie z postanowieniami RODO.
                 </li>
                 <li>
-                    Szczegółowe informacje na temat ochrony danych osobowych zostały opisane na Stronie {url} w {getLinkToPage('rodo', 'Polityce Prywatności', classes.link)}.
+                    Szczegółowe informacje na temat ochrony danych osobowych zostały opisane na Stronie {url} w Polityce Prywatności.
                 </li>
             </ol>
             <Typography variant="h6" className={classes.title}>6. Reklamacje</Typography>

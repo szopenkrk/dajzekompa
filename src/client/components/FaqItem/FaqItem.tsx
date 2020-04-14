@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     panelIcon: {
         width: 27,
         height: 27,
-        marginRight: 35
+        minWidth: 27
     },
     panelContent: {
         paddingLeft: 86,
@@ -39,7 +39,8 @@ const useStyles = makeStyles({
         letterSpacing: '0.00938em'
     },
     question: {
-        fontSize: 16
+        fontSize: 16,
+        marginLeft: 35
     }
 });
 
