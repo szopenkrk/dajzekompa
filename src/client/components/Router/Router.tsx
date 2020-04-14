@@ -55,11 +55,13 @@ function UserDataFetcher ({ children }: PropsWithChildren<{}>) {
 
 export function Router () {
     function requireAuthentication (Component: () => JSX.Element) {
-        return () => (
+        const UserDataPreloader = () => (
             <UserDataFetcher>
                 <Component />
             </UserDataFetcher>
         );
+
+        return UserDataPreloader;
     }
 
     return (

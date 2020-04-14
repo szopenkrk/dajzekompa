@@ -18,6 +18,7 @@ import SubmitNeedPage from 'client/pages/SubmitNeedPage';
 import TermsPage from 'client/pages/TermsPage';
 import SubmitCityPage from 'client/pages/SubmitCityPage';
 import RodoPage from 'client/pages/RodoPage';
+import InfoClausePage from 'client/pages/InfoClausePage';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -42,6 +43,9 @@ const useStyles = makeStyles(() => ({
     },
     separator: {
         margin: '20px 0'
+    },
+    separatorThin: {
+        margin: 0
     }
 }));
 
@@ -56,7 +60,7 @@ export function LandingPage () {
                 {location.pathname === '/' && <HeroBanner />}
             </header>
             <main className={clx(classes.container, classes.main)}>
-                <Separator />
+                <Separator className={classes.separatorThin} />
                 <Switch>
                     <Route path="/" exact={true} component={HomePage} />
                     <Route path="/o-akcji" exact={true} component={AboutPage} />
@@ -66,6 +70,7 @@ export function LandingPage () {
                     <Route path="/regulamin" exact={true} component={TermsPage} />
                     <Route path="/zglos-miasto" exact={true} component={SubmitCityPage} />
                     <Route path="/rodo" exact={true} component={RodoPage} />
+                    <Route path="/klauzula" exact={true} component={InfoClausePage} />
                 </Switch>
                 <Separator className={classes.separator} />
             </main>

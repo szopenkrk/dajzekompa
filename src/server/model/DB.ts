@@ -1,4 +1,4 @@
-import { PersonType, DeviceType, DeviceStatus } from 'common/model/Device';
+import { DevicePersonType, DeviceType, DeviceStatus } from 'common/model/Device';
 import { Receiver } from 'common/model/Receiver';
 
 export enum DBTable {
@@ -10,7 +10,7 @@ export enum DBTable {
 
 export type DBSchemaDevice = {
     id?: string;
-    personType: PersonType;
+    personType: DevicePersonType;
     companyName: string;
     nip: string;
     firstName: string;
@@ -32,6 +32,10 @@ export type DBSchemaDevice = {
     monitor: boolean;
     comments: string;
     status: DeviceStatus;
+    consentTap: number;
+    consentInfc: number;
+    consentDtcl: number;
+    consentPbl: number;
 };
 
 export type DBSchemaPhoto = {

@@ -1,9 +1,9 @@
 export type RawDevice = {
     id?: string;
     status?: DeviceStatus;
-    personType: PersonType;
-    firstName?: string;
-    lastName?: string;
+    personType: DevicePersonType;
+    firstName: string;
+    lastName: string;
     street: string;
     streetNumber: string;
     city: string;
@@ -20,6 +20,10 @@ export type RawDevice = {
     speakers?: boolean;
     photos: string[];
     comments: string;
+    consentTap: number;
+    consentInfc: number;
+    consentDtcl: number;
+    consentPbl: number;
 };
 
 export type Device = RawDevice & {
@@ -28,7 +32,7 @@ export type Device = RawDevice & {
     screenSize: number;
 };
 
-export enum PersonType {
+export enum DevicePersonType {
     PERSON = 'PERSON',
     COMPANY = 'COMPANY'
 }

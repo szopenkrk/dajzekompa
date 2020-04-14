@@ -1,20 +1,16 @@
 /* Libraries */
 import React, { useState } from 'react';
-import { makeStyles, Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, withStyles } from '@material-ui/core';
+import clx from 'classnames';
+import { makeStyles, Typography } from '@material-ui/core';
 
 /* Application files */
-import iconPlus from 'client/assets/images/icon-plus.png';
-import iconMinus from 'client/assets/images/icon-minus.png';
+// import FaqItem from 'client/components/FaqItem';
 
 type Props = {
-    items: FaqItem[];
     title?: string;
     showToggleAll?: boolean;
-};
-
-type FaqItem = {
-    question: string;
-    answer: string;
+    children: React.ReactNode[];
+    className?: string;
 };
 
 const useStyles = makeStyles({
@@ -39,54 +35,12 @@ const useStyles = makeStyles({
         '&:last-of-type::after': {
             content: '""'
         }
-    },
-    panel: {
-        width: '100%',
-        backgroundColor: '#f8f8f8',
-        boxShadow: 'none',
-        marginBottom: 12,
-        '&::before': {
-            display: 'none'
-        }
-    },
-    panelTitle: {
-        display: 'flex',
-        alignItems: 'center'
-    },
-    panelIcon: {
-        width: 27,
-        height: 27,
-        marginRight: 35
-    },
-    panelContent: {
-        paddingLeft: 62
-    },
-    question: {
-        fontSize: 16
     }
 });
 
-const ExpansionPanelCustomSummary = withStyles({
-    root: {
-        display: 'flex',
-        alignItems: 'center',
-        minHeight: 56,
-        '&$expanded': {
-            minHeight: 56,
-        }
-    },
-    content: {
-        '&$expanded': {
-            margin: '12px 0',
-        },
-    },
-    expanded: {
-    }
-})(ExpansionPanelSummary);
-
-export function Faq (props: Props) {
+export function Faq ({ children, title, showToggleAll, className }: Props) {
     const classes = useStyles();
-    const [ open, setOpen ] = useState(new Array(props.items.length).fill(false));
+    const [ open, setOpen ] = useState(new Array(children.length).fill(false));
 
     function togglePanel (index: number) {
         return () => {
@@ -98,36 +52,28 @@ export function Faq (props: Props) {
     }
 
     function showAll () {
-        setOpen(new Array(props.items.length).fill(true));
+        setOpen(new Array(children.length).fill(true));
     }
 
     function hideAll () {
-        setOpen(new Array(props.items.length).fill(false));
+        setOpen(new Array(children.length).fill(false));
     }
 
     return (
-        <>
+        <div className={clx({ [className]: !!className })}>
             <nav className={classes.navigation}>
-                {props.title && <Typography variant="h4" className={classes.title}>{props.title}</Typography>}
-                {props.showToggleAll && (
+                {title && <Typography variant="h4" className={classes.title}>{title}</Typography>}
+                {showToggleAll && (
                     <Typography variant="body2">
                         <span className={classes.toggleLink} onClick={showAll}>pokaż wszystko</span>
                         <span className={classes.toggleLink} onClick={hideAll}>zamknij wszystko</span>
                     </Typography>
                 )}
             </nav>
-            {props.items.map((item, index) => (
-                <ExpansionPanel key={index} className={classes.panel} expanded={open[index]} onChange={togglePanel(index)}>
-                    <ExpansionPanelCustomSummary className={classes.panelTitle}>
-                        <img src={open[index] ? iconMinus : iconPlus} className={classes.panelIcon} />
-                        <Typography variant="h6" className={classes.question}>{item.question}</Typography>
-                    </ExpansionPanelCustomSummary>
-                    <ExpansionPanelDetails>
-                        <Typography variant="body1" className={classes.panelContent}>{item.answer}</Typography>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
+            {React.Children.map(children, (child, index) => (
+                React.cloneElement(child as React.ReactElement<any>, { open: open[index], onChange: togglePanel(index) })
             ))}
-        </>
+        </div>
     );
 }
 

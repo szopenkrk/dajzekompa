@@ -1,12 +1,16 @@
 /* Models */
 import { Locker } from 'common/model/Locker';
-import { Receiver } from 'common/model/Receiver';
+import { Receiver, ReceiverPersonType } from 'common/model/Receiver';
+import { StateLockers } from 'client/model/Redux';
 
 /* Application files */
-import { Validator, isRequired } from 'client/lib/validators';
+import { Validator, isRequired, isRequiredIf } from 'client/lib/validators';
 
 export enum FormField {
+    PERSON_TYPE = 'personType',
     FIRST_NAME = 'firstName',
+    CARETAKER_FIRST_NAME = 'caretakerFirstName',
+    CARETAKER_LAST_NAME = 'caretakerLastName',
     LAST_NAME = 'lastName',
     EMAIL = 'email',
     PHONE = 'phone',
@@ -15,12 +19,20 @@ export enum FormField {
     CITY = 'city',
     POSTCODE = 'postcode',
     LOCKER = 'locker',
-    SCHOOL = 'school'
+    SCHOOL = 'school',
+    SCHOOL_GRADE = 'grade',
+    CONSENT_TERMS_AND_PRIVACY = 'consentTap',
+    CONSENT_INFO_CLAUSE = 'consentInfc',
+    CONSENT_SCHOOL_VERIFICATION = 'consentSchv',
+    CONSENT_CARETAKER = 'consentCrtr'
 }
 
 export type FormModel = {
+    [FormField.PERSON_TYPE]: ReceiverPersonType;
     [FormField.FIRST_NAME]: string;
     [FormField.LAST_NAME]: string;
+    [FormField.CARETAKER_FIRST_NAME]: string;
+    [FormField.CARETAKER_LAST_NAME]: string;
     [FormField.EMAIL]: string;
     [FormField.PHONE]: string;
     [FormField.STREET]: string;
@@ -29,6 +41,11 @@ export type FormModel = {
     [FormField.POSTCODE]: string;
     [FormField.LOCKER]: Locker;
     [FormField.SCHOOL]: string;
+    [FormField.SCHOOL_GRADE]: string;
+    [FormField.CONSENT_TERMS_AND_PRIVACY]: boolean;
+    [FormField.CONSENT_INFO_CLAUSE]: boolean;
+    [FormField.CONSENT_SCHOOL_VERIFICATION]: boolean;
+    [FormField.CONSENT_CARETAKER]: boolean;
 }
 
 export type FormList<T> = {
@@ -47,8 +64,11 @@ export function create<T> (value: T): Partial<FormList<T>> {
 
 export function emptyModel (base: Partial<FormModel> = {}): FormModel {
     return Object.assign({
+        [FormField.PERSON_TYPE]: ReceiverPersonType.STUDENT,
         [FormField.FIRST_NAME]: '',
         [FormField.LAST_NAME]: '',
+        [FormField.CARETAKER_FIRST_NAME]: '',
+        [FormField.CARETAKER_LAST_NAME]: '',
         [FormField.EMAIL]: '',
         [FormField.PHONE]: '',
         [FormField.STREET]: '',
@@ -56,14 +76,22 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.CITY]: '',
         [FormField.POSTCODE]: '',
         [FormField.LOCKER]: null,
-        [FormField.SCHOOL]: ''
+        [FormField.SCHOOL]: '',
+        [FormField.SCHOOL_GRADE]: '',
+        [FormField.CONSENT_TERMS_AND_PRIVACY]: false,
+        [FormField.CONSENT_INFO_CLAUSE]: false,
+        [FormField.CONSENT_SCHOOL_VERIFICATION]: false,
+        [FormField.CONSENT_CARETAKER]: false
     }, base);
 }
 
 export function getValidators (field: FormField): Validator[] {
     switch (field) {
+        case FormField.PERSON_TYPE: return [ isRequired() ];
         case FormField.FIRST_NAME: return [ isRequired() ];
         case FormField.LAST_NAME: return [ isRequired() ];
+        case FormField.CARETAKER_FIRST_NAME: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT) ];
+        case FormField.CARETAKER_LAST_NAME: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT) ];
         case FormField.EMAIL: return [ isRequired() ];
         case FormField.PHONE: return [ isRequired() ];
         case FormField.STREET: return [ isRequired() ];
@@ -72,6 +100,11 @@ export function getValidators (field: FormField): Validator[] {
         case FormField.POSTCODE: return [ isRequired() ];
         case FormField.LOCKER: return [ isRequired() ];
         case FormField.SCHOOL: return [ isRequired() ];
+        case FormField.SCHOOL_GRADE: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT) ];
+        case FormField.CONSENT_TERMS_AND_PRIVACY: return [ isRequired() ];
+        case FormField.CONSENT_INFO_CLAUSE: return [ isRequired() ];
+        case FormField.CONSENT_SCHOOL_VERIFICATION: return [ isRequired() ];
+        case FormField.CONSENT_CARETAKER: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT) ];
         default: return [];
     }
 }
@@ -80,26 +113,53 @@ export function validateForm (form: FormModel): ValidationResult {
     return Object.values(FormField).map((field) => {
         const value = form[field];
 
-        return validateField(field, value);
+        return validateField(field, value, { form });
     }).reduce((all, current) => {
         return Object.assign(all, current);
     }, {});
 }
 
-export function validateField (field: FormField, value: any): ValidationResult {
+export function validateField (field: FormField, value: any, options: any): ValidationResult {
     const validators = getValidators(field);
-    const results = validators.map((v) => v(value));
+    const results = validators.map((v) => v(value, options));
     const error = results.find((r) => !!r) || false;
 
     return { [field]: error };
 }
 
 export function sanitize (form: FormModel): Receiver {
-    return {
+    const now = Math.ceil(Date.now() / 1000);
+
+    const receiver: Receiver = {
         ...form,
-        locker: form.locker ? form.locker.id : '',
-        phone: sanitizePhoneNumber(form.phone),
-        complete: false
+        [FormField.LOCKER]: form.locker ? form.locker.id : '',
+        [FormField.PHONE]: sanitizePhoneNumber(form.phone),
+        [FormField.CONSENT_TERMS_AND_PRIVACY]: now,
+        [FormField.CONSENT_INFO_CLAUSE]: now,
+        [FormField.CONSENT_SCHOOL_VERIFICATION]: now,
+        [FormField.CONSENT_CARETAKER]: now
+    };
+
+    if (receiver[FormField.PERSON_TYPE] !== ReceiverPersonType.STUDENT) {
+        delete receiver[FormField.SCHOOL_GRADE];
+        delete receiver[FormField.CARETAKER_FIRST_NAME];
+        delete receiver[FormField.CARETAKER_LAST_NAME];
+        delete receiver[FormField.CONSENT_CARETAKER];
+    }
+
+    return receiver;
+}
+
+export function desanitize (receiver: Receiver, lockers: StateLockers): FormModel {
+    const locker = lockers.find((l) => l.id === receiver.locker);
+
+    return {
+        ...receiver,
+        locker,
+        consentTap: !!receiver.consentTap,
+        consentInfc: !!receiver.consentInfc,
+        consentSchv: !!receiver.consentSchv,
+        consentCrtr: !!receiver.consentCrtr
     };
 }
 

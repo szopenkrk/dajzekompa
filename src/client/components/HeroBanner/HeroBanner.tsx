@@ -2,6 +2,7 @@
 import React from 'react';
 import clx from 'classnames';
 import { makeStyles, Button, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 /* Application files */
 import arrowRight from 'client/assets/images/icon-arrow-right.svg';
@@ -76,11 +77,13 @@ export function HeroBanner () {
                         z nich zaczęto już pracować zdalnie, ale to nie oznacza, że wszyscy mają dostęp do komputera, tableta czy Internetu. <b>Niestety,
                         wiele dzieci, a także nauczycieli, nie posiada w domu sprzętu</b>, który pozwoliłby na uczenie i odrabianie lekcji on-line.
                     </Typography>
-                    <Button color="primary" endIcon={<img src={arrowRight} />} className={classes.linkButton}>Czytaj więcej</Button>
+                    <Link to="/o-akcji">
+                        <Button color="primary" endIcon={<img src={arrowRight} />} className={classes.linkButton}>Czytaj więcej</Button>
+                    </Link>
                     <Separator />
                     <div className={classes.actions}>
-                        <Button variant="contained" color="primary">Podaruj kompa</Button>
-                        <Button variant="outlined" color="primary">Zgłoś potrzebę</Button>
+                        <Link to="/podaruj-kompa"><Button variant="contained" color="primary">Podaruj kompa</Button></Link>
+                        <Link to="/zglos-potrzebe"><Button variant="outlined" color="primary">Zgłoś potrzebę</Button></Link>
                     </div>
                 </div>
                 <div className={classes.half}>
