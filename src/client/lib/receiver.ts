@@ -104,7 +104,7 @@ export function getValidators (field: FormField): Validator[] {
         case FormField.CONSENT_TERMS_AND_PRIVACY: return [ isRequired() ];
         case FormField.CONSENT_INFO_CLAUSE: return [ isRequired() ];
         case FormField.CONSENT_SCHOOL_VERIFICATION: return [ isRequired() ];
-        case FormField.CONSENT_CARETAKER: return [ isRequired() ];
+        case FormField.CONSENT_CARETAKER: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT) ];
         default: return [];
     }
 }
@@ -130,24 +130,24 @@ export function validateField (field: FormField, value: any, options: any): Vali
 export function sanitize (form: FormModel): Receiver {
     const now = Math.ceil(Date.now() / 1000);
 
-    form = { ...form };
+    const receiver: Receiver = {
+        ...form,
+        [FormField.LOCKER]: form.locker ? form.locker.id : '',
+        [FormField.PHONE]: sanitizePhoneNumber(form.phone),
+        [FormField.CONSENT_TERMS_AND_PRIVACY]: now,
+        [FormField.CONSENT_INFO_CLAUSE]: now,
+        [FormField.CONSENT_SCHOOL_VERIFICATION]: now,
+        [FormField.CONSENT_CARETAKER]: now
+    };
 
-    if (form[FormField.PERSON_TYPE] !== ReceiverPersonType.STUDENT) {
-        delete form[FormField.SCHOOL_GRADE];
-        delete form[FormField.CARETAKER_FIRST_NAME];
-        delete form[FormField.CARETAKER_LAST_NAME];
+    if (receiver[FormField.PERSON_TYPE] !== ReceiverPersonType.STUDENT) {
+        delete receiver[FormField.SCHOOL_GRADE];
+        delete receiver[FormField.CARETAKER_FIRST_NAME];
+        delete receiver[FormField.CARETAKER_LAST_NAME];
+        delete receiver[FormField.CONSENT_CARETAKER];
     }
 
-    return {
-        ...form,
-        locker: form.locker ? form.locker.id : '',
-        phone: sanitizePhoneNumber(form.phone),
-        complete: false,
-        consentTap: now,
-        consentInfc: now,
-        consentSchv: now,
-        consentCrtr: now
-    };
+    return receiver;
 }
 
 export function desanitize (receiver: Receiver, lockers: StateLockers): FormModel {

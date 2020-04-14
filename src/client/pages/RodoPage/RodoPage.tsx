@@ -101,7 +101,7 @@ export function RodoPage () {
             </ol>
             <Typography variant="body1" className={classes.title}><b>Informacje o plikach cookies.</b></Typography>
             <ol>
-                <li>Serwis korzysta z plików cookies (tzw. „ciasteczka”), które stanowią dane informatyczne, w szczególności pliki tekstowe, które przechowywane są w urządzeniu końcowym Użytkownika Serwisu i przeznaczone są do korzystania ze stron internetowych Serwisu. Cookies zazwyczaj zawierają nazwę strony internetowej, z której pochodzą, czas przechowywania ich na urządzeniu końcowym oraz unikalny numer. Podmiotem zamieszczającym na urządzeniu końcowym Użytkownika Serwisu pliki cookies oraz uzyskującym do nich dostęp jest operator Serwisu {getLinkToPage('', url, classes.link)}}.</li>
+                <li>Serwis korzysta z plików cookies (tzw. „ciasteczka”), które stanowią dane informatyczne, w szczególności pliki tekstowe, które przechowywane są w urządzeniu końcowym Użytkownika Serwisu i przeznaczone są do korzystania ze stron internetowych Serwisu. Cookies zazwyczaj zawierają nazwę strony internetowej, z której pochodzą, czas przechowywania ich na urządzeniu końcowym oraz unikalny numer. Podmiotem zamieszczającym na urządzeniu końcowym Użytkownika Serwisu pliki cookies oraz uzyskującym do nich dostęp jest operator Serwisu {getLinkToPage('', url, classes.link)}.</li>
                 <li>
                     Pliki cookies wykorzystywane są w następujących celach:
                     <ol className={classes.letteredList}>

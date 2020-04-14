@@ -14,11 +14,11 @@ export type Receiver = {
     locker: string;
     school: string;
     grade: string;
-    complete: boolean;
+    complete?: boolean;
     consentTap: number;
     consentInfc: number;
     consentSchv: number;
-    consentCrtr: number;
+    consentCrtr?: number;
 };
 
 export enum ReceiverPersonType {

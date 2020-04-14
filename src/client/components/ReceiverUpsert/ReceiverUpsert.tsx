@@ -262,11 +262,13 @@ export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
                                     Wyrażam zgodę na weryfikację mojego zgłoszenia u właściwego dyrektora szkoły, w celu potwierdzenia czy przysługuje mi sprzęt zgodnie z regulaminem Akcji  „Dajże Kompa”. *
                                 </>
                             )} />
-                            <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_CARETAKER]} onChange={updateField(FormField.CONSENT_CARETAKER)} />} label={(
-                                <>
-                                    Oświadczam, że jestem opiekunem prawnym/rodzicem dziecka, którego dane zostały przeze mnie podane w formularzu. *
-                                </>
-                            )} />
+                            {form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT && (
+                                <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_CARETAKER]} onChange={updateField(FormField.CONSENT_CARETAKER)} />} label={(
+                                    <>
+                                        Oświadczam, że jestem opiekunem prawnym/rodzicem dziecka, którego dane zostały przeze mnie podane w formularzu. *
+                                    </>
+                                )} />
+                            )}
                         </FormGroup>
                     </FormControl>
                 )}

@@ -38,7 +38,7 @@ const schema = joi.object({
     consentTap: joi.number().required(),
     consentInfc: joi.number().required(),
     consentSchv: joi.number().required(),
-    consentCrtr: joi.number().required()
+    consentCrtr: joi.when('personType', { is: ReceiverPersonType.STUDENT, then: joi.number().required() })
 });
 
 export default {
