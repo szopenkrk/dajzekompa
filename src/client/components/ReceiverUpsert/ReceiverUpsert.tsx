@@ -72,7 +72,7 @@ export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
     const theme = useTheme();
 
     const lockers = useSelector((state) => state.lockers) || [];
-    const schools = useSelector((state) => state.schools);
+    const schools = useSelector((state) => [ '', ...state.schools ]);
 
     const [ form, setForm ] = useState(emptyModel());
     const [ loading, setLoading ] = useState(false);
