@@ -3,9 +3,10 @@ import React from 'react';
 import { makeStyles, Typography, Button, useMediaQuery, useTheme } from '@material-ui/core';
 
 /* Application files */
-import flowDesktop from 'client/assets/images/parties-flow-desktop.png';
-import flowMobile from 'client/assets/images/parties-flow-mobile.png';
+import flowDesktop from 'client/assets/images/faq-givers-desktop.png';
+import flowMobile from 'client/assets/images/faq-givers-mobile.png';
 import SubPage from 'client/pages/SubPage';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     description: {
@@ -64,8 +65,8 @@ export function AboutPage () {
                 PS.: Nie zapomnij podzielić się tą informacją w swoich social mediach #DajżeKompa
             </Typography>
             <div className={classes.actions}>
-                <Button variant="contained" color="primary">Podaruj kompa</Button>
-                <Button variant="outlined" color="primary">Zgłoś potrzebę</Button>
+                <Link to="/podaruj-kompa"><Button variant="contained" color="primary">Podaruj kompa</Button></Link>
+                <Link to="/zglos-potrzebe"><Button variant="outlined" color="primary">Zgłoś potrzebę</Button></Link>
             </div>
         </SubPage>
     );
