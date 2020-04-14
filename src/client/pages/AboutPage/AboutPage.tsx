@@ -39,20 +39,20 @@ export function AboutPage () {
     return (
         <SubPage title="O akcji">
             <Typography variant="subtitle1" className={classes.description}>
-                W związku z epidemią koronawirusa szkoły rozpoczęły pracę z uczniami on-line. Niestety, <b>nie wszystkie dzieci, a także nie wszyscy nauczyciele</b> mają dostęp do komputera, tableta czy Internetu.
+                W związku z pandemią koronawirusa szkoły realizują naukę z uczniami on-line. Niestety, <b>nie wszystkie dzieci, a także nie wszyscy nauczyciele</b> mają dostęp do komputera czy tabletu.
             </Typography>
             <Typography variant="subtitle1" className={classes.description}>
-                <b>#DajżeKompa</b> - jeśli posiadasz <b>nieużywany sprzęt komputerowy przekaż go</b> na potrzeby naszej akcji. Będziemy razem walczyć z wykluczeniem cyfrowym.
+                <b>#DajżeKompa</b> - jeśli posiadasz <b>niepotrzebny sprzęt komputerowy, przekaż go</b> na potrzeby naszej akcji. Będziemy razem walczyć z wykluczeniem cyfrowym.
             </Typography>
             <img src={mobile ? flowMobile : flowDesktop} className={classes.image} />
             <Typography variant="subtitle1" className={classes.description}>
-                To bardzo proste: zgłoś chęć udziału przez naszą stronę internetową, wyczyść prywatne pliki, zapakuj sprzęt i nadaj paczkę przez paczkomat InPost. Resztą zajmiemy się my. Zadbamy, aby sprzęt był poddany kwarantannie, zdezynfekowany, przygotowany do potrzeb zadań on-line i oczywiście dostarczymy go do osób, które go potrzebują. Co ważne - zostanie on u nich na zawsze. Zajmiemy się też wszystkimi kwestiami prawnymi i podatkowymi.
+                To bardzo proste: <b>zgłoś chęć udziału</b> w akcji przez naszą stronę internetową, <b>przygotuj sprzęt</b>, który chcesz przekazać, wyczyść prywatne pliki, zapakuj sprzęt i <b>nadaj paczkę</b> przez paczkomat InPost. <b>Resztą zajmiemy się my</b>. Zadbamy, aby sprzęt został poddany kwarantannie, zdezynfekowany, przygotowany do potrzeb zadań on-line i oczywiście dostarczymy go do osób, które go potrzebują. Co ważne - <b>zostanie on u nich na zawsze</b>. Zajmiemy się też wszystkimi kwestiami prawnymi i podatkowymi.
             </Typography>
             <Typography variant="subtitle1" className={classes.description}>
-                Inicjatorem akcji są <b>krakowskie firmy</b> wspierane przez <b>Urząd Miasta Krakowa i Fundację Poland Business Run</b>. Do pomocy zgłosiło się <b>wiele osób chcących pomagać</b>, dzięki którym pomysł wsparcia dzieciaków w kilka dni przerodził się w rzeczywistość: to ludzie biznesu, informatycy, prawnicy, dziennikarze, a przede wszystkim darczyńcy.
+                Inicjatorem akcji są <b>krakowskie firmy</b> wspierane przez <b>Urząd Miasta Krakowa i Fundację Poland Business Run</b>. Do pomocy zgłosiło się <b>wiele osób</b>, dzięki którym pomysł wsparcia dzieci w kilka dni przerodził się w rzeczywistość: to ludzie biznesu, informatycy, prawnicy, dziennikarze, a przede wszystkim darczyńcy.
             </Typography>
             <Typography variant="subtitle1" className={classes.description}>
-                <b>Zaczynamy od Krakowa, z myślą, że poszerzymy akcję na kolejne miasta</b>. W stolicy Małopolski chcemy dostarczyć dzieciom <b>1000 komputerów</b> z zapewnieniem dostępu do Internetu. Szukamy osób, które razem z nami zorganizują akcję w innych miastach.
+                <b>Zaczynamy od Krakowa, z myślą, że poszerzymy akcję na kolejne miasta</b>. W samej stolicy Małopolski chcemy dostarczyć dzieciom przynajmniej <b>1000 komputerów</b> z dostępem do Internetu. Szukamy osób, które razem z nami zorganizują akcję w innych miastach.
             </Typography>
             <Typography variant="subtitle1" className={classes.description}>
                 Cieszymy się, że powstaje wiele podobnych inicjatyw lokalnych, a także programy publiczne. Działamy we wspólnym celu, a potrzeby są ogromne. Tysiące dzieci jest wykluczonych cyfrowo. <b>Razem możemy naprawdę wiele!</b>
@@ -61,7 +61,7 @@ export function AboutPage () {
                 Podsumowując: <b>jesteś brakującym elementem naszej układanki</b>. Aby wszystko dobrze się ułożyło niewiele potrzeba – <b>po prostu #DajżeKompa</b>
             </Typography>
             <Typography variant="subtitle1" className={classes.description}>
-                PS.: Nie zapomnij podzielić się tą informacją w swoich social mediach! #DajżeKompa
+                PS.: Nie zapomnij podzielić się tą informacją w swoich social mediach #DajżeKompa
             </Typography>
             <div className={classes.actions}>
                 <Button variant="contained" color="primary">Podaruj kompa</Button>
