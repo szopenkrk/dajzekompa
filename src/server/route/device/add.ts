@@ -72,7 +72,11 @@ export default {
     method: HTTPMethod.POST,
     url: '/api/devices',
     middleware: [
-        multer().array('photos')
+        multer({
+            limits: {
+                fieldSize: 25 * 1024 * 1024
+            }
+        }).array('photos')
     ],
     controller: async (req: Request, res: Response) => {
         let device: Device;
