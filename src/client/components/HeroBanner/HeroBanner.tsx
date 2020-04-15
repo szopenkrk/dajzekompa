@@ -40,10 +40,13 @@ const useStyles = makeStyles((theme) => ({
         padding: '14px 0'
     },
     description: {
-        padding: '22px 0',
+        paddingTop: theme.spacing(3),
         width: 538,
         lineHeight: 1.33,
-        maxWidth: '100%'
+        maxWidth: '100%',
+        '&:last-of-type': {
+            paddingBottom: theme.spacing(3)
+        }
     },
     linkButton: {
         backgroundColor: 'transparent'
@@ -73,9 +76,10 @@ export function HeroBanner () {
                 <div className={classes.half}>
                     <Typography variant="h2" className={classes.title}>DAJŻE KOMPA</Typography>
                     <Typography variant="subtitle1" className={classes.description}>
-                        <b>Polskie szkoły stanęły przed nie lada wyzwaniem!</b> Nauczanie on-line spadło na nie jak grom z jasnego nieba.... W większości
-                        z nich zaczęto już pracować zdalnie, ale to nie oznacza, że wszyscy mają dostęp do komputera, tableta czy Internetu. <b>Niestety,
-                        wiele dzieci, a także nauczycieli, nie posiada w domu sprzętu</b>, który pozwoliłby na uczenie i odrabianie lekcji on-line.
+                        W związku z pandemią koronawirusa szkoły realizują naukę z uczniami on-line. Niestety, <b>nie wszystkie dzieci, a także nie wszyscy nauczyciele</b> mają dostęp do komputera czy tabletu.
+                    </Typography>
+                    <Typography variant="subtitle1" className={classes.description}>
+                        <b>#DajżeKompa</b> - jeśli posiadasz <b>niepotrzebny sprzęt komputerowy, przekaż go</b> na potrzeby naszej akcji. Będziemy razem walczyć z wykluczeniem cyfrowym.
                     </Typography>
                     <Link to="/o-akcji">
                         <Button color="primary" endIcon={<img src={arrowRight} />} className={classes.linkButton}>Czytaj więcej</Button>

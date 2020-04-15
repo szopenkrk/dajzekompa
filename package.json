@@ -1,6 +1,6 @@
 {
     "name": "dajzekompa",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Dajże Kompa",
     "main": "index.js",
     "scripts": {
