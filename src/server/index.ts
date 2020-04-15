@@ -66,9 +66,10 @@ for (const route of routes) {
     });
 }
 
-console.log(isSecure);
 if (isSecure) {
     http.createServer((req, res) => {
+        Log.debug('HTTP request, redirecting to HTTPS');
+
         res.writeHead(HTTPCode.MOVED_PERMANENTLY, {
             'Location': 'https://' + req.headers['host'] + req.url
         });

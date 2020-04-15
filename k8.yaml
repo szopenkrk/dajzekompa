@@ -7,8 +7,12 @@ spec:
         app: dajzekompa
     type: LoadBalancer
     ports:
-        - port: 443
-          targetPort: 443
+        - name: http
+          port: 80
+          targetPort: http
+        - name: https
+          port: 443
+          targetPort: https
 
 ---
 kind: Deployment
@@ -31,10 +35,13 @@ spec:
                 - name: dajzekompa
                   image: eu.gcr.io/dajzekompa/dajzekompa
                   ports:
+                    - containerPort: 80
+                      name: http
                     - containerPort: 443
+                      name: https
                   env:
                     - name: APP_NAME
-                      value: dajzekompa
+                      value: dajzekomp
                     - name: NODE_ENV
                       value: production
                     - name: PORT
@@ -42,9 +49,9 @@ spec:
                     - name: STRICT_TLS
                       value: "true"
                     - name: LOG_LEVEL
-                      value: INFO
+                      value: DEBUG
                     - name: MAINTENANCE_MODE
-                      value: "true"
+                      value: "false"
                     - name: API_URL
                       value: https://www.dajzekompa.pl/api
                     - name: CONTACT_EMAIL
