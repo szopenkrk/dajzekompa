@@ -43,7 +43,7 @@ function getConfig (prop: string, type: string): any {
 }
 
 export default class Config {
-    public static __CLIENT_ENABLED__: string[] = [ 'NODE_ENV', 'MAINTENANCE_MODE', 'API_URL', 'CONTACT_EMAIL' ];
+    public static __CLIENT_ENABLED__: string[] = [ 'NODE_ENV', 'MAINTENANCE_MODE', 'API_URL', 'CONTACT_EMAIL', 'ADMIN_PANEL_ENABLED' ];
 
     /* System level */
     public static APP_NAME: string = getConfig('APP_NAME', 'string');
@@ -66,4 +66,5 @@ export default class Config {
     public static GOOGLE_STORAGE_BUCKET: string = getConfig('GOOGLE_STORAGE_BUCKET', 'string');
     public static TLS_KEY_FILE: string = getConfig('TLS_KEY_FILE', 'string');
     public static TLS_CERT_FILE: string = getConfig('TLS_CERT_FILE', 'string');
+    public static ADMIN_PANEL_ENABLED: boolean = getConfig('ADMIN_PANEL_ENABLED', 'boolean');
 }

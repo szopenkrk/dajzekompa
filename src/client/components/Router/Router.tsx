@@ -68,7 +68,7 @@ export function Router () {
         <BrowserRouter basename="/#">
             <Switch>
                 <Route path="/admin/signin" component={SignInPage} exact={true} />
-                <Route path="/admin" render={requireAuthentication(AdminPage)} />
+                {Config.ADMIN_PANEL_ENABLED && <Route path="/admin" render={requireAuthentication(AdminPage)} />}
                 {!Config.MAINTENANCE_MODE && (<Route path="/" component={LandingPage} />)}
                 {Config.MAINTENANCE_MODE && (<Route path="/" component={MaintenancePage} />)}
                 <Route render={() => <Redirect to="/" />} />

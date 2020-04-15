@@ -5,6 +5,7 @@ export default class Config {
     public static MAINTENANCE_MODE: boolean;
     public static API_URL: string;
     public static CONTACT_EMAIL: string;
+    public static ADMIN_PANEL_ENABLED: boolean;
 }
 
 export function loadConfigFromObject (object: AnyObject): void {
