@@ -66,13 +66,26 @@ for (const route of routes) {
     });
 }
 
-const wrapper = !isSecure ? http.createServer(server) : https.createServer({
-    key: fs.readFileSync(Config.TLS_KEY_FILE),
-    cert: fs.readFileSync(Config.TLS_CERT_FILE)
-}, server);
+if (isSecure) {
+    http.createServer((req, res) => {
+        res.writeHead(HTTPCode.MOVED_PERMANENTLY, {
+            'Location': 'https://' + req.headers['host'] + req.url
+        });
+        res.end();
+    }).listen(80);
 
-const instance = wrapper.listen(Config.PORT, () => {
-    const { address, port } = instance.address() as AddressInfo;
+    const instance = https.createServer({
+        key: fs.readFileSync(Config.TLS_KEY_FILE),
+        cert: fs.readFileSync(Config.TLS_CERT_FILE)
+    }, server).listen(Config.PORT, () => {
+        const { address, port } = instance.address() as AddressInfo;
 
-    Log.info(`Server listening on ${address}:${port}`);
-});
+        Log.info(`Server listening on ${address}:${port}`);
+    });
+} else {
+    const instance = server.listen(Config.PORT, () => {
+        const { address, port } = instance.address() as AddressInfo;
+
+        Log.info(`Server listening on ${address}:${port}`);
+    });
+}
