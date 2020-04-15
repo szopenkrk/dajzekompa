@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     actions: {
         display: 'flex',
         justifyContent: 'flex-end',
-        paddingTop: 30,
+        paddingTop: theme.spacing(2),
         paddingBottom: 10
     },
     message: {
@@ -69,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     messageTitle: {
-        textAlign: 'center'
+        textAlign: 'center',
+        paddingBottom: theme.spacing(2)
     },
     consents: {
         padding: `${theme.spacing(2)}px 0`,
@@ -194,8 +195,9 @@ export function SubmitDevicePage () {
             {complete && !error && (
                 <div className={classes.message}>
                     <Icon className={classes.icon}>check_circle</Icon>
-                    <Typography variant="h5" className={classes.messageTitle}>Dziękujemy!</Typography>
-                    <Typography variant="body1" className={classes.messageTitle}>Informacje o twoim kompie zostały do nas wysłane. Poinformujemy Cię o dalszych krokach.</Typography>
+                    <Typography variant="h5" className={classes.messageTitle}>Dziękujemy za zgłoszenie.</Typography>
+                    <Typography variant="body1" className={classes.messageTitle}>Twój sprzęt zostanie zweryfikowany pod względem technicznym i wrócimy do Ciebie mailowo z informacją o kolejnych krokach.</Typography>
+                    <Typography variant="body1" className={classes.messageTitle}>Dziękujemy w imieniu wszystkich potrzebujących komputerów dzieci i nauczycieli!</Typography>
                     <section className={classes.actions}>
                         <Button variant="contained" color="primary" onClick={resetForm}>Podaruj jeszcze jeden</Button>
                     </section>
