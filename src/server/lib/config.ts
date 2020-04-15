@@ -54,10 +54,14 @@ export default class Config {
 
     /* Custom */
     public static MAINTENANCE_MODE: boolean = getConfig('MAINTENANCE_MODE', 'boolean');
-    public static DB_URL: string = getConfig('DB_URL', 'string');
+    public static DB_HOST: string = getConfig('DB_HOST', 'string');
+    public static DB_PORT: number = getConfig('DB_PORT', 'number');
+    public static DB_USER: string = getConfig('DB_USER', 'string');
+    public static DB_PASSWORD: string = getConfig('DB_PASSWORD', 'string');
+    public static DB_DATABASE: string = getConfig('DB_DATABASE', 'string');
     public static API_URL: string = getConfig('API_URL', 'string');
-    public static AWS_ACCESS_KEY_ID: string = getConfig('AWS_ACCESS_KEY_ID', 'string');
-    public static AWS_SECRET_ACCESS_KEY: string = getConfig('AWS_SECRET_ACCESS_KEY', 'string');
-    public static AWS_S3_BUCKET_NAME: string = getConfig('AWS_S3_BUCKET_NAME', 'string');
     public static CONTACT_EMAIL: string = getConfig('CONTACT_EMAIL', 'string');
+    public static GOOGLE_APPLICATION_CREDENTIALS: string = getConfig('GOOGLE_APPLICATION_CREDENTIALS', 'string');
+    public static GOOGLE_PROJECT_ID: string = getConfig('GOOGLE_PROJECT_ID', 'string');
+    public static GOOGLE_STORAGE_BUCKET: string = getConfig('GOOGLE_STORAGE_BUCKET', 'string');
 }

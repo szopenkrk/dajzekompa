@@ -3,7 +3,7 @@ import joi from '@hapi/joi';
 import multer from 'multer';
 import { v4 as uuid } from 'uuid';
 import mime from 'mime-types';
-import { S3 } from 'aws-sdk';
+import { Storage } from '@google-cloud/storage';
 
 /* Models */
 import { Request, Response } from 'express';
@@ -65,10 +65,8 @@ const schema = joi.object({
     consentPbl: joi.number()
 });
 
-const s3 = new S3({
-    accessKeyId: Config.AWS_ACCESS_KEY_ID,
-    secretAccessKey: Config.AWS_SECRET_ACCESS_KEY
-});
+const storage = new Storage({ keyFilename: Config.GOOGLE_APPLICATION_CREDENTIALS });
+const bucket = storage.bucket(Config.GOOGLE_STORAGE_BUCKET);
 
 export default {
     method: HTTPMethod.POST,
@@ -88,29 +86,31 @@ export default {
         req.body = await validateRequestPayload(device, schema);
 
         const uploads = (req.files as Express.Multer.File[]).map((file) => {
-            return new Promise<S3.ManagedUpload.SendData>((resolve, reject) => {
-                s3.upload({
-                    Bucket: Config.AWS_S3_BUCKET_NAME,
-                    Key: `${uuid()}.${mime.extension(file.mimetype)}`,
-                    Body: file.buffer,
-                    ACL: 'public-read'
-                }, (error, data) => {
-                    if (error) return reject(error);
+            return new Promise<string>((resolve, reject) => {
+                const object = bucket.file(`${uuid()}.${mime.extension(file.mimetype)}`);
+                const stream = object.createWriteStream({ resumable: false });
 
-                    return resolve(data);
-                });
+                stream.on('finish', async () => {
+                    await object.makePublic();
+
+                    return resolve(`https://storage.googleapis.com/${Config.GOOGLE_STORAGE_BUCKET}/${object.name}`);
+                }).on('error', (error) => {
+                    Log.error(error.message);
+
+                    return reject('Ups, coś poszło nie tak. Przepraszamy.');
+                }).end(file.buffer);
             });
         });
 
-        const uploaded = await Promise.all<S3.ManagedUpload.SendData>(uploads);
+        const uploaded = await Promise.all<string>(uploads);
 
         try {
             await knex.transaction(async (trx) => {
                 const result = await trx(DBTable.DEVICES).insert(buildQueryDeviceObject(device)).returning('id');
 
-                await trx(DBTable.PHOTOS).insert(uploaded.map((u) => ({
+                await trx(DBTable.PHOTOS).insert(uploaded.map((url) => ({
                     deviceId: result[0],
-                    url: u.Location
+                    url
                 })));
             });
         } catch (error) {

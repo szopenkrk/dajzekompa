@@ -2,20 +2,16 @@ const path = require('path');
 const { knexSnakeCaseMappers } = require('objection');
 
 module.exports = {
-    local: {
-        client: 'pg',
-        connection: 'postgres://postgres:postgres@127.0.0.1:5432/dajzekompa',
-        migrations: {
-            directory: path.resolve(__dirname, 'src/server/database/migrations')
-        },
-        ...knexSnakeCaseMappers()
+    client: 'pg',
+    connection: {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE
     },
-    development: {
-        client: 'pg',
-        connection: 'postgres://postgres:dajzekompa2020@dev.dajzekompa.pl:6432/dajzekompa',
-        migrations: {
-            directory: path.resolve(__dirname, 'src/server/database/migrations')
-        },
-        ...knexSnakeCaseMappers()
-    }
+    migrations: {
+        directory: path.resolve(__dirname, 'src/server/database/migrations')
+    },
+    ...knexSnakeCaseMappers()
 };
