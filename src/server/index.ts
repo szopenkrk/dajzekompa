@@ -1,5 +1,8 @@
 /* Libraries */
+import fs from 'fs';
 import express from 'express';
+import http from 'http';
+import https from 'https';
 
 /* Models */
 import { Request, Response, NextFunction } from 'express';
@@ -30,6 +33,7 @@ if (Config.STRICT_TLS === false) {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 }
 
+const isSecure = Config.TLS_KEY_FILE && Config.TLS_CERT_FILE;
 const server = express();
 
 for (const middleware of middlewares) {
@@ -62,7 +66,12 @@ for (const route of routes) {
     });
 }
 
-const instance = server.listen(Config.PORT, () => {
+const wrapper = !isSecure ? http.createServer(server) : https.createServer({
+    key: fs.readFileSync(Config.TLS_KEY_FILE),
+    cert: fs.readFileSync(Config.TLS_CERT_FILE)
+}, server);
+
+const instance = wrapper.listen(Config.PORT, () => {
     const { address, port } = instance.address() as AddressInfo;
 
     Log.info(`Server listening on ${address}:${port}`);

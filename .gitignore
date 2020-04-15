@@ -2,6 +2,7 @@ build/
 node_modules/
 
 gcloud_credentials.json
+ssl.*
 *.log
 *.tar.gz
 .DS_Store

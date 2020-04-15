@@ -64,4 +64,6 @@ export default class Config {
     public static GOOGLE_APPLICATION_CREDENTIALS: string = getConfig('GOOGLE_APPLICATION_CREDENTIALS', 'string');
     public static GOOGLE_PROJECT_ID: string = getConfig('GOOGLE_PROJECT_ID', 'string');
     public static GOOGLE_STORAGE_BUCKET: string = getConfig('GOOGLE_STORAGE_BUCKET', 'string');
+    public static TLS_KEY_FILE: string = getConfig('TLS_KEY_FILE', 'string');
+    public static TLS_CERT_FILE: string = getConfig('TLS_CERT_FILE', 'string');
 }
