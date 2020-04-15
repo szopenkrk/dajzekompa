@@ -33,7 +33,7 @@ if (Config.STRICT_TLS === false) {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 }
 
-const isSecure = Config.TLS_KEY_FILE && Config.TLS_CERT_FILE;
+const isSecure = !!Config.TLS_KEY_FILE && !!Config.TLS_CERT_FILE;
 const server = express();
 
 for (const middleware of middlewares) {
@@ -66,6 +66,7 @@ for (const route of routes) {
     });
 }
 
+console.log(isSecure);
 if (isSecure) {
     http.createServer((req, res) => {
         res.writeHead(HTTPCode.MOVED_PERMANENTLY, {
