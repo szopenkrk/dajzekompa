@@ -42,7 +42,7 @@ for (const middleware of middlewares) {
 
 for (const route of routes) {
     server[route.method.toLowerCase()](route.url, ...(route.middleware || []), async (req: Request, res: Response, next: NextFunction) => {
-        Log.info(`${route.method} ${route.url}`);
+        Log.debug(`${route.method} ${route.url}`);
 
         if (route.schema) {
             try {
@@ -55,13 +55,9 @@ for (const route of routes) {
         try {
             await route.controller(req, res, next);
         } catch (error) {
-            if (JSErrors.includes(error.name) || error.code === HTTPCode.INTERNAL_SERVER_ERROR) {
-                Log.error(error.message);
+            Log.error(error.message);
 
-                return closeWithError(res, new APIError('There has been a technical error.'));
-            }
-
-            return closeWithError(res, error);
+            return closeWithError(res, new APIError('There has been a technical error.'));
         }
     });
 }
