@@ -132,8 +132,18 @@ export function sanitize (form: FormModel): Receiver {
 
     const receiver: Receiver = {
         ...form,
-        [FormField.LOCKER]: form.locker ? form.locker.id : '',
-        [FormField.PHONE]: sanitizePhoneNumber(form.phone),
+        [FormField.LOCKER]: form[FormField.LOCKER] ? form[FormField.LOCKER].id : '',
+        [FormField.FIRST_NAME]: form[FormField.FIRST_NAME].trim(),
+        [FormField.LAST_NAME]: form[FormField.LAST_NAME].trim(),
+        [FormField.CARETAKER_FIRST_NAME]: form[FormField.CARETAKER_FIRST_NAME].trim(),
+        [FormField.CARETAKER_LAST_NAME]: form[FormField.CARETAKER_LAST_NAME].trim(),
+        [FormField.EMAIL]: form[FormField.EMAIL].trim(),
+        [FormField.STREET]: form[FormField.STREET].trim(),
+        [FormField.STREET_NUMBER]: form[FormField.STREET_NUMBER].trim(),
+        [FormField.POSTCODE]: form[FormField.POSTCODE].trim(),
+        [FormField.CITY]: form[FormField.CITY].trim(),
+        [FormField.SCHOOL_GRADE]: form[FormField.SCHOOL_GRADE].trim(),
+        [FormField.PHONE]: sanitizePhoneNumber(form[FormField.PHONE]),
         [FormField.CONSENT_TERMS_AND_PRIVACY]: now,
         [FormField.CONSENT_INFO_CLAUSE]: now,
         [FormField.CONSENT_SCHOOL_VERIFICATION]: now,
@@ -156,14 +166,15 @@ export function desanitize (receiver: Receiver, lockers: StateLockers): FormMode
     return {
         ...receiver,
         locker,
-        consentTap: !!receiver.consentTap,
-        consentInfc: !!receiver.consentInfc,
-        consentSchv: !!receiver.consentSchv,
-        consentCrtr: !!receiver.consentCrtr
+        [FormField.CONSENT_TERMS_AND_PRIVACY]: !!receiver[FormField.CONSENT_TERMS_AND_PRIVACY],
+        [FormField.CONSENT_INFO_CLAUSE]: !!receiver[FormField.CONSENT_INFO_CLAUSE],
+        [FormField.CONSENT_SCHOOL_VERIFICATION]: !!receiver[FormField.CONSENT_SCHOOL_VERIFICATION],
+        [FormField.CONSENT_CARETAKER]: !!receiver[FormField.CONSENT_CARETAKER]
     };
 }
 
 function sanitizePhoneNumber (raw: string): string {
+    raw = raw.trim();
     if (raw.startsWith('00')) raw = raw.replace(/^00/g, '+');
     if (!raw.startsWith('+')) raw = '48' + raw;
 

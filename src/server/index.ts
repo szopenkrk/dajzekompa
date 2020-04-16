@@ -3,6 +3,7 @@ import fs from 'fs';
 import express from 'express';
 import http from 'http';
 import https from 'https';
+import { getStatusText } from 'http-status-codes';
 
 /* Models */
 import { Request, Response, NextFunction } from 'express';
@@ -10,7 +11,7 @@ import { AddressInfo } from 'net';
 import { HTTPCode } from 'server/model/HTTP';
 
 /* Application files */
-import Log, { JSErrors } from 'server/controller/Log';
+import Log from 'server/controller/Log';
 import APIError from 'server/controller/APIError';
 import Config from 'server/lib/config';
 import Process from 'server/lib/process';
@@ -55,7 +56,7 @@ for (const route of routes) {
         try {
             await route.controller(req, res, next);
         } catch (error) {
-            Log.error(error.message);
+            Log.error(`${error.code ? `(${error.code} ${getStatusText(error.code)}) ` : ''}${error.message}`);
 
             return closeWithError(res, new APIError('There has been a technical error.'));
         }

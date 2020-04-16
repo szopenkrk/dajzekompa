@@ -30,8 +30,8 @@ export function add (form: FormModel): ReduxThunkAction<Device> {
         const device = sanitize(form);
         const formData = new FormData();
 
-        form[FormField.PHOTOS].forEach((photo) => formData.append('photos', base64toBlob(photo)));
-        delete form[FormField.PHOTOS];
+        device[FormField.PHOTOS].forEach((photo) => formData.append('photos', base64toBlob(photo)));
+        delete device[FormField.PHOTOS];
 
         formData.append('device', JSON.stringify(device));
 
