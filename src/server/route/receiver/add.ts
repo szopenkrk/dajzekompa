@@ -12,6 +12,7 @@ import knex from 'server/database/knex';
 import Log from 'server/controller/Log';
 import { closeWithError, respondSuccess, validateRequestPayload } from 'server/lib/http';
 import { Receiver, ReceiverPersonType } from 'common/model/Receiver';
+import APIError from 'server/controller/APIError';
 
 function buildQueryReceiverObject (receiver: Receiver): DBSchemaReceiver {
     return {
@@ -45,12 +46,21 @@ export default {
     method: HTTPMethod.POST,
     url: '/api/receivers',
     controller: async (req: Request, res: Response) => {
-        req.body = await validateRequestPayload(req.body, schema);
-
-        const receiver: Receiver = req.body;
+        let sanitizedBody;
 
         try {
-            await knex(DBTable.RECEIVERS).insert(buildQueryReceiverObject(req.body));
+            sanitizedBody = await validateRequestPayload(req.body, schema);
+        } catch (error) {
+            const match = error.message.match(/\([a-zA-Z]+\)$/g);
+            const field = match[0] ? match[0].replace(/(\(|\))/g, '') : '';
+
+            throw new APIError(`[Value="${req.body[field]}"] ${error.message}`);
+        }
+
+        const receiver: Receiver = sanitizedBody;
+
+        try {
+            await knex(DBTable.RECEIVERS).insert(buildQueryReceiverObject(sanitizedBody));
         } catch (error) {
             Log.error(error);
 

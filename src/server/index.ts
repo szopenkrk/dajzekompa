@@ -56,7 +56,7 @@ for (const route of routes) {
         try {
             await route.controller(req, res, next);
         } catch (error) {
-            Log.error(`${error.code ? `(${error.code} ${getStatusText(error.code)}) ` : ''}${error.message}`);
+            Log.error(`[Path=${route.url}] [Method=${route.method}] ${error.code ? `(${error.code} ${getStatusText(error.code)}) ` : ''}${error.message}`);
 
             return closeWithError(res, new APIError('There has been a technical error.'));
         }
