@@ -2,28 +2,21 @@ const statuses = ['RECEIVED', 'SENT_TO_SERVICE', 'IN_SERVICE', 'SERVICE_COMPLETE
 
 exports.up = (knex) => {
     return knex.schema.createTable('devices', table => {
-        table.bigIncrements('id');
+        table.increments('id').primary();
+        table.integer('type_id').notNullable();
+
         table.enum('person_type', ['PERSON', 'COMPANY']).notNullable();
         table.string('company_name').defaultTo('');
         table.string('nip').defaultTo('');
-        table.string('first_name').defaultTo('');
-        table.string('last_name').defaultTo('');
+        table.string('first_name').notNullable();
+        table.string('last_name').notNullable();
         table.string('street').notNullable();
         table.string('street_number').notNullable();
         table.string('city').notNullable();
         table.string('postcode').notNullable();
         table.string('email').notNullable();
         table.string('bank_account').notNullable();
-        table.enum('device_type', ['NOTEBOOK', 'DESKTOP']).notNullable();
-        table.enum('status', statuses).notNullable().defaultTo('RECEIVED');
-        table.string('notebook_name').defaultTo('');
-        table.float('ram', 2).notNullable();
-        table.float('hdd', 2).notNullable();
-        table.float('screen_size', 2).notNullable();
-        table.boolean('camera').notNullable();
-        table.boolean('microphone').notNullable();
-        table.boolean('speakers').notNullable();
-        table.boolean('monitor').notNullable();
+        table.enum('status', statuses).notNullable().defaultTo(statuses[0]);
         table.text('comments').defaultTo('');
 
         table.integer('consentTap').notNullable();
@@ -32,6 +25,8 @@ exports.up = (knex) => {
         table.integer('consentPbl');
 
         table.index(['id']);
+        table.unique(['id'], 'devices_id_unique');
+        table.foreign('type_id').references('id').inTable('device_types');
     });
 };
 

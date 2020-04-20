@@ -12,6 +12,7 @@
         "deploy:apply": "kubectl apply -f ./k8.yaml",
         "deploy:update": "kubectl set image deployment/dajzekompa dajzekompa=eu.gcr.io/dajzekompa/dajzekompa",
         "db:migrate": "knex migrate:latest --env local",
+        "db:seed": "knex seed:run",
         "db:rollback": "knex migrate:rollback --env local",
         "dev": "nodemon -e ts,tsx,html,css --exec \"npm run start\"",
         "lint": "eslint 'src/**/*.{js,ts,tsx}'",

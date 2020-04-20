@@ -13,5 +13,8 @@ module.exports = {
     migrations: {
         directory: path.resolve(__dirname, 'src/server/database/migrations')
     },
+    seeds: {
+        directory: path.resolve(__dirname, 'src/server/database/seeds')
+    },
     ...knexSnakeCaseMappers()
 };

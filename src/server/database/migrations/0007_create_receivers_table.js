@@ -1,6 +1,6 @@
 exports.up = (knex) => {
     return knex.schema.createTable('receivers', table => {
-        table.bigIncrements('id');
+        table.increments('id').primary();
         table.enum('person_type', [ 'STUDENT', 'TEACHER' ]);
         table.string('first_name').notNullable();
         table.string('last_name').notNullable();
@@ -15,13 +15,14 @@ exports.up = (knex) => {
         table.string('locker').notNullable();
         table.string('school').notNullable();
         table.string('grade').defaultTo('');
-        table.boolean('complete').defaultTo(false);
 
         table.integer('consentTap').notNullable();
         table.integer('consentInfc').notNullable();
         table.integer('consentSchv').notNullable();
         table.integer('consentCrtr');
+
         table.index(['id']);
+        table.unique(['id'], 'receivers_id_unique');
     });
 };
 

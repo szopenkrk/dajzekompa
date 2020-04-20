@@ -19,11 +19,13 @@ const regions = [
 
 exports.up = (knex) => {
     return knex.schema.createTable('cities', table => {
-        table.bigIncrements('id');
+        table.increments('id').primary();
         table.string('city');
         table.enum('region', regions);
 
         table.index(['id']);
+        table.unique(['id'], 'cities_id_unique');
+        table.unique(['city', 'region'], 'city_unique_city_region');
     });
 };
 
