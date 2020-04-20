@@ -83,7 +83,6 @@ spec:
                     limits:
                         memory: "1Gi"
                         cpu: "500m"
-            imagePullPolicy: Always
             volumes:
                 - name: dajzekompa-google-credentials
                   secret:
