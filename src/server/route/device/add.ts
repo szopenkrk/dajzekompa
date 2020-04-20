@@ -49,7 +49,7 @@ const schema = joi.object({
     microphone: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
     speakers: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
     notebookName: joi.when('deviceType', { is: DeviceType.NOTEBOOK, then: joi.string().required() }),
-    comments: joi.string(),
+    comments: joi.string().allow(''),
     firstName: joi.string().required(),
     lastName: joi.string().required(),
     street: joi.string().required(),
@@ -79,15 +79,24 @@ export default {
         }).array('photos')
     ],
     controller: async (req: Request, res: Response) => {
+        let sanitizedBody;
         let device: Device;
 
         try {
-            device = JSON.parse(req.body.device);
+            sanitizedBody = JSON.parse(req.body.device);
         } catch (error) {
             throw new APIError('Could not parse request payload JSON.', HTTPCode.BAD_REQUEST);
         }
 
-        req.body = await validateRequestPayload(device, schema);
+        try {
+            device = await validateRequestPayload(sanitizedBody, schema);
+        } catch (error) {
+            const match = error.message.match(/\([a-zA-Z]+\)$/g);
+            const field = match[0] ? match[0].replace(/(\(|\))/g, '') : '';
+            console.log(match, field);
+
+            throw new APIError(`[Value="${sanitizedBody[field]}"] ${error.message}`);
+        }
 
         const uploads = (req.files as Express.Multer.File[]).map((file) => {
             return new Promise<string>((resolve, reject) => {

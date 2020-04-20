@@ -5,7 +5,7 @@ import { green, lightGreen, lime, amber, orange, deepOrange, grey } from '@mater
 import { Device, DevicePersonType, DeviceType, DeviceStatus } from 'common/model/Device';
 
 /* Application files */
-import { Validator, isRequired, isRequiredIf } from 'client/lib/validators';
+import { Validator, isRequired, isRequiredIf, matchesRegex, isValidEmail, anyOf } from 'client/lib/validators';
 
 export enum FormField {
     PERSON_TYPE = 'personType',
@@ -111,25 +111,72 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
 
 export function getValidators (field: FormField): Validator[] {
     switch (field) {
-        case FormField.PERSON_TYPE: return [ isRequired() ];
-        case FormField.COMPANY_NAME: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY) ];
-        case FormField.NIP: return [ isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY) ];
-        case FormField.FIRST_NAME: return [ isRequired() ];
-        case FormField.LAST_NAME: return [ isRequired() ];
-        case FormField.EMAIL: return [ isRequired() ];
-        case FormField.STREET: return [ isRequired() ];
-        case FormField.STREET_NUMBER: return [ isRequired() ];
-        case FormField.CITY: return [ isRequired() ];
-        case FormField.POSTCODE: return [ isRequired() ];
-        case FormField.BANK_ACCOUNT: return [ isRequired() ];
-        case FormField.DEVICE_TYPE: return [ isRequired() ];
-        case FormField.NOTEBOOK_NAME: return [ isRequiredIf((form: FormModel) => form[FormField.DEVICE_TYPE] === DeviceType.NOTEBOOK) ];
-        case FormField.RAM: return [ isRequired() ];
-        case FormField.HDD: return [ isRequired() ];
-        case FormField.SCREEN_SIZE: return [ isRequired() ];
-        case FormField.CONSENT_TERMS_AND_PRIVACY: return [ isRequired() ];
-        case FormField.CONSENT_INFO_CLAUSE: return [ isRequired() ];
-        case FormField.CONSENT_DATA_CLEANED: return [ isRequired() ];
+        case FormField.PERSON_TYPE: return [
+            isRequired()
+        ];
+        case FormField.COMPANY_NAME: return [
+            isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY)
+        ];
+        case FormField.NIP: return [
+            anyOf([
+                isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY),
+                matchesRegex(/^[0-9]{10}$/, (value: string) => sanitizeField(FormField.NIP, value), 'Numer NIP jest niepoprawny.')
+            ])
+        ];
+        case FormField.FIRST_NAME: return [
+            isRequired()
+        ];
+        case FormField.LAST_NAME: return [
+            isRequired()
+        ];
+        case FormField.EMAIL: return [
+            isRequired(),
+            isValidEmail((value: string) => value.trim())
+        ];
+        case FormField.STREET: return [
+            isRequired()
+        ];
+        case FormField.STREET_NUMBER: return [
+            isRequired()
+        ];
+        case FormField.CITY: return [
+            isRequired()
+        ];
+        case FormField.POSTCODE: return [
+            isRequired(),
+            matchesRegex(/^[0-9]{2}-[0-9]{3}$/, (value: string) => sanitizeField(FormField.POSTCODE, value), 'Niepoprawny format kodu pocztowego.')
+        ];
+        case FormField.BANK_ACCOUNT: return [
+            isRequired(),
+            matchesRegex(/^[0-9]{26}$/, (value: string) => sanitizeField(FormField.BANK_ACCOUNT, value), 'Numer konta jest niepoprawny.')
+        ];
+        case FormField.DEVICE_TYPE: return [
+            isRequired()
+        ];
+        case FormField.NOTEBOOK_NAME: return [
+            isRequiredIf((form: FormModel) => form[FormField.DEVICE_TYPE] === DeviceType.NOTEBOOK)
+        ];
+        case FormField.RAM: return [
+            isRequired(),
+            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeField(FormField.RAM, value)}`, 'Niepoprawna liczba.')
+        ];
+        case FormField.HDD: return [
+            isRequired(),
+            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeField(FormField.HDD, value)}`, 'Niepoprawna liczba.')
+        ];
+        case FormField.SCREEN_SIZE: return [
+            isRequired(),
+            matchesRegex(/^[0-9]+(\.[0-9]{1}|)$/, (value: string) => `${sanitizeField(FormField.SCREEN_SIZE, value)}`, 'Niepoprawna liczba.')
+        ];
+        case FormField.CONSENT_TERMS_AND_PRIVACY: return [
+            isRequired()
+        ];
+        case FormField.CONSENT_INFO_CLAUSE: return [
+            isRequired()
+        ];
+        case FormField.CONSENT_DATA_CLEANED: return [
+            isRequired()
+        ];
         default: return [];
     }
 }
@@ -152,36 +199,37 @@ export function validateField (field: FormField, value: any, options: any): Vali
     return { [field]: error };
 }
 
+export function sanitizeField (field: FormField, value: any) {
+    switch (field) {
+        case FormField.FIRST_NAME: return value.trim();
+        case FormField.LAST_NAME: return value.trim();
+        case FormField.COMPANY_NAME: return value.trim();
+        case FormField.NIP: return value.trim().replace(/\D+/g, '');
+        case FormField.EMAIL: return value.trim();
+        case FormField.STREET: return value.trim();
+        case FormField.STREET_NUMBER: return value.trim();
+        case FormField.POSTCODE: return value.replace(/ /g, '');
+        case FormField.CITY: return value.trim();
+        case FormField.BANK_ACCOUNT: return value.trim().replace(/ /g, '');
+        case FormField.NOTEBOOK_NAME: return value.trim();
+        case FormField.RAM: return parseFloat(value.trim().replace(/,/g, '.'));
+        case FormField.HDD: return parseFloat(value.trim().replace(/,/g, '.'));
+        case FormField.SCREEN_SIZE: return parseFloat(value.trim().replace(/,/g, '.'));
+        case FormField.CONSENT_TERMS_AND_PRIVACY: return Math.ceil(Date.now() / 1000);
+        case FormField.CONSENT_INFO_CLAUSE: return Math.ceil(Date.now() / 1000);
+        case FormField.CONSENT_DATA_CLEANED: return Math.ceil(Date.now() / 1000);
+        case FormField.CONSENT_PUBLIC_LIST: return value ? Math.ceil(Date.now() / 1000) : null;
+        default: return value;
+    }
+}
+
 export function sanitize (form: FormModel): Device {
-    const now = Math.ceil(Date.now() / 1000);
-    let device: Device = {
-        ...form,
-        [FormField.FIRST_NAME]: form[FormField.FIRST_NAME].trim(),
-        [FormField.LAST_NAME]: form[FormField.LAST_NAME].trim(),
-        [FormField.COMPANY_NAME]: form[FormField.COMPANY_NAME].trim(),
-        [FormField.NIP]: form[FormField.NIP].trim().replace(/\D+/g, ''),
-        [FormField.EMAIL]: form[FormField.EMAIL].trim(),
-        [FormField.STREET]: form[FormField.STREET].trim(),
-        [FormField.STREET_NUMBER]: form[FormField.STREET_NUMBER].trim(),
-        [FormField.POSTCODE]: form[FormField.POSTCODE].trim(),
-        [FormField.CITY]: form[FormField.CITY].trim(),
-        [FormField.BANK_ACCOUNT]: form[FormField.BANK_ACCOUNT].trim().replace(/\D+/g, ''),
-        [FormField.NOTEBOOK_NAME]: form[FormField.NOTEBOOK_NAME].trim(),
-        [FormField.RAM]: parseFloat(form[FormField.RAM].trim()),
-        [FormField.HDD]: parseFloat(form[FormField.HDD].trim()),
-        [FormField.SCREEN_SIZE]: parseFloat(form[FormField.SCREEN_SIZE].trim()),
-        [FormField.CONSENT_TERMS_AND_PRIVACY]: now,
-        [FormField.CONSENT_INFO_CLAUSE]: now,
-        [FormField.CONSENT_DATA_CLEANED]: now,
-        [FormField.CONSENT_PUBLIC_LIST]: form[FormField.CONSENT_PUBLIC_LIST] ? now : null
-    };
+    const device = Object.keys(form).map((k) => {
+        return [ k, sanitizeField(k as FormField, form[k])];
+    }).reduce((total, current) => {
+        total[current[0]] = current[1];
 
-    device = Object.keys(device).reduce((all, current) => {
-        if (typeof device[current] === 'undefined' || device[current] === '' || device[current] === null) return all;
-
-        all[current] = device[current];
-
-        return all;
+        return total;
     }, {} as Device);
 
     if (device[FormField.PERSON_TYPE] === DevicePersonType.PERSON) {
@@ -204,7 +252,13 @@ export function sanitize (form: FormModel): Device {
     if (device[FormField.HDD] === 0) delete form[FormField.HDD];
     if (device[FormField.SCREEN_SIZE] === 0) delete form[FormField.SCREEN_SIZE];
 
-    return device;
+    return Object.keys(device).reduce((all, current) => {
+        if (typeof device[current] === 'undefined' || device[current] === '' || device[current] === null) return all;
+
+        all[current] = device[current];
+
+        return all;
+    }, {} as Device);
 }
 
 export function desanitize (device: Device): FormModel {
