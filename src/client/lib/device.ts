@@ -5,7 +5,7 @@ import { green, lightGreen, lime, amber, orange, deepOrange, grey } from '@mater
 import { Device, DevicePersonType, DeviceType, DeviceStatus } from 'common/model/Device';
 
 /* Application files */
-import { Validator, isRequired, isRequiredIf, matchesRegex, isValidEmail, anyOf } from 'client/lib/validators';
+import { Validator, isRequired, isRequiredIf, matchesRegex, isValidEmail, everyIf } from 'client/lib/validators';
 
 export enum FormField {
     PERSON_TYPE = 'personType',
@@ -118,10 +118,10 @@ export function getValidators (field: FormField): Validator[] {
             isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY)
         ];
         case FormField.NIP: return [
-            anyOf([
-                isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY),
+            isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY),
+            everyIf([
                 matchesRegex(/^[0-9]{10}$/, (value: string) => sanitizeField(FormField.NIP, value), 'Numer NIP jest niepoprawny.')
-            ])
+            ], (form: FormModel) => form[FormField.PERSON_TYPE] === DevicePersonType.COMPANY)
         ];
         case FormField.FIRST_NAME: return [
             isRequired()

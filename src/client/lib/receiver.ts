@@ -4,7 +4,7 @@ import { Receiver, ReceiverPersonType } from 'common/model/Receiver';
 import { StateLockers } from 'client/model/Redux';
 
 /* Application files */
-import { Validator, isRequired, isRequiredIf, isValidEmail, matchesRegex, anyOf } from 'client/lib/validators';
+import { Validator, isRequired, isRequiredIf, isValidEmail, matchesRegex, everyIf } from 'client/lib/validators';
 
 export enum FormField {
     PERSON_TYPE = 'personType',
@@ -94,10 +94,10 @@ export function getValidators (field: FormField): Validator[] {
             isRequired()
         ];
         case FormField.SCHOOL_GRADE: return [
-            anyOf([
-                isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT),
+            isRequiredIf((form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT),
+            everyIf([
                 matchesRegex(/^[0-9]([a-z]|)$/, (value: string) => sanitizeField(FormField.SCHOOL_GRADE, value), 'Niepoprawny format klasy.')
-            ])
+            ], (form: FormModel) => form[FormField.PERSON_TYPE] === ReceiverPersonType.STUDENT)
         ];
         case FormField.FIRST_NAME: return [
             isRequired()

@@ -51,10 +51,34 @@ export function matchesRegex (regex: RegExp, preformat?: Preformat, error: strin
     };
 }
 
-export function anyOf (validators: Validator[]): Validator {
+export function any (validators: Validator[]): Validator {
     return (value: string, options: any): string | boolean => {
         const correct = validators.some((v) => v(value, options) === false);
 
         return correct ? false : validators.find((v) => v(value, options) !== false)(value, options);
+    };
+}
+
+export function anyIf (validators: Validator[], dependency: (form: any) => boolean) {
+    return (value: string, options: any): string | boolean => {
+        if (!dependency(options.form)) return false;
+
+        return any(validators)(value, options);
+    };
+}
+
+export function every (validators: Validator[]): Validator {
+    return (value: string, options: any): string | boolean => {
+        const correct = validators.every((v) => v(value, options) === false);
+
+        return correct ? false : validators.find((v) => v(value, options) !== false)(value, options);
+    };
+}
+
+export function everyIf (validators: Validator[], dependency: (form: any) => boolean) {
+    return (value: string, options: any): string | boolean => {
+        if (!dependency(options.form)) return false;
+
+        return any(validators)(value, options);
     };
 }
