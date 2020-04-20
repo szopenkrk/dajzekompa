@@ -8,7 +8,7 @@ function getInitialState (): StateDevices {
 
 export default function (state: StateDevices = getInitialState(), action: AnyAction): StateDevices {
     switch (action.type) {
-        case ReduxActionType.DEVICES_ADD: {
+        case ReduxActionType.DEVICE_ADD: {
             return state.concat(action.devices);
         }
         default: return state;

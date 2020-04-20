@@ -1,19 +1,20 @@
 /* Libraries */
-import React, { useState } from 'react';
-import { useDispatch as reduxUseDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector as reduxUseSelector, useDispatch as reduxUseDispatch, TypedUseSelectorHook } from 'react-redux';
 import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme, TextFieldProps } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { DeviceType, DevicePersonType } from 'common/model/Device';
+import { DevicePersonType, DeviceType, DeviceInput, DeviceInputType } from 'common/model/Device';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { ValidationResult, emptyModel, create, FormField, validateField, validateForm } from 'client/lib/device';
-import { add as addDevice } from 'client/actions/devices';
+import { ValidationResult, emptyModel, create, FormField, validateField, validateForm, getDeviceTypeLabel, getDeviceInputLabel } from 'client/lib/device';
+import { add as addDevice, getTypes as getDeviceTypes, getTypeInputs as getDeviceTypeInputs } from 'client/actions/devices';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import PhotoUploader from 'client/components/PhotoUploader';
 import ErrorBox from 'client/components/ErrorBox';
@@ -39,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
         '& label': {
             flex: 1
         }
+    },
+    verticalRadioGroup: {
+        width: '100%',
+        textAlign: 'left'
     },
     subtitle: {
         padding: '20px 0'
@@ -82,12 +87,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const useSelector = reduxUseSelector as TypedUseSelectorHook<ReduxState>;
 const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
 export function SubmitDevicePage () {
     const classes = useStyles();
-    const dispatch = useDispatch();
     const theme = useTheme();
+    const dispatch = useDispatch();
+
+    const deviceTypes = useSelector((state) => state.deviceTypes.types);
+    const deviceInputs = useSelector((state) => state.deviceTypes.inputs);
 
     const [ form, setForm ] = useState(emptyModel());
     const [ loading, setLoading ] = useState(false);
@@ -97,6 +106,7 @@ export function SubmitDevicePage () {
     const [ pristine, setPristine ] = useState(create(true));
 
     const url = window.location.host;
+    const inputs = form[FormField.DEVICE_TYPE] ? deviceInputs[form[FormField.DEVICE_TYPE].id] || [] : [];
 
     async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -149,6 +159,12 @@ export function SubmitDevicePage () {
         };
     }
 
+    function deviceTypeChange (e: React.ChangeEvent<any>, value: DeviceType) {
+        updateField(FormField.DEVICE_TYPE)(e, value);
+
+        if (value) dispatch(getDeviceTypeInputs(value.id));
+    }
+
     function validateSingleField (name: FormField, value?: any) {
         const result = validateField(name, value || form[name], { form });
 
@@ -181,12 +197,51 @@ export function SubmitDevicePage () {
         );
     }
 
+    function createDeviceInput (input: DeviceInput, key: number) {
+        switch (input.type) {
+            case DeviceInputType.TEXT: return (
+                <TextField
+                    key={key}
+                    variant="outlined"
+                    label={getDeviceInputLabel(input.name)}
+                    className={classes.input}
+                    onChange={updateField(name)}
+                    onBlur={setDirty(name)}
+                    // value={form[name]}
+                    // error={!!validation[name]}
+                    // helperText={validation[name]}
+                    fullWidth={true} />
+            );
+            case DeviceInputType.RADIO: return (
+                <FormControl key={key} component="fieldset" className={classes.verticalRadioGroup}>
+                    <FormLabel component="legend">{getDeviceInputLabel(input.name)}</FormLabel>
+                    <RadioGroup name={FormField.PERSON_TYPE} defaultValue={input.options[0].id} onChange={updateField(FormField.PERSON_TYPE)}>
+                        {input.options.map((option, index) => (
+                            <FormControlLabel key={index} control={<Radio />} label={option.name} value={option.id} />
+                        ))}
+                    </RadioGroup>
+                </FormControl>
+            );
+            default: return null;
+        }
+    }
+
     function resetForm () {
         setLoading(false);
         setComplete(false);
         setError('');
         setForm(emptyModel());
     }
+
+    useEffect(() => {
+        setLoading(true);
+
+        dispatch(getDeviceTypes()).catch(() => {
+            setError('Ups, coś poszło nie tak.');
+        }).finally(() => {
+            setLoading(false);
+        });
+    }, []);
 
     return (
         <SubPage title="Podaruj kompa">
@@ -223,29 +278,24 @@ export function SubmitDevicePage () {
                         {createInputElement(FormField.CITY, 'Miejscowość', true, false, getHorizontalInputStyles(65, false))}
                         {createInputElement(FormField.BANK_ACCOUNT, 'Numer konta')}
                     </section>
-                    <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
+                    <Typography variant="h5" className={classes.subtitle}>Urządzenie</Typography>
                     <section>
-                        <FormControl component="fieldset" className={classes.radioGroup}>
-                            <RadioGroup name={FormField.DEVICE_TYPE} defaultValue={DeviceType.NOTEBOOK} onChange={updateField(FormField.DEVICE_TYPE)}>
-                                <FormControlLabel control={<Radio />} label="Laptop" value={DeviceType.NOTEBOOK} />
-                                <FormControlLabel control={<Radio />} label="Komputer stacjonarny" value={DeviceType.DESKTOP} />
-                            </RadioGroup>
-                        </FormControl>
-                        {form[FormField.DEVICE_TYPE] === DeviceType.NOTEBOOK && createInputElement(FormField.NOTEBOOK_NAME, 'Producent i model')}
-                        {createInputElement(FormField.RAM, 'Pamięć RAM (GB)')}
-                        {createInputElement(FormField.HDD, 'Pojemność dysku (GB)')}
-                        {createInputElement(FormField.SCREEN_SIZE, 'Rozmiar ekranu (cale)')}
-                        {form[FormField.DEVICE_TYPE] === DeviceType.DESKTOP && (
-                            <FormControl component="fieldset" className={classes.input}>
-                                <FormLabel component="legend" className={classes.legend}>Elementy dołączone do zestawu:</FormLabel>
-                                <FormGroup>
-                                    <FormControlLabel control={<Checkbox checked={form[FormField.MONITOR]} onChange={updateField(FormField.MONITOR)} name={FormField.MONITOR} />} label="Monitor" />
-                                    <FormControlLabel control={<Checkbox checked={form[FormField.CAMERA]} onChange={updateField(FormField.CAMERA)} name={FormField.CAMERA} />} label="Kamera" />
-                                    <FormControlLabel control={<Checkbox checked={form[FormField.MICROPHONE]} onChange={updateField(FormField.MICROPHONE)} name={FormField.MICROPHONE} />} label="Mikrofon" />
-                                    <FormControlLabel control={<Checkbox checked={form[FormField.SPEAKERS]} onChange={updateField(FormField.SPEAKERS)} name={FormField.SPEAKERS} />} label="Głośniki" />
-                                </FormGroup>
-                            </FormControl>
-                        )}
+                        <Autocomplete options={deviceTypes} getOptionLabel={(option) => getDeviceTypeLabel(option.name)} onChange={deviceTypeChange} onBlur={setDirty(FormField.DEVICE_TYPE)} value={form[FormField.DEVICE_TYPE]} renderInput={(props) => (
+                            <TextField
+                                {...props}
+                                variant="outlined"
+                                label="Typ urządzenia"
+                                className={classes.input}
+                                error={!!validation[FormField.DEVICE_TYPE]}
+                                helperText={validation[FormField.DEVICE_TYPE]}
+                                fullWidth
+                            />
+                        )} />
+                        {
+                            inputs.map((input, index) => (
+                                createDeviceInput(input, index)
+                            ))
+                        }
                         <TechSpecTooltip>
                             <Typography variant="body2" style={{ textAlign: 'left' }}>Jak sprawdzić paremetry sprzętu?</Typography>
                         </TechSpecTooltip>

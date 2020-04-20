@@ -1,4 +1,4 @@
-import { DevicePersonType, DeviceType, DeviceStatus } from 'common/model/Device';
+import { DevicePersonType, DeviceStatus } from 'common/model/Device';
 import { Receiver } from 'common/model/Receiver';
 
 export enum DBTable {
@@ -21,7 +21,7 @@ export type DBSchemaDevice = {
     postcode: string;
     email: string;
     bankAccount: string;
-    deviceType: DeviceType;
+    deviceType: number;
     notebookName: string;
     ram: number;
     hdd: number;

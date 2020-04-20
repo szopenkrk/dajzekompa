@@ -1,25 +1,28 @@
 /* Models */
-import { Device } from 'common/model/Device';
+import { Device, DeviceType, DeviceInput } from 'common/model/Device';
 import { ReduxActionType, ReduxThunkAction } from 'client/model/Redux';
 
 /* Application files */
 import { request } from 'client/lib/request';
 import { FormModel, sanitize, base64toBlob, FormField } from 'client/lib/device';
 
-let loaded = false;
+let loaded = {
+    devices: false,
+    deviceTypes: false
+};
 
 export function list (): ReduxThunkAction<Device[]> {
     return async (dispatch, getState) => {
-        if (loaded) return getState().devices;
+        if (loaded.devices) return getState().devices;
 
         const devices = await request<Device[]>('GET', '/devices');
 
         dispatch({
-            type: ReduxActionType.DEVICES_ADD,
+            type: ReduxActionType.DEVICE_ADD,
             devices
         });
 
-        loaded = true;
+        loaded.devices = true;
 
         return devices;
     }
@@ -39,10 +42,44 @@ export function add (form: FormModel): ReduxThunkAction<Device> {
 
         if (loaded) {
             dispatch({
-                type: ReduxActionType.DEVICES_ADD,
+                type: ReduxActionType.DEVICE_ADD,
                 devices: [ result ]
             });
         }
+
+        return result;
+    };
+}
+
+export function getTypes (): ReduxThunkAction<DeviceType[]> {
+    return async (dispatch, getState) => {
+        if (loaded.deviceTypes) return getState().deviceTypes.types;
+
+        const result = await request<DeviceType[]>('GET', '/devices/types');
+
+        dispatch({
+            type: ReduxActionType.DEVICE_TYPES_ADD,
+            deviceTypes: result
+        });
+
+        loaded.deviceTypes = true;
+
+        return result;
+    };
+}
+
+export function getTypeInputs (deviceType: number): ReduxThunkAction<DeviceInput[]> {
+    return async (dispatch, getState) => {
+        const cache = getState().deviceTypes.inputs[deviceType];
+        if (cache) return cache;
+
+        const result = await request<DeviceInput[]>('GET', `/devices/types/${deviceType}`);
+
+        dispatch({
+            type: ReduxActionType.DEVICE_INPUTS_ADD,
+            deviceType,
+            inputs: result
+        });
 
         return result;
     };

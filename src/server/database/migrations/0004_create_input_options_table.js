@@ -1,11 +1,8 @@
-const statuses = ['RECEIVED', 'SENT_TO_SERVICE', 'IN_SERVICE', 'SERVICE_COMPLETE', 'SENT_TO_RECIPIENT', 'COMPLETE'];
-
 exports.up = (knex) => {
     return knex.schema.createTable('input_options', table => {
         table.increments('id').primary();
         table.integer('input_id').notNullable();
 
-        table.enum('type', ['TEXT', 'RADIO', 'CHECKBOX', 'DROPDOWN']).notNullable();
         table.string('name').notNullable();
 
         table.index(['id']);

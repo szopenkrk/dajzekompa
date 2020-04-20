@@ -2,7 +2,7 @@
 import { green, lightGreen, lime, amber, orange, deepOrange, grey } from '@material-ui/core/colors';
 
 /* Models */
-import { Device, DevicePersonType, DeviceType, DeviceStatus } from 'common/model/Device';
+import { Device, DevicePersonType, DeviceStatus, DeviceType } from 'common/model/Device';
 
 /* Application files */
 import { Validator, isRequired, isRequiredIf, matchesRegex, isValidEmail, everyIf } from 'client/lib/validators';
@@ -91,7 +91,7 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.CITY]: '',
         [FormField.POSTCODE]: '',
         [FormField.BANK_ACCOUNT]: '',
-        [FormField.DEVICE_TYPE]: DeviceType.NOTEBOOK,
+        [FormField.DEVICE_TYPE]: null,
         [FormField.NOTEBOOK_NAME]: '',
         [FormField.RAM]: '',
         [FormField.HDD]: '',
@@ -152,9 +152,6 @@ export function getValidators (field: FormField): Validator[] {
         ];
         case FormField.DEVICE_TYPE: return [
             isRequired()
-        ];
-        case FormField.NOTEBOOK_NAME: return [
-            isRequiredIf((form: FormModel) => form[FormField.DEVICE_TYPE] === DeviceType.NOTEBOOK)
         ];
         case FormField.RAM: return [
             isRequired(),
@@ -237,17 +234,6 @@ export function sanitize (form: FormModel): Device {
         delete device[FormField.NIP];
     }
 
-    if (device[FormField.DEVICE_TYPE] === DeviceType.DESKTOP) {
-        delete device[FormField.NOTEBOOK_NAME]
-    }
-
-    if (device[FormField.DEVICE_TYPE] === DeviceType.NOTEBOOK) {
-        delete device[FormField.MONITOR];
-        delete device[FormField.CAMERA];
-        delete device[FormField.MICROPHONE];
-        delete device[FormField.SPEAKERS];
-    }
-
     if (device[FormField.RAM] === 0) delete form[FormField.RAM];
     if (device[FormField.HDD] === 0) delete form[FormField.HDD];
     if (device[FormField.SCREEN_SIZE] === 0) delete form[FormField.SCREEN_SIZE];
@@ -261,9 +247,12 @@ export function sanitize (form: FormModel): Device {
     }, {} as Device);
 }
 
-export function desanitize (device: Device): FormModel {
+export function desanitize (device: Device, deviceTypes: DeviceType[]): FormModel {
+    const deviceType = deviceTypes.find((l) => l.id === device.deviceType);
+
     return {
         ...device,
+        [FormField.DEVICE_TYPE]: deviceType,
         [FormField.CONSENT_TERMS_AND_PRIVACY]: !!device[FormField.CONSENT_TERMS_AND_PRIVACY],
         [FormField.CONSENT_INFO_CLAUSE]: !!device[FormField.CONSENT_INFO_CLAUSE],
         [FormField.CONSENT_DATA_CLEANED]: !!device[FormField.CONSENT_DATA_CLEANED],
@@ -315,4 +304,24 @@ export function base64toBlob (base64: string): Blob {
     }
 
     return new Blob([binary], { type });
+}
+
+export function getDeviceTypeLabel (option: string): string {
+    switch (option) {
+        case 'notebook': return 'Laptop';
+        case 'desktop': return 'Komputer stacjonarny';
+        case 'monitor': return 'Monitor';
+        default: return option;
+    }
+}
+
+export function getDeviceInputLabel (input: string): string {
+    switch (input) {
+        case 'notebook_name': return 'Producent i model';
+        case 'cpu': return 'Taktowanie procesora (GHz)';
+        case 'ram': return 'Pamięć RAM (GB)';
+        case 'hdd': return 'Pojemność dysków (GB)';
+        case 'screen_size': return 'Rozmiar ekranu (cale)';
+        default: return input;
+    }
 }

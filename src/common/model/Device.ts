@@ -12,7 +12,7 @@ export type RawDevice = {
     nip?: string;
     email: string;
     bankAccount: string;
-    deviceType: DeviceType;
+    deviceType: number;
     notebookName?: string;
     monitor?: boolean;
     camera?: boolean;
@@ -37,7 +37,7 @@ export enum DevicePersonType {
     COMPANY = 'COMPANY'
 }
 
-export enum DeviceType {
+export enum DeviceTypeOld {
     NOTEBOOK = 'NOTEBOOK',
     DESKTOP = 'DESKTOP',
     TABLET = 'TABLET'
@@ -50,4 +50,30 @@ export enum DeviceStatus {
     SERVICE_COMPLETE = 'SERVICE_COMPLETE',
     SENT_TO_RECIPIENT = 'SENT_TO_RECIPIENT',
     COMPLETE = 'COMPLETE'
+}
+
+/* New */
+
+export type DeviceType = {
+    id: number;
+    name: string;
+}
+
+export type DeviceInput = {
+    id: number;
+    name: string;
+    type: DeviceInputType;
+    options?: DeviceInputOption[];
+}
+
+export type DeviceInputOption = {
+    id: number;
+    name: string;
+}
+
+export enum DeviceInputType {
+    TEXT = 'TEXT',
+    RADIO = 'RADIO',
+    CHECKBOX = 'CHECKBOX',
+    DROPDOWN = 'DROPDOWN'
 }

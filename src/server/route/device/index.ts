@@ -1,8 +1,12 @@
 /* Application files */
 import add from './add';
 import list from './list';
+import types from './types';
+import inputs from './inputs';
 
 export default [
     add,
-    list
+    list,
+    types,
+    inputs
 ];

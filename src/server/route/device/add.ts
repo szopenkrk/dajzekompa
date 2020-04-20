@@ -7,7 +7,7 @@ import { Storage } from '@google-cloud/storage';
 
 /* Models */
 import { Request, Response } from 'express';
-import { Device, DeviceStatus, DeviceType, DevicePersonType } from 'common/model/Device';
+import { Device, DeviceStatus, DeviceTypeOld, DevicePersonType } from 'common/model/Device';
 import { APIRoute } from 'server/model/API';
 import { HTTPCode, HTTPMethod } from 'server/model/HTTP';
 import { DBSchemaDevice, DBTable } from 'server/model/DB';
@@ -26,13 +26,13 @@ function buildQueryDeviceObject (device: Device): DBSchemaDevice {
 
     return {
         ...device,
-        monitor: device.deviceType === DeviceType.NOTEBOOK ? true : device.monitor,
-        camera: device.deviceType === DeviceType.NOTEBOOK ? true : device.camera,
-        microphone: device.deviceType === DeviceType.NOTEBOOK ? true : device.microphone,
-        speakers: device.deviceType === DeviceType.NOTEBOOK ? true : device.speakers,
+        monitor: device.monitor,
+        camera: device.camera,
+        microphone: device.microphone,
+        speakers: device.speakers,
         companyName: device.personType === DevicePersonType.COMPANY ? device.companyName : '',
         nip: device.personType === DevicePersonType.COMPANY ? device.nip : '',
-        notebookName: device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : '',
+        notebookName: device.notebookName,
         status: DeviceStatus.RECEIVED
     };
 }
@@ -40,15 +40,15 @@ function buildQueryDeviceObject (device: Device): DBSchemaDevice {
 const schema = joi.object({
     personType: joi.string().valid(...[DevicePersonType.PERSON, DevicePersonType.COMPANY]).required(),
     email: joi.string().email().required(),
-    deviceType: joi.string().valid(...[DeviceType.NOTEBOOK, DeviceType.DESKTOP]).required(),
+    deviceType: joi.string().valid(...[DeviceTypeOld.NOTEBOOK, DeviceTypeOld.DESKTOP]).required(),
     ram: joi.number().required(),
     hdd: joi.number().required(),
     screenSize: joi.number().required(),
-    monitor: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
-    camera: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
-    microphone: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
-    speakers: joi.when('deviceType', { is: DeviceType.DESKTOP, then: joi.boolean().required() }),
-    notebookName: joi.when('deviceType', { is: DeviceType.NOTEBOOK, then: joi.string().required() }),
+    monitor: joi.when('deviceType', { is: DeviceTypeOld.DESKTOP, then: joi.boolean().required() }),
+    camera: joi.when('deviceType', { is: DeviceTypeOld.DESKTOP, then: joi.boolean().required() }),
+    microphone: joi.when('deviceType', { is: DeviceTypeOld.DESKTOP, then: joi.boolean().required() }),
+    speakers: joi.when('deviceType', { is: DeviceTypeOld.DESKTOP, then: joi.boolean().required() }),
+    notebookName: joi.when('deviceType', { is: DeviceTypeOld.NOTEBOOK, then: joi.string().required() }),
     comments: joi.string().allow(''),
     firstName: joi.string().required(),
     lastName: joi.string().required(),

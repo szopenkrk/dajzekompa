@@ -1,6 +1,6 @@
 /* Models */
 import { Request, Response } from 'express';
-import { Device, DevicePersonType, DeviceType } from 'common/model/Device';
+import { Device, DevicePersonType } from 'common/model/Device';
 import { APIRoute } from 'server/model/API';
 import { HTTPMethod, HTTPCode } from 'server/model/HTTP';
 import { DBSchemaDevice, DBSchemaPhoto, DBTable } from 'server/model/DB';
@@ -32,15 +32,6 @@ function sanitizeDevice (device: Device): Device {
     if (device.personType === DevicePersonType.COMPANY) {
         delete device.firstName;
         delete device.lastName;
-    }
-    if (device.deviceType === DeviceType.DESKTOP) {
-        delete device.notebookName;
-    }
-    if (device.deviceType === DeviceType.NOTEBOOK) {
-        delete device.camera;
-        delete device.speakers;
-        delete device.monitor;
-        delete device.microphone;
     }
 
     return device;

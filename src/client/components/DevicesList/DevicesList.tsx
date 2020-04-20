@@ -6,7 +6,7 @@ import { makeStyles, Typography, Chip, TableContainer, Table, TableBody, TableRo
 /* Models */
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { Device, DeviceType } from 'common/model/Device';
+import { Device } from 'common/model/Device';
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
@@ -55,14 +55,6 @@ const useStyles = makeStyles((theme) => ({
         }
     }
 }));
-
-function getDeviceTypeText (type: DeviceType): string {
-    switch (type) {
-        case DeviceType.NOTEBOOK: return 'Laptop';
-        case DeviceType.DESKTOP: return 'Desktop';
-        default: return `${type}`;
-    }
-}
 
 export function DevicesList () {
     const classes = useStyles();
@@ -117,7 +109,6 @@ export function DevicesList () {
                             <TableRow>
                                 <TableCell>Typ</TableCell>
                                 <TableCell>Status</TableCell>
-                                <TableCell>Nazwa</TableCell>
                                 <TableCell>Pamięć</TableCell>
                                 <TableCell>Dysk twardy</TableCell>
                                 <TableCell>Ekran</TableCell>
@@ -126,12 +117,9 @@ export function DevicesList () {
                         <TableBody>
                             {devices && devices.map((device, index) => (
                                 <TableRow key={index} className={classes.row} onClick={toggleDetailsDialog(true, device)} hover>
-                                    <TableCell>{getDeviceTypeText(device.deviceType)}</TableCell>
+                                    <TableCell>{device.deviceType}</TableCell>
                                     <TableCell>
                                         <Chip style={{ backgroundColor: getDeviceStatusColor(device.status) }} label={getDeviceStatusText(device.status)} className={classes.tag} />
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {device.deviceType === DeviceType.NOTEBOOK ? device.notebookName : ''}
                                     </TableCell>
                                     <TableCell>{device.ram} GB</TableCell>
                                     <TableCell>{device.hdd} GB</TableCell>
