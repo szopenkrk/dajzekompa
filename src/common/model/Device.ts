@@ -20,7 +20,13 @@ export type Device = {
     consentInfc: number;
     consentDtcl: number;
     consentPbl: number;
-};
+}
+
+export type DeviceUpsertRequest = Omit<Device, 'id' | 'type' | 'photos' | 'inputs'> & {
+    id?: number;
+    type: number;
+    inputs: DeviceInputRequest[];
+}
 
 export enum DevicePersonType {
     PERSON = 'PERSON',
@@ -56,6 +62,12 @@ export type DeviceInputData = {
     type: DeviceInputType;
     value?: string;
     option?: DeviceInputOption;
+}
+
+export type DeviceInputRequest = {
+    id: number;
+    value?: string;
+    option?: number;
 }
 
 export type DeviceInputOption = {
