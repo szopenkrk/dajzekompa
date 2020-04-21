@@ -10,28 +10,20 @@ export enum DBTable {
 
 export type DBSchemaDevice = {
     id?: string;
+    type: number;
     personType: DevicePersonType;
     companyName: string;
     nip: string;
     firstName: string;
     lastName: string;
+    email: string;
     street: string;
     streetNumber: string;
     city: string;
     postcode: string;
-    email: string;
     bankAccount: string;
-    deviceType: number;
-    notebookName: string;
-    ram: number;
-    hdd: number;
-    screenSize: number;
-    camera: boolean;
-    microphone: boolean;
-    speakers: boolean;
-    monitor: boolean;
-    comments: string;
     status: DeviceStatus;
+    comments: string;
     consentTap: number;
     consentInfc: number;
     consentDtcl: number;
@@ -47,3 +39,35 @@ export type DBSchemaPhoto = {
 export type DBSchemaReceiver = {
     id?: string;
 } & Receiver;
+
+/* New */
+
+export type DBSchemaCompleteDevice = {
+    deviceId: number;
+    typeId: number;
+    typeName: string;
+    personType: DevicePersonType;
+    companyName: string;
+    nip: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    street: string;
+    streetNumber: string;
+    city: string;
+    postcode: string;
+    bankAccount: string;
+    status: DeviceStatus;
+    comments: string;
+    consentTap: number;
+    consentInfc: number;
+    consentDtcl: number;
+    consentPbl?: number;
+    inputId: number;
+    inputName: string;
+    inputType: string;
+    optionId?: number;
+    optionName?: string;
+    value?: string;
+    url?: string;
+}

@@ -8,6 +8,7 @@ import { Device, DevicePersonType, DeviceStatus, DeviceType } from 'common/model
 import { Validator, isRequired, isRequiredIf, matchesRegex, isValidEmail, everyIf } from 'client/lib/validators';
 
 export enum FormField {
+    DEVICE_TYPE = 'deviceType',
     PERSON_TYPE = 'personType',
     COMPANY_NAME = 'companyName',
     NIP = 'nip',
@@ -19,15 +20,6 @@ export enum FormField {
     CITY = 'city',
     POSTCODE = 'postcode',
     BANK_ACCOUNT = 'bankAccount',
-    DEVICE_TYPE = 'deviceType',
-    NOTEBOOK_NAME = 'notebookName',
-    RAM = 'ram',
-    HDD = 'hdd',
-    SCREEN_SIZE = 'screenSize',
-    MONITOR = 'monitor',
-    CAMERA = 'camera',
-    MICROPHONE = 'microphone',
-    SPEAKERS = 'speakers',
     PHOTOS = 'photos',
     COMMENTS = 'comments',
     CONSENT_TERMS_AND_PRIVACY = 'consentTap',
@@ -49,14 +41,6 @@ export type FormModel = {
     [FormField.POSTCODE]: string;
     [FormField.BANK_ACCOUNT]: string;
     [FormField.DEVICE_TYPE]: DeviceType;
-    [FormField.NOTEBOOK_NAME]: string;
-    [FormField.RAM]: string;
-    [FormField.HDD]: string;
-    [FormField.SCREEN_SIZE]: string;
-    [FormField.MONITOR]: boolean;
-    [FormField.CAMERA]: boolean;
-    [FormField.MICROPHONE]: boolean;
-    [FormField.SPEAKERS]: boolean;
     [FormField.PHOTOS]: string[];
     [FormField.COMMENTS]: string;
     [FormField.CONSENT_TERMS_AND_PRIVACY]: boolean;
@@ -92,14 +76,6 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.POSTCODE]: '',
         [FormField.BANK_ACCOUNT]: '',
         [FormField.DEVICE_TYPE]: null,
-        [FormField.NOTEBOOK_NAME]: '',
-        [FormField.RAM]: '',
-        [FormField.HDD]: '',
-        [FormField.SCREEN_SIZE]: '',
-        [FormField.MONITOR]: false,
-        [FormField.CAMERA]: false,
-        [FormField.MICROPHONE]: false,
-        [FormField.SPEAKERS]: false,
         [FormField.PHOTOS]: [],
         [FormField.COMMENTS]: '',
         [FormField.CONSENT_TERMS_AND_PRIVACY]: false,
@@ -153,18 +129,6 @@ export function getValidators (field: FormField): Validator[] {
         case FormField.DEVICE_TYPE: return [
             isRequired()
         ];
-        case FormField.RAM: return [
-            isRequired(),
-            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeField(FormField.RAM, value)}`, 'Niepoprawna liczba.')
-        ];
-        case FormField.HDD: return [
-            isRequired(),
-            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeField(FormField.HDD, value)}`, 'Niepoprawna liczba.')
-        ];
-        case FormField.SCREEN_SIZE: return [
-            isRequired(),
-            matchesRegex(/^[0-9]+(\.[0-9]{1}|)$/, (value: string) => `${sanitizeField(FormField.SCREEN_SIZE, value)}`, 'Niepoprawna liczba.')
-        ];
         case FormField.CONSENT_TERMS_AND_PRIVACY: return [
             isRequired()
         ];
@@ -173,6 +137,28 @@ export function getValidators (field: FormField): Validator[] {
         ];
         case FormField.CONSENT_DATA_CLEANED: return [
             isRequired()
+        ];
+        default: return [];
+    }
+}
+
+export function getDeviceInputValidators (field: string): Validator[] {
+    switch (field) {
+        case 'cpu': return [
+            isRequired(),
+            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeDeviceInput('cpu', value)}`, 'Niepoprawna liczba.')
+        ];
+        case 'ram': return [
+            isRequired(),
+            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeDeviceInput('ram', value)}`, 'Niepoprawna liczba.')
+        ];
+        case 'hdd': [
+            isRequired(),
+            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeDeviceInput('hdd', value)}`, 'Niepoprawna liczba.')
+        ];
+        case 'screen_size': [
+            isRequired(),
+            matchesRegex(/^[0-9]+(\.[0-9]{1}|)$/, (value: string) => `${sanitizeDeviceInput('screen_size', value)}`, 'Niepoprawna liczba.')
         ];
         default: return [];
     }
@@ -208,14 +194,21 @@ export function sanitizeField (field: FormField, value: any) {
         case FormField.POSTCODE: return value.replace(/ /g, '');
         case FormField.CITY: return value.trim();
         case FormField.BANK_ACCOUNT: return value.trim().replace(/ /g, '');
-        case FormField.NOTEBOOK_NAME: return value.trim();
-        case FormField.RAM: return parseFloat(value.trim().replace(/,/g, '.'));
-        case FormField.HDD: return parseFloat(value.trim().replace(/,/g, '.'));
-        case FormField.SCREEN_SIZE: return parseFloat(value.trim().replace(/,/g, '.'));
         case FormField.CONSENT_TERMS_AND_PRIVACY: return Math.ceil(Date.now() / 1000);
         case FormField.CONSENT_INFO_CLAUSE: return Math.ceil(Date.now() / 1000);
         case FormField.CONSENT_DATA_CLEANED: return Math.ceil(Date.now() / 1000);
         case FormField.CONSENT_PUBLIC_LIST: return value ? Math.ceil(Date.now() / 1000) : null;
+        default: return value;
+    }
+}
+
+export function sanitizeDeviceInput (field: string, value: any) {
+    switch (field) {
+        case 'notebook_name': return value.trim();
+        case 'cpu': return parseFloat(value.trim().replace(/,/g, '.'));
+        case 'ram': return parseFloat(value.trim().replace(/,/g, '.'));
+        case 'hdd': return parseFloat(value.trim().replace(/,/g, '.'));
+        case 'screen_size': return parseFloat(value.trim().replace(/,/g, '.'));
         default: return value;
     }
 }
@@ -234,10 +227,6 @@ export function sanitize (form: FormModel): Device {
         delete device[FormField.NIP];
     }
 
-    if (device[FormField.RAM] === 0) delete form[FormField.RAM];
-    if (device[FormField.HDD] === 0) delete form[FormField.HDD];
-    if (device[FormField.SCREEN_SIZE] === 0) delete form[FormField.SCREEN_SIZE];
-
     return Object.keys(device).reduce((all, current) => {
         if (typeof device[current] === 'undefined' || device[current] === '' || device[current] === null) return all;
 
@@ -248,7 +237,7 @@ export function sanitize (form: FormModel): Device {
 }
 
 export function desanitize (device: Device, deviceTypes: DeviceType[]): FormModel {
-    const deviceType = deviceTypes.find((l) => l.id === device.deviceType);
+    const deviceType = deviceTypes.find((l) => l.id === device.type.id);
 
     return {
         ...device,
@@ -258,15 +247,7 @@ export function desanitize (device: Device, deviceTypes: DeviceType[]): FormMode
         [FormField.CONSENT_DATA_CLEANED]: !!device[FormField.CONSENT_DATA_CLEANED],
         [FormField.CONSENT_PUBLIC_LIST]: !!device[FormField.CONSENT_PUBLIC_LIST],
         [FormField.COMPANY_NAME]: device[FormField.COMPANY_NAME] || '',
-        [FormField.NIP]: device[FormField.NIP] || '',
-        [FormField.NOTEBOOK_NAME]: device[FormField.NOTEBOOK_NAME] || '',
-        [FormField.RAM]: `${device[FormField.RAM]}`,
-        [FormField.HDD]: `${device[FormField.HDD]}`,
-        [FormField.SCREEN_SIZE]: `${device[FormField.SCREEN_SIZE]}`,
-        [FormField.MONITOR]: typeof device[FormField.MONITOR] !== 'undefined' ? device[FormField.MONITOR] : false,
-        [FormField.CAMERA]: typeof device[FormField.CAMERA] !== 'undefined' ? device[FormField.CAMERA] : false,
-        [FormField.MICROPHONE]: typeof device[FormField.MICROPHONE] !== 'undefined' ? device[FormField.MICROPHONE] : false,
-        [FormField.SPEAKERS]: typeof device[FormField.SPEAKERS] !== 'undefined' ? device[FormField.SPEAKERS] : false,
+        [FormField.NIP]: device[FormField.NIP] || ''
     };
 }
 

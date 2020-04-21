@@ -88,11 +88,6 @@ export function DeviceDetails ({ device }: Props) {
                     { label: 'Kod pocztowy', value: device.postcode },
                     { label: 'Miasto', value: device.city }
                 ]} />
-                <DetailsList label="Specyfikacja sprzętu" className={classes.details} data={[
-                    { label: 'Rozmiar ekranu', value: `${device.screenSize}"` },
-                    { label: 'RAM', value: `${device.ram}GB` },
-                    { label: 'HDD', value: `${device.hdd}GB` }
-                ]} />
             </div>
             {device.comments && (
                 <div style={{ width: '100%', marginBottom: '20px' }}>

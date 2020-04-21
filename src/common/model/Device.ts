@@ -1,46 +1,30 @@
-export type RawDevice = {
-    id?: string;
-    status?: DeviceStatus;
+export type Device = {
+    id: number;
+    type: DeviceType;
     personType: DevicePersonType;
+    companyName?: string;
+    nip?: string;
     firstName: string;
     lastName: string;
+    email: string;
     street: string;
     streetNumber: string;
     city: string;
     postcode: string;
-    companyName?: string;
-    nip?: string;
-    email: string;
     bankAccount: string;
-    deviceType: number;
-    notebookName?: string;
-    monitor?: boolean;
-    camera?: boolean;
-    microphone?: boolean;
-    speakers?: boolean;
-    photos: string[];
+    status?: DeviceStatus;
     comments: string;
+    photos: string[];
+    inputs: DeviceInputData[];
     consentTap: number;
     consentInfc: number;
     consentDtcl: number;
     consentPbl: number;
 };
 
-export type Device = RawDevice & {
-    ram: number;
-    hdd: number;
-    screenSize: number;
-};
-
 export enum DevicePersonType {
     PERSON = 'PERSON',
     COMPANY = 'COMPANY'
-}
-
-export enum DeviceTypeOld {
-    NOTEBOOK = 'NOTEBOOK',
-    DESKTOP = 'DESKTOP',
-    TABLET = 'TABLET'
 }
 
 export enum DeviceStatus {
@@ -64,6 +48,14 @@ export type DeviceInput = {
     name: string;
     type: DeviceInputType;
     options?: DeviceInputOption[];
+}
+
+export type DeviceInputData = {
+    id: number;
+    name: string;
+    type: DeviceInputType;
+    value?: string;
+    option?: DeviceInputOption;
 }
 
 export type DeviceInputOption = {

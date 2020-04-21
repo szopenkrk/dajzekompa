@@ -109,21 +109,15 @@ export function DevicesList () {
                             <TableRow>
                                 <TableCell>Typ</TableCell>
                                 <TableCell>Status</TableCell>
-                                <TableCell>Pamięć</TableCell>
-                                <TableCell>Dysk twardy</TableCell>
-                                <TableCell>Ekran</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {devices && devices.map((device, index) => (
                                 <TableRow key={index} className={classes.row} onClick={toggleDetailsDialog(true, device)} hover>
-                                    <TableCell>{device.deviceType}</TableCell>
+                                    <TableCell>{device.type}</TableCell>
                                     <TableCell>
                                         <Chip style={{ backgroundColor: getDeviceStatusColor(device.status) }} label={getDeviceStatusText(device.status)} className={classes.tag} />
                                     </TableCell>
-                                    <TableCell>{device.ram} GB</TableCell>
-                                    <TableCell>{device.hdd} GB</TableCell>
-                                    <TableCell>{device.screenSize}&quot;</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

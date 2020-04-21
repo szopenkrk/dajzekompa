@@ -13,7 +13,7 @@ import { DevicePersonType, DeviceType, DeviceInput, DeviceInputType } from 'comm
 import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { ValidationResult, emptyModel, create, FormField, validateField, validateForm, getDeviceTypeLabel, getDeviceInputLabel } from 'client/lib/device';
+import { ValidationResult, emptyModel, create, FormField, validateField, validateForm, getDeviceTypeLabel, getDeviceInputLabel, FormModel } from 'client/lib/device';
 import { add as addDevice, getTypes as getDeviceTypes, getTypeInputs as getDeviceTypeInputs } from 'client/actions/devices';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import PhotoUploader from 'client/components/PhotoUploader';
@@ -44,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
     verticalRadioGroup: {
         width: '100%',
         textAlign: 'left'
+    },
+    devicesInputLoading: {
+        paddingTop: 5,
+        top: -5
     },
     subtitle: {
         padding: '20px 0'
@@ -100,6 +104,7 @@ export function SubmitDevicePage () {
 
     const [ form, setForm ] = useState(emptyModel());
     const [ loading, setLoading ] = useState(false);
+    const [ deviceInputsLoading, setDeviceInputsLoading ] = useState(false);
     const [ complete, setComplete ] = useState(false);
     const [ error, setError ] = useState('');
     const [ validation, setValidation ] = useState({} as ValidationResult);
@@ -159,10 +164,15 @@ export function SubmitDevicePage () {
         };
     }
 
-    function deviceTypeChange (e: React.ChangeEvent<any>, value: DeviceType) {
-        updateField(FormField.DEVICE_TYPE)(e, value);
+    async function deviceTypeChange (e: React.ChangeEvent<any>, value: DeviceType) {
+        if (value) {
+            setDeviceInputsLoading(true);
 
-        if (value) dispatch(getDeviceTypeInputs(value.id));
+            await dispatch(getDeviceTypeInputs(value.id));
+        }
+
+        updateField(FormField.DEVICE_TYPE)(e, value);
+        setDeviceInputsLoading(false);
     }
 
     function validateSingleField (name: FormField, value?: any) {
@@ -197,7 +207,7 @@ export function SubmitDevicePage () {
         );
     }
 
-    function createDeviceInput (input: DeviceInput, key: number) {
+    function createDeviceInput (input: DeviceInput, key: number, form: FormModel) {
         switch (input.type) {
             case DeviceInputType.TEXT: return (
                 <TextField
@@ -279,7 +289,8 @@ export function SubmitDevicePage () {
                         {createInputElement(FormField.BANK_ACCOUNT, 'Numer konta')}
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Urządzenie</Typography>
-                    <section>
+                    <section style={{ position: 'relative' }}>
+                        {deviceInputsLoading && <LoadingOverlay className={classes.devicesInputLoading} />}
                         <Autocomplete options={deviceTypes} getOptionLabel={(option) => getDeviceTypeLabel(option.name)} onChange={deviceTypeChange} onBlur={setDirty(FormField.DEVICE_TYPE)} value={form[FormField.DEVICE_TYPE]} renderInput={(props) => (
                             <TextField
                                 {...props}
@@ -293,7 +304,7 @@ export function SubmitDevicePage () {
                         )} />
                         {
                             inputs.map((input, index) => (
-                                createDeviceInput(input, index)
+                                createDeviceInput(input, index, form)
                             ))
                         }
                         <TechSpecTooltip>
