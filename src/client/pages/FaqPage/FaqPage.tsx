@@ -83,7 +83,7 @@ export function FaqPage () {
                     Dostawcą paczek będzie firma InPost. Podczas rejestracji zostaniesz poproszony o podanie swojego adresu e-mail, na który otrzymasz instrukcje oraz etykietę paczki InPost. Poprosimy Cię o jej wydrukowanie i przyklejenie na wierzchu paczki.
                 </FaqItem>
                 <FaqItem title="Jak moje dane osobowe będą chronione?">
-                    Chronimy Twoje dane zgodnie z przepisami RODO. Twoje dane będą wykorzystywane tylko i wyłącznie na potrzeby akcji przez podmioty do tego upoważnione i nie będą przekazywane osobom trzecim. <Link to="/rodo" className={classes.link}>Tutaj</Link> możesz zobaczyć regulamin opisujący szczegółowo politykę prywatności.
+                    Chronimy Twoje dane zgodnie z przepisami RODO. Twoje dane będą wykorzystywane tylko i wyłącznie na potrzeby akcji przez podmioty do tego upoważnione i nie będą przekazywane osobom trzecim. <Link to="/polityka-prywatnosci" className={classes.link}>Tutaj</Link> możesz zobaczyć regulamin opisujący szczegółowo politykę prywatności.
                 </FaqItem>
                 <FaqItem title="Skąd mam pewność, że mój komputer trafi do osoby potrzebującej?">
                     Listę uczniów i nauczycieli, którzy samodzielnie zgłoszą potrzebę poprzez stronę www.dajzekompa.pl zweryfikuje Fundacja Poland Business Run w kontakcie z dyrektorami szkół. Komputery trafią do dzieci zagrożonych wykluczeniem cyfrowym oraz nauczycieli, którzy bez odpowiedniego sprzętu nie mogą realizować programu w sposób zdalny.

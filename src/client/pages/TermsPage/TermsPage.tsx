@@ -105,7 +105,7 @@ export function TermsPage () {
                         <TableRow>
                             <TableCell><b>Polityka prywatności</b></TableCell>
                             <TableCell>
-                                dokument informujący o sposobie przetwarzania danych osobowych w akcji Dajże Kompa, do pobrania w zakładce (podstronie) Serwisu pod adresem: {`${url}/#/rodo`}.
+                                dokument informujący o sposobie przetwarzania danych osobowych w akcji Dajże Kompa, do pobrania w zakładce (podstronie) Serwisu pod adresem: {`${url}/#/polityka-prywatnosci`}.
                             </TableCell>
                         </TableRow>
                         <TableRow>

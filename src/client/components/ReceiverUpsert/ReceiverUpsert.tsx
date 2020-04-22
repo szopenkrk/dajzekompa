@@ -251,12 +251,12 @@ export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
                         <FormGroup>
                             <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_TERMS_AND_PRIVACY]} onChange={updateField(FormField.CONSENT_TERMS_AND_PRIVACY)} />} label={(
                                 <>
-                                    * Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/rodo" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>.
+                                    * Zapoznałam/em się i akceptuję <Link to="/regulamin" className={classes.link} target="_blank" rel="noopener norefferer">Regulamin Akcji „Dajże Kompa”</Link> oraz <Link to="/polityka-prywatnosci" className={classes.link} target="_blank" rel="noopener norefferer">Politykę Prywatności</Link>.
                                 </>
                             )} />
                             <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_INFO_CLAUSE]} onChange={updateField(FormField.CONSENT_INFO_CLAUSE)} />} label={(
                                 <>
-                                    * Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się <Link to="/klauzula" className={classes.link} target="_blank" rel="noopener norefferer">tutaj</Link>.
+                                    * Przyjmuję do wiadomości, że Administratorem moich danych osobowych jest Fundacja Poland Business Run z siedzibą ul. Henryka Siemiradzkiego 17/2, 31-137 Kraków. Dane osobowe będą przetwarzane przede wszystkim w celu otrzymania darowizny. Szczegółowe informacje dotyczące przetwarzania danych znajdują się w <Link to="/polityka-prywatnosci" className={classes.link} target="_blank" rel="noopener norefferer">Polityce Prywatności</Link>.
                                 </>
                             )} />
                             <FormControlLabel control={<Checkbox checked={form[FormField.CONSENT_SCHOOL_VERIFICATION]} onChange={updateField(FormField.CONSENT_SCHOOL_VERIFICATION)} />} label={(

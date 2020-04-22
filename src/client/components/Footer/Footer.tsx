@@ -37,7 +37,7 @@ export function Footer (props: Props) {
             <Typography variant="caption">#dajzekompa 2020</Typography>
             <nav className={classes.menu}>
                 <ul className={classes.menu}>
-                    <li className={classes.menuItem}><Link to="/rodo">RODO</Link></li>
+                    <li className={classes.menuItem}><Link to="/polityka-prywatnosci">Polityka Prywatności</Link></li>
                     <li className={classes.menuItem}><Link to="/regulamin">Regulamin</Link></li>
                 </ul>
             </nav>

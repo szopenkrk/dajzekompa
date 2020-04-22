@@ -28,7 +28,7 @@ const useStyles = makeStyles({
         flexDirection: props => (props as any).vertical ? 'column' : 'row'
     },
     partner: {
-        maxHeight: 46,
+        maxHeight: 29,
         padding: props => (props as any).vertical ? '20px 0' : '0 20px'
     }
 });

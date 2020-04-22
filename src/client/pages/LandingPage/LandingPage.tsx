@@ -17,8 +17,7 @@ import SubmitDevicePage from 'client/pages/SubmitDevicePage';
 import SubmitNeedPage from 'client/pages/SubmitNeedPage';
 import TermsPage from 'client/pages/TermsPage';
 import SubmitCityPage from 'client/pages/SubmitCityPage';
-import RodoPage from 'client/pages/RodoPage';
-import InfoClausePage from 'client/pages/InfoClausePage';
+import PrivacyPolicyPage from 'client/pages/PrivacyPolicyPage';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -69,8 +68,7 @@ export function LandingPage () {
                     <Route path="/zglos-potrzebe" exact={true} component={SubmitNeedPage} />
                     <Route path="/regulamin" exact={true} component={TermsPage} />
                     <Route path="/zglos-miasto" exact={true} component={SubmitCityPage} />
-                    <Route path="/rodo" exact={true} component={RodoPage} />
-                    <Route path="/klauzula" exact={true} component={InfoClausePage} />
+                    <Route path="/polityka-prywatnosci" exact={true} component={PrivacyPolicyPage} />
                 </Switch>
                 <Separator className={classes.separator} />
             </main>
