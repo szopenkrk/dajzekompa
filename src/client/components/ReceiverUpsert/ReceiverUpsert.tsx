@@ -26,6 +26,7 @@ type Props = {
     onComplete?: (receiver: Receiver) => void;
     receiver?: Receiver;
     noConsents?: boolean;
+    buttonLabel?: string;
 };
 
 const useSelector = reduxUseSelector as TypedUseSelectorHook<ReduxState>;
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
+export function ReceiverUpsert ({ onComplete, receiver, noConsents, buttonLabel }: Props) {
     const classes = useStyles();
     const dispatch = useDispatch();
     const theme = useTheme();
@@ -274,7 +275,7 @@ export function ReceiverUpsert ({ onComplete, receiver, noConsents }: Props) {
                         </FormGroup>
                     </FormControl>
                 )}
-                <Button variant="contained" color="primary" type="submit" fullWidth>{receiver ? 'Zaktualizuj' : 'Dodaj'}</Button>
+                <Button variant="contained" color="primary" type="submit" fullWidth>{buttonLabel || (receiver ? 'Zaktualizuj' : 'Dodaj')}</Button>
             </form>
         </>
     );

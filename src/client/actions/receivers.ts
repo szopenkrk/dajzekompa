@@ -53,12 +53,10 @@ export function update (id: string, form: FormModel): ReduxThunkAction<Receiver>
 
         const result = await request<Receiver>('PUT', `/receivers/${id}`, receiver);
 
-        if (loaded) {
-            dispatch({
-                type: ReduxActionType.RECEIVERS_UPDATE,
-                receivers: [ result ]
-            });
-        }
+        dispatch({
+            type: ReduxActionType.RECEIVERS_UPDATE,
+            receivers: [ result ]
+        });
 
         return result;
     };

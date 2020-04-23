@@ -66,6 +66,7 @@ export function SubmitNeedPage () {
     const classes = useStyles();
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down('xs'));
+
     const [ complete, setComplete ] = useState(false);
 
     function finish () {
@@ -90,7 +91,7 @@ export function SubmitNeedPage () {
                         </section>
                     </div>
                 )}
-                {!complete && <ReceiverUpsert onComplete={finish} />}
+                {!complete && <ReceiverUpsert onComplete={finish} buttonLabel="Wyślij" />}
                 <Separator className={classes.separator} />
                 <div className={classes.footer}>
                     <Typography variant="body1" className={classes.panelTitle}>Masz pytania?</Typography>

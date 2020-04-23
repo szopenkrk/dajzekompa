@@ -54,6 +54,8 @@ spec:
                       value: "false"
                     - name: API_URL
                       value: https://www.dajzekompa.pl/api
+                    - name: APP_URL
+                      value: www.dajzekompa.pl
                     - name: CONTACT_EMAIL
                       value: dajzekompa@polandbusinessrun.pl
                     - name: GOOGLE_PROJECT_ID

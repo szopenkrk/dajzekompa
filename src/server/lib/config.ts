@@ -43,7 +43,7 @@ function getConfig (prop: string, type: string): any {
 }
 
 export default class Config {
-    public static __CLIENT_ENABLED__: string[] = [ 'NODE_ENV', 'MAINTENANCE_MODE', 'API_URL', 'CONTACT_EMAIL', 'ADMIN_PANEL_ENABLED' ];
+    public static __CLIENT_ENABLED__: string[] = [ 'NODE_ENV', 'MAINTENANCE_MODE', 'API_URL', 'APP_URL', 'CONTACT_EMAIL', 'ADMIN_PANEL_ENABLED' ];
 
     /* System level */
     public static APP_NAME: string = getConfig('APP_NAME', 'string');
@@ -60,6 +60,7 @@ export default class Config {
     public static DB_PASSWORD: string = getConfig('DB_PASSWORD', 'string');
     public static DB_DATABASE: string = getConfig('DB_DATABASE', 'string');
     public static API_URL: string = getConfig('API_URL', 'string');
+    public static APP_URL: string = getConfig('APP_URL', 'string');
     public static CONTACT_EMAIL: string = getConfig('CONTACT_EMAIL', 'string');
     public static GOOGLE_APPLICATION_CREDENTIALS: string = getConfig('GOOGLE_APPLICATION_CREDENTIALS', 'string');
     public static GOOGLE_PROJECT_ID: string = getConfig('GOOGLE_PROJECT_ID', 'string');

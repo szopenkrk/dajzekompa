@@ -2,7 +2,7 @@
 import { green, lightGreen, lime, amber, orange, deepOrange, grey } from '@material-ui/core/colors';
 
 /* Models */
-import { Device, DevicePersonType, DeviceStatus, DeviceType } from 'common/model/Device';
+import { Device, DevicePersonType, DeviceStatus, DeviceType, DeviceUpsertRequest, DeviceInputRequest } from 'common/model/Device';
 
 /* Application files */
 import { Validator, isRequired, isRequiredIf, matchesRegex, isValidEmail, everyIf } from 'client/lib/validators';
@@ -21,6 +21,7 @@ export enum FormField {
     POSTCODE = 'postcode',
     BANK_ACCOUNT = 'bankAccount',
     PHOTOS = 'photos',
+    INPUTS = 'inputs',
     COMMENTS = 'comments',
     CONSENT_TERMS_AND_PRIVACY = 'consentTap',
     CONSENT_INFO_CLAUSE = 'consentInfc',
@@ -42,6 +43,7 @@ export type FormModel = {
     [FormField.BANK_ACCOUNT]: string;
     [FormField.DEVICE_TYPE]: DeviceType;
     [FormField.PHOTOS]: string[];
+    [FormField.INPUTS]: DeviceInputRequest[];
     [FormField.COMMENTS]: string;
     [FormField.CONSENT_TERMS_AND_PRIVACY]: boolean;
     [FormField.CONSENT_INFO_CLAUSE]: boolean;
@@ -52,6 +54,7 @@ export type FormModel = {
 export type FormList<T> = {
     [k in FormField]: T;
 }
+
 export type ValidationResult = Partial<FormList<string | boolean>>;
 
 export function create<T> (value: T): Partial<FormList<T>> {
@@ -62,7 +65,7 @@ export function create<T> (value: T): Partial<FormList<T>> {
     }, {});
 }
 
-export function emptyModel (base: Partial<FormModel> = {}): FormModel {
+export function empty (base: Partial<FormModel> = {}): FormModel {
     return Object.assign({
         [FormField.PERSON_TYPE]: DevicePersonType.PERSON,
         [FormField.COMPANY_NAME]: '',
@@ -77,6 +80,7 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.BANK_ACCOUNT]: '',
         [FormField.DEVICE_TYPE]: null,
         [FormField.PHOTOS]: [],
+        [FormField.INPUTS]: [],
         [FormField.COMMENTS]: '',
         [FormField.CONSENT_TERMS_AND_PRIVACY]: false,
         [FormField.CONSENT_INFO_CLAUSE]: false,
@@ -142,28 +146,6 @@ export function getValidators (field: FormField): Validator[] {
     }
 }
 
-export function getDeviceInputValidators (field: string): Validator[] {
-    switch (field) {
-        case 'cpu': return [
-            isRequired(),
-            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeDeviceInput('cpu', value)}`, 'Niepoprawna liczba.')
-        ];
-        case 'ram': return [
-            isRequired(),
-            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeDeviceInput('ram', value)}`, 'Niepoprawna liczba.')
-        ];
-        case 'hdd': [
-            isRequired(),
-            matchesRegex(/^[0-9]+(\.[0-9]{1,2}|)$/, (value: string) => `${sanitizeDeviceInput('hdd', value)}`, 'Niepoprawna liczba.')
-        ];
-        case 'screen_size': [
-            isRequired(),
-            matchesRegex(/^[0-9]+(\.[0-9]{1}|)$/, (value: string) => `${sanitizeDeviceInput('screen_size', value)}`, 'Niepoprawna liczba.')
-        ];
-        default: return [];
-    }
-}
-
 export function validateForm (form: FormModel): ValidationResult {
     return Object.values(FormField).map((field) => {
         const value = form[field];
@@ -184,6 +166,7 @@ export function validateField (field: FormField, value: any, options: any): Vali
 
 export function sanitizeField (field: FormField, value: any) {
     switch (field) {
+        case FormField.DEVICE_TYPE: return value.id;
         case FormField.FIRST_NAME: return value.trim();
         case FormField.LAST_NAME: return value.trim();
         case FormField.COMPANY_NAME: return value.trim();
@@ -202,38 +185,37 @@ export function sanitizeField (field: FormField, value: any) {
     }
 }
 
-export function sanitizeDeviceInput (field: string, value: any) {
-    switch (field) {
-        case 'notebook_name': return value.trim();
-        case 'cpu': return parseFloat(value.trim().replace(/,/g, '.'));
-        case 'ram': return parseFloat(value.trim().replace(/,/g, '.'));
-        case 'hdd': return parseFloat(value.trim().replace(/,/g, '.'));
-        case 'screen_size': return parseFloat(value.trim().replace(/,/g, '.'));
-        default: return value;
-    }
-}
+export function sanitize (form: FormModel): DeviceUpsertRequest {
+    return {
+        ...form,
+        type: sanitizeField(FormField.DEVICE_TYPE, form.deviceType),
+        firstName: sanitizeField(FormField.FIRST_NAME, form.firstName),
+        lastName: sanitizeField(FormField.LAST_NAME, form.lastName),
+        companyName: sanitizeField(FormField.COMPANY_NAME, form.companyName),
+        email: sanitizeField(FormField.EMAIL, form.email),
+        street: sanitizeField(FormField.STREET, form.street),
+        streetNumber: sanitizeField(FormField.STREET_NUMBER, form.streetNumber),
+        postcode: sanitizeField(FormField.POSTCODE, form.postcode),
+        city: sanitizeField(FormField.CITY, form.city),
+        bankAccount: sanitizeField(FormField.BANK_ACCOUNT, form.bankAccount),
+        consentTap: sanitizeField(FormField.CONSENT_TERMS_AND_PRIVACY, form.bankAccount),
+        consentInfc: sanitizeField(FormField.CONSENT_INFO_CLAUSE, form.bankAccount),
+        consentDtcl: sanitizeField(FormField.CONSENT_DATA_CLEANED, form.bankAccount),
+        consentPbl: sanitizeField(FormField.CONSENT_PUBLIC_LIST, form.bankAccount)
+    };
 
-export function sanitize (form: FormModel): Device {
-    const device = Object.keys(form).map((k) => {
-        return [ k, sanitizeField(k as FormField, form[k])];
-    }).reduce((total, current) => {
-        total[current[0]] = current[1];
+    // if (device[FormField.PERSON_TYPE] === DevicePersonType.PERSON) {
+    //     delete device[FormField.COMPANY_NAME];
+    //     delete device[FormField.NIP];
+    // }
 
-        return total;
-    }, {} as Device);
+    // return Object.keys(device).reduce((all, current) => {
+    //     if (typeof device[current] === 'undefined' || device[current] === '' || device[current] === null) return all;
 
-    if (device[FormField.PERSON_TYPE] === DevicePersonType.PERSON) {
-        delete device[FormField.COMPANY_NAME];
-        delete device[FormField.NIP];
-    }
+    //     all[current] = device[current];
 
-    return Object.keys(device).reduce((all, current) => {
-        if (typeof device[current] === 'undefined' || device[current] === '' || device[current] === null) return all;
-
-        all[current] = device[current];
-
-        return all;
-    }, {} as Device);
+    //     return all;
+    // }, {} as Device);
 }
 
 export function desanitize (device: Device, deviceTypes: DeviceType[]): FormModel {
@@ -247,7 +229,10 @@ export function desanitize (device: Device, deviceTypes: DeviceType[]): FormMode
         [FormField.CONSENT_DATA_CLEANED]: !!device[FormField.CONSENT_DATA_CLEANED],
         [FormField.CONSENT_PUBLIC_LIST]: !!device[FormField.CONSENT_PUBLIC_LIST],
         [FormField.COMPANY_NAME]: device[FormField.COMPANY_NAME] || '',
-        [FormField.NIP]: device[FormField.NIP] || ''
+        [FormField.NIP]: device[FormField.NIP] || '',
+        [FormField.INPUTS]: device[FormField.INPUTS].map((i) => ({
+            id: i.id
+        }))
     };
 }
 
@@ -285,24 +270,4 @@ export function base64toBlob (base64: string): Blob {
     }
 
     return new Blob([binary], { type });
-}
-
-export function getDeviceTypeLabel (option: string): string {
-    switch (option) {
-        case 'notebook': return 'Laptop';
-        case 'desktop': return 'Komputer stacjonarny';
-        case 'monitor': return 'Monitor';
-        default: return option;
-    }
-}
-
-export function getDeviceInputLabel (input: string): string {
-    switch (input) {
-        case 'notebook_name': return 'Producent i model';
-        case 'cpu': return 'Taktowanie procesora (GHz)';
-        case 'ram': return 'Pamięć RAM (GB)';
-        case 'hdd': return 'Pojemność dysków (GB)';
-        case 'screen_size': return 'Rozmiar ekranu (cale)';
-        default: return input;
-    }
 }

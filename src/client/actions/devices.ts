@@ -51,6 +51,27 @@ export function add (form: FormModel): ReduxThunkAction<Device> {
     };
 }
 
+export function update (id: number, form: FormModel): ReduxThunkAction<Device> {
+    return async (dispatch) => {
+        const device = sanitize(form);
+        const formData = new FormData();
+
+        device[FormField.PHOTOS].forEach((photo) => formData.append('photos', base64toBlob(photo)));
+        delete device[FormField.PHOTOS];
+
+        formData.append('device', JSON.stringify(device));
+
+        const result = await request<Device>('PUT', `/devices/${id}`, formData);
+
+        dispatch({
+            type: ReduxActionType.DEVICE_UPDATE,
+            devices: [ result ]
+        });
+
+        return result;
+    };
+}
+
 export function getTypes (): ReduxThunkAction<DeviceType[]> {
     return async (dispatch, getState) => {
         if (loaded.deviceTypes) return getState().deviceTypes.types;

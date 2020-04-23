@@ -8,6 +8,7 @@ import { Locker } from 'common/model/Locker';
 
 export enum ReduxActionType {
     DEVICE_ADD = 'DEVICE_ADD',
+    DEVICE_UPDATE = 'DEVICE_UPDATE',
     DEVICE_INPUTS_ADD = 'DEVICE_INPUTS_ADD',
     DEVICE_TYPES_ADD = 'DEVICE_TYPES_ADD',
     PROGRAM_SUMMARY_LOAD = 'PROGRAM_SUMMARY_LOAD',
