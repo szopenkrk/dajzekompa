@@ -30,6 +30,7 @@ export enum FormField {
     SPEAKERS = 'speakers',
     PHOTOS = 'photos',
     COMMENTS = 'comments',
+    NUMBER_OD_DEVICES = 'numberOfDevices',
     CONSENT_TERMS_AND_PRIVACY = 'consentTap',
     CONSENT_INFO_CLAUSE = 'consentInfc',
     CONSENT_DATA_CLEANED = 'consentDtcl',
@@ -59,6 +60,7 @@ export type FormModel = {
     [FormField.SPEAKERS]: boolean;
     [FormField.PHOTOS]: string[];
     [FormField.COMMENTS]: string;
+    [FormField.NUMBER_OD_DEVICES]: string;
     [FormField.CONSENT_TERMS_AND_PRIVACY]: boolean;
     [FormField.CONSENT_INFO_CLAUSE]: boolean;
     [FormField.CONSENT_DATA_CLEANED]: boolean;
@@ -102,6 +104,7 @@ export function emptyModel (base: Partial<FormModel> = {}): FormModel {
         [FormField.SPEAKERS]: false,
         [FormField.PHOTOS]: [],
         [FormField.COMMENTS]: '',
+        [FormField.NUMBER_OD_DEVICES]: '',
         [FormField.CONSENT_TERMS_AND_PRIVACY]: false,
         [FormField.CONSENT_INFO_CLAUSE]: false,
         [FormField.CONSENT_DATA_CLEANED]: false,

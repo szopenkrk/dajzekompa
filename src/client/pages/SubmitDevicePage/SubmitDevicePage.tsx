@@ -1,19 +1,31 @@
 /* Libraries */
-import React, { useState } from 'react';
-import { useDispatch as reduxUseDispatch } from 'react-redux';
-import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme, TextFieldProps } from '@material-ui/core';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
-import { Link } from 'react-router-dom';
-
+import React, {useState} from 'react';
+import {useDispatch as reduxUseDispatch} from 'react-redux';
+import {
+    Button,
+    Checkbox,
+    FormControl,
+    FormControlLabel,
+    FormGroup,
+    FormLabel,
+    Icon,
+    Radio,
+    RadioGroup,
+    TextField,
+    TextFieldProps,
+    Typography,
+    useTheme
+} from '@material-ui/core';
+import {CSSProperties} from '@material-ui/core/styles/withStyles';
+import {Link} from 'react-router-dom';
 /* Models */
-import { Action } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { DeviceType, DevicePersonType } from 'common/model/Device';
-import { ReduxState } from 'client/model/Redux';
-
+import {Action} from 'redux';
+import {ThunkDispatch} from 'redux-thunk';
+import {DevicePersonType, DeviceType} from 'common/model/Device';
+import {ReduxState} from 'client/model/Redux';
 /* Application files */
-import { ValidationResult, emptyModel, create, FormField, validateField, validateForm } from 'client/lib/device';
-import { add as addDevice } from 'client/actions/devices';
+import {create, emptyModel, FormField, validateField, validateForm, ValidationResult} from 'client/lib/device';
+import {add as addDevice} from 'client/actions/devices';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import PhotoUploader from 'client/components/PhotoUploader';
 import ErrorBox from 'client/components/ErrorBox';
@@ -257,6 +269,9 @@ export function SubmitDevicePage () {
                     <Typography variant="h5" className={classes.subtitle}>Dodatkowe informacje</Typography>
                     <section>
                         <TextField variant="outlined" label="Dodatkowe informacje i komentarze" className={classes.input} onChange={updateField(FormField.COMMENTS)} multiline rows={3} />
+                    </section>
+                    <section>
+                        <TextField label="Masz więcej niż 1 komputer podaj ilość" className={classes.input} onChange={updateField(FormField.NUMBER_OD_DEVICES)} name={FormField.NUMBER_OD_DEVICES}/>
                     </section>
                     <section style={{ marginTop: theme.spacing(2) }}>
                         <FormControl className={classes.consents} error={someConsentsNotAgreed()}>
