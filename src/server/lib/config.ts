@@ -67,4 +67,6 @@ export default class Config {
     public static TLS_KEY_FILE: string = getConfig('TLS_KEY_FILE', 'string');
     public static TLS_CERT_FILE: string = getConfig('TLS_CERT_FILE', 'string');
     public static ADMIN_PANEL_ENABLED: boolean = getConfig('ADMIN_PANEL_ENABLED', 'boolean');
+    public static ADMIN_USER: string = getConfig('ADMIN_USER', 'string');
+    public static ADMIN_PASSWORD: string = getConfig('ADMIN_PASSWORD', 'string');
 }

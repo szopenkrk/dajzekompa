@@ -71,6 +71,8 @@ spec:
                   envFrom:
                     - secretRef:
                         name: dajzekompa-cloudsql-production
+                    - secretRef:
+                        name: dajzekompa-admin-credentials
                   volumeMounts:
                     - name: dajzekompa-google-credentials
                       mountPath: /var/secrets/google

@@ -3,6 +3,7 @@ import fs from 'fs';
 import express from 'express';
 import http from 'http';
 import https from 'https';
+import auth from 'basic-auth';
 import { getStatusText } from 'http-status-codes';
 
 /* Models */
@@ -44,6 +45,16 @@ for (const middleware of middlewares) {
 for (const route of routes) {
     server[route.method.toLowerCase()](route.url, ...(route.middleware || []), async (req: Request, res: Response, next: NextFunction) => {
         Log.debug(`${route.method} ${route.url}`);
+
+        if (route.protected) {
+            const user = auth(req);
+
+            if (!user || user.name !== Config.ADMIN_USER || user.pass !== Config.ADMIN_PASSWORD) {
+                res.setHeader('WWW-Authenticate', 'Basic realm="dajzekompa"');
+
+                return closeWithError(res, new APIError('Access denied.', HTTPCode.UNAUTHORIZED));
+            }
+        }
 
         if (route.schema) {
             try {
