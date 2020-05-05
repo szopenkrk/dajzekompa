@@ -100,6 +100,22 @@ export function FaqPage () {
                 <FaqItem title="Czy #DajżeKompa działa w moim mieście?">
                     Zaczęliśmy od Krakowa, mamy jednak nadzieję, że inicjatywa szybko ogarnie inne miasta. Zobacz na mapie czy tak się stało. Jeśli nie, może znasz ludzi, którzy chcieliby przejąć akcję w Twoim mieście. <Link to="/zglos-miasto" className={classes.link}>Tutaj</Link> możesz zobaczyć jak to zrobić.
                 </FaqItem>
+                <FaqItem title="A co z podatkami, kiedy chcę przekazać laptopa lub tablet?">
+                    Przekazanie laptopów oraz tabletów nastąpi w formie darowizny. W wiadomości e-mail prześlemy Ci odpowiednią umowę do wypełnienia. Na podstawie aktualnego Rozporządzenia darowizna laptopów i tabletów, które nam przekazujesz, jest opodatkowana stawką 0%. Oznacza to, że nie będziesz musiał zapłacić VATu od darowizny, ani dokonywać ewentualnej korekty VATu naliczonego. Wciąż jednak występuje konieczność wykazania tej transakcji w deklaracji VAT jako sprzedaż opodatkowana stawką 0% - pole 13 deklaracji VAT-7(20), wskazując jako podstawę opodatkowania wartość rynkową laptopa lub tabletu. Powiadom o tym swojego księgowego.
+                </FaqItem>
+                <FaqItem title="A co z podatkami, kiedy chcę przekazać sprzęt innego rodzaju?">
+                    Przekazanie sprzętu innego niż objęty Rozporządzeniem nastąpi w formie sprzedaży. Fundacja przeleje złotówkę na podany przez Ciebie numer konta w formularzu z zakładki „Podaruj kompa”. W wiadomości e-mail otrzymasz dokładniejsze instrukcje oraz dane potrzebne do wystawienia faktury lub rachunku.
+                    Jeżeli jednak wypełniając formularz zaznaczysz, że chcesz przekazać należną Ci złotówkę na cele statutowe Fundacji, w wiadomości e-mail prześlemy Ci umowę darowizny do wypełnienia i wówczas Fundacja nie dokona przelewu. Zachęcamy Cię do tego rozwiązania. Upewnij się tylko, czy będzie ono dla Ciebie odpowiednie pod względem podatkowym.
+                </FaqItem>
+                <FaqItem title="Po co mam podawać numer konta?">
+                    Numer konta jest nam potrzebny, aby przelać Ci na konto symboliczną złotówkę jako zapłatę za przekazany nam sprzęt, jeśli przekazując go wybierzesz opcję sprzedaży, a nie darowizny. Dzięki temu nie musisz się martwić kwestiami podatkowymi. Więcej informacji znajdziesz w odpowiedzi na pytanie „A co z podatkami, kiedy chcę przekazać sprzęt innego rodzaju?”.
+                </FaqItem>
+                <FaqItem title="Dlaczego prosimy Cię o podanie adresu zamieszkania?">
+                    Może się okazać, że z różnych powodów komputer nie będzie mógł być nadany przez paczkomat (np. będzie za duży). Znajdziemy wtedy rozwiązanie, aby odebrać go od Ciebie bezpośrednio.
+                </FaqItem>
+                <FaqItem title="Czy można zawieźć sprzęt osobiście? Gdzie?">
+                Niestety nie ma takiej opcji. Chcemy, aby przekazywanie sprzętu odbywało się bezkontaktowo, dlatego też zachęcamy do korzystania z paczkomatów.
+                </FaqItem>
             </Faq>
             <div className={classes.actions}>
                 <Link to="/podaruj-kompa"><Button variant="contained" color="primary">Podaruj kompa</Button></Link>
@@ -150,6 +166,15 @@ export function FaqPage () {
                         <li>Zachęcamy do zrobienia filmiku lub zdjęcia (jak dziecko otwiera paczkę lub po otrzymaniu prezentu) i umieszczenia go na naszym kanale Facebook Dajże Kompa (@DajzeKompa) i na Twój profil z hashtagiem #DajżeKompa</li>
                         <li>Użytkuj sprzęt zgodnie z przeznaczeniem</li>
                     </ol>
+                </FaqItem>
+                <FaqItem title="Jak przebiega proces weryfikacji uczniów?">
+                    Fundacja jest w stałym kontakcie ze szkołami, otrzymuje od dyrektorów listy z nazwiskami uczniów, którzy najpilniej potrzebują pomocy. Na tej podstawie Fundacja podejmuje decyzje. Jeśli nazwisko ucznia zgłoszonego przez formularz znajduje się na tej liście, uważamy, że jest pozytywnie zweryfikowany.
+                </FaqItem>
+                <FaqItem title="Jak długo będzie trwała akcja?">
+                    Akcję planowaliśmy do czasu powrotu dzieci do szkoły, ale sytuacja zmienia się dynamicznie.
+                </FaqItem>
+                <FaqItem title="Wypełniłem formularz, kiedy otrzymam sprzęt dla dziecka?">
+                Niestety nie jesteśmy w stanie podać czasu oczekiwania na komputery i laptopy. Możemy dać tylko to, co dostaniemy. Staramy się ze wszystkich sił, ale potrzeby są znacznie większe niż ilość sprzętu, którym dysponujemy. Czasu wymaga także przegląd sprzętu i weryfikacja potrzebujących. Bardzo prosimy o cierpliwość.
                 </FaqItem>
             </Faq>
             <Separator className={classes.separator} />
