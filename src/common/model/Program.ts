@@ -3,6 +3,7 @@ import { DeviceStatus } from 'common/model/Device';
 export type ProgramSummary = {
     statuses: ProgramSummaryStatusList;
     regions: Region[];
+    needy: number;
 };
 
 export type ProgramSummaryStatusList = {

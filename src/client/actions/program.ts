@@ -15,7 +15,7 @@ export function loadProgramSummary (): ReduxThunkAction<ProgramSummary> {
 
         dispatch({
             type: ReduxActionType.PROGRAM_SUMMARY_LOAD,
-            summary
+            summary,
         });
 
         return summary;

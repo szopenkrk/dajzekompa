@@ -42,7 +42,8 @@ export default {
                 [DeviceStatus.SENT_TO_RECIPIENT]: 0,
                 [DeviceStatus.COMPLETE]: 0
             },
-            regions: []
+            regions: [],
+            needy: 0,
         };
 
         try {

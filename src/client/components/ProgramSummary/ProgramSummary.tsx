@@ -12,6 +12,7 @@ import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
 import { loadProgramSummary } from 'client/actions/program';
+import { needyNumberLoad } from 'client/actions/needyNumber';
 import LoadingOverlay from 'client/components/LoadingOverlay';
 import RegionMap from 'client/components/RegionMap';
 
@@ -71,6 +72,7 @@ export function ProgramSummary (props: Props) {
     const [ error, setError ] = useState('');
     const [ loading, setLoading ] = useState(true);
     const [ devices, setDevices ] = useState(0);
+    const [ needy, setNeedy ] = useState(0);
     const [ regions, setRegions ] = useState([] as Region[]);
 
     async function requestProgramSummary () {
@@ -80,8 +82,10 @@ export function ProgramSummary (props: Props) {
         try {
             const summary = await dispatch(loadProgramSummary());
             const total = Object.keys(summary.statuses).reduce((all, current) => all + summary.statuses[current], 0);
+            const needy = await dispatch(needyNumberLoad());
 
             setDevices(total);
+            setNeedy(needy);
             setRegions(summary.regions);
         } catch (error) {
             setError(error.message);
@@ -105,13 +109,21 @@ export function ProgramSummary (props: Props) {
                     <div className={classes.map}>
                         <RegionMap active={regions} />
                     </div>
-                    <Typography variant="subtitle2">PRZEKAZALIŚMY:</Typography>
+                    <Typography variant="subtitle2">Zgłoszono:</Typography>
                     <div className={classes.counter}>
                         {`${devices}`.split('').map((digit, index) => (
                             <span className={classes.digit} key={index}>{digit}</span>
                         ))}
                     </div>
                     <Typography variant="subtitle2">KOMPUTER{getPluralDeviceForm(devices).toUpperCase()}</Typography>
+                    <br/><br/>
+                    <Typography variant="subtitle2">Potrzebujących:</Typography>
+                    <div className={classes.counter}>
+                        {`${needy}`.split('').map((digit, index) => (
+                            <span className={classes.digit} key={index}>{digit}</span>
+                        ))}
+                    </div>
+                    <Typography variant="subtitle2">Dzieci</Typography>
                 </>
             )}
         </section>

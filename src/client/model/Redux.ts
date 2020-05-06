@@ -15,7 +15,8 @@ export enum ReduxActionType {
     RECEIVERS_ADD = 'RECEIVERS_ADD',
     RECEIVERS_UPDATE = 'RECEIVERS_UPDATE',
     LOCKERS_ADD = 'LOCKERS_ADD',
-    SCHOOLS_ADD = 'SCHOOLS_ADD'
+    SCHOOLS_ADD = 'SCHOOLS_ADD',
+    NEEDY_NUMBER = 'NEEDY_NUMBER',
 }
 
 export type ReduxState = {
