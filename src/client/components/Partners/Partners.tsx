@@ -28,7 +28,8 @@ const useStyles = makeStyles({
         flexDirection: props => (props as any).vertical ? 'column' : 'row'
     },
     partner: {
-        maxHeight: 29,
+        maxHeight: 100,
+        maxWidth: 100,
         padding: props => (props as any).vertical ? '20px 0' : '0 20px'
     }
 });
@@ -40,13 +41,13 @@ export function Partners (props: Props) {
         <>
             <Typography variant="body2" className={classes.title}>Organizatorzy i współorganizatorzy akcji:</Typography>
             <section className={classes.wrapper}>
-                <img src={logoKrakow} className={classes.partner}  />
-                <img src={logoTalentAlpha} className={classes.partner}  />
-                <img src={logoBkode} className={classes.partner}  />
-                <img src={logoBusinessRun} className={classes.partner}  />
-                <img src={logoPragmaticSolutions} className={classes.partner}  />
-                <img src={logoFixit} className={classes.partner}  />
-                <img src={logoInpost} className={classes.partner}  />
+                <a href="#"><img src={logoKrakow} className={classes.partner}  /></a>
+                <a href="https://talent-alpha.com/" target="_blank"><img src={logoTalentAlpha} className={classes.partner}  /></a>
+                <a href="http://bkode.pl/" target="_blank"><img src={logoBkode} className={classes.partner}  /></a>
+                <a href="https://polandbusinessrun.pl/" target="_blank"><img src={logoBusinessRun} className={classes.partner}  /></a>
+                <a href="https://ssw.solutions/pl/" target="_blank"><img src={logoPragmaticSolutions} className={classes.partner}  /></a>
+                <a href="http://www.fixit.pl/pl/" target="_blank"><img src={logoFixit} className={classes.partner}  /></a>
+                <a href="https://inpost.pl/" target="_blank"><img src={logoInpost} className={classes.partner}  /></a>
             </section>
         </>
     );
