@@ -1,5 +1,5 @@
 [
-    {
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 133 IM. ORŁA BIAŁEGO W KRAKOWIE",
         "students": "291",
         "branches": "15",
@@ -10,8 +10,8 @@
         "phone": "122621020",
         "email": "sp133@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 66 IM. EDWARDA DEMBOWSKIEGO W KRAKOWIE",
         "students": "447",
         "branches": "21",
@@ -22,8 +22,8 @@
         "phone": "122625277",
         "email": "zsp7kr@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 130 IM. JANA BRZECHWY W KRAKOWIE",
         "students": "655",
         "branches": "28",
@@ -34,8 +34,8 @@
         "phone": "126497773",
         "email": "sp130krakow@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 11 IM. JÓZEFA DIETLA W KRAKOWIE",
         "students": "183",
         "branches": "10",
@@ -46,8 +46,8 @@
         "phone": "124212856",
         "email": "szkolanr11@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 4 IM. ROMUALDA TRAUGUTTA W KRAKOWIE",
         "students": "569",
         "branches": "27",
@@ -58,8 +58,8 @@
         "phone": "124229649",
         "email": "sekretariat@sp4krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 27 IM. MARII KONOPNICKIEJ W KRAKOWIE",
         "students": "761",
         "branches": "36",
@@ -70,8 +70,8 @@
         "phone": "126584567",
         "email": "sp27kr@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 37 IM. JULIANA TUWIMA W KRAKOWIE",
         "students": "336",
         "branches": "16",
@@ -82,9 +82,9 @@
         "phone": "126443917",
         "email": "sp37krakow@gazeta.pl",
         "specifics": "brak specyfiki"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA NR 86 IM. POWSTAŃCÓW ŚLĄSKICH W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA NR 86 IM. POWSNTACÓW ŚLĄSKICH W KRAKOWIE",
         "students": "440",
         "branches": "22",
         "street": "os. Jagiellońskie",
@@ -94,9 +94,9 @@
         "phone": "126483414",
         "email": "sp86krak@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA NR 88 IM. STEFANA ŻEROMSKIEGO W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA NR 88 IM. STEFANA ZEROMSKIEGO W KRAKOWIE",
         "students": "461",
         "branches": "21",
         "street": "os. Szklane Domy",
@@ -106,8 +106,8 @@
         "phone": "126441723",
         "email": "sp88krakow@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 101 IM. HANSA CHRISTIANA ANDERSENA W KRAKOWIE",
         "students": "319",
         "branches": "16",
@@ -118,9 +118,9 @@
         "phone": "126482103",
         "email": "sp101.sekretariat@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA NR 51 IM. STANISŁAWA WYSPIAŃSKIEGO W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA NR 51 IM. STANISłAWA WYSPInASKIEGO W KRAKOWIE",
         "students": "222",
         "branches": "11",
         "street": "ul. Stawowa",
@@ -130,9 +130,9 @@
         "phone": "126370950",
         "email": "zso53@edukonekt.pl",
         "specifics": "brak specyfiki"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA NR 50 IM. WŁODZIMIERZA TETMAJERA W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA NR 50 IM. WłODZIMIERZA TETMAJERA W KRAKOWIE",
         "students": "424",
         "branches": "19",
         "street": "ul. Katowicka",
@@ -142,8 +142,8 @@
         "phone": "126371457",
         "email": "sp50krakow@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 141 IM. KSIĘDZA JANA TWARDOWSKIEGO W KRAKOWIE",
         "students": "163",
         "branches": "11",
@@ -154,8 +154,8 @@
         "phone": "126450767",
         "email": "sp141krakow1@onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 26 IM. ANDRZEJA STRUGA W KRAKOWIE",
         "students": "541",
         "branches": "26",
@@ -166,32 +166,32 @@
         "phone": "126560519",
         "email": "sekretariat@sp26.edu.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 162 IM. PROF. WŁADYSŁAWA SZAFERA W KRAKOWIE",
         "students": "948",
         "branches": "46",
-        "street": "ul. Stanisława Stojałowskiego",
+        "street": "ul. Stanisława Stojakowskiego",
         "streetNumber": "31",
         "postcode": "30-611",
         "city": "Kraków",
         "phone": "126544059",
         "email": "sekretariat@sp162.pl",
         "specifics": "brak specyfiki"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 148 IM. POLSKICH NOBLISTÓW W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 148 IM. POLSKICH NOBLISTóW W KRAKOWIE",
         "students": "474",
         "branches": "24",
-        "street": "ul. Żabia",
+        "street": "ul. Łabia",
         "streetNumber": "20",
         "postcode": "30-809",
         "city": "Kraków",
         "phone": "126588422",
         "email": "sp148.sekretariat@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 18 IM. ŚW. ANNY W KRAKOWIE",
         "students": "229",
         "branches": "13",
@@ -202,8 +202,8 @@
         "phone": "124115303",
         "email": "dyrekcja@sp18.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 58 IM. TADEUSZA KOŚCIUSZKI W KRAKOWIE",
         "students": "390",
         "branches": "17",
@@ -214,8 +214,8 @@
         "phone": "124151347",
         "email": "szkola58@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 64 IM. TADEUSZA KOŚCIUSZKI W KRAKOWIE",
         "students": "469",
         "branches": "23",
@@ -226,8 +226,8 @@
         "phone": "124111528",
         "email": "sp64krakow@pro.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 12 IM. JANUSZA KORCZAKA W KRAKOWIE",
         "students": "378",
         "branches": "20",
@@ -238,8 +238,8 @@
         "phone": "126333711",
         "email": "szok_1512@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 55 IM. JAROSŁAWA IWASZKIEWICZA W KRAKOWIE",
         "students": "385",
         "branches": "18",
@@ -250,20 +250,20 @@
         "phone": "126550266",
         "email": "sekretariatsp55@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 67 IM. WŁADYSŁAWA ŁOKIETKA W KRAKOWIE",
         "students": "219",
         "branches": "11",
-        "street": "ul. Kaczorówka",
+        "street": "ul. KaczorŚWka",
         "streetNumber": "4",
         "postcode": "31-264",
         "city": "Kraków",
         "phone": "124153185",
         "email": "szkola-67@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 117 IM. KRAKOWSKIEJ KONGREGACJI KUPIECKIEJ W KRAKOWIE",
         "students": "441",
         "branches": "21",
@@ -274,8 +274,8 @@
         "phone": "126582003",
         "email": "sekretariat@sp117.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 82 IM. ŚWIĘTEJ JADWIGI KRÓLOWEJ POLSKI W KRAKOWIE",
         "students": "372",
         "branches": "19",
@@ -286,8 +286,8 @@
         "phone": "126484176",
         "email": "sekretariat@sp82krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 24 IM. KRAKOWSKIEJ STRAŻY POŻARNEJ W KRAKOWIE",
         "students": "747",
         "branches": "33",
@@ -298,44 +298,44 @@
         "phone": "126581544",
         "email": "sekretariat@zsp11.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 111 IM. WOJSKA POLSKIEGO W KRAKOWIE",
         "students": "457",
         "branches": "21",
-        "street": "ul. Bieżanowska",
+        "street": "ul. Bie�anowska",
         "streetNumber": "204",
         "postcode": "30-856",
         "city": "Kraków",
         "phone": "126581327",
         "email": "sp111wkrakowie@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 109 IM. KORNELA MAKUSZYŃSKIEGO W KRAKOWIE",
         "students": "510",
         "branches": "22",
-        "street": "ul. Józefa Mackiewicza",
+        "street": "ul. JÓZEFA Mackiewicza",
         "streetNumber": "15",
         "postcode": "31-214",
         "city": "Kraków",
         "phone": "124155666",
         "email": "zsnr5krakow@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA NR 48 IM. SZARYCH SZEREGÓW W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA NR 48 IM. SZARYCH SZEREGŚW W KRAKOWIE",
         "students": "263",
         "branches": "12",
-        "street": "ul. Księcia Józefa",
+        "street": "ul. Księcia JÓZEFA",
         "streetNumber": "337",
         "postcode": "30-243",
         "city": "Kraków",
         "phone": "124297210",
         "email": "sp48kr@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 113 IM. LEOPOLDA WĘGRZYNOWICZA W KRAKOWIE",
         "students": "346",
         "branches": "19",
@@ -346,8 +346,8 @@
         "phone": "126374904",
         "email": "sekretariat113@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 104 IM. JANA MATEJKI W KRAKOWIE",
         "students": "182",
         "branches": "9",
@@ -358,8 +358,8 @@
         "phone": "126484196",
         "email": "sp104.krakow@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 2 IM. ŚW. WOJCIECHA W KRAKOWIE",
         "students": "996",
         "branches": "48",
@@ -370,8 +370,8 @@
         "phone": "124121006",
         "email": "sp2@sp2.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 123 IM. GEN. JÓZEFA BEMA W KRAKOWIE",
         "students": "316",
         "branches": "17",
@@ -382,8 +382,8 @@
         "phone": "126580608",
         "email": "sp123@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 144 IM. BOHATERÓW WRZEŚNIA 1939 W KRAKOWIE",
         "students": "698",
         "branches": "35",
@@ -394,8 +394,8 @@
         "phone": "126480302",
         "email": "sp144@op.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 129 IM. KORNELA MAKUSZYŃSKIEGO W KRAKOWIE",
         "students": "388",
         "branches": "19",
@@ -406,20 +406,20 @@
         "phone": "126451576",
         "email": "szkola129@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 1 IM. KOMISJI EDUKACJI NARODOWEJ W KRAKOWIE",
         "students": "422",
         "branches": "19",
-        "street": "ul. św. Marka",
+        "street": "ul. Św. Marka",
         "streetNumber": "34",
         "postcode": "31-024",
         "city": "Kraków",
         "phone": "124225866",
         "email": "sp1_krakow@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 30 IM. KAZIMIERZA PUŁASKIEGO W KRAKOWIE",
         "students": "324",
         "branches": "18",
@@ -430,8 +430,8 @@
         "phone": "122663658",
         "email": "sp30@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 97 IM. JOACHIMA LELEWELA W KRAKOWIE",
         "students": "893",
         "branches": "38",
@@ -442,20 +442,20 @@
         "phone": "122622515",
         "email": "sp97@op.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 21 IM. WŁADYSŁAWA JAGIEŁŁY W KRAKOWIE",
         "students": "389",
         "branches": "20",
-        "street": "\"ul. Batalionu \"\"Skała\"\" AK\"",
+        "street": "ul. Batalionu \"Skała\" AK",
         "streetNumber": "12",
         "postcode": "31-273",
         "city": "Kraków",
         "phone": "126332144",
         "email": "sp21@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 10 IM. MARII SKŁODOWSKIEJ-CURIE W KRAKOWIE",
         "students": "184",
         "branches": "10",
@@ -466,8 +466,8 @@
         "phone": "124213311",
         "email": "szkola@sp10.edu.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 124 IM. MARII SKŁODOWSKIEJ-CURIE W KRAKOWIE",
         "students": "518",
         "branches": "24",
@@ -478,8 +478,8 @@
         "phone": "123971055",
         "email": "sp124@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 7 IM. WOJSKA POLSKIEGO W KRAKOWIE",
         "students": "268",
         "branches": "15",
@@ -490,8 +490,8 @@
         "phone": "126337442",
         "email": "szkola@sp7.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 78 IM. PIOTRA MICHAŁOWSKIEGO W KRAKOWIE",
         "students": "363",
         "branches": "17",
@@ -502,8 +502,8 @@
         "phone": "126452722",
         "email": "szkola78@op.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 72 IM. TEOFILA LENARTOWICZA W KRAKOWIE",
         "students": "419",
         "branches": "20",
@@ -514,8 +514,8 @@
         "phone": "124251967",
         "email": "szkola@sp72krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 107 IM. TADEUSZA BOYA-ŻELEŃSKIEGO W KRAKOWIE",
         "students": "408",
         "branches": "21",
@@ -526,8 +526,8 @@
         "phone": "126330714",
         "email": "sp107sp@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 153 IM. KSIĘDZA PROFESORA JÓZEFA TISCHNERA W KRAKOWIE",
         "students": "390",
         "branches": "21",
@@ -538,8 +538,8 @@
         "phone": "126377132",
         "email": "sp153krakow@op.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 100 IM. ADAMA MICKIEWICZA W KRAKOWIE",
         "students": "339",
         "branches": "16",
@@ -550,8 +550,8 @@
         "phone": "126491492",
         "email": "sp100krakow@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 31 IM. DR. HENRYKA JORDANA W KRAKOWIE",
         "students": "474",
         "branches": "23",
@@ -562,8 +562,8 @@
         "phone": "124273800",
         "email": "podstawowaszkola31@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 126 IM. KOMISJI EDUKACJI NARODOWEJ W KRAKOWIE",
         "students": "352",
         "branches": "17",
@@ -574,8 +574,8 @@
         "phone": "126482490",
         "email": "dyrektor@sp126.edu.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 155 IM. ŚW. JADWIGI KRÓLOWEJ W KRAKOWIE",
         "students": "717",
         "branches": "31",
@@ -586,8 +586,8 @@
         "phone": "126471008",
         "email": "sp155krakow@o2.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 89 IM. KORNELA MAKUSZYŃSKIEGO W KRAKOWIE",
         "students": "683",
         "branches": "31",
@@ -598,8 +598,8 @@
         "phone": "126481058",
         "email": "sp89@onet.eu",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 119 IM. JANINY PORAZIŃSKIEJ W KRAKOWIE",
         "students": "330",
         "branches": "16",
@@ -610,20 +610,20 @@
         "phone": "126374241",
         "email": "szkola@sp119.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 92 IM. BOHATERÓW WESTERPLATTE W KRAKOWIE",
         "students": "437",
         "branches": "19",
-        "street": "os. Osiedle Józefa Strusia",
+        "street": "os. Osiedle JÓZEFA Strusia",
         "streetNumber": "19",
         "postcode": "31-810",
         "city": "Kraków",
         "phone": "126484019",
         "email": "szkkra@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 22 IM. MJR. HENRYKA SUCHARSKIEGO W KRAKOWIE",
         "students": "285",
         "branches": "18",
@@ -634,8 +634,8 @@
         "phone": "124305336",
         "email": "szp22@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 3 IM. ANDRZEJA FRYCZA-MODRZEWSKIEGO W KRAKOWIE",
         "students": "113",
         "branches": "8",
@@ -646,8 +646,8 @@
         "phone": "124210459",
         "email": "spzoi3.krakow@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 25 IM. TADEUSZA KOŚCIUSZKI W KRAKOWIE",
         "students": "554",
         "branches": "25",
@@ -658,8 +658,8 @@
         "phone": "122663598",
         "email": "sp25@op.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 74 IM. STANISŁAWA STASZICA W KRAKOWIE",
         "students": "137",
         "branches": "11",
@@ -670,32 +670,32 @@
         "phone": "126450396",
         "email": "szkolapod74@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 114 IM. ARKADEGO FIEDLERA W KRAKOWIE",
         "students": "594",
         "branches": "26",
-        "street": "ul. Łąkowa",
+        "street": "ul. ��kowa",
         "streetNumber": "31",
         "postcode": "31-443",
         "city": "Kraków",
         "phone": "124110280",
         "email": "sp114@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 142 IM. TADEUSZA KOŚCIUSZKI W KRAKOWIE",
         "students": "149",
         "branches": "11",
-        "street": "ul. Drożyska",
+        "street": "ul. Drołyska",
         "streetNumber": "13",
         "postcode": "31-998",
         "city": "Kraków",
         "phone": "126450420",
         "email": "sp142@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 61 IM. MARSZAŁKA JÓZEFA PIŁSUDSKIEGO W KRAKOWIE",
         "students": "453",
         "branches": "21",
@@ -706,8 +706,8 @@
         "phone": "126580921",
         "email": "sp61krakow@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 134 W KRAKOWIE",
         "students": "331",
         "branches": "15",
@@ -718,8 +718,8 @@
         "phone": "122649063",
         "email": "sp134kr@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 93 IM. LUCJANA RYDLA W KRAKOWIE",
         "students": "597",
         "branches": "26",
@@ -730,8 +730,8 @@
         "phone": "126370110",
         "email": "sp93@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 38 IM. BRACTWA KURKOWEGO W KRAKOWIE",
         "students": "592",
         "branches": "25",
@@ -742,8 +742,8 @@
         "phone": "124116544",
         "email": "spnr38@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 40 IM. ŚW. STANISŁAWA BISKUPA I MĘCZENNIKA W KRAKOWIE",
         "students": "679",
         "branches": "31",
@@ -754,20 +754,20 @@
         "phone": "122667898",
         "email": "sekretariat@sp40.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA NR 62 IM. KMDR. POR. FRANCISZKA DĄBROWSKIEGO W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA NR 62 IM. KMDR. POR. FRANCISZKA DABROWSKIEGO W KRAKOWIE",
         "students": "292",
         "branches": "16",
-        "street": "ul. Ćwikłowa",
+        "street": "ul. ĆwikŁowa",
         "streetNumber": "1",
         "postcode": "30-377",
         "city": "Kraków",
         "phone": "122662850",
         "email": "sp62krk@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 43 IM. KOMISJI EDUKACJI NARODOWEJ W KRAKOWIE",
         "students": "520",
         "branches": "23",
@@ -778,8 +778,8 @@
         "phone": "126547331",
         "email": "kontakt@sp43-krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 151 IM. UNIWERSYTETU JAGIELLOŃSKIEGO W KRAKOWIE",
         "students": "719",
         "branches": "33",
@@ -790,8 +790,8 @@
         "phone": "122665497",
         "email": "zsoi2@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 90 IM. POLSKICH KAWALERÓW MALTAŃSKICH W KRAKOWIE",
         "students": "730",
         "branches": "36",
@@ -802,8 +802,8 @@
         "phone": "126553504",
         "email": "zsoi7@edukonekt.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 91 IM. JANUSZA KUSOCIŃSKIEGO W KRAKOWIE",
         "students": "772",
         "branches": "40",
@@ -814,44 +814,44 @@
         "phone": "126442475",
         "email": "sekretariat@zsos1.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 105 IM. LUDWIKI WAWRZYŃSKIEJ W KRAKOWIE",
         "students": "282",
         "branches": "16",
-        "street": "os. Słoneczne",
+        "street": "os. S�oneczne",
         "streetNumber": "12",
         "postcode": "31-957",
         "city": "Kraków",
         "phone": "126440895",
         "email": "gim49krakow@tlen.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 138 IM. POLSKICH WOJSK LOTNICZYCH W KRAKOWIE",
         "students": "331",
         "branches": "15",
-        "street": "ul. Kazimierza Wierzyńskiego",
+        "street": "ul. Kazimierza Wierzy�skiego",
         "streetNumber": "3",
         "postcode": "30-198",
         "city": "Kraków",
         "phone": "126379945",
         "email": "sp138@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 53 IM. JANA HENRYKA DĄBROWSKIEGO W KRAKOWIE",
         "students": "761",
         "branches": "36",
-        "street": "ul. Skośna",
+        "street": "ul. Sko�na",
         "streetNumber": "8",
         "postcode": "30-383",
         "city": "Kraków",
         "phone": "122622027",
         "email": "sp53krakow@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 75 W KRAKOWIE",
         "students": "455",
         "branches": "22",
@@ -862,8 +862,8 @@
         "phone": "124112948",
         "email": "sekretariat@zsoms.eu",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI SPORTOWYMI NR 5 IM. POLSKICH OLIMPIJCZYKÓW W KRAKOWIE",
         "students": "394",
         "branches": "27",
@@ -874,8 +874,8 @@
         "phone": "126367093",
         "email": "poczta@sp5.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 98 IM. HENRYKA SIENKIEWICZA W KRAKOWIE",
         "students": "530",
         "branches": "25",
@@ -886,20 +886,20 @@
         "phone": "126452663",
         "email": "sp98krakow@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 158 IM. PROFESORA JULIANA ALEKSANDROWICZA W KRAKOWIE",
         "students": "935",
         "branches": "39",
-        "street": "ul. Strąkowa",
+        "street": "ul. Str�kowa",
         "streetNumber": "3a",
         "postcode": "30-410",
         "city": "Kraków",
         "phone": "122601330",
         "email": "sekretariat@sp158.edu.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 29 IM. JANA MATEJKI W KRAKOWIE",
         "students": "374",
         "branches": "20",
@@ -910,8 +910,8 @@
         "phone": "126561544",
         "email": "sekretariat.sp29@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 32 IM. KAROLA CHODKIEWICZA W KRAKOWIE",
         "students": "288",
         "branches": "15",
@@ -922,20 +922,20 @@
         "phone": "124251098",
         "email": "sp322@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 132 IM. ŚW. BENEDYKTA Z NURSJI W KRAKOWIE",
         "students": "181",
         "branches": "11",
-        "street": "ul. Bolesława Śmiałego",
+        "street": "ul. Bolesława �mia�ego",
         "streetNumber": "6",
         "postcode": "30-398",
         "city": "Kraków",
         "phone": "122675233",
         "email": "szkola132@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 8 W KRAKOWIE",
         "students": "314",
         "branches": "15",
@@ -946,8 +946,8 @@
         "phone": "126532793",
         "email": "zs2-krakow@oswiata.org.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 157 IM. IGNACEGO JANA PADEREWSKIEGO W KRAKOWIE",
         "students": "211",
         "branches": "11",
@@ -958,8 +958,8 @@
         "phone": "126577562",
         "email": "sekretariat@zsp10krakow.edu.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 87 - SPORTOWA IM. DR. HENRYKA JORDANA W KRAKOWIE",
         "students": "302",
         "branches": "15",
@@ -970,8 +970,8 @@
         "phone": "126442309",
         "email": "zsos2@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 135 IM. KSIĘDZA PROFESORA JÓZEFA TISCHNERA W KRAKOWIE",
         "students": "289",
         "branches": "16",
@@ -982,21 +982,21 @@
         "phone": "126549077",
         "email": "emedu@poczta.fm",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 34 IM. OBROŃCÓW POCZTY POLSKIEJ W GDAŃSKU W KRAKOWIE",
         "students": "412",
         "branches": "19",
-        "street": "ul. Urzędnicza",
+        "street": "ul. Urz�dnicza",
         "streetNumber": "65",
         "postcode": "30-074",
         "city": "Kraków",
         "phone": "126330458",
         "email": "poczta@sp34.pl",
         "specifics": "brak specyfiki"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA NR 68 IM. JERZEGO BIŃCZYCKIEGO W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA NR 68 IM. JERZEGO BIŁCZYCKIEGO W KRAKOWIE",
         "students": "508",
         "branches": "22",
         "street": "ul. Porzeczkowa",
@@ -1006,8 +1006,8 @@
         "phone": "124154708",
         "email": "sekretariat@zsp2.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 56 IM. TADEUSZA REJTANA W KRAKOWIE",
         "students": "395",
         "branches": "21",
@@ -1018,20 +1018,20 @@
         "phone": "122664861",
         "email": "sekretariat@sp56.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 47 IM. STEFANA CZARNIECKIEGO W KRAKOWIE",
         "students": "824",
         "branches": "37",
-        "street": "ul. Myśliwska",
+        "street": "ul. My�liwska",
         "streetNumber": "64",
         "postcode": "30-718",
         "city": "Kraków",
         "phone": "126532145",
         "email": "sp47@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 54 IM. JULIANA TUWIMA W KRAKOWIE",
         "students": "249",
         "branches": "12",
@@ -1042,20 +1042,20 @@
         "phone": "122675853",
         "email": "sp54kostrze@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 16 IM. JANA ŚNIADECKIEGO W KRAKOWIE",
         "students": "167",
         "branches": "9",
-        "street": "ul. Józefa Dietla",
+        "street": "ul. JÓZEFA Dietla",
         "streetNumber": "70",
         "postcode": "31-039",
         "city": "Kraków",
         "phone": "124211870",
         "email": "sekretariat@sp16.com.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 36 IM. HENRYKA SIENKIEWICZA W KRAKOWIE",
         "students": "421",
         "branches": "21",
@@ -1066,32 +1066,32 @@
         "phone": "126336224",
         "email": "sp36@sp36.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 85 IM. KS. KAZIMIERZA JANCARZA W KRAKOWIE",
         "students": "405",
         "branches": "19",
-        "street": "os. Osiedle Złotego Wieku",
+        "street": "os. Osiedle Z�otego Wieku",
         "streetNumber": "4",
         "postcode": "31-615",
         "city": "Kraków",
         "phone": "126483780",
         "email": "sp85sekretariat@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 95 IM. WŁADYSŁAWA BRONIEWSKIEGO W KRAKOWIE",
         "students": "551",
         "branches": "23",
-        "street": "ul. Wileńska",
+        "street": "ul. Wile�ska",
         "streetNumber": "9B",
         "postcode": "31-413",
         "city": "Kraków",
         "phone": "124114934",
         "email": "sp95.krakow@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 137 IM. PROFESORA WIKTORA ZINA W KRAKOWIE",
         "students": "150",
         "branches": "11",
@@ -1102,8 +1102,8 @@
         "phone": "126532291",
         "email": "sp137krakow@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 41 IM. JANA KOCHANOWSKIEGO W KRAKOWIE",
         "students": "404",
         "branches": "20",
@@ -1114,8 +1114,8 @@
         "phone": "126584328",
         "email": "sp41@interia.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 71 W KRAKOWIE",
         "students": "96",
         "branches": "15",
@@ -1126,8 +1126,8 @@
         "phone": "126443417",
         "email": "zss14.krakow@gmail.com",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 79 IM. JÓZEFY JOTEYKO W KRAKOWIE",
         "students": "42",
         "branches": "13",
@@ -1138,20 +1138,20 @@
         "phone": "126440783",
         "email": "zss6@poczta.onet.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 140 IM. STANISŁAWA WYSPIAŃSKIEGO W KRAKOWIE",
         "students": "146",
         "branches": "8",
-        "street": "ul. Romana Prawocheńskiego",
+        "street": "ul. Romana Prawoche�skiego",
         "streetNumber": "7",
         "postcode": "31-998",
         "city": "Kraków",
         "phone": "126450887",
         "email": "zsp9krakow@o2.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 108 IM. ALINY FEDOROWICZ W KRAKOWIE",
         "students": "68",
         "branches": "30",
@@ -1162,56 +1162,56 @@
         "phone": "123339499",
         "email": "zssnr3@interia.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 44 IM. JANA BRZECHWY W KRAKOWIE",
         "students": "82",
         "branches": "20",
-        "street": "ul. Zakątek",
+        "street": "ul. Zak�tek",
         "streetNumber": "2",
         "postcode": "30-076",
         "city": "Kraków",
         "phone": "124225712",
         "email": "zss4krakow@gmail.com",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 150 W KRAKOWIE",
         "students": "59",
         "branches": "26",
-        "street": "al. Adolfa Dygasińskiego",
+        "street": "al. Adolfa Dygasi�skiego",
         "streetNumber": "25",
         "postcode": "30-820",
         "city": "Kraków",
         "phone": "126591512",
         "email": "sps150@zss11.krakow.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 122 IM. JANUSZA KORCZAKA W KRAKOWIE",
         "students": "32",
         "branches": "12",
-        "street": "ul. Mikołaja Kopernika",
+        "street": "ul. Miko�aja Kopernika",
         "streetNumber": "19",
         "postcode": "31-501",
         "city": "Kraków",
         "phone": "124247468",
         "email": "zssnr2.krakow@interia.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 65 IM. CZESŁAWA JANCZARSKIEGO W KRAKOWIE",
         "students": "227",
         "branches": "11",
-        "street": "ul. Golikówka",
+        "street": "ul. Golik�wka",
         "streetNumber": "52",
         "postcode": "30-723",
         "city": "Kraków",
         "phone": "126532373",
         "email": "sp65kw@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 52 IM. MARII DĄBROWSKIEJ W KRAKOWIE",
         "students": "410",
         "branches": "20",
@@ -1222,8 +1222,8 @@
         "phone": "126480915",
         "email": "sp52_krakow@op.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 80 IM. WOJCIECHA BOGUSŁAWSKIEGO W KRAKOWIE",
         "students": "366",
         "branches": "17",
@@ -1234,8 +1234,8 @@
         "phone": "124259205",
         "email": "sp80@poczta.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 156 IM. KS. KARD. ADAMA STEFANA SAPIEHY W KRAKOWIE",
         "students": "459",
         "branches": "22",
@@ -1246,8 +1246,8 @@
         "phone": "126449241",
         "email": "mbm156@op.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 131 IM. ŚW. MIKOŁAJA W KRAKOWIE",
         "students": "31",
         "branches": "12",
@@ -1258,8 +1258,8 @@
         "phone": "124210709",
         "email": "zsips@interia.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 46 W KRAKOWIE",
         "students": "98",
         "branches": "21",
@@ -1270,8 +1270,8 @@
         "phone": "126561356",
         "email": "osw2@tlen.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 73 W KRAKOWIE",
         "students": "87",
         "branches": "19",
@@ -1282,32 +1282,32 @@
         "phone": "122674420",
         "email": "centrum@blind.krakow.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 154 W KRAKOWIE",
         "students": "74",
         "branches": "17",
-        "street": "ul. Niecała",
+        "street": "ul. Nieca�a",
         "streetNumber": "8",
         "postcode": "30-425",
         "city": "Kraków",
         "phone": "122681167",
         "email": "sosw6ddn@wp.pl",
         "specifics": "specjalna"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 59 W MŁODZIEŻOWYM OŚRODKU WYCHOWAWCZYM W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 59 W MŁODZIEŹOWYM OŚRODKU WYCHOWAWCZYM W KRAKOWIE",
         "students": "37",
         "branches": "6",
-        "street": "ul. Górka Narodowa",
+        "street": "ul. G�rka Narodowa",
         "streetNumber": "116",
         "postcode": "31-234",
         "city": "Kraków",
         "phone": "124150040",
         "email": "mowkrakow@poczta.fm",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 42 W KRAKOWIE",
         "students": "47",
         "branches": "12",
@@ -1318,8 +1318,8 @@
         "phone": "122693550",
         "email": "sekretariat@sosw3.krakow.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 6 W KRAKOWIE",
         "students": "37",
         "branches": "17",
@@ -1330,8 +1330,8 @@
         "phone": "124305400",
         "email": "sekretariatsosw4@interia.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "FILIA NR 1 SZKOŁY PODSTAWOWEJ SPECJALNEJ NR 6 W KRAKOWIE",
         "students": "20",
         "branches": "11",
@@ -1342,8 +1342,8 @@
         "phone": "126841772",
         "email": "sekretariatsosw4@interia.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 9 W KRAKOWIE",
         "students": "127",
         "branches": "51",
@@ -1354,8 +1354,8 @@
         "phone": "124111722",
         "email": "sekretariat@centrum-autyzmu.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 15 IM. KSIĘDZA KARDYNAŁA KAROLA WOJTYŁY W KRAKOWIE",
         "students": "123",
         "branches": "7",
@@ -1366,8 +1366,8 @@
         "phone": "126337460",
         "email": "sp15krakow.sekretariat@gmail.com",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 19 IM. KSIĘCIA JÓZEFA PONIATOWSKIEGO W KRAKOWIE",
         "students": "36",
         "branches": "2",
@@ -1378,68 +1378,68 @@
         "phone": "124300025",
         "email": "sekretariat@sp19.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 33 IM. KRÓLA STEFANA BATOREGO W KRAKOWIE",
         "students": "414",
         "branches": "17",
-        "street": "ul. Stanisława Konarskiego",
+        "street": "ul. StanisŁawa Konarskiego",
         "streetNumber": "2",
         "postcode": "30-049",
         "city": "Kraków",
         "phone": "126331383",
         "email": "sekretariat@sp33.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 35 IM. KRÓLA JANA III SOBIESKIEGO W KRAKOWIE",
         "students": "44",
         "branches": "3",
-        "street": "ul. Złoty Róg",
+        "street": "ul. Z�oty R�g",
         "streetNumber": "30",
         "postcode": "30-095",
         "city": "Kraków",
         "phone": "126370897",
         "email": "gimnazjum18@kr.onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 39 IM. BARTOSZA GŁOWACKIEGO W KRAKOWIE",
         "students": "121",
         "branches": "7",
-        "street": "ul. Stanisława Jachowicza",
+        "street": "ul. STANISŁAWA Jachowicza",
         "streetNumber": "5",
         "postcode": "31-564",
         "city": "Kraków",
         "phone": "124143736",
         "email": "dyrektor@sp39krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 49 IM. JULIANA URSYNA NIEMCEWICZA W KRAKOWIE",
         "students": "296",
         "branches": "14",
-        "street": "ul. Józefa Montwiłła-Mireckiego",
+        "street": "ul. JÓZEFA Montwi��a-Mireckiego",
         "streetNumber": "29",
         "postcode": "30-426",
         "city": "Kraków",
         "phone": "122680410",
         "email": "sp49krakow@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 77 IM. ŚWIĘTEGO MAKSYMILIANA MARII KOLBEGO W KRAKOWIE",
         "students": "147",
         "branches": "10",
-        "street": "os. Złotego Wieku",
+        "street": "os. Z�otego Wieku",
         "streetNumber": "36",
         "postcode": "31-618",
         "city": "Kraków",
         "phone": "126484400",
         "email": "szkola@sp77.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 103 IM. KONSTANTEGO ILDEFONSA GAŁCZYŃSKIEGO W KRAKOWIE",
         "students": "111",
         "branches": "6",
@@ -1450,8 +1450,8 @@
         "phone": "126442172",
         "email": "szkola103@onet.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 106 IM. ARTURA GROTTGERA W KRAKOWIE",
         "students": "86",
         "branches": "4",
@@ -1462,8 +1462,8 @@
         "phone": "126335912",
         "email": "sekretariat@sp106-krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 110 IM. KSIĘDZA JANA TWARDOWSKIEGO W KRAKOWIE",
         "students": "46",
         "branches": "2",
@@ -1474,20 +1474,20 @@
         "phone": "122664939",
         "email": "sekretariat@sp110krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
-        "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 128 IM. PŁK. PILOTA STANISŁAWA SKARŻYŃSKIEGO W KRAKOWIE",
+      },
+    {  
+        "name": "SZKOŁA PODSTAWOWA Z ODDZIAŁAMI INTEGRACYJNYMI NR 128 IM. PŁK. PILOTA STANISŁAWA SKARZYŃSKIEGO W KRAKOWIE",
         "students": "138",
         "branches": "9",
-        "street": "ul. Seniorów Lotnictwa",
+        "street": "ul. Senior�w Lotnictwa",
         "streetNumber": "5",
         "postcode": "31-455",
         "city": "Kraków",
         "phone": "124110525",
         "email": "sekretariat@zso9.krakow.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 149 IM. MARSZAŁKA JÓZEFA PIŁSUDSKIEGO W KRAKOWIE",
         "students": "501",
         "branches": "22",
@@ -1498,8 +1498,8 @@
         "phone": "126544523",
         "email": "sp149@edukonekt.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA SPECJALNA NR 17 IM. BISKUPA MIRY ŚW. MIKOŁAJA W KRAKOWIE",
         "students": "73",
         "branches": "7",
@@ -1510,8 +1510,8 @@
         "phone": "124210709",
         "email": "zsips@interia.pl",
         "specifics": "specjalna"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA FILIALNA SZKOŁY PODSTAWOWEJ NR 95 IM. WŁADYSŁAWA BRONIEWSKIEGO W KRAKOWIE",
         "students": "215",
         "branches": "9",
@@ -1522,8 +1522,8 @@
         "phone": "124105027",
         "email": "sp95.krakow@wp.pl",
         "specifics": "brak specyfiki"
-    },
-    {
+      },
+    {  
         "name": "SZKOŁA PODSTAWOWA NR 60 IM. STANISŁAWA WYSPIAŃSKIEGO W KRAKOWIE",
         "students": "21",
         "branches": "1",
@@ -1534,5 +1534,1241 @@
         "phone": "124133554",
         "email": "zso13.krakow@wp.pl",
         "specifics": "brak specyfiki"
-    }
-]
+      },
+    {  
+        "name": "OGóLNOKSZTAłCĄCA SZKOŁA MUZYCZNA I STOPNIA IM. IGNACEGO JANA PADEREWSKIEGO W KRAKOWIE",
+        "students": "936",
+        "branches": "44",
+        "street": "ul. Basztowa",
+        "streetNumber": "8",
+        "postcode": "31-134",
+        "city": "Kraków",
+        "phone": "124227160",
+        "email": "osm1@szkolapaderewski.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "SZKOŁA MUZYCZNA I STOPNIA NR 1 IM. STANISŁAWA WIECHOWICZA W KRAKOWIE",
+        "students": "702",
+        "branches": "20",
+        "street": "ul. Pilot�w",
+        "streetNumber": "51",
+        "postcode": "31-462",
+        "city": "Kraków",
+        "phone": "124114905",
+        "email": "sekretariat@wiechowicz.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "SZKOŁA MUZYCZNA I STOPNIA IM. BRONISŁAWA RUTKOWSKIEGO W KRAKOWIE",
+        "students": "670",
+        "branches": "20",
+        "street": "ul. J�zefi�ska",
+        "streetNumber": "10",
+        "postcode": "30-529",
+        "city": "Kraków",
+        "phone": "126560945",
+        "email": "dyrekcja@sm1krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "SZKOŁA MUZYCZNA II STOPNIA IM. BRONISŁAWA RUTKOWSKIEGO W KRAKOWIE",
+        "students": "466",
+        "branches": "20",
+        "street": "ul. J�zefi�ska",
+        "streetNumber": "10",
+        "postcode": "30-529",
+        "city": "Kraków",
+        "phone": "126560945",
+        "email": "dyrekcja@sm1krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "SZKOŁA MUZYCZNA I STOPNIA IM. HIERONIMA HENRYKA BARANOWSKIEGO",
+        "students": "271",
+        "branches": "19",
+        "street": "ul. Tyniecka",
+        "streetNumber": "6",
+        "postcode": "30-319",
+        "city": "Kraków",
+        "phone": "122674420",
+        "email": "centrum@blind.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXI LICEUM OGÓLNOKSZTAŁCĄCE IM. STANISŁAWA IGNACEGO WITKIEWICZA-WITKACEGO W KRAKOWIE",
+        "students": "108",
+        "branches": "5",
+        "street": "os. Osiedle Tysi�clecia",
+        "streetNumber": "15",
+        "postcode": "31-606",
+        "city": "Kraków",
+        "phone": "126484995",
+        "email": "xxilokr@post.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "X LICEUM OGÓLNOKSZTAŁCĄCE IM. KOMISJI EDUKACJI NARODOWEJ W KRAKOWIE",
+        "students": "804",
+        "branches": "29",
+        "street": "ul. Zygmunta Wr�blewskiego",
+        "streetNumber": "8",
+        "postcode": "31-148",
+        "city": "Kraków",
+        "phone": "126331197",
+        "email": "lox@x-lo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XVI LICEUM OGÓLNOKSZTAŁCĄCE IM. KRZYSZTOFA KAMILA BACZYŃSKIEGO W KRAKOWIE",
+        "students": "424",
+        "branches": "18",
+        "street": "os. Osiedle Willowe",
+        "streetNumber": "1",
+        "postcode": "31-901",
+        "city": "Kraków",
+        "phone": "126442417",
+        "email": "liceum@liceum16.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "V LICEUM OGÓLNOKSZTAŁCĄCE IM. AUGUSTA WITKOWSKIEGO W KRAKOWIE",
+        "students": "1070",
+        "branches": "34",
+        "street": "ul. Studencka",
+        "streetNumber": "12",
+        "postcode": "31-116",
+        "city": "Kraków",
+        "phone": "124229231",
+        "email": "august@v-lo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "IX LICEUM OGÓLNOKSZTAŁCĄCE IM. ZYGMUNTA WRÓBLEWSKIEGO W KRAKOWIE",
+        "students": "506",
+        "branches": "19",
+        "street": "ul. Kazimierza Czapi�skiego",
+        "streetNumber": "5",
+        "postcode": "30-048",
+        "city": "Kraków",
+        "phone": "126333764",
+        "email": "sekretariat@wroblewski.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XIII LICEUM OGÓLNOKSZTAŁCĄCE IM. BOHATERÓW WESTERPLATTE W KRAKOWIE",
+        "students": "717",
+        "branches": "26",
+        "street": "ul. S�dowa",
+        "streetNumber": "4",
+        "postcode": "31-542",
+        "city": "Kraków",
+        "phone": "124110821",
+        "email": "lo13@xiii-lo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XIV LICEUM OGÓLNOKSZTAŁCĄCE IM. MIKOŁAJA KOPERNIKA W KRAKOWIE",
+        "students": "276",
+        "branches": "14",
+        "street": "ul. JÓZEFA Che�mo�skiego",
+        "streetNumber": "24",
+        "postcode": "31-322",
+        "city": "Kraków",
+        "phone": "126374674",
+        "email": "lo14@xiv-lo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXVIII LICEUM OGÓLNOKSZTAŁCĄCE IM. WOJCIECHA BEDNARSKIEGO W KRAKOWIE",
+        "students": "338",
+        "branches": "14",
+        "street": "ul. Tadeusza Czackiego",
+        "streetNumber": "11",
+        "postcode": "30-501",
+        "city": "Kraków",
+        "phone": "126561397",
+        "email": "szkola@28lo.kki.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXIX LICEUM OGÓLNOKSZTAŁCĄCE IM. KRZYSZTOFA KIEŚLOWSKIEGO W KRAKOWIE",
+        "students": "58",
+        "branches": "3",
+        "street": "ul. Cechowa",
+        "streetNumber": "57",
+        "postcode": "30-614",
+        "city": "Kraków",
+        "phone": "124224775",
+        "email": "zso1.krakow@neostrada.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XX LICEUM OGÓLNOKSZTAŁCĄCE IM. LEOPOLDA STAFFA W KRAKOWIE",
+        "students": "747",
+        "branches": "30",
+        "street": "ul. Szlak",
+        "streetNumber": "5",
+        "postcode": "31-161",
+        "city": "Kraków",
+        "phone": "126331033",
+        "email": "xxlo-krakow@xxlo-krakow.edu.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "I LICEUM OGÓLNOKSZTAŁCĄCE IM. BARTŁOMIEJA NOWODWORSKIEGO W KRAKOWIE",
+        "students": "842",
+        "branches": "31",
+        "street": "pl. Plac Na Groblach",
+        "streetNumber": "9",
+        "postcode": "31-101",
+        "city": "Kraków",
+        "phone": "124229679",
+        "email": "listy@nowodworek.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "IV LICEUM OGÓLNOKSZTAŁCĄCE IM. TADEUSZA KOŚCIUSZKI W KRAKOWIE",
+        "students": "840",
+        "branches": "31",
+        "street": "ul. Krzemionki",
+        "streetNumber": "11",
+        "postcode": "30-525",
+        "city": "Kraków",
+        "phone": "126563620",
+        "email": "iv-lo@iv-lo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "III LICEUM OGÓLNOKSZTAŁCĄCE IM. JANA KOCHANOWSKIEGO W KRAKOWIE",
+        "students": "777",
+        "branches": "28",
+        "street": "os. Osiedle Wysokie",
+        "streetNumber": "6",
+        "postcode": "31-818",
+        "city": "Kraków",
+        "phone": "126484276",
+        "email": "sekretariat@3liceum-krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "LICEUM OGÓLNOKSZTAŁCĄCE MISTRZOSTWA SPORTOWEGO W KRAKOWIE",
+        "students": "196",
+        "branches": "14",
+        "street": "ul. Grochowska",
+        "streetNumber": "20",
+        "postcode": "31-521",
+        "city": "Kraków",
+        "phone": "124112948",
+        "email": "sekretariat@zsoms.eu",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXIV LICEUM OGÓLNOKSZTAŁCĄCE IM. JANA PAWŁA II W KRAKOWIE",
+        "students": "512",
+        "branches": "20",
+        "street": "ul. Wilhelma Wilka-Wyrwi�skiego",
+        "streetNumber": "1",
+        "postcode": "31-517",
+        "city": "Kraków",
+        "phone": "124111102",
+        "email": "sekretariat@xxivliceum.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXV LICEUM OGÓLNOKSZTAŁCĄCE IM. STEFANA ZEROMSKIEGO W KRAKOWIE",
+        "students": "393",
+        "branches": "16",
+        "street": "ul. Telimeny",
+        "streetNumber": "9",
+        "postcode": "30-838",
+        "city": "Kraków",
+        "phone": "126585070",
+        "email": "sekretariat@xxvlo.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "VII LICEUM OGÓLNOKSZTAŁCĄCE IM. ZOFII NAŁKOWSKIEJ W KRAKOWIE",
+        "students": "842",
+        "branches": "30",
+        "street": "ul. STANISŁAWA Skarbi�skiego",
+        "streetNumber": "5",
+        "postcode": "30-071",
+        "city": "Kraków",
+        "phone": "126374291",
+        "email": "liceum@vii-lo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXIII LICEUM OGÓLNOKSZTAŁCĄCE IM. PŁK. PILOTA STANISŁAWA SKARZYŃSKIEGO W KRAKOWIE",
+        "students": "213",
+        "branches": "10",
+        "street": "ul. Senior�w Lotnictwa",
+        "streetNumber": "5",
+        "postcode": "31-455",
+        "city": "Kraków",
+        "phone": "124177821",
+        "email": "sekretariat@zso9.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "VI LICEUM OGÓLNOKSZTAŁCĄCE IM. ADAMA MICKIEWICZA W KRAKOWIE",
+        "students": "1079",
+        "branches": "38",
+        "street": "ul. W�ska",
+        "streetNumber": "7",
+        "postcode": "31-057",
+        "city": "Kraków",
+        "phone": "124306908",
+        "email": "sekretariat@vilo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "VIII LICEUM OGÓLNOKSZTAŁCĄCE IM. STANISŁAWA WYSPIAŃSKIEGO W KRAKOWIE",
+        "students": "737",
+        "branches": "27",
+        "street": "ul. Grzeg�rzecka",
+        "streetNumber": "24",
+        "postcode": "31-531",
+        "city": "Kraków",
+        "phone": "124211571",
+        "email": "liceum@viii-lo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XVII LICEUM OGÓLNOKSZTAŁCĄCE IM. MŁODEJ POLSKI W KRAKOWIE",
+        "students": "263",
+        "branches": "12",
+        "street": "ul. Z�oty R�g",
+        "streetNumber": "30",
+        "postcode": "30-095",
+        "city": "Kraków",
+        "phone": "126370897",
+        "email": "liceum17@kr.onet.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XVIII LICEUM OGÓLNOKSZTAŁCĄCE IM. PROFESORA AKADEMII KRAKOWSKIEJ ŚW. JANA KANTEGO W KRAKOWIE",
+        "students": "289",
+        "branches": "11",
+        "street": "ul. Na B�onie",
+        "streetNumber": "15b",
+        "postcode": "30-147",
+        "city": "Kraków",
+        "phone": "126372707",
+        "email": "szkola@xviiilo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXX LICEUM OGÓLNOKSZTAŁCĄCE IM. ŚWIĘTEGO BRATA ALBERTA - ADAMA CHMIELOWSKIEGO W KRAKOWIE",
+        "students": "333",
+        "branches": "17",
+        "street": "os. Osiedle Dywizjonu 303",
+        "streetNumber": "66",
+        "postcode": "31-875",
+        "city": "Kraków",
+        "phone": "126471177",
+        "email": "sekretariat@xxxlo.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXVII LICEUM OGÓLNOKSZTAŁCĄCE IM. DR. HENRYKA JORDANA W KRAKOWIE",
+        "students": "321",
+        "branches": "12",
+        "street": "ul. Senatorska",
+        "streetNumber": "35",
+        "postcode": "30-106",
+        "city": "Kraków",
+        "phone": "124300025",
+        "email": "sekretariat@27lo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XII LICEUM OGÓLNOKSZTAŁCĄCE IM. CYPRIANA KAMILA NORWIDA W KRAKOWIE",
+        "students": "673",
+        "branches": "24",
+        "street": "os. Osiedle Kolorowe",
+        "streetNumber": "29a",
+        "postcode": "31-941",
+        "city": "Kraków",
+        "phone": "126443307",
+        "email": "sekretariat@12liceum.edu.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXXI LICEUM OGÓLNOKSZTAŁCĄCE IM. ROMANA INGARDENA W KRAKOWIE",
+        "students": "107",
+        "branches": "4",
+        "street": "ul. Kazimierza Odnowiciela",
+        "streetNumber": "2",
+        "postcode": "31-481",
+        "city": "Kraków",
+        "phone": "124133554",
+        "email": "zso13.krakow@wp.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XV LICEUM OGÓLNOKSZTAŁCĄCE IM. MARII SKŁODOWSKIEJ-CURIE W KRAKOWIE",
+        "students": "512",
+        "branches": "19",
+        "street": "al. Aleja Adolfa Dygasi�skiego",
+        "streetNumber": "15",
+        "postcode": "30-820",
+        "city": "Kraków",
+        "phone": "126581715",
+        "email": "sekretariat@xvlo.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "II LICEUM OGÓLNOKSZTAŁCĄCE IM. KRÓLA JANA III SOBIESKIEGO W KRAKOWIE",
+        "students": "1129",
+        "branches": "35",
+        "street": "ul. Jana Sobieskiego",
+        "streetNumber": "9",
+        "postcode": "31-136",
+        "city": "Kraków",
+        "phone": "126337392",
+        "email": "dyrekcjasobieski@gmail.com",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXXIV LICEUM OGÓLNOKSZTAŁCĄCE SPECJALNE IM. PROFESOR MARII ORWID W KRAKOWIE",
+        "students": "33",
+        "branches": "10",
+        "street": "ul. Miko�aja Kopernika",
+        "streetNumber": "19",
+        "postcode": "31-501",
+        "city": "Kraków",
+        "phone": "124247468",
+        "email": "zssnr2.krakow@interia.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "XXVI LICEUM OGÓLNOKSZTAŁCĄCE W KRAKOWIE",
+        "students": "197",
+        "branches": "7",
+        "street": "ul. Krupnicza",
+        "streetNumber": "44",
+        "postcode": "31-123",
+        "city": "Kraków",
+        "phone": "124223220",
+        "email": "sekretariat@zschkrakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XL LICEUM OGÓLNOKSZTAŁCĄCE SPECJALNE DLA NIESŁYSZĄCYCH W KRAKOWIE",
+        "students": "3",
+        "branches": "1",
+        "street": "ul. Grochowa",
+        "streetNumber": "19",
+        "postcode": "30-731",
+        "city": "Kraków",
+        "phone": "126532684",
+        "email": "sosw.grochowa@wp.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "XI LICEUM OGÓLNOKSZTAŁCĄCE IM. MARII DĄBROWSKIEJ W KRAKOWIE",
+        "students": "655",
+        "branches": "24",
+        "street": "os. Osiedle Teatralne",
+        "streetNumber": "33",
+        "postcode": "31-948",
+        "city": "Kraków",
+        "phone": "126440726",
+        "email": "xilo@xilo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "V LICEUM OGÓLNOKSZTAŁCĄCE DLA DOROSŁYCH W KRAKOWIE",
+        "students": "440",
+        "branches": "16",
+        "street": "os. Osiedle Szkolne",
+        "streetNumber": "21",
+        "postcode": "31-977",
+        "city": "Kraków",
+        "phone": "126421900",
+        "email": "sekretariat@cku.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XIX LICEUM OGÓLNOKSZTAŁCĄCE SPECJALNE W KRAKOWIE",
+        "students": "11",
+        "branches": "4",
+        "street": "ul. Spadochroniarzy",
+        "streetNumber": "1",
+        "postcode": "31-455",
+        "city": "Kraków",
+        "phone": "124111722",
+        "email": "sekretariat@centrum-autyzmu.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "IV LICEUM OGÓLNOKSZTAŁCĄCE DLA DOROSŁYCH W KRAKOWIE",
+        "students": "12",
+        "branches": "1",
+        "street": "ul. U�an�w",
+        "streetNumber": "9",
+        "postcode": "31-450",
+        "city": "Kraków",
+        "phone": "124117611",
+        "email": "zsisim@wp.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "VIII LICEUM OGÓLNOKSZTAŁCĄCE DLA DOROSŁYCH IM. ŚW. MAKSYMILIANA MARII KOLBE W KRAKOWIE",
+        "students": "30",
+        "branches": "2",
+        "street": "ul. Macieja Miechowity",
+        "streetNumber": "6",
+        "postcode": "31-475",
+        "city": "Kraków",
+        "phone": "124223866",
+        "email": "sekretariat.szkoly@zsps.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "IX LICEUM OGÓLNOKSZTAŁCĄCE DLA DOROSŁYCH W KRAKOWIE",
+        "students": "54",
+        "branches": "2",
+        "street": "al. Aleja gen. Jana Skrzyneckiego",
+        "streetNumber": "12",
+        "postcode": "30-363",
+        "city": "Kraków",
+        "phone": "122693236",
+        "email": "zsm2@zsm2krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XI LICEUM OGÓLNOKSZTAŁCĄCE SPECJALNE DLA DOROSŁYCH W KRAKOWIE",
+        "students": "14",
+        "branches": "2",
+        "street": "ul. Tyniecka",
+        "streetNumber": "6",
+        "postcode": "30-319",
+        "city": "Kraków",
+        "phone": "122666680",
+        "email": "centrum@blind.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "I LICEUM OGÓLNOKSZTAŁCĄCE SPORTOWE W KRAKOWIE",
+        "students": "258",
+        "branches": "16",
+        "street": "os. Osiedle Teatralne",
+        "streetNumber": "35",
+        "postcode": "31-948",
+        "city": "Kraków",
+        "phone": "126442309",
+        "email": "zsos2@wp.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XXXIX LICEUM OGÓLNOKSZTAŁCĄCE SPECJALNE W KRAKOWIE",
+        "students": "19",
+        "branches": "16",
+        "street": "ul. Wielicka",
+        "streetNumber": "265",
+        "postcode": "30-663",
+        "city": "Kraków",
+        "phone": "123339499",
+        "email": "zssnr3@interia.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "XLI LICEUM OGÓLNOKSZTAŁCĄCE IM. KSIĘDZA JANA TWARDOWSKIEGO W KRAKOWIE",
+        "students": "426",
+        "branches": "15",
+        "street": "Rynek Kleparski",
+        "streetNumber": "18",
+        "postcode": "31-150",
+        "city": "Kraków",
+        "phone": "124220658",
+        "email": "kontakt@xlilo.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XLII LICEUM OGÓLNOKSZTAŁCĄCE IM. ADAMA MICKIEWICZA W KRAKOWIE",
+        "students": "520",
+        "branches": "18",
+        "street": "ul. Studencka",
+        "streetNumber": "13",
+        "postcode": "31-116",
+        "city": "Kraków",
+        "phone": "124222573",
+        "email": "lo42@lo42krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XLIII LICEUM OGÓLNOKSZTAŁCĄCE IM. ZOFII CHRZANOWSKIEJ W KRAKOWIE",
+        "students": "353",
+        "branches": "14",
+        "street": "ul. Boles�awa Limanowskiego",
+        "streetNumber": "60-62",
+        "postcode": "30-534",
+        "city": "Kraków",
+        "phone": "126561734",
+        "email": "lo43krakow@gmail.com",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "XLIV LICEUM OGÓLNOKSZTAŁCĄCE IM. KS. STANISŁAWA KONARSKIEGO W KRAKOWIE",
+        "students": "475",
+        "branches": "17",
+        "street": "ul. Bernardy�ska",
+        "streetNumber": "7",
+        "postcode": "31-069",
+        "city": "Kraków",
+        "phone": "124220405",
+        "email": "konarskiego@lo44.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA SPECJALNA I STOPNIA NR 31 W KRAKOWIE",
+        "students": "167",
+        "branches": "14",
+        "street": "os. Osiedle Sportowe",
+        "streetNumber": "28",
+        "postcode": "31-966",
+        "city": "Kraków",
+        "phone": "126443417",
+        "email": "zss14.krakow@gmail.com",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 2 IM. STUDENCKIEGO KOMITETU SOLIDARNOŚCI W KRAKOWIE",
+        "students": "19",
+        "branches": "1",
+        "street": "os. Osiedle Szkolne",
+        "streetNumber": "18",
+        "postcode": "31-977",
+        "city": "Kraków",
+        "phone": "126441939",
+        "email": "zsz2@zsz2.edu.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 3 IM. ERAZMA JÓZEFA JERZMANOWSKIEGO W KRAKOWIE",
+        "students": "362",
+        "branches": "17",
+        "street": "al. Aleja gen. Jana Skrzyneckiego",
+        "streetNumber": "12",
+        "postcode": "30-363",
+        "city": "Kraków",
+        "phone": "122693236",
+        "email": "zsm2@zsm2krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 5 IM. POWSTAŃCÓW ŚLĄSKICH W KRAKOWIE",
+        "students": "216",
+        "branches": "8",
+        "street": "ul. Henryka Kamie�skiego",
+        "streetNumber": "49",
+        "postcode": "30-644",
+        "city": "Kraków",
+        "phone": "126551293",
+        "email": "szkola@zsel1.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 21 W KRAKOWIE",
+        "students": "116",
+        "branches": "6",
+        "street": "os. Osiedle Tysi�clecia",
+        "streetNumber": "38",
+        "postcode": "31-610",
+        "city": "Kraków",
+        "phone": "126484903",
+        "email": "szkola@zspm.malopolska.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 1 W KRAKOWIE",
+        "students": "166",
+        "branches": "8",
+        "street": "ul. Jerzego Szablowskiego",
+        "streetNumber": "1",
+        "postcode": "30-127",
+        "city": "Kraków",
+        "phone": "126374882",
+        "email": "zsbnr1@poczta.onet.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 11 W KRAKOWIE",
+        "students": "41",
+        "branches": "2",
+        "street": "os. Osiedle Z�otej Jesieni",
+        "streetNumber": "16",
+        "postcode": "31-828",
+        "city": "Kraków",
+        "phone": "126445019",
+        "email": "zsgastr1@poczta.onet.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 10 W KRAKOWIE",
+        "students": "206",
+        "branches": "10",
+        "street": "ul. Jana Zamoyskiego",
+        "streetNumber": "6",
+        "postcode": "30-523",
+        "city": "Kraków",
+        "phone": "126560404",
+        "email": "zsgnr2@poczta.onet.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 14 W KRAKOWIE",
+        "students": "248",
+        "branches": "9",
+        "street": "al. Aleja Adama Mickiewicza",
+        "streetNumber": "5",
+        "postcode": "31-120",
+        "city": "Kraków",
+        "phone": "124226443",
+        "email": "zsm1krakow@iap.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 17 W KRAKOWIE",
+        "students": "87",
+        "branches": "4",
+        "street": "os. Osiedle Szkolne",
+        "streetNumber": "37",
+        "postcode": "31-978",
+        "city": "Kraków",
+        "phone": "126440689",
+        "email": "s@zespolszkolmechanicznych.edu.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 23 IM. ŚW. MAKSYMILIANA MARII KOLBE W KRAKOWIE",
+        "students": "315",
+        "branches": "19",
+        "street": "ul. Macieja Miechowity",
+        "streetNumber": "6",
+        "postcode": "31-475",
+        "city": "Kraków",
+        "phone": "124223866",
+        "email": "sekretariat.szkoly@zsps.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 22 W KRAKOWIE",
+        "students": "78",
+        "branches": "6",
+        "street": "ul. Harcmistrza STANISŁAWA Millana",
+        "streetNumber": "16",
+        "postcode": "30-610",
+        "city": "Kraków",
+        "phone": "122661774",
+        "email": "zsnr3millana@tlen.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA I STOPNIA NR 9 IM. WITA STWOSZA W KRAKOWIE",
+        "students": "67",
+        "branches": "3",
+        "street": "ul. U�an�w",
+        "streetNumber": "9",
+        "postcode": "31-450",
+        "city": "Kraków",
+        "phone": "124117611",
+        "email": "zsisim@wp.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA SPECJALNA I STOPNIA NR 33 W KRAKOWIE",
+        "students": "38",
+        "branches": "7",
+        "street": "ul. Tyniecka",
+        "streetNumber": "6",
+        "postcode": "30-319",
+        "city": "Kraków",
+        "phone": "122674420",
+        "email": "centrum@blind.krakow.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA SPECJALNA I STOPNIA NR 29 W KRAKOWIE",
+        "students": "32",
+        "branches": "7",
+        "street": "ul. Grochowa",
+        "streetNumber": "19",
+        "postcode": "30-731",
+        "city": "Kraków",
+        "phone": "126532684",
+        "email": "sosw.grochowa@wp.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA SPECJALNA I STOPNIA NR 30 W KRAKOWIE",
+        "students": "199",
+        "branches": "26",
+        "street": "ul. JÓZEFA Szujskiego",
+        "streetNumber": "2",
+        "postcode": "31-123",
+        "city": "Kraków",
+        "phone": "124229439",
+        "email": "szkola@soswnr1krakow.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "BRANZOWA SZKOŁA SPECJALNA I STOPNIA NR 12 W KRAKOWIE",
+        "students": "14",
+        "branches": "4",
+        "street": "ul. Spadochroniarzy",
+        "streetNumber": "1",
+        "postcode": "31-455",
+        "city": "Kraków",
+        "phone": "124111722",
+        "email": "sekretariat@centrum-autyzmu.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA BRANZOWA SPECJALNA I STOPNIA NR 59 W KRAKOWIE W MŁODZIEZOWYM OŚRODKU SOCJOTERAPII NR 2 W ZESPOLE PLACÓWEK RESOCJALIZACYJNO-SOCJOTERAPEUTYCZNYCH W KRAKOWIE",
+        "students": "36",
+        "branches": "4",
+        "street": "ul. GÓrka Narodowa",
+        "streetNumber": "116",
+        "postcode": "31-234",
+        "city": "Kraków",
+        "phone": "124150040",
+        "email": "mowkrakow@poczta.fm",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "TECHNIKUM ENERGETYCZNO-ELEKTRONICZNE NR 9 IM. TADEUSZA KOŚCIUSZKI W KRAKOWIE",
+        "students": "644",
+        "branches": "21",
+        "street": "ul. Loreta�ska",
+        "streetNumber": "16",
+        "postcode": "31-114",
+        "city": "Kraków",
+        "phone": "124222947",
+        "email": "sekretariat@zse.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM EKONOMICZNO-HOTELARSKIE NR 4 IM. MIKOŁAJA KOPERNIKA W KRAKOWIE",
+        "students": "834",
+        "branches": "31",
+        "street": "ul. Kapucyńska",
+        "streetNumber": "2",
+        "postcode": "31-113",
+        "city": "Kraków",
+        "phone": "124220284",
+        "email": "zsekon1@bci.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM NR 2 IM. STUDENCKIEGO KOMITETU SOLIDARNOŚCI W KRAKOWIE",
+        "students": "351",
+        "branches": "14",
+        "street": "os. Osiedle Szkolne",
+        "streetNumber": "18",
+        "postcode": "31-977",
+        "city": "Kraków",
+        "phone": "126441939",
+        "email": "zsz2@zsz2.edu.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM NR 16 W KRAKOWIE",
+        "students": "394",
+        "branches": "20",
+        "street": "al. Aleja gen. Jana Skrzyneckiego",
+        "streetNumber": "12",
+        "postcode": "30-363",
+        "city": "Kraków",
+        "phone": "122693236",
+        "email": "zsm2@zsm2krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM CHEMICZNE I OCHRONY ŚRODOWISKA NR 3 W KRAKOWIE",
+        "students": "382",
+        "branches": "14",
+        "street": "ul. Krupnicza",
+        "streetNumber": "44",
+        "postcode": "31-123",
+        "city": "Kraków",
+        "phone": "124223220",
+        "email": "sekretariat@zschkrakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM ELEKTRYCZNO-ELEKTRONICZNE NR 7 IM. POWSNTACÓW ŚLĄSKICH W KRAKOWIE",
+        "students": "920",
+        "branches": "30",
+        "street": "ul. Henrykan Kamieńskiego",
+        "streetNumber": "49",
+        "postcode": "30-644",
+        "city": "Kraków",
+        "phone": "126551293",
+        "email": "szkola@zsel1.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM POLIGRAFICZNO-MEDIALNE NR 20 IM. ZENONA KLEMENSIEWICZA W KRAKOWIE",
+        "students": "684",
+        "branches": "27",
+        "street": "os. Osiedle Tysi�clecia",
+        "streetNumber": "38",
+        "postcode": "31-610",
+        "city": "Kraków",
+        "phone": "126484903",
+        "email": "szkola@zspm.malopolska.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM BUDOWLANE NR 1 W KRAKOWIE",
+        "students": "683",
+        "branches": "29",
+        "street": "ul. Jerzego Szablowskiego",
+        "streetNumber": "1",
+        "postcode": "30-127",
+        "city": "Kraków",
+        "phone": "126374882",
+        "email": "zsbnr1@poczta.onet.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM ELEKTRYCZNE NR 8 W KRAKOWIE",
+        "students": "626",
+        "branches": "23",
+        "street": "os. Osiedle Szkolne",
+        "streetNumber": "26",
+        "postcode": "31-977",
+        "city": "Kraków",
+        "phone": "126445950",
+        "email": "dyrektor@elektryk2.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM EKONOMICZNO-HANDLOWE NR 5 W KRAKOWIE",
+        "students": "1029",
+        "branches": "33",
+        "street": "os. Osiedle Spółdzielcze",
+        "streetNumber": "6",
+        "postcode": "31-943",
+        "city": "Kraków",
+        "phone": "126442259",
+        "email": "sekretariat@zse-2.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM GASTRONOMICZNO-HOTELARSKIE NR 10 W KRAKOWIE",
+        "students": "634",
+        "branches": "23",
+        "street": "os. Osiedle Z�otej Jesieni",
+        "streetNumber": "16",
+        "postcode": "31-828",
+        "city": "Kraków",
+        "phone": "126445019",
+        "email": "zsgastr1@poczta.onet.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM GASTRONOMICZNE NR 11 W KRAKOWIE",
+        "students": "463",
+        "branches": "20",
+        "street": "ul. Jana Zamoyskiego",
+        "streetNumber": "6",
+        "postcode": "30-523",
+        "city": "Kraków",
+        "phone": "126560404",
+        "email": "zsgnr2@poczta.onet.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM KOMUNIKACYJNE NR 25 W KRAKOWIE",
+        "students": "912",
+        "branches": "36",
+        "street": "ul. Ułanów",
+        "streetNumber": "3",
+        "postcode": "31-450",
+        "city": "Kraków",
+        "phone": "124115434",
+        "email": "poczta@tk.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM KSZTAłTOWANIA ŚRODOWISKA NR 24 W KRAKOWIE",
+        "students": "516",
+        "branches": "21",
+        "street": "ul. Brzozowa",
+        "streetNumber": "5",
+        "postcode": "31-050",
+        "city": "Kraków",
+        "phone": "124224955",
+        "email": "dyrektor@brzozowa5.edu.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM ODZIEŹOWE NR 18 IM. STANISŁAWA WYSPIAŃSKIEGO W KRAKOWIE",
+        "students": "138",
+        "branches": "6",
+        "street": "ul. Cechowa",
+        "streetNumber": "57",
+        "postcode": "30-614",
+        "city": "Kraków",
+        "phone": "124224775",
+        "email": "zso1.krakow@neostrada.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM MECHANICZNE NR 15 IM. SZCZEPANA HUMBERTA W KRAKOWIE",
+        "students": "692",
+        "branches": "31",
+        "street": "al. Aleja Adama Mickiewicza",
+        "streetNumber": "5",
+        "postcode": "31-120",
+        "city": "Kraków",
+        "phone": "124226443",
+        "email": "zsm1krakow@iap.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM MECHANICZNE NR 17 W KRAKOWIE",
+        "students": "483",
+        "branches": "19",
+        "street": "os. Osiedle Szkolne",
+        "streetNumber": "37",
+        "postcode": "31-978",
+        "city": "Kraków",
+        "phone": "126440689",
+        "email": "s@zespolszkolmechanicznych.edu.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM ŁĄCZNOŚCI NR 14 IM. OBROŃCÓW POCZTY POLSKIEJ W GDAŃSKU W KRAKOWIE",
+        "students": "1540",
+        "branches": "46",
+        "street": "ul. Monte Cassino",
+        "streetNumber": "31",
+        "postcode": "30-337",
+        "city": "Kraków",
+        "phone": "122691557",
+        "email": "sekretariat@tl.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM MECHANICZNE NR 30 W KRAKOWIE",
+        "students": "307",
+        "branches": "14",
+        "street": "ul. Podbrzezie",
+        "streetNumber": "10",
+        "postcode": "31-054",
+        "city": "Kraków",
+        "phone": "124220587",
+        "email": "zsm4@wp.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM PRZEMYSŁU SPOZYWCZEGO NR 22 IM. ŚW. MAKSYMILIANA MARII KOLBE W KRAKOWIE",
+        "students": "325",
+        "branches": "13",
+        "street": "ul. Macieja Miechowity",
+        "streetNumber": "6",
+        "postcode": "31-475",
+        "city": "Kraków",
+        "phone": "124223866",
+        "email": "sekretariat.szkoly@zsps.krakow.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM INZYNIERII ŚRODOWISKA NR 13 W KRAKOWIE",
+        "students": "709",
+        "branches": "28",
+        "street": "ul. Ułanów",
+        "streetNumber": "9",
+        "postcode": "31-450",
+        "city": "Kraków",
+        "phone": "124117611",
+        "email": "zsisim@wp.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM GEODEZJI I KSZTAŁTOWANIA ŚRODOWISKA NR 12 W KRAKOWIE",
+        "students": "422",
+        "branches": "19",
+        "street": "ul. Juliusza Lea",
+        "streetNumber": "235",
+        "postcode": "30-133",
+        "city": "Kraków",
+        "phone": "126374669",
+        "email": "zsgdigw@wp.pl",
+        "specifics": "brak specyfiki"
+      },
+    {  
+        "name": "TECHNIKUM SPECJALNE DLA NIEWIDOMYCH I SŁABOWIDZĄCYCH NR 26 W KRAKOWIE",
+        "students": "146",
+        "branches": "19",
+        "street": "ul. Tyniecka",
+        "streetNumber": "6",
+        "postcode": "30-319",
+        "city": "Kraków",
+        "phone": "122674420",
+        "email": "centrum@blind.krakow.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "TECHNIKUM SPECJALNE DLA NIESŁYSZĄCYCH NR 27 W KRAKOWIE",
+        "students": "76",
+        "branches": "13",
+        "street": "ul. Grochowa",
+        "streetNumber": "19",
+        "postcode": "30-731",
+        "city": "Kraków",
+        "phone": "126532684",
+        "email": "sosw.grochowa@wp.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 1 W KRAKOWIE",
+        "students": "34",
+        "branches": "7",
+        "street": "os. Osiedle Sportowe",
+        "streetNumber": "28",
+        "postcode": "31-966",
+        "city": "Kraków",
+        "phone": "126443417",
+        "email": "zss14.krakow@gmail.com",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 7 IM. JÓZEFY JOTEYKO W KRAKOWIE",
+        "students": "12",
+        "branches": "4",
+        "street": "ul. Tadeusza Ptaszyckiego",
+        "streetNumber": "9",
+        "postcode": "31-979",
+        "city": "Kraków",
+        "phone": "126440783",
+        "email": "zss6@poczta.onet.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 6 W KRAKOWIE",
+        "students": "14",
+        "branches": "5",
+        "street": "ul. Dobczycka",
+        "streetNumber": "20",
+        "postcode": "30-620",
+        "city": "Kraków",
+        "phone": "122657261",
+        "email": "spp6@zss11.krakow.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 8 W KRAKOWIE",
+        "students": "32",
+        "branches": "7",
+        "street": "ul. Jana Zamoyskiego",
+        "streetNumber": "100",
+        "postcode": "30-523",
+        "city": "Kraków",
+        "phone": "126561356",
+        "email": "osw2@tlen.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 5 W KRAKOWIE",
+        "students": "14",
+        "branches": "5",
+        "street": "ul. Tyniecka",
+        "streetNumber": "6",
+        "postcode": "30-319",
+        "city": "Kraków",
+        "phone": "122674420",
+        "email": "centrum@blind.krakow.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 2 W KRAKOWIE",
+        "students": "22",
+        "branches": "6",
+        "street": "ul. JÓZEFA Szujskiego",
+        "streetNumber": "2",
+        "postcode": "31-123",
+        "city": "Kraków",
+        "phone": "124229439",
+        "email": "szkola@soswnr1krakow.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 9 W KRAKOWIE",
+        "students": "34",
+        "branches": "9",
+        "street": "ul. Praska",
+        "streetNumber": "64",
+        "postcode": "30-322",
+        "city": "Kraków",
+        "phone": "122693550",
+        "email": "sekretariat@sosw3.krakow.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 3 W KRAKOWIE",
+        "students": "24",
+        "branches": "7",
+        "street": "ul. Hieronima Wietora",
+        "streetNumber": "7",
+        "postcode": "31-067",
+        "city": "Kraków",
+        "phone": "124305400",
+        "email": "sekretariatsosw4@interia.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 4 W KRAKOWIE",
+        "students": "14",
+        "branches": "6",
+        "street": "ul. Spadochroniarzy",
+        "streetNumber": "1",
+        "postcode": "31-455",
+        "city": "Kraków",
+        "phone": "124111722",
+        "email": "sekretariat@centrum-autyzmu.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA SPECJALNA PRZYSPOSABIAJĄCA DO PRACY NR 10 W KRAKOWIE",
+        "students": "26",
+        "branches": "5",
+        "street": "ul. Zak�tek",
+        "streetNumber": "2",
+        "postcode": "30-076",
+        "city": "Kraków",
+        "phone": "124225712",
+        "email": "zss4krakow@gmail.com",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA POLICEALNA SPECJALNA NR 19 W KRAKOWIE",
+        "students": "27",
+        "branches": "5",
+        "street": "ul. Tyniecka",
+        "streetNumber": "6",
+        "postcode": "30-319",
+        "city": "Kraków",
+        "phone": "122674420",
+        "email": "centrum@blind.krakow.pl",
+        "specifics": "specjalna"
+      },
+    {  
+        "name": "SZKOŁA POLICEALNA NR 10 W KRAKOWIE",
+        "students": "182",
+        "branches": "7",
+        "street": "os. Osiedle Szkolne",
+        "streetNumber": "21",
+        "postcode": "31-977",
+        "city": "Kraków",
+        "phone": "126421900",
+        "email": "sekretariat@cku.krakow.pl",
+        "specifics": "brak specyfiki"
+      }]
+    

@@ -18,6 +18,8 @@ import LoadingOverlay from 'client/components/LoadingOverlay';
 import PhotoUploader from 'client/components/PhotoUploader';
 import ErrorBox from 'client/components/ErrorBox';
 import TechSpecTooltip from 'client/components/TechSpecTooltip';
+import AccountTooltip from 'client/components/AccountTooltip';
+import AddressTooltip from 'client/components/AddressTooltip';
 import SubPage from 'client/pages/SubPage';
 
 const useStyles = makeStyles((theme) => ({
@@ -222,6 +224,12 @@ export function SubmitDevicePage () {
                         {createInputElement(FormField.POSTCODE, 'Kod pocztowy', true, false, getHorizontalInputStyles(35, true))}
                         {createInputElement(FormField.CITY, 'Miejscowość', true, false, getHorizontalInputStyles(65, false))}
                         {createInputElement(FormField.BANK_ACCOUNT, 'Numer konta')}
+                        <AddressTooltip>
+                            <Typography variant="body2" style={{ textAlign: 'left' }}>Dlaczego prosimy Cię o podanie adresu zamieszkania?</Typography>
+                        </AddressTooltip>
+                        <AccountTooltip>
+                            <Typography variant="body2" style={{ textAlign: 'left' }}>Po co mam podawać numer konta?</Typography>
+                        </AccountTooltip>
                     </section>
                     <Typography variant="h5" className={classes.subtitle}>Sprzęt</Typography>
                     <section>
