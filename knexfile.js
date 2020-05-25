@@ -1,5 +1,10 @@
 const path = require('path');
+const dotenv = require('dotenv');
 const { knexSnakeCaseMappers } = require('objection');
+
+dotenv.config({
+    path: process.argv[process.argv.findIndex((e) => e === '--envfile') + 1]
+});
 
 module.exports = {
     client: 'pg',
