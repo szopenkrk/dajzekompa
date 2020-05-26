@@ -17,6 +17,7 @@ function sanitizeReceiver (receiver: DBSchemaReceiver): Receiver {
 export default {
     method: HTTPMethod.GET,
     url: '/api/receivers',
+    protected: true,
     controller: async (req: Request, res: Response) => {
         let items: DBSchemaReceiver[];
 
