@@ -18,6 +18,7 @@ import SubmitNeedPage from 'client/pages/SubmitNeedPage';
 import TermsPage from 'client/pages/TermsPage';
 import SubmitCityPage from 'client/pages/SubmitCityPage';
 import PrivacyPolicyPage from 'client/pages/PrivacyPolicyPage';
+import PartnerPage from 'client/pages/PartnerPage';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -69,6 +70,7 @@ export function LandingPage () {
                     <Route path="/regulamin" exact={true} component={TermsPage} />
                     <Route path="/zglos-miasto" exact={true} component={SubmitCityPage} />
                     <Route path="/polityka-prywatnosci" exact={true} component={PrivacyPolicyPage} />
+                    <Route path="/partnerzy" exact={true} component={PartnerPage} />
                 </Switch>
                 <Separator className={classes.separator} />
             </main>

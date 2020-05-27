@@ -10,6 +10,7 @@ import logoPragmaticSolutions from 'client/assets/images/logo-partner-sww.png';
 import logoInpost from 'client/assets/images/logo-partner-inpost.png';
 import logoFixit from 'client/assets/images/logo-partner-fixit.png';
 import logoBkode from 'client/assets/images/logo-partner-bkode.png';
+import logoZooPlus from 'client/assets/images/zooplus_logo.png';
 
 type Props = {
     vertical?: boolean;
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
         flexDirection: props => (props as any).vertical ? 'column' : 'row'
     },
     partner: {
-        maxHeight: 100,
+        maxHeight: 94,
         maxWidth: 100,
         padding: props => (props as any).vertical ? '20px 0' : '0 20px'
     }
@@ -48,6 +49,7 @@ export function Partners (props: Props) {
                 <a href="https://ssw.solutions/pl/" target="_blank"><img src={logoPragmaticSolutions} className={classes.partner}  /></a>
                 <a href="http://www.fixit.pl/pl/" target="_blank"><img src={logoFixit} className={classes.partner}  /></a>
                 <a href="https://inpost.pl/" target="_blank"><img src={logoInpost} className={classes.partner}  /></a>
+                <a href="https://www.zooplus.pl/" target="_blank"><img src={logoZooPlus} className={classes.partner}  /></a>
             </section>
         </>
     );
