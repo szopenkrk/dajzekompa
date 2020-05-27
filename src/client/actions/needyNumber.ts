@@ -6,8 +6,6 @@ import { request } from 'client/lib/request';
 
 export function needyNumberLoad (): ReduxThunkAction<any> {
     return async (dispatch) => {
-        return 0; // Force avoid API call
-
         const needy = await request<any>('GET', '/numberOfReceivers');
 
         dispatch({
