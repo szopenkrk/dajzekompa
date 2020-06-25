@@ -83,7 +83,7 @@ export function ProgramSummary (props: Props) {
             const summary = await dispatch(loadProgramSummary());
             const total = Object.keys(summary.statuses).reduce((all, current) => all + summary.statuses[current], 0);
             const needy = await dispatch(needyNumberLoad());
-            const devicesGetFromCompanies = 373;
+            const devicesGetFromCompanies = 229;
             setDevices(total + devicesGetFromCompanies);
             setNeedy(needy);
             setRegions(summary.regions);
