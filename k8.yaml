@@ -41,7 +41,7 @@ spec:
                       name: https
                   env:
                     - name: APP_NAME
-                      value: dajzekompa
+                      value: dajzekompa2
                     - name: NODE_ENV
                       value: production
                     - name: PORT
