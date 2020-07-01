@@ -103,7 +103,6 @@ const menu = [
     { label: 'FAQ', route: '/faq' },
     { label: 'Podaruj kompa', route: '/podaruj-kompa' },
     { label: 'Partnerzy', route: '/partnerzy' },
-    { label: 'Zgłoś potrzebę', route: '/zglos-potrzebe' },
     { label: 'Regulamin', route: '/regulamin' },
     { label: 'Zgłoś miasto', route: '/zglos-miasto' },
 ];
