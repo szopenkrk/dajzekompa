@@ -1,198 +1,197 @@
 /* Libraries */
-import React, { useState } from 'react';
-import { useDispatch as reduxUseDispatch } from 'react-redux';
-import { makeStyles, Typography, TextField, FormControlLabel, Radio, FormControl, RadioGroup, FormGroup, Checkbox, FormLabel, Button, Icon, useTheme, TextFieldProps } from '@material-ui/core';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
-import { Link } from 'react-router-dom';
+import React from 'react';
+// import { useDispatch as reduxUseDispatch } from 'react-redux';
+import { Button } from '@material-ui/core';
+// import { CSSProperties } from '@material-ui/core/styles/withStyles';
+// import { Link } from 'react-router-dom';
 
 /* Models */
-import { Action } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { DeviceType, DevicePersonType } from 'common/model/Device';
-import { ReduxState } from 'client/model/Redux';
+// import { Action } from 'redux';
+// import { ThunkDispatch } from 'redux-thunk';
+// import { DeviceType, DevicePersonType } from 'common/model/Device';
+// import { ReduxState } from 'client/model/Redux';
 
 /* Application files */
-import { ValidationResult, emptyModel, create, FormField, validateField, validateForm } from 'client/lib/device';
-import { add as addDevice } from 'client/actions/devices';
-import LoadingOverlay from 'client/components/LoadingOverlay';
-import PhotoUploader from 'client/components/PhotoUploader';
-import ErrorBox from 'client/components/ErrorBox';
-import TechSpecTooltip from 'client/components/TechSpecTooltip';
-import AccountTooltip from 'client/components/AccountTooltip';
-import AddressTooltip from 'client/components/AddressTooltip';
+// import { ValidationResult, emptyModel } from 'client/lib/device';
+// import { add as addDevice } from 'client/actions/devices';
+// import LoadingOverlay from 'client/components/LoadingOverlay';
+// import PhotoUploader from 'client/components/PhotoUploader';
+// import ErrorBox from 'client/components/ErrorBox';
+// import TechSpecTooltip from 'client/components/TechSpecTooltip';
+// import AccountTooltip from 'client/components/AccountTooltip';
+// import AddressTooltip from 'client/components/AddressTooltip';
 import SubPage from 'client/pages/SubPage';
 
-const useStyles = makeStyles((theme) => ({
-    icon: {
-        fontSize: 70,
-        color: '#00b848',
-        marginBottom: 20
-    },
-    form: {
-        width: '100%',
-        textAlign: 'center'
-    },
-    radioGroup: {
-        width: '100%',
-        margin: `${theme.spacing(1)}px 0`,
-        '& > div': {
-            flexDirection: 'row'
-        },
-        '& label': {
-            flex: 1
-        }
-    },
-    subtitle: {
-        padding: '20px 0'
-    },
-    input: {
-        width: '100%',
-        margin: `${theme.spacing(1)}px 0`,
-        marginTop: 0
-    },
-    link: {
-        color: theme.palette.primary.main,
-        textDecoration: 'underline'
-    },
-    legend: {
-        textAlign: 'left',
-        paddingTop: 10
-    },
-    actions: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-        paddingTop: theme.spacing(2),
-        paddingBottom: 10
-    },
-    message: {
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    messageTitle: {
-        textAlign: 'center',
-        paddingBottom: theme.spacing(2)
-    },
-    consents: {
-        padding: `${theme.spacing(2)}px 0`,
-        textAlign: 'left',
-        '& label': {
-            padding: `${theme.spacing(1)}px 0`,
-            alignItems: 'start'
-        }
-    }
-}));
+// const useStyles = makeStyles((theme) => ({
+//     icon: {
+//         fontSize: 70,
+//         color: '#00b848',
+//         marginBottom: 20
+//     },
+//     form: {
+//         width: '100%',
+//         textAlign: 'center'
+//     },
+//     radioGroup: {
+//         width: '100%',
+//         margin: `${theme.spacing(1)}px 0`,
+//         '& > div': {
+//             flexDirection: 'row'
+//         },
+//         '& label': {
+//             flex: 1
+//         }
+//     },
+//     subtitle: {
+//         padding: '20px 0'
+//     },
+//     input: {
+//         width: '100%',
+//         margin: `${theme.spacing(1)}px 0`,
+//         marginTop: 0
+//     },
+//     link: {
+//         color: theme.palette.primary.main,
+//         textDecoration: 'underline'
+//     },
+//     legend: {
+//         textAlign: 'left',
+//         paddingTop: 10
+//     },
+//     actions: {
+//         display: 'flex',
+//         justifyContent: 'flex-end',
+//         paddingTop: theme.spacing(2),
+//         paddingBottom: 10
+//     },
+//     message: {
+//         width: '100%',
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'center',
+//     },
+//     messageTitle: {
+//         textAlign: 'center',
+//         paddingBottom: theme.spacing(2)
+//     },
+//     consents: {
+//         padding: `${theme.spacing(2)}px 0`,
+//         textAlign: 'left',
+//         '& label': {
+//             padding: `${theme.spacing(1)}px 0`,
+//             alignItems: 'start'
+//         }
+//     }
+// }));
 
-const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
+// const useDispatch = () => reduxUseDispatch<ThunkDispatch<ReduxState, any, Action>>();
 
 export function SubmitDevicePage () {
-    const classes = useStyles();
-    const dispatch = useDispatch();
-    const theme = useTheme();
+    // const classes = useStyles();
+    // const dispatch = useDispatch();
+    // const theme = useTheme();
 
-    const [ form, setForm ] = useState(emptyModel());
-    const [ loading, setLoading ] = useState(false);
-    const [ complete, setComplete ] = useState(false);
-    const [ error, setError ] = useState('');
-    const [ validation, setValidation ] = useState({} as ValidationResult);
-    const [ pristine, setPristine ] = useState(create(true));
+    // const [ form, setForm ] = useState(emptyModel());
+    // const [ loading, setLoading ] = useState(false);
+    // const [ complete, setComplete ] = useState(false);
+    // const [ error, setError ] = useState('');
+    // const [ validation, setValidation ] = useState({} as ValidationResult);
+    // const [ pristine, setPristine ] = useState(create(true));
 
-    const url = window.location.host;
+    // const url = window.location.host;
 
-    async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
+    // async function onSubmit (e: React.FormEvent<HTMLFormElement>) {
+    //     e.preventDefault();
 
-        const validationResult = validateForm(form);
-        const passed = Object.values(validationResult).every((error) => !error);
+    //     const validationResult = validateForm(form);
+    //     const passed = Object.values(validationResult).every((error) => !error);
 
-        if (!passed) {
-            setValidation(validationResult);
-            setError('Proszę poprawić błędy poniżej.');
+    //     if (!passed) {
+    //         setValidation(validationResult);
+    //         setError('Proszę poprawić błędy poniżej.');
 
-            return;
-        }
+    //         return;
+    //     }
 
-        setError('');
-        setLoading(true);
+    //     setError('');
+    //     setLoading(true);
 
-        try {
-            await dispatch(addDevice(form));
-            setComplete(true);
-        } catch (error) {
-            setError(error.message);
-        }
+    //     try {
+    //         await dispatch(addDevice(form));
+    //         setComplete(true);
+    //     } catch (error) {
+    //         setError(error.message);
+    //     }
 
-        setLoading(false);
-    }
+    //     setLoading(false);
+    // }
 
-    function getHorizontalInputStyles (percentageWidth: number, first: boolean) {
-        return {
-            width: first ? `${percentageWidth}%` : `calc(${percentageWidth}% - ${theme.spacing(1)}px)`,
-            ...(first ? {} : { marginLeft: theme.spacing(1) })
-        };
-    }
+    // function getHorizontalInputStyles (percentageWidth: number, first: boolean) {
+    //     return {
+    //         width: first ? `${percentageWidth}%` : `calc(${percentageWidth}% - ${theme.spacing(1)}px)`,
+    //         ...(first ? {} : { marginLeft: theme.spacing(1) })
+    //     };
+    // }
 
-    function updateField (name: FormField) {
-        return (e: React.ChangeEvent<HTMLInputElement>, value?: any) => {
-            if (typeof value === 'undefined') value = e.target.value;
-            if (!pristine[name]) validateSingleField(name, value);
+    // function updateField (name: FormField) {
+    //     return (e: React.ChangeEvent<HTMLInputElement>, value?: any) => {
+    //         if (typeof value === 'undefined') value = e.target.value;
+    //         if (!pristine[name]) validateSingleField(name, value);
 
-            setForm({ ...form, [name]: value });
-        };
-    }
+    //         setForm({ ...form, [name]: value });
+    //     };
+    // }
 
-    function setDirty (name: FormField) {
-        return () => {
-            validateSingleField(name);
-            if (!pristine[name]) return;
+    // function setDirty (name: FormField) {
+    //     return () => {
+    //         validateSingleField(name);
+    //         if (!pristine[name]) return;
 
-            setPristine({ ...pristine, [name]: false });
-        };
-    }
+    //         setPristine({ ...pristine, [name]: false });
+    //     };
+    // }
 
-    function validateSingleField (name: FormField, value?: any) {
-        const result = validateField(name, value || form[name], { form });
+    // function validateSingleField (name: FormField, value?: any) {
+    //     const result = validateField(name, value || form[name], { form });
 
-        setValidation({ ...validation, ...result });
-    }
+    //     setValidation({ ...validation, ...result });
+    // }
 
-    function someConsentsNotAgreed () {
-        return [
-            !!validation[FormField.CONSENT_TERMS_AND_PRIVACY],
-            !!validation[FormField.CONSENT_INFO_CLAUSE],
-            !!validation[FormField.CONSENT_DATA_CLEANED]
-        ].every(c => c);
-    }
+    // function someConsentsNotAgreed () {
+    //     return [
+    //         !!validation[FormField.CONSENT_TERMS_AND_PRIVACY],
+    //         !!validation[FormField.CONSENT_INFO_CLAUSE],
+    //         !!validation[FormField.CONSENT_DATA_CLEANED]
+    //     ].every(c => c);
+    // }
 
-    function createInputElement (name: FormField, label: string, full: boolean = true, focus: boolean = false, style: CSSProperties = {}, props: TextFieldProps = {}) {
-        return (
-            <TextField
-                {...props}
-                variant="outlined"
-                label={label}
-                className={classes.input}
-                onChange={updateField(name)}
-                onBlur={setDirty(name)}
-                value={form[name]}
-                error={!!validation[name]}
-                helperText={validation[name]}
-                autoFocus={focus}
-                fullWidth={full}
-                style={style} />
-        );
-    }
+    // function createInputElement (name: FormField, label: string, full: boolean = true, focus: boolean = false, style: CSSProperties = {}, props: TextFieldProps = {}) {
+    //     return (
+    //         <TextField
+    //             {...props}
+    //             variant="outlined"
+    //             label={label}
+    //             className={classes.input}
+    //             onChange={updateField(name)}
+    //             onBlur={setDirty(name)}
+    //             value={form[name]}
+    //             error={!!validation[name]}
+    //             helperText={validation[name]}
+    //             autoFocus={focus}
+    //             fullWidth={full}
+    //             style={style} />
+    //     );
+    // }
 
-    function resetForm () {
-        setLoading(false);
-        setComplete(false);
-        setError('');
-        setForm(emptyModel());
-    }
+    // function resetForm () {
+    //     setLoading(false);
+    //     setComplete(false);
+    //     setError('');
+    // }
 
     return (
         <SubPage title="Podaruj kompa">
-            {loading && (<LoadingOverlay />)}
+            {/* {loading && (<LoadingOverlay />)}
             {error && (<ErrorBox>{error}</ErrorBox>)}
             {complete && !error && (
                 <div className={classes.message}>
@@ -204,7 +203,9 @@ export function SubmitDevicePage () {
                         <Button variant="contained" color="primary" onClick={resetForm}>Podaruj jeszcze jeden</Button>
                     </section>
                 </div>
-            )}
+            )} */}
+            <a href="mailto:dajzekompa@polandbusinessrun.pl"><Button>Wyślij do nas wiadomość z informacja o komputerze do przekazania!</Button></a>
+{/* 
             {!complete && (
                 <form onSubmit={onSubmit} noValidate autoComplete="off" className={classes.form}>
                     <section>
@@ -298,6 +299,7 @@ export function SubmitDevicePage () {
                     </section>
                 </form>
             )}
+             */}
         </SubPage>
     );
 }
