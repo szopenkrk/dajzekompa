@@ -72,7 +72,6 @@ export function AboutPage () {
                 </Typography>
                 <div className={classes.actions}>
                     <Link to="/podaruj-kompa"><Button variant="contained" color="primary">Podaruj kompa</Button></Link>
-                    <Link to="/zglos-potrzebe"><Button variant="outlined" color="primary">Zgłoś potrzebę</Button></Link>
                 </div>
             </section>
         </SubPage>
