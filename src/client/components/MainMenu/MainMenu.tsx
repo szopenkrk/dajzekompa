@@ -104,7 +104,6 @@ const menu = [
     { label: 'Podaruj kompa', route: '/podaruj-kompa' },
     { label: 'Partnerzy', route: '/partnerzy' },
     { label: 'Regulamin', route: '/regulamin' },
-    { label: 'Zgłoś miasto', route: '/zglos-miasto' },
 ];
 
 export function MainMenu () {

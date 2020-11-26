@@ -123,7 +123,7 @@ export function TermsPage () {
                         <TableRow>
                             <TableCell><b>Sprzęt</b></TableCell>
                             <TableCell>
-                                komputer stacjonarny lub laptop oraz inny sprzęt komputerowy taki jak tablety, monitory, drukarki, zestawy słuchawkowe i kamery, który Dający Kompa zgłasza do Dajże Kompa wypełniając formularz w zakładce „Podaruj Kompa”.
+                                komputer stacjonarny lub laptop oraz inny sprzęt komputerowy taki jak tablety, monitory, drukarki, zestawy słuchawkowe i kamery, który Dający Kompa zgłasza do akcji Dajże Kompa.
                             </TableCell>
                         </TableRow>
                         <TableRow>
@@ -144,7 +144,7 @@ export function TermsPage () {
                     Korzystanie z Serwisu wymaga posługiwania się sprawnymi urządzeniami elektronicznymi (jak komputery, tablety, telefony komórkowe), mającymi połączenie z siecią Internet, za pośrednictwem zainstalowanych na nich aplikacji mobilnych lub następujących przeglądarek internetowych: najnowsze wersje przeglądarek: Google Chrome, Mozilla Firefox, Internet Explorer, Edge, Safari, Opera (w ich najnowszych wersjach).
                 </li>
                 <li>
-                    Wypełnienie formularzy znajdujących się w zakładce „Podaruj Kompa” lub „Zgłoś Potrzebę”, dostępnych w ramach podstron Serwisu, wymaga posiadania aktywnego adresu e-mail.
+                    Zgłoszenie gotowości do przekazania sprzętu w ramach akcji wymaga posiadania aktywnego adresu e-mail.
                 </li>
                 <li>
                     Fundacja zastrzega, że korzystanie z Serwisu może wiązać się ze standardowym ryzykiem związanym z wykorzystaniem sieci Internet i rekomenduje Użytkownikom przedsięwzięcie odpowiednich kroków w celu ich zminimalizowania.
@@ -179,7 +179,7 @@ export function TermsPage () {
                     Wzięcie udziału w akcji Dajże Kompa wymaga także zaakceptowania przez Dającego Kompa Regulaminu oraz Polityki Prywatności.
                 </li>
                 <li>
-                    Wysyłając formularz opisany w pkt 1 powyżej Dający Kompa zobowiązuje się przenieść na Fundację własność Sprzętu i wydać ją w sposób opisany w pkt 8 poniżej – pod warunkiem akceptacji Sprzętu przez Fundację, zgodnie z postanowieniami poniżej
+                    Wysyłając e-mail  opisany w pkt 1 powyżej Dający Kompa zobowiązuje się przenieść na Fundację własność Sprzętu i wydać ją w sposób opisany w pkt 8 poniżej – pod warunkiem akceptacji Sprzętu przez Fundację, zgodnie z postanowieniami poniżej
                 </li>
                 <li>
                     Po przesłaniu formularza Fundacja niezwłocznie zweryfikuje, czy zgłoszenie spełnia wymagania techniczne określone w pkt. 2 powyżej i poinformuje Dającego Kompa o wyniku weryfikacji – przesyłając wiadomość na adres e-mail wskazany przez Dającego Kompa.

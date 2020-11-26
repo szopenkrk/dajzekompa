@@ -52,7 +52,7 @@ export function PrivacyPolicyPage () {
                 <li>Administratorem Pani/Pana danych osobowych jest Fundacja Poland Business Run z siedzibą w Krakowie (31-137), ul Siemiradzkiego 17/ 2, posiadająca REGON: 364424465, NIP: 6762507232, wpisana do rejestru stowarzyszeń, innych organizacji społecznych i zawodowych, fundacji oraz samodzielnych publicznych zakładów opieki zdrowotnej Krajowego Rejestru Sądowego pod numerem KRS 0000617320, której akta rejestrowe przechowywane są przez Sąd Rejonowy dla Krakowa – Śródmieścia w Krakowie, XI Wydział Gospodarczy KRS, tel. 123957811, e-mail: {mail}</li>
                 <li>Administrator wyznaczył Inspektora Ochrony Danych z którym można się kontaktować pod adresem email: iod@iods.pl.</li>
                 <li>
-                    Pani/Pan dane osobowe podane w formularzu ​będą przetwarzane wyłącznie w celu:
+                    Pani/Pan dane osobowe podane podczas kontaktu z organizatorami akcji  ​będą przetwarzane wyłącznie w celu:
                     <ol className={classes.bracketedList}>
                         <li>zgłoszenia uczestnictwa w akcji „Dajże Kompa”, zmierzającego do zawarcia umowy, przekazania darowizny ​lub podejmowania innych działań na Pani/Pana żądanie przed zawarciem umowy (podstawa prawna: art. 6 ust. 1 lit b RODO),</li>
                         <li>zgłoszenia uczestnictwa w akcji „Dajże Kompa”, zamierzającego do otrzymania darowizny w postaci sprzętu komputerowego, a także w celu niezbędnego kontaktu w ramach ww. akcji (art. 6 ust. 1 lit. b RODO),</li>
