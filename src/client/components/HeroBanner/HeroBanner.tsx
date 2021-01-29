@@ -1,11 +1,9 @@
 /* Libraries */
 import React from 'react';
 import clx from 'classnames';
-import { makeStyles, Button, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { makeStyles, Typography } from '@material-ui/core';
 
 /* Application files */
-import arrowRight from 'client/assets/images/icon-arrow-right.svg';
 import ProgramSummary from 'client/components/ProgramSummary';
 import Separator from 'client/components/Separator';
 
@@ -74,20 +72,24 @@ export function HeroBanner () {
         <section className={clx(classes.section, classes.hero)}>
             <div className={clx(classes.container, classes.wrapper)}>
                 <div className={classes.half}>
-                    <Typography variant="h2" className={classes.title}>DAJŻE KOMPA</Typography>
+                    <Typography variant="h4" className={classes.title}>AKCJA #DAJŻEKOMPA ZAKOŃCZONA - DZIĘKUJEMY ORGANIZATOROM, WSZYSTKIM PARTNEROM I DARCZYŃCOM, KTÓRZY SPRAWILI, ŻE XXX KRAKOWSKICH UCZNIÓW MOGŁO W PEŁNI KORZYSTAĆ Z NAUKI ZDALNEJ 
+</Typography>
                     <Typography variant="subtitle1" className={classes.description}>
                         W związku z pandemią koronawirusa szkoły realizują naukę z uczniami on-line. Niestety, <b>nie wszystkie dzieci, a także nie wszyscy nauczyciele</b> mają dostęp do komputera czy tabletu.
                     </Typography>
                     <Typography variant="subtitle1" className={classes.description}>
-                        <b>#DajżeKompa</b> - jeśli posiadasz <b>niepotrzebny sprzęt komputerowy, przekaż go</b> na potrzeby naszej akcji. Będziemy razem walczyć z wykluczeniem cyfrowym.
+                        <b>##DajżeKompa - powstało, aby walczyć z wykluczeniem cyfrowym.</b> -  Inicjatorem akcji były  <b>krakowskie firmy</b> wspierane przez <b>Urząd Miasta Krakowa i Fundację Poland Business Run</b>
                     </Typography>
-                    <Link to="/o-akcji">
-                        <Button color="primary" endIcon={<img src={arrowRight} />} className={classes.linkButton}>Czytaj więcej</Button>
-                    </Link>
+                    <Typography variant="subtitle1" className={classes.description}>
+                        Do pomocy zgłosiło się <b>wiele osób</b>, dzięki którym pomysł wsparcia dzieci w kilka dni przerodził się w rzeczywistość: to ludzie biznesu, informatycy, prawnicy, dziennikarze, a przede wszystkim darczyńcy. Dzięki naszym 
+                    </Typography>
+                    <Typography variant="subtitle1" className={classes.description}>
+                        pomocnikom udało się zebrać <b>kilkaset sztuk sprzętu komputerowego, poddać go czynnościom serwisowym, zdezynfekować i wysłać do najbardziej potrzebujących rodzin z Krakowa.</b> 
+                    </Typography>
+                    <Typography variant="subtitle1" className={classes.description}>
+                        Do akcji zgłosiło się ponad 1400 potrzebujących osób i niestety nie byliśmy w stanie pomóc wszystkim, ale cieszy nas to, co udało się osiągnąć:
+                    </Typography>
                     <Separator />
-                    <div className={classes.actions}>
-                        <Link to="/podaruj-kompa"><Button variant="contained" color="primary">Podaruj kompa</Button></Link>
-                    </div>
                 </div>
                 <div className={classes.half}>
                     <ProgramSummary />

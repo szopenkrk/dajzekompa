@@ -99,9 +99,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const menu = [
-    { label: 'O akcji', route: '/o-akcji' },
     { label: 'FAQ', route: '/faq' },
-    { label: 'Podaruj kompa', route: '/podaruj-kompa' },
     { label: 'Partnerzy', route: '/partnerzy' },
     { label: 'Regulamin', route: '/regulamin' },
 ];
