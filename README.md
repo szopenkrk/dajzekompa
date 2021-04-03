@@ -1,5 +1,11 @@
 # dajzekompa
 
+
+Setup on server: 77.55.236.82
+Using pm2 
+on nginx 
+Setup for ports in nginx.config
+
 ## Setup
 In order to run the project locally, you need to install node dependencies first:
 ```bash
