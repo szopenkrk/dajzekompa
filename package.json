@@ -74,7 +74,7 @@
         "compression": "^1.7.4",
         "express": "^4.17.1",
         "http-status-codes": "^1.4.0",
-        "knex": "^0.20.13",
+        "knex": "^2.4.0",
         "mime-types": "^2.1.26",
         "multer": "^1.4.2",
         "objection": "^2.1.3",
